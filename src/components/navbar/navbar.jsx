@@ -6,6 +6,8 @@ const TopNavbar = props => {
   console.log(props);
 
   const Nav = styled.nav`
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
