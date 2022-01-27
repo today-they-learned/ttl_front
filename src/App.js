@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { Home } from 'pages';
+import { Home, Mypage, MypageEdit } from 'pages';
 
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
@@ -13,6 +13,8 @@ const App = () => {
       <GlobalStyles />
       <BrowserRouter>
         <Route exact path="/" component={Home} />
+        <Route exact path="/mypage" component={Mypage} />
+        <Route exact path="/mypage_edit" component={MypageEdit} />
       </BrowserRouter>
     </>
   );
