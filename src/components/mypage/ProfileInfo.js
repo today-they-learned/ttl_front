@@ -8,55 +8,58 @@ import instaIcon from '../../imgs/instagram.png';
 
 const Profile = styled.div`
   .containerLeft {
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 10rem;
     float: left;
     color: black;
     background-color: white;
-    margin-left: 0.1rem;
-    margin-top: 0.1rem;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.8rem;
+    padding-left: 0.8rem;
   }
   .containerCenter {
-    width: 28rem;
-    height: 7rem;
+    width: 32rem;
+    height: 10rem;
     float: left;
-    margin-left: 0.7rem;
     margin-top: 0.5rem;
-    padding-left: 0.5rem;
-    padding-top: 0.9rem;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
     font-size: 12px;
   }
 
   .containerRight {
-    width: 8rem;
-    height: 7rem;
+    width: 9rem;
+    height: 10rem;
     margin-top: 0.5rem;
     padding-left: 0.5rem;
     padding-top: 0.9rem;
     float: left;
   }
   .profileImg {
-    width: 6rem;
-    height: 6rem;
-    margin: 17%;
-    border-radius: 3rem;
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 3.5rem;
     margin-right: 0;
   }
   .userName {
     float: left;
+    margin-bottom: 0.4rem;
     font-size: 1.2rem;
     font-weight: 600;
   }
   .email {
     float: left;
+    margin-bottom: 0.4rem;
     font-size: 0.6rem;
     margin-left: 0.3rem;
     margin-top: 0.4rem;
   }
   .introduce {
     clear: left;
+    margin-bottom: 0.8rem;
     font-size: 0.8rem;
-    height: 3.4rem;
+    height: 3.8rem;
     margin-top: 1rem;
     padding-top: 0.5rem;
   }
@@ -68,22 +71,22 @@ const Profile = styled.div`
     height: 1.5rem;
     font-size: 0.5rem;
     margin-top: 0.5rem;
-    margin-left: 1.5rem;
+    margin-left: 3.2rem;
     padding: 0;
     background-color: #707bf3;
     color: white;
   }
   .iconContainer {
-    width: 7rem;
+    width: 9rem;
     height: 2rem;
-    padding-left: 3rem;
-    padding-top: 2.8rem;
+    padding-left: 4.1rem;
+    padding-top: 4rem;
   }
 
   .icon {
     float: left;
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     margin-right: 0.3rem;
   }
 `;
@@ -135,7 +138,7 @@ const ProfileInfo = () => {
 
       <div className="containerRight">
         <Button className="editButton" onClick={handleClick}>
-          프로필 편집
+          Profile Edit
         </Button>
         <div className="iconContainer">
           <img className="icon" src={instaIcon} alt="insta_icon" />
