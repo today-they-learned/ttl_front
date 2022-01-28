@@ -18,3 +18,16 @@
   font-family: 'MARUBURI';
   src: url('fonts/MARUBURI-REGULAR.TTF');
 }
+@font-face {
+  font-family: 'TR-B';
+  src: url('fonts/TmoneyRoundWindExtraBold.ttf');
+}
+@font-face {
+  font-family: 'TR-R';
+  src: url('fonts/TmoneyRoundWindRegular.ttf');
+}
+
+@font-face {
+  font-family: 'GS-B';
+  src: url('fonts/GmarketSansTTFBold.ttf');
+}
