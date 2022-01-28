@@ -4,14 +4,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
-import DesktopLayout from 'layouts/desktop.layout';
+import ResponsiveLayout from 'layouts/responsive.layout';
 
 const App = () => {
   return (
     <>
       <GlobalStyles />
       <BrowserRouter>
-        <Route exact path="/" component={DesktopLayout} />
+        <Route exact path="/" component={ResponsiveLayout} />
       </BrowserRouter>
     </>
   );
