@@ -1,11 +1,10 @@
 import React from 'react';
-import TopNavbar from 'components/navbar/navbar';
+import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
 import PostList from 'components/post_list/post_list';
 
-const DesktopLayout = props => {
-  console.log(props);
-
+// eslint-disable-next-line react/prop-types
+const DesktopLayout = () => {
   return (
     <div
       style={{
@@ -24,8 +23,10 @@ const DesktopLayout = props => {
         }}
       >
         <SideBar />
+        <PostList />
       </div>
     </div>
   );
 };
+
 export default DesktopLayout;
