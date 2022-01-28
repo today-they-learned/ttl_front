@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
-const TopNavbar = props => {
-  console.log(props);
-
+const TopNavbar = () => {
   const Nav = styled.nav`
     position: sticky;
     top: 0;
@@ -14,12 +12,16 @@ const TopNavbar = props => {
     background-color: white;
     padding: 1rem 2rem;
     margin-bottom: 4rem;
+    z-index: 1;
   `;
 
   const Avatar = styled.img`
     width: 2rem;
     height: 2rem;
     margin-left: 0.5rem;
+    border-radius: 50%;
+    background-color: black;
+    /* 동그라미 확인용 */
   `;
 
   const DropText = styled.div`
