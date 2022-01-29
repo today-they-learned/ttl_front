@@ -2,32 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
+const Nav = styled.nav`
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 1rem 2rem;
+  margin-bottom: 4rem;
+  z-index: 1;
+`;
+
+const Avatar = styled.img`
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  border-radius: 50%;
+  background-color: black;
+  /* 동그라미 확인용 */
+`;
+
+const DropText = styled.div`
+  font-weight: 500;
+`;
+
 const TopNavbar = () => {
-  const Nav = styled.nav`
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 1rem 2rem;
-    margin-bottom: 4rem;
-    z-index: 1;
-  `;
-
-  const Avatar = styled.img`
-    width: 2rem;
-    height: 2rem;
-    margin-left: 0.5rem;
-    border-radius: 50%;
-    background-color: black;
-    /* 동그라미 확인용 */
-  `;
-
-  const DropText = styled.div`
-    font-weight: 500;
-  `;
-
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
