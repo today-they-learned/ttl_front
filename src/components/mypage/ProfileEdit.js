@@ -1,7 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Form, Input, TextArea } from 'semantic-ui-react';
-import profileImg from '../../imgs/profile.jpg';
 import syncIcon from '../../imgs/synchronization.png';
 
 const InfoEdit = styled.div`
@@ -106,62 +107,40 @@ const TagField = styled(Form.Field)`
   font-size: 0.7rem;
 `;
 
-const initialInfo = {
-  tistory_user_id: 'soye0710',
-  github_user_id: 'soyekwon',
-  velog_user_id: 'SoyE',
-  username: 'SoyE',
-  email: 'soye0710@naver.com',
-  password: 'qwertyuiop',
-  introduce: '안녕하세요 :) 국민대학교 재학중인 개발자 준비생 권소예입니다.',
-  avatar: profileImg,
-  tags: ['#algorithm', '#python', '#react'],
-  repository: 'https://github.com/soyekwon/TIL',
-  mailable: true,
+const handleClick = () => {
+  window.location.href = '/mypage';
 };
 
-// eslint-disable-next-line no-unused-vars
-const handleClick = e => {
-  window.location.href = '/mypage_edit';
-};
+const ProfileEdit = props => {
+  const tagList = () => {
+    let a = '';
 
-const tagList = () => {
-  let a = '';
+    for (let i = 0; i < props.data.tags.length; i += 1) {
+      a += props.data.tags[i];
+      a += ' ';
+    }
 
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < initialInfo.tags.length; i++) {
-    a += initialInfo.tags[i];
-    a += ' ';
-  }
-
-  return a;
-};
-
-const ProfileEdit = () => {
+    return a;
+  };
   return (
     <InfoEdit>
       <div className="containerLeft">
-        <img className="profileImg" src={initialInfo.avatar} alt="profile" />
-        <Button className="uploadButton" onClick={handleClick}>
-          Photo upload
-        </Button>
+        <img className="profileImg" src={props.data.avatar} alt="profile" />
+        <Button className="uploadButton">Photo upload</Button>
       </div>
       <div className="containerCenter">
         <Form>
           <UNField>
-            <Form.Field control={Input} placeholder={initialInfo.username} />
+            <Form.Field control={Input} placeholder={props.data.username} />
           </UNField>
           <Button className="editButton" onClick={handleClick}>
             edit
           </Button>
           <EmailField>
-            <Form.Field control={Input} placeholder={initialInfo.email} />
+            <Form.Field control={Input} placeholder={props.data.email} />
           </EmailField>
           <AboutField>
-            <Form.Field
-              control={TextArea}
-              placeholder={initialInfo.introduce}
-            />
+            <Form.Field control={TextArea} placeholder={props.data.introduce} />
           </AboutField>
         </Form>
       </div>
@@ -175,28 +154,28 @@ const ProfileEdit = () => {
           <TagField>
             <Form.Field
               control={Input}
-              placeholder={initialInfo.tistory_user_id}
+              placeholder={props.data.tistory_user_id}
             />
           </TagField>
           <ul className="tagLabel">github_user_id</ul>
           <TagField>
             <Form.Field
               control={Input}
-              placeholder={initialInfo.github_user_id}
+              placeholder={props.data.github_user_id}
             />
           </TagField>
           <ul className="tagLabel">velog_user_id</ul>
           <TagField>
             <Form.Field
               control={Input}
-              placeholder={initialInfo.velog_user_id}
+              placeholder={props.data.velog_user_id}
             />
           </TagField>
           <TagField>
             <ul className="tagLabel">github_repository</ul>
             <img className="syncIcon" src={syncIcon} alt="icon" />
 
-            <Form.Field control={Input} placeholder={initialInfo.repository} />
+            <Form.Field control={Input} placeholder={props.data.repository} />
           </TagField>
         </Form>
       </div>
