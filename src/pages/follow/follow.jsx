@@ -1,46 +1,47 @@
+/* eslint-disable react/prop-types */
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
 
 import React, { useState } from 'react';
 
-const PostList = () => {
-  const Post = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+const Post = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const PostCards = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+const PostTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  &:after {
+    content: '';
+    display: block;
     width: 100%;
-  `;
+    height: 2px;
+    background-color: #eeeeee;
+    transform: translateY(1rem);
+  }
+`;
 
-  const PostCards = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-  `;
-
-  const PostTop = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-    width: 100%;
-
-    &:after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: #eeeeee;
-      transform: translateY(1rem);
-    }
-  `;
-
+const Follow = () => {
   const [posts] = useState({
     1: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -55,7 +56,7 @@ const PostList = () => {
     2: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -70,7 +71,7 @@ const PostList = () => {
     3: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -85,7 +86,7 @@ const PostList = () => {
     4: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -100,7 +101,7 @@ const PostList = () => {
     5: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -115,7 +116,7 @@ const PostList = () => {
     6: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -130,7 +131,7 @@ const PostList = () => {
     7: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -145,7 +146,7 @@ const PostList = () => {
     8: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -160,7 +161,7 @@ const PostList = () => {
     9: {
       id: '1',
       thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] Chapter02. 자료와 변수',
+      title: '[혼공JS📒] 이건 팔로우 피드다',
       content:
         '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
       tags: {
@@ -179,7 +180,7 @@ const PostList = () => {
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
-            피드
+            팔로우
           </p>
           <select
             name="post_option"
@@ -202,4 +203,4 @@ const PostList = () => {
     </Post>
   );
 };
-export default PostList;
+export default Follow;
