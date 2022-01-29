@@ -1,10 +1,27 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
-import PostList from 'components/post_list/post_list';
+// import PostList from 'components/post_list/post_list';
+import Main from 'pages/main/main';
+import Group from 'pages/group/group';
+import Follow from 'pages/follow/follow';
 
 // eslint-disable-next-line react/prop-types
-const DesktopLayout = () => {
+const DesktopLayout = ({ loactionPath }) => {
+  const renderList = () => {
+    switch (loactionPath) {
+      case '/main':
+        return <Main />;
+      case '/group':
+        return <Group />;
+      case '/follow':
+        return <Follow />;
+      default:
+        return <Main />;
+    }
+  };
+
   return (
     <div
       style={{
@@ -23,7 +40,7 @@ const DesktopLayout = () => {
         }}
       >
         <SideBar />
-        <PostList />
+        {renderList()}
       </div>
     </div>
   );

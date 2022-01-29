@@ -6,27 +6,29 @@ import 'styles/sidebar.css';
 import { Icon } from 'semantic-ui-react';
 
 import { Navigation } from 'react-minimal-side-navigation';
+import { useNavigate } from 'react-router-dom';
+
+const Bar = styled.div`
+  position: sticky;
+  top: 180px;
+  width: 3rem;
+  height: 100%;
+  margin-right: 1rem;
+`;
+
+const Toggle = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+  margin-left: 2rem;
+`;
+const SidebarList = styled.div`
+  display: ${props => (props.sidebarToggled ? 'block' : 'none')};
+`;
 
 const MobileSideBar = () => {
+  const navigate = useNavigate();
   const [sidebarToggled, setSidebarToggled] = useState(false);
-
-  const Bar = styled.div`
-    position: sticky;
-    top: 180px;
-    width: 3rem;
-    height: 100%;
-    margin-right: 1rem;
-  `;
-
-  const Toggle = styled.div`
-    &:hover {
-      cursor: pointer;
-    }
-    margin-left: 2rem;
-  `;
-  const SidebarList = styled.div`
-    display: ${props => (props.sidebarToggled ? 'block' : 'none')};
-  `;
 
   return (
     <>
@@ -46,8 +48,7 @@ const MobileSideBar = () => {
         >
           <Navigation
             onSelect={({ itemId }) => {
-              console.log(itemId);
-              // 이 itemId 이용해서 url을 설정해줄 계획
+              navigate(`${itemId}`);
             }}
             items={[
               {
