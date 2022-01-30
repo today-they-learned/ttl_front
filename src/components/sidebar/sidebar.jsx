@@ -22,7 +22,9 @@ const SideBar = () => {
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            navigate(`${itemId}`);
+            if (itemId) {
+              navigate(`${itemId}`);
+            }
           }}
           items={[
             {
@@ -48,7 +50,7 @@ const SideBar = () => {
             },
             {
               title: '관심태그',
-              itemId: '/tags',
+              // itemId: '/tags',
               elemBefore: () => (
                 <Icon name="tags" style={{ fontSize: '1.2rem' }} />
               ),
