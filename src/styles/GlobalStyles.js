@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body{
-    background-color: #ffffff;
+    background-color: #f8f8f8;
     font-family: 'NS-L';
   }
   a {

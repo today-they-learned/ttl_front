@@ -1,13 +1,15 @@
-import React from 'react';
-import { Label } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button } from 'semantic-ui-react';
+
+import SignModal from 'component/Sign/SignModal';
 
 const Home = () => {
+  const [signModalOpen, setSignModalOpen] = useState(false);
+
   return (
     <>
-      <div>안녕</div>
-      <Label size="big" icon="plus" style={{ fontFamily: 'NS-L' }}>
-        sdafs
-      </Label>
+      <SignModal setOpen={setSignModalOpen} open={signModalOpen} />
+      <Button onClick={() => setSignModalOpen(true)}> 시작하기 </Button>
     </>
   );
 };
