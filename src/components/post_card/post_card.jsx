@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Icon } from 'semantic-ui-react';
@@ -118,7 +118,7 @@ const Heart = styled.div`
     } */
 `;
 
-const PostCard = ({ postCard }) => {
+const PostCard = ({ post }) => {
   const {
     thumbnail,
     title,
@@ -128,7 +128,7 @@ const PostCard = ({ postCard }) => {
     like,
     avatar,
     username,
-  } = postCard;
+  } = post;
 
   return (
     <Card>
@@ -190,10 +190,6 @@ const PostCard = ({ postCard }) => {
       </CardBottom>
     </Card>
   );
-};
-
-PostCard.propTypes = {
-  postCard: PropTypes.node.isRequired,
 };
 
 export default PostCard;

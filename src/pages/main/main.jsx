@@ -197,7 +197,7 @@ const Main = () => {
       </PostTop>
       <PostCards>
         {Object.keys(posts).map(key => (
-          <PostCard key={key} postCard={posts[key]} />
+          <PostCard key={key} post={posts[key]} />
         ))}
       </PostCards>
     </Post>
