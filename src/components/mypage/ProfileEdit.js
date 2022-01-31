@@ -17,7 +17,7 @@ const InfoEdit = styled.div`
     padding-left: 0.8rem;
   }
   .containerCenter {
-    width: 32rem;
+    width: 40rem;
     height: 10rem;
     float: left;
     margin-top: 0.5rem;
@@ -27,15 +27,17 @@ const InfoEdit = styled.div`
     padding-top: 1.2rem;
     font-size: 12px;
     border-radius: 0.2rem;
+    /* background-color: #eaeaea; */
   }
   .containerBottom {
-    width: 41.2rem;
+    width: 47.2rem;
     clear: left;
     margin-left: 1.5rem;
-    padding-left: 0.5rem;
-    padding-top: 0.3rem;
+    padding-left: 3.5rem;
+    padding-top: 3rem;
     font-size: 12px;
     border-radius: 0.2rem;
+    /* background-color: #eaeaea; */
   }
   .profileImg {
     width: 6.5rem;
@@ -54,11 +56,11 @@ const InfoEdit = styled.div`
     color: white;
   }
   .editButton {
-    width: 4rem;
+    width: 5rem;
     height: 1.5rem;
     font-size: 0.5rem;
     margin-top: 0.1rem;
-    margin-left: 21rem;
+    margin-left: 27rem;
     padding: 0;
     background-color: #707bf3;
     color: white;
@@ -73,7 +75,7 @@ const InfoEdit = styled.div`
 `;
 
 const UNField = styled(Form.Field)`
-  width: 6rem;
+  width: 7rem;
   float: left;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -82,7 +84,7 @@ const UNField = styled(Form.Field)`
 `;
 
 const EmailField = styled(Form.Field)`
-  width: 12rem;
+  width: 14rem;
   float: left;
   margin-top: 0.5rem;
   font-size: 0.6rem;
@@ -90,7 +92,7 @@ const EmailField = styled(Form.Field)`
 `;
 
 const AboutField = styled(Form.Field)`
-  width: 31rem;
+  width: 34rem;
   clear: left;
   font-size: 0.6rem;
 `;
@@ -101,20 +103,10 @@ const TagField = styled(Form.Field)`
 `;
 
 const ProfileEdit = props => {
-  const tagList = () => {
-    let a = '';
-
-    for (let i = 0; i < props.data.tags.length; i += 1) {
-      a += props.data.tags[i];
-      a += ' ';
-    }
-
-    return a;
-  };
   return (
     <InfoEdit>
       <div className="containerLeft">
-        <img className="profileImg" src={props.data.avatar} alt="profile" />
+        <img className="profileImg" src="images/profile.jpg" alt="profile" />
         <Button className="uploadButton">Photo upload</Button>
       </div>
       <div className="containerCenter">
@@ -123,7 +115,7 @@ const ProfileEdit = props => {
             <Form.Field control={Input} placeholder={props.data.username} />
           </UNField>
           <Button className="editButton" onClick={props.onChangeMode}>
-            edit
+            Profile Edit
           </Button>
           <EmailField>
             <Form.Field control={Input} placeholder={props.data.email} />
@@ -137,7 +129,7 @@ const ProfileEdit = props => {
         <Form>
           <ul className="tagLabel">관심 태그</ul>
           <TagField>
-            <Form.Field control={Input} placeholder={tagList()} />
+            <Form.Field control={Input} placeholder={props.data.tags.join()} />
           </TagField>
           <ul className="tagLabel">tistory_user_id</ul>
           <TagField>

@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProfileInfo from 'components/mypage/ProfileInfo';
 import ProfileEdit from 'components/mypage/ProfileEdit';
-import profileImg from '../../imgs/profile.jpg';
 
 const MyPage = styled.div`
   background-color: white;
@@ -19,7 +18,6 @@ const initialInfo = {
   email: 'soye0710@naver.com',
   password: 'qwertyuiop',
   introduce: '안녕하세요 :) 국민대학교 재학중인 개발자 준비생 권소예입니다.',
-  avatar: profileImg,
   tags: ['#algorithm', '#python', '#react'],
   repository: 'https://github.com/soyekwon/TIL',
   mailable: true,

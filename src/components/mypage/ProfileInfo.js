@@ -3,9 +3,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'semantic-ui-react';
-import facebookIcon from '../../imgs/facebook.png';
-import githubIcon from '../../imgs/github.png';
-import instaIcon from '../../imgs/instagram.png';
 
 const Profile = styled.div`
   .containerLeft {
@@ -77,41 +74,31 @@ const Profile = styled.div`
     color: white;
   }
   .iconContainer {
-    width: 9rem;
+    width: 12rem;
     height: 2rem;
-    padding-left: 4.1rem;
-    padding-top: 4rem;
+    padding-left: 3.2rem;
+    padding-top: 3.8rem;
   }
   .icon {
     float: left;
-    width: 1.1rem;
-    height: 1.1rem;
-    margin-right: 0.3rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 0.5rem;
   }
 `;
 
 const ProfileInfo = props => {
-  const tagList = () => {
-    let a = '';
-
-    for (let i = 0; i < props.data.tags.length; i += 1) {
-      a += props.data.tags[i];
-      a += ' ';
-    }
-
-    return a;
-  };
   return (
     <Profile>
       <div className="containerLeft">
-        <img className="profileImg" src={props.data.avatar} alt="profile" />
+        <img className="profileImg" src="images/profile.jpg" alt="profile" />
       </div>
 
       <div className="containerCenter">
         <ul className="userName">{props.data.username}</ul>
         <ul className="email">{props.data.email}</ul>
         <div className="introduce">{props.data.introduce}</div>
-        <ul className="tag">{tagList()}</ul>
+        <ul className="tag">{props.data.tags.join()}</ul>
       </div>
 
       <div className="containerRight">
@@ -119,9 +106,9 @@ const ProfileInfo = props => {
           Profile Edit
         </Button>
         <div className="iconContainer">
-          <img className="icon" src={instaIcon} alt="insta_icon" />
-          <img className="icon" src={githubIcon} alt="github_icon" />
-          <img className="icon" src={facebookIcon} alt="fb_icon" />
+          <img className="icon" src="images/facebook.png" alt="insta_icon" />
+          <img className="icon" src="images/instagram.png" alt="fb_icon" />
+          <img className="icon" src="images/twitter.png" alt="twitter_icon" />
         </div>
       </div>
     </Profile>
