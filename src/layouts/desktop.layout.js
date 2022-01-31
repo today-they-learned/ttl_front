@@ -1,27 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
+import PostList from 'components/post_list/post_list';
 // import PostList from 'components/post_list/post_list';
-import Main from 'pages/main/main';
-import Group from 'pages/group/group';
-import Follow from 'pages/follow/follow';
 
 // eslint-disable-next-line react/prop-types
-const DesktopLayout = ({ loactionPath }) => {
-  const renderList = () => {
-    switch (loactionPath) {
-      case '/main':
-        return <Main />;
-      case '/group':
-        return <Group />;
-      case '/follow':
-        return <Follow />;
-      default:
-        return <Main />;
-    }
+const DesktopLayout = () => {
+  const [feedType, setFeedType] = useState();
+  const selectFeedType = (type) => {
+    setFeedType(type);
   };
-
   return (
     <div
       style={{
@@ -39,8 +28,8 @@ const DesktopLayout = ({ loactionPath }) => {
           height: '100%',
         }}
       >
-        <SideBar />
-        {renderList()}
+        <SideBar selectFeedType={selectFeedType} />
+        <PostList feedType={feedType} />
       </div>
     </div>
   );
