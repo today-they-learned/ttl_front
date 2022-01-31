@@ -3,7 +3,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Form, Input, TextArea } from 'semantic-ui-react';
-import syncIcon from '../../imgs/synchronization.png';
 
 const InfoEdit = styled.div`
   .containerLeft {
@@ -71,12 +70,6 @@ const InfoEdit = styled.div`
     margin-bottom: 0.5rem;
     font-size: 0.8rem;
   }
-  .syncIcon {
-    margin-top: 0.7rem;
-    margin-left: 0.5rem;
-    float: left;
-    width: 1rem;
-  }
 `;
 
 const UNField = styled(Form.Field)`
@@ -107,10 +100,6 @@ const TagField = styled(Form.Field)`
   font-size: 0.7rem;
 `;
 
-const handleClick = () => {
-  window.location.href = '/mypage';
-};
-
 const ProfileEdit = props => {
   const tagList = () => {
     let a = '';
@@ -133,7 +122,7 @@ const ProfileEdit = props => {
           <UNField>
             <Form.Field control={Input} placeholder={props.data.username} />
           </UNField>
-          <Button className="editButton" onClick={handleClick}>
+          <Button className="editButton" onClick={props.onChangeMode}>
             edit
           </Button>
           <EmailField>
@@ -170,12 +159,6 @@ const ProfileEdit = props => {
               control={Input}
               placeholder={props.data.velog_user_id}
             />
-          </TagField>
-          <TagField>
-            <ul className="tagLabel">github_repository</ul>
-            <img className="syncIcon" src={syncIcon} alt="icon" />
-
-            <Form.Field control={Input} placeholder={props.data.repository} />
           </TagField>
         </Form>
       </div>

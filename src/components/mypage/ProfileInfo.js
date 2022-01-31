@@ -90,10 +90,6 @@ const Profile = styled.div`
   }
 `;
 
-const handleClick = () => {
-  window.location.href = '/mypage_edit';
-};
-
 const ProfileInfo = props => {
   const tagList = () => {
     let a = '';
@@ -119,7 +115,7 @@ const ProfileInfo = props => {
       </div>
 
       <div className="containerRight">
-        <Button className="editButton" onClick={handleClick}>
+        <Button className="editButton" onClick={props.onChangeMode}>
           Profile Edit
         </Button>
         <div className="iconContainer">
