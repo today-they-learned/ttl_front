@@ -30,30 +30,22 @@ const SideBar = () => {
             {
               title: '피드',
               itemId: '/main',
-              elemBefore: () => (
-                <Icon name="th large" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '그룹',
               itemId: '/group',
-              elemBefore: () => (
-                <Icon name="users" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="users" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '팔로우',
               itemId: '/follow',
-              elemBefore: () => (
-                <Icon name="user plus" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="user plus" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '관심태그',
               // itemId: '/tags',
-              elemBefore: () => (
-                <Icon name="tags" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: [
                 {
@@ -73,16 +65,12 @@ const SideBar = () => {
             {
               title: '북마크',
               itemId: '/bookmark',
-              elemBefore: () => (
-                <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '읽은 목록',
               itemId: '/read_list',
-              elemBefore: () => (
-                <Icon name="eye" style={{ fontSize: '1.2rem' }} />
-              ),
+              elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
             },
           ]}
         />

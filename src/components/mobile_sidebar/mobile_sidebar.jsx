@@ -23,7 +23,7 @@ const Toggle = styled.div`
   margin-left: 2rem;
 `;
 const SidebarList = styled.div`
-  display: ${props => (props.sidebarToggled ? 'block' : 'none')};
+  display: ${(props) => (props.sidebarToggled ? 'block' : 'none')};
 `;
 
 const MobileSideBar = () => {
@@ -42,10 +42,7 @@ const MobileSideBar = () => {
             }}
           />
         </Toggle>
-        <SidebarList
-          sidebarToggled={sidebarToggled}
-          style={{ margin: '1rem 1rem' }}
-        >
+        <SidebarList sidebarToggled={sidebarToggled} style={{ margin: '1rem 1rem' }}>
           <Navigation
             onSelect={({ itemId }) => {
               navigate(`${itemId}`);

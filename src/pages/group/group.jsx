@@ -179,13 +179,11 @@ const Group = () => {
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
-            그룹
-          </p>
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>그룹</p>
         </div>
       </PostTop>
       <PostCards>
-        {Object.keys(posts).map(key => (
+        {Object.keys(posts).map((key) => (
           <PostCard key={key} post={posts[key]} />
         ))}
       </PostCards>

@@ -179,9 +179,7 @@ const Main = () => {
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
-            피드
-          </p>
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>피드</p>
           <select
             name="post_option"
             id=""
@@ -196,7 +194,7 @@ const Main = () => {
         </div>
       </PostTop>
       <PostCards>
-        {Object.keys(posts).map(key => (
+        {Object.keys(posts).map((key) => (
           <PostCard key={key} post={posts[key]} />
         ))}
       </PostCards>

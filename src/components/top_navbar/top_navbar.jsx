@@ -40,10 +40,7 @@ const TopNavbar = () => {
         }}
       >
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
-        <Icon
-          name="pencil alternate"
-          style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
-        />
+        <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
         <Avatar src="images/avatar.png" />
         {/* 임시 유저 아이콘 사용 */}
 

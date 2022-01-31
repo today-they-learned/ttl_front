@@ -119,16 +119,7 @@ const Heart = styled.div`
 `;
 
 const PostCard = ({ post }) => {
-  const {
-    thumbnail,
-    title,
-    content,
-    tags,
-    created_at,
-    like,
-    avatar,
-    username,
-  } = post;
+  const { thumbnail, title, content, tags, created_at, like, avatar, username } = post;
 
   return (
     <Card>
@@ -154,10 +145,8 @@ const PostCard = ({ post }) => {
             justifyContent: 'space-between',
           }}
         >
-          <div
-            style={{ display: 'flex', marginLeft: '0.5rem', marginTop: '1rem' }}
-          >
-            {Object.keys(tags).map(key => (
+          <div style={{ display: 'flex', marginLeft: '0.5rem', marginTop: '1rem' }}>
+            {Object.keys(tags).map((key) => (
               <Tag>{tags[key]}</Tag>
             ))}
           </div>
@@ -183,9 +172,7 @@ const PostCard = ({ post }) => {
           <Heart>
             <Icon name="heart" />
           </Heart>
-          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
-            {like}
-          </p>
+          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{like}</p>
         </div>
       </CardBottom>
     </Card>
