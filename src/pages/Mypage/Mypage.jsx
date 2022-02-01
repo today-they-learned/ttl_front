@@ -33,6 +33,16 @@ function Mypage() {
       edit_mode: !info.edit_mode,
     });
   };
+
+  const handleSubmit = (_username, _email, _introduce) => {
+    setInfo({
+      ...info,
+      username: _username,
+      email: _email,
+      introduce: _introduce,
+      edit_mode: !info.edit_mode,
+    });
+  };
   if (!info.edit_mode) {
     return (
       <MyPage>
@@ -43,7 +53,7 @@ function Mypage() {
 
   return (
     <MyPage>
-      <ProfileEdit data={info} onChangeMode={onChangeMode} />
+      <ProfileEdit data={info} handleSubmit={handleSubmit} />
     </MyPage>
   );
 }
