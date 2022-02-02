@@ -18,18 +18,7 @@ const Card = styled.div`
 
   &:hover {
     transform: translateY(-0.8rem);
-    opacity: 0.3;
     box-shadow: 1px 1px 10px -5px black;
-  }
-`;
-
-const BookMark = styled.div`
-  opacity: 0.3;
-  color: white;
-
-  ${Card}:hover & {
-    opacity: 1;
-    color: black;
   }
 `;
 
@@ -110,30 +99,11 @@ const CardBottom = styled.div`
   padding-bottom: 1.5rem;
 `;
 
-const Heart = styled.div`
-  /* opacity: 0.1;
-
-    ${Card}:hover & {
-      opacity: 1;
-    } */
-`;
-
 const PostCard = ({ post }) => {
   const { thumbnail, title, content, tags, created_at, like, avatar, username } = post;
 
   return (
     <Card>
-      <BookMark>
-        <Icon
-          name="bookmark"
-          style={{
-            position: 'absolute',
-            right: '0.3rem',
-            top: '0.5rem',
-            fontSize: '1.5rem',
-          }}
-        />
-      </BookMark>
       <Thumbnail src={thumbnail} />
       <CardBody>
         <Title>{title}</Title>
@@ -169,9 +139,7 @@ const PostCard = ({ post }) => {
           <UserName>{username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Heart>
-            <Icon name="heart" />
-          </Heart>
+          <Icon name="heart" />
           <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{like}</p>
         </div>
       </CardBottom>
