@@ -7,7 +7,7 @@ import ProfileInfo from 'components/mypage/ProfileInfo';
 import ProfileEdit from 'components/mypage/ProfileEdit';
 
 const MyPage = styled.div`
-  background-color: white;
+  background-color: #f8f8f8;
 `;
 
 const initialInfo = {
