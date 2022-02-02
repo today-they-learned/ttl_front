@@ -5,9 +5,6 @@ import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
 import ResponsiveLayout from 'layouts/responsive.layout';
-import Group from 'pages/group/group';
-import Follow from 'pages/follow/follow';
-import Main from 'pages/main/main';
 
 const App = () => {
   return (
@@ -16,9 +13,7 @@ const App = () => {
       <BrowserRouter>
         <ResponsiveLayout>
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/group" element={<Group />} />
-            <Route path="/follow" element={<Follow />} />
+            <Route path="/" element={<ResponsiveLayout />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>

@@ -24,17 +24,17 @@ const SideBar = ({ selectFeedType }) => {
           items={[
             {
               title: '피드',
-              itemId: 'main',
+              itemId: { item: 'main', title: '메인' },
               elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '그룹',
-              itemId: 'group',
+              itemId: { item: 'group', title: '그룹' },
               elemBefore: () => <Icon name="users" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '팔로우',
-              itemId: 'follow',
+              itemId: { item: 'follow', title: '팔로우' },
               elemBefore: () => <Icon name="user plus" style={{ fontSize: '1.2rem' }} />,
             },
             {

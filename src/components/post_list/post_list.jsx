@@ -42,14 +42,14 @@ const PostList = ({ feedType }) => {
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
-    setPosts(postsData[feedType]);
+    setPosts(postsData[feedType.item]);
   });
 
   return (
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{feedType}</p>
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{feedType.title}</p>
           <select
             name="post_option"
             id=""
