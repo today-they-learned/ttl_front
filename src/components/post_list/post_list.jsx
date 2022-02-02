@@ -1,5 +1,3 @@
-/* eslint-disable no-eval */
-/* eslint-disable react/prop-types */
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';

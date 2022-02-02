@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import MobileSideBar from 'components/mobile_sidebar/mobile_sidebar';
 import PostList from 'components/post_list/post_list';

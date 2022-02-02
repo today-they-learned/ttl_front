@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
@@ -55,7 +54,7 @@ const MobileSideBar = ({ selectFeedType }) => {
             items={[
               {
                 title: '피드',
-                itemId: { item: 'main', title: '메인' },
+                itemId: { item: 'main', title: '피드' },
                 elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
               },
               {

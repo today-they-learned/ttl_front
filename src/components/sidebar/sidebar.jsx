@@ -24,7 +24,7 @@ const SideBar = ({ selectFeedType }) => {
           items={[
             {
               title: '피드',
-              itemId: { item: 'main', title: '메인' },
+              itemId: { item: 'main', title: '피드' },
               elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
             {
@@ -39,7 +39,7 @@ const SideBar = ({ selectFeedType }) => {
             },
             {
               title: '관심태그',
-              // itemId: '/tags',
+              itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: [
