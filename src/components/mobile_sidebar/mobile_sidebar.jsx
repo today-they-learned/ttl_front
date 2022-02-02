@@ -6,14 +6,15 @@ import 'styles/sidebar.css';
 import { Icon } from 'semantic-ui-react';
 
 import { Navigation } from 'react-minimal-side-navigation';
-import { useNavigate } from 'react-router-dom';
 
 const Bar = styled.div`
-  position: sticky;
-  top: 180px;
-  width: 3rem;
+  position: fixed;
+  top: 1.2rem;
+  left: -1rem;
+  width: 100%;
   height: 100%;
   margin-right: 1rem;
+  z-index: 1;
 `;
 
 const Toggle = styled.div`
@@ -24,10 +25,13 @@ const Toggle = styled.div`
 `;
 const SidebarList = styled.div`
   display: ${(props) => (props.sidebarToggled ? 'block' : 'none')};
+
+  background-color: white;
+  transition: all 100ms ease-in-out;
+  height: 100%;
 `;
 
-const MobileSideBar = () => {
-  const navigate = useNavigate();
+const MobileSideBar = ({ selectFeedType }) => {
   const [sidebarToggled, setSidebarToggled] = useState(false);
 
   return (
@@ -45,36 +49,29 @@ const MobileSideBar = () => {
         <SidebarList sidebarToggled={sidebarToggled} style={{ margin: '1rem 1rem' }}>
           <Navigation
             onSelect={({ itemId }) => {
-              navigate(`${itemId}`);
+              selectFeedType(itemId);
+              setSidebarToggled(!sidebarToggled);
             }}
             items={[
               {
                 title: '피드',
-                itemId: '/feed',
-                // elemBefore: () => (
-                //   <Icon name="th large" style={{ fontSize: '1.2rem' }} />
-                // ),
+                itemId: { item: 'main', title: '메인' },
+                elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
               },
               {
                 title: '그룹',
-                itemId: '/group',
-                // elemBefore: () => (
-                //   <Icon name="users" style={{ fontSize: '1.2rem' }} />
-                // ),
+                itemId: { item: 'group', title: '그룹' },
+                elemBefore: () => <Icon name="users" style={{ fontSize: '1.2rem' }} />,
               },
               {
                 title: '팔로우',
-                itemId: '/follow',
-                // elemBefore: () => (
-                //   <Icon name="user plus" style={{ fontSize: '1.2rem' }} />
-                // ),
+                itemId: { item: 'follow', title: '팔로우' },
+                elemBefore: () => <Icon name="user plus" style={{ fontSize: '1.2rem' }} />,
               },
               {
                 title: '관심태그',
                 itemId: '/tag',
-                // elemBefore: () => (
-                //   <Icon name="tags" style={{ fontSize: '1.2rem' }} />
-                // ),
+                elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
                 subNav: [
                   {
@@ -94,16 +91,12 @@ const MobileSideBar = () => {
               {
                 title: '북마크',
                 itemId: '/bookmark',
-                // elemBefore: () => (
-                //   <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />
-                // ),
+                elemBefore: () => <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />,
               },
               {
                 title: '읽은 목록',
                 itemId: '/read_list',
-                // elemBefore: () => (
-                //   <Icon name="eye" style={{ fontSize: '1.2rem' }} />
-                // ),
+                elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
               },
             ]}
           />

@@ -50,17 +50,19 @@ const PostList = ({ feedType }) => {
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{feedType.title}</p>
-          <select
-            name="post_option"
-            id=""
-            style={{
-              width: '5rem',
-              padding: '.3em .5em',
-            }}
-          >
-            <option value="인기순">인기순</option>
-            <option value="최신순">최신순</option>
-          </select>
+          {feedType.item === 'main' && (
+            <select
+              name="post_option"
+              id=""
+              style={{
+                width: '5rem',
+                padding: '.3em .5em',
+              }}
+            >
+              <option value="인기순">인기순</option>
+              <option value="최신순">최신순</option>
+            </select>
+          )}
         </div>
       </PostTop>
       <PostCards>

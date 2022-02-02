@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
 import PostList from 'components/post_list/post_list';
-// import PostList from 'components/post_list/post_list';
 
 // eslint-disable-next-line react/prop-types
 const DesktopLayout = () => {
-  const [feedType, setFeedType] = useState('main');
+  const [feedType, setFeedType] = useState({ item: 'main', title: '메인' });
   const selectFeedType = (type) => {
     setFeedType(type);
   };
