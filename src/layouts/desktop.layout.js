@@ -7,7 +7,7 @@ import PostList from 'components/post_list/post_list';
 
 // eslint-disable-next-line react/prop-types
 const DesktopLayout = () => {
-  const [feedType, setFeedType] = useState();
+  const [feedType, setFeedType] = useState('main');
   const selectFeedType = (type) => {
     setFeedType(type);
   };

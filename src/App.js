@@ -16,7 +16,7 @@ const App = () => {
       <BrowserRouter>
         <ResponsiveLayout>
           <Routes>
-            <Route path="/main" element={<Main />} />
+            <Route path="/" element={<Main />} />
             <Route path="/group" element={<Group />} />
             <Route path="/follow" element={<Follow />} />
           </Routes>

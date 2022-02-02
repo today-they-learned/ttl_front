@@ -1,8 +1,10 @@
+/* eslint-disable no-eval */
 /* eslint-disable react/prop-types */
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 
-import React, { useState } from 'react';
+import postsData from './posts.json';
 
 const Post = styled.div`
   display: flex;
@@ -37,142 +39,10 @@ const PostTop = styled.div`
 `;
 
 const PostList = ({ feedType }) => {
-  const [posts] = useState({
-    1: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    2: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    3: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    4: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    5: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    6: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    7: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    8: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
-    9: {
-      id: '1',
-      thumbnail: 'images/thumbnail.png',
-      title: '[혼공JS📒] 이건 메인 피드다',
-      content:
-        '치즈덕 명언 키야이제부터라도 열심히 자바스크립트 공부를 해야겠다는 생각이 드는 사진이다. 빠빠샤!자료(data) : 프로그래밍에서 프로그램이 처리할 수 있는 모든 것자료형(data type) : 자료 형태에 따라 나눠 놓은 것 1. 문자열 자료형 2. 숫자 자료형 ',
-      tags: {
-        1: 'Javascript',
-        2: 'FrontEnd',
-      },
-      created_at: '2022년 1월 26일',
-      like: 0,
-      avatar: 'images/avatar.png',
-      username: 'cychann',
-    },
+  const [posts, setPosts] = useState({});
+
+  useEffect(() => {
+    setPosts(postsData[feedType]);
   });
 
   return (
