@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${COLOR.BACKGROUND};
     font-family: 'NS-R';
     color: #000000;
-    font-size: 17px;
+    font-size: 16px;
   }
   a {
     color: inherit;
@@ -62,7 +62,15 @@ const GlobalStyles = createGlobalStyle`
   p {
     text-align: center;
     font-family: 'NS-R';
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  /* 약한글씨 */
+  span {
+    text-align: center;
+    font-family: 'NS-L';
+    font-size: 13px;
+    color: ${COLOR.GRAY}
   }
 `;
 
