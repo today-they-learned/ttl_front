@@ -13,12 +13,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: [
-    'airbnb',
-    'prettier',
-    'eslint:recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['airbnb', 'prettier', 'eslint:recommended', 'plugin:prettier/recommended'],
   rules: {
     'react/jsx-filename-extension': [
       'error',
@@ -30,5 +25,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'import/no-unresolved': 'off',
+    'react/prop-types': 'off',
+    'react/destructuring-assignment': 'off',
   },
 };
