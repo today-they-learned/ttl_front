@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
+  // 윈도우 사이즈 가져오기
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
