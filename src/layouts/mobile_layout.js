@@ -1,9 +1,13 @@
-import React from 'react';
-import TopNavbar from 'components/top_navbar/top_navbar';
-import PostList from 'components/post_list/post_list';
+import React, { useState } from 'react';
 import MobileSideBar from 'components/mobile_sidebar/mobile_sidebar';
+import PostList from 'components/post_list/post_list';
+import MobileNavbar from 'components/mobile_navbar/mobile_navbar';
 
 const MobileLayout = () => {
+  const [feedType, setFeedType] = useState({ item: 'main', title: '메인' });
+  const selectFeedType = (type) => {
+    setFeedType(type);
+  };
   return (
     <div
       style={{
@@ -11,7 +15,7 @@ const MobileLayout = () => {
         width: '100%',
       }}
     >
-      <TopNavbar />
+      <MobileNavbar />
       <div
         style={{
           display: 'flex',
@@ -21,8 +25,8 @@ const MobileLayout = () => {
           height: '100%',
         }}
       >
-        <MobileSideBar />
-        <PostList />
+        <MobileSideBar selectFeedType={selectFeedType} />
+        <PostList feedType={feedType} />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 4rem;
   margin-bottom: 4rem;
   z-index: 1;
 `;
@@ -27,7 +27,7 @@ const DropText = styled.div`
   font-weight: 500;
 `;
 
-const TopNavbar = () => {
+const MobileNavbar = () => {
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
@@ -40,7 +40,6 @@ const TopNavbar = () => {
         }}
       >
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
-        <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
         <Avatar src="images/avatar.png" />
         {/* 임시 유저 아이콘 사용 */}
 
@@ -48,9 +47,6 @@ const TopNavbar = () => {
           <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
             <Dropdown.Item>
               <DropText>프로필</DropText>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <DropText>글쓰기</DropText>
             </Dropdown.Item>
             <Dropdown.Item>
               <DropText>설정</DropText>
@@ -65,4 +61,4 @@ const TopNavbar = () => {
   );
 };
 
-export default TopNavbar;
+export default MobileNavbar;
