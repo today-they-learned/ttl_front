@@ -1,16 +1,16 @@
 @font-face {
   font-family: 'NS-L';
-  src: url('fonts/NanumSquareL.ttf');
+  src: url('fonts/NanumSquareOTF_acL.otf');
 }
 @font-face {
   font-family: 'NS-R';
-  src: url('fonts/NanumSquareR.ttf');
+  src: url('fonts/NanumSquareOTF_acR.otf');
 }
 @font-face {
   font-family: 'NS-B';
-  src: url('fonts/NanumSquareB.ttf');
+  src: url('fonts/NanumSquareOTF_acB.otf');
 }
 @font-face {
   font-family: 'NS-EB';
-  src: url('fonts/NanumSquareEB.ttf');
+  src: url('fonts/NanumSquareOTF_acEB.otf');
 }
