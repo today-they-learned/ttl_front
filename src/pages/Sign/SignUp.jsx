@@ -79,7 +79,7 @@ const SignUp = () => {
             </Btn.PrimaryBtn>
           </Field>
         </Form>
-        <Container.AlignCenterContainer style={{ marginBottom: '2rem' }}>
+        <Container.AlignCenterContainer style={{ marginBottom: '1.5rem' }}>
           <div style={{ marginRight: '1rem' }}>이미 계정이 있으세요?</div>
           <Link to="/signin">
             <strong>로그인</strong>
