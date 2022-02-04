@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Home, Mypage } from 'pages';
 
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
@@ -14,6 +15,7 @@ const App = () => {
         <ResponsiveLayout>
           <Routes>
             <Route path="/" element={<ResponsiveLayout />} />
+            <Route exact path="/mypage" component={Mypage} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>
