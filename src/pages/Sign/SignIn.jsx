@@ -14,7 +14,7 @@ const SignContainer = styled(Container.AlignCenterContainer)`
 const Field = styled(Form.Field)`
   input {
     height: 3rem;
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
   input[type='email'] {
     font-family: 'NS-R' !important;
