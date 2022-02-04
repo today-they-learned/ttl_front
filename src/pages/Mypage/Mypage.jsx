@@ -43,18 +43,19 @@ function Mypage() {
       edit_mode: !info.edit_mode,
     });
   };
-  if (!info.edit_mode) {
-    return (
-      <MyPage>
-        <ProfileInfo data={info} onChangeMode={onChangeMode} />
-      </MyPage>
-    );
-  }
 
   return (
-    <MyPage>
-      <ProfileEdit data={info} handleSubmit={handleSubmit} />
-    </MyPage>
+    <>
+      {info.edit_mode ? (
+        <MyPage>
+          <ProfileEdit data={info} handleSubmit={handleSubmit} />
+        </MyPage>
+      ) : (
+        <MyPage>
+          <ProfileInfo data={info} onChangeMode={onChangeMode} />
+        </MyPage>
+      )}
+    </>
   );
 }
 

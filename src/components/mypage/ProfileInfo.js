@@ -1,13 +1,11 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import { Profile } from './ProfileInfoStyled';
 
-const ProfileInfo = props => {
+const ProfileInfo = (props) => {
   const [tab, setTab] = useState(true);
+
+  const { username, email, introduce, tags } = props.data;
 
   return (
     <Profile>
@@ -16,10 +14,10 @@ const ProfileInfo = props => {
       </div>
 
       <div className="containerCenter">
-        <ul className="userName">{props.data.username}</ul>
-        <ul className="email">{props.data.email}</ul>
-        <div className="introduce">{props.data.introduce}</div>
-        <ul className="tag">{props.data.tags.join()}</ul>
+        <ul className="userName">{username}</ul>
+        <ul className="email">{email}</ul>
+        <div className="introduce">{introduce}</div>
+        <ul className="tag">{tags.join()}</ul>
       </div>
 
       <div className="containerRight">
@@ -36,18 +34,24 @@ const ProfileInfo = props => {
       <div className="containerBottom">
         <div className="line" />
 
-        <ul
+        <button
+          type="button"
           className={`choice1 ${tab === true ? 'active' : ''}`}
-          onClick={() => setTab(!tab)}
+          onClick={() => {
+            setTab(!tab);
+          }}
         >
           Calendar heatmap
-        </ul>
-        <ul
+        </button>
+        <button
+          type="button"
           className={`choice2 ${tab === false ? 'active' : ''}`}
-          onClick={() => setTab(!tab)}
+          onClick={() => {
+            setTab(!tab);
+          }}
         >
           {props.data.username}&apos;s TIL
-        </ul>
+        </button>
       </div>
     </Profile>
   );

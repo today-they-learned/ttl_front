@@ -2,28 +2,15 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Button, Form, Input, TextArea } from 'semantic-ui-react';
-import {
-  InfoEdit,
-  UNField,
-  EmailField,
-  AboutField,
-  TagField,
-} from './ProfileEditStyled';
+import { InfoEdit, UNField, EmailField, AboutField, TagField } from './ProfileEditStyled';
 
-const ProfileEdit = props => {
-  const [info, setInfo] = useState(props.data);
-  const inputHandler = e => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value,
-    });
-  };
+const ProfileEdit = (props) => {
+  const [info] = useState(props.data);
 
-  const editInfo = e => {
-    e.preventDefault();
+  const editInfo = () => {
     props.handleSubmit(info.username, info.email, info.introduce);
-    console.log(info.username);
   };
+
   return (
     <InfoEdit>
       <div className="containerLeft">
@@ -31,27 +18,20 @@ const ProfileEdit = props => {
         <Button className="uploadButton">Photo upload</Button>
       </div>
       <div className="containerCenter">
-        <Form onSubmit={e => editInfo(e)}>
+        <Form onSubmit={editInfo}>
           <UNField>
             <Form.Field
               control={Input}
               name="username"
               placeholder={info.username}
               value={info.username}
-              onChange={inputHandler}
             />
           </UNField>
           <Button type="submit" className="editButton">
             Profile Edit
           </Button>
           <EmailField>
-            <Form.Field
-              control={Input}
-              name="email"
-              placeholder={info.email}
-              value={info.email}
-              onChange={inputHandler}
-            />
+            <Form.Field control={Input} name="email" placeholder={info.email} value={info.email} />
           </EmailField>
           <AboutField>
             <Form.Field
@@ -59,7 +39,6 @@ const ProfileEdit = props => {
               name="introduce"
               placeholder={info.introduce}
               value={info.introduce}
-              onChange={inputHandler}
             />
           </AboutField>
         </Form>
@@ -68,32 +47,19 @@ const ProfileEdit = props => {
         <Form>
           <ul className="tagLabel">관심 태그</ul>
           <TagField>
-            <Form.Field
-              control={Input}
-              name="tags"
-              placeholder={props.data.tags.join()}
-            />
+            <Form.Field control={Input} name="tags" placeholder={props.data.tags.join()} />
           </TagField>
           <ul className="tagLabel">tistory_user_id</ul>
           <TagField>
-            <Form.Field
-              control={Input}
-              placeholder={props.data.tistory_user_id}
-            />
+            <Form.Field control={Input} placeholder={props.data.tistory_user_id} />
           </TagField>
           <ul className="tagLabel">github_user_id</ul>
           <TagField>
-            <Form.Field
-              control={Input}
-              placeholder={props.data.github_user_id}
-            />
+            <Form.Field control={Input} placeholder={props.data.github_user_id} />
           </TagField>
           <ul className="tagLabel">velog_user_id</ul>
           <TagField>
-            <Form.Field
-              control={Input}
-              placeholder={props.data.velog_user_id}
-            />
+            <Form.Field control={Input} placeholder={props.data.velog_user_id} />
           </TagField>
         </Form>
       </div>
