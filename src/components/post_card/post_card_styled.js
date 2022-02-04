@@ -48,10 +48,10 @@ export const Tag = styled.div`
   font-size: 0.7rem;
   margin-left: 0.5rem;
   border-radius: 1rem;
-  color: #707bf3;
-  border: 1px solid #b3b4bd;
+  color: white;
+  background-color: #707bf3;
   padding: 0.3rem 0.5rem;
-  font-family: 'NS-B';
+  font-family: 'NS-L';
 `;
 
 export const Avatar = styled.img`

@@ -33,7 +33,7 @@ const PostCard = ({ post }) => {
         >
           <div style={{ display: 'flex', marginLeft: '0.5rem', marginTop: '1rem' }}>
             {Object.keys(tags).map((key) => (
-              <Tag>{tags[key]}</Tag>
+              <Tag key={key}>{tags[key]}</Tag>
             ))}
           </div>
 
