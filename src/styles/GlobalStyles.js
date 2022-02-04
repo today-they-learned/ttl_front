@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${COLOR.BACKGROUND};
     font-family: 'NS-R';
     color: #000000;
-    font-size: 16px;
+    font-size: 15px;
   }
   a {
     color: inherit;
@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
   strong {
     text-align: center;
     font-family: 'NS-EB';
-    font-size: 17px;
+    font-size: 15px;
     color: ${COLOR.PRIMARY};
   }
 
@@ -62,14 +62,14 @@ const GlobalStyles = createGlobalStyle`
   p {
     text-align: center;
     font-family: 'NS-R';
-    font-size: 16px;
+    font-size: 15px;
   }
 
   /* 약한글씨 */
   span {
     text-align: center;
-    font-family: 'NS-L';
-    font-size: 13px;
+    font-family: 'NS-R';
+    font-size: 12.5px;
     color: ${COLOR.GRAY}
   }
 `;
