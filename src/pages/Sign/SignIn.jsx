@@ -64,9 +64,9 @@ const Signin = () => {
         </Form>
         <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 0 3rem 0' }}>
           <Container.AlignMiddleContainer>
-            {/* 아이디 저장용 체크박스 */}
+            {/* 이메일 저장용 체크박스 */}
             <Checkbox />
-            <p style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>아이디 저장</p>
+            <p style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>이메일 저장</p>
           </Container.AlignMiddleContainer>
           <Link to="/">
             {/* 추후 비밀번호 찾기(재설정) 페이지 연결.. 찾기인 이유는 워딩이 안예뻐서 */}
