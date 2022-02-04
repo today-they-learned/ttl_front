@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
-
-import SignModal from 'component/Sign/SignModal';
+import React from 'react';
 
 const Home = () => {
-  const [signModalOpen, setSignModalOpen] = useState(false);
-
   return (
     <>
-      <SignModal setOpen={setSignModalOpen} open={signModalOpen} />
-      <Button onClick={() => setSignModalOpen(true)}> 시작하기 </Button>
+      <div> 대충 홈</div>
     </>
   );
 };
