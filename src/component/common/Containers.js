@@ -7,5 +7,5 @@ export const AlignCenterContainer = styled.div`
 
 export const AlignMiddleContainer = styled.div`
   display: flex;
-  align-content: center;
+  align-items: center;
 `;
