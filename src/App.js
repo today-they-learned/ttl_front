@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Home, Mypage, SignIn, SignUp } from 'pages';
 
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
 import ResponsiveLayout from 'layouts/responsive.layout';
-
-import { SignIn, SignUp } from 'pages';
 
 const App = () => {
   return (
@@ -18,6 +17,7 @@ const App = () => {
             <Route path="/" element={<ResponsiveLayout />} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/mypage" component={Mypage} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>
