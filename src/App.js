@@ -14,7 +14,7 @@ const App = () => {
       <BrowserRouter>
         <ResponsiveLayout>
           <Routes>
-            <Route path="/" element={<ResponsiveLayout />} />
+            <Route exact path="/" element={<ResponsiveLayout />} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/mypage" component={Mypage} />
