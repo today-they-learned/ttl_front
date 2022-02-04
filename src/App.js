@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, Mypage, SignIn, SignUp } from 'pages';
+import { Mypage, SignIn, SignUp } from 'pages';
 
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
