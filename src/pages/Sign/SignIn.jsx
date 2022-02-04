@@ -8,7 +8,7 @@ import * as Btn from 'component/common/Button';
 import SignTitle from 'component/Sign/SignTitle';
 
 const SignContainer = styled(Container.AlignCenterContainer)`
-  margin-top: 8rem;
+  margin-top: 6rem;
 `;
 
 const Field = styled(Form.Field)`
@@ -39,7 +39,7 @@ const Signin = () => {
     <SignContainer>
       <Grid.Column centered>
         <SignTitle />
-        <Form onSubmit={handleSubmit} style={{ width: '25rem' }}>
+        <Form onSubmit={handleSubmit} style={{ width: '23rem' }}>
           <Field
             fluid
             placeholder="이메일"
