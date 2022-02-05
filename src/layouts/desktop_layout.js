@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
 import PostList from 'components/post_list/post_list';
+import COLOR from 'constants/color.constant';
 
 const DesktopLayout = () => {
-  const [feedType, setFeedType] = useState({ item: 'main', title: '메인' });
+  const [feedType, setFeedType] = useState({ item: 'main', title: '피드' });
   const selectFeedType = (type) => {
     setFeedType(type);
   };
   return (
     <div
       style={{
-        backgroundColor: '#f8f8f8',
+        backgroundColor: `${COLOR.BACKGROUND}`,
         width: '100%',
       }}
     >

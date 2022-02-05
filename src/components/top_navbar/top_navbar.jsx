@@ -12,6 +12,7 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   margin-bottom: 4rem;
   z-index: 1;
+  box-shadow: 1px 1px 10px -5px black;
 `;
 
 const Avatar = styled.img`

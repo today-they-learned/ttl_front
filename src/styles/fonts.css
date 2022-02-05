@@ -27,3 +27,12 @@
   font-family: 'GS-B';
   src: url('fonts/GmarketSansTTFBold.ttf');
 }
+
+@font-face {
+  font-family: 'GS-M';
+  src: url('fonts/GmarketSansTTFMedium.ttf');
+}
+@font-face {
+  font-family: 'GS-L';
+  src: url('fonts/GmarketSansTTFLight.ttf');
+}

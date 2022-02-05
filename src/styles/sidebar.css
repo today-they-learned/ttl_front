@@ -14,6 +14,7 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.75rem 1rem;
   width: 100%;
 }
@@ -33,7 +34,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  color: #707bf3;
+  /* color: #707bf3; */
 }
 
 .side-navigation-panel
@@ -76,7 +77,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  color: #707bf3;
+  /* color: #707bf3; */
 }
 .side-navigation-panel
   .side-navigation-panel-select
@@ -128,7 +129,8 @@
 /* sidebar text */
 .side-navigation-panel-select-option-text {
   font-size: 1rem;
-  font-family: 'GS-B';
+  font-family: 'GS-R';
+  margin-top: 0.3rem;
   letter-spacing: -0.6px;
 }
 
@@ -151,7 +153,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  color: #707bf3;
+  /* color: #707bf3; */
   font-family: 'TR-B';
 }
 

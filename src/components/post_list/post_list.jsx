@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
@@ -30,8 +31,8 @@ const PostTop = styled.div`
     content: '';
     display: block;
     width: 100%;
-    height: 2px;
-    background-color: #eeeeee;
+    height: 1px;
+    background-color: #c5cbd3;
     transform: translateY(1rem);
   }
 `;
@@ -53,7 +54,9 @@ const PostList = ({ feedType }) => {
               name="post_option"
               id=""
               style={{
-                width: '5rem',
+                width: '4rem',
+                height: '2rem',
+                fontSize: '0.7rem',
                 padding: '.3em .5em',
               }}
             >

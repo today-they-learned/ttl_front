@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import MobileSideBar from 'components/mobile_sidebar/mobile_sidebar';
 import PostList from 'components/post_list/post_list';
 import MobileNavbar from 'components/mobile_navbar/mobile_navbar';
 
 const MobileLayout = () => {
-  const [feedType, setFeedType] = useState({ item: 'main', title: '메인' });
+  const [feedType, setFeedType] = useState({ item: 'main', title: '피드' });
   const selectFeedType = (type) => {
     setFeedType(type);
   };

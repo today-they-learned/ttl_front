@@ -11,7 +11,7 @@ export const Card = styled.div`
   transition: transform 300ms ease-in-out;
 
   &:hover {
-    transform: translateY(-0.8rem);
+    transform: translateY(-0.5rem);
     box-shadow: 1px 1px 10px -5px black;
   }
 `;
@@ -51,7 +51,7 @@ export const Tag = styled.div`
   color: white;
   background-color: #707bf3;
   padding: 0.3rem 0.5rem;
-  font-family: 'NS-L';
+  font-family: 'NS-R';
 `;
 
 export const Avatar = styled.img`

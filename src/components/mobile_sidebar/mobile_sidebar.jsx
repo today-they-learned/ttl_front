@@ -10,7 +10,7 @@ const Bar = styled.div`
   position: fixed;
   top: 1.2rem;
   left: -1rem;
-  width: 100%;
+  width: 15rem;
   height: 100%;
   margin-right: 1rem;
   z-index: 1;

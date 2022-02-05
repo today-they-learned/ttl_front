@@ -19,7 +19,12 @@ const SideBar = ({ selectFeedType }) => {
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            selectFeedType(itemId);
+            if (itemId) {
+              selectFeedType(itemId);
+            } else {
+              selectFeedType({ item: 'main', title: '피드' });
+            }
+            // 지금은 예시라 피드, 팔로우, 그룹 말고 다른 것을 선택했을 때는 피드를 보여주도록 했습니다.
           }}
           items={[
             {
@@ -39,33 +44,37 @@ const SideBar = ({ selectFeedType }) => {
             },
             {
               title: '관심태그',
-              itemId: '/tags',
+              // itemId: '/tag',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: [
                 {
                   title: 'aws',
-                  itemId: '/tags/aws',
+                  // itemId: '/follow/aws',
                 },
                 {
                   title: 'spring',
-                  itemId: '/tags/spring',
+                  // itemId: '/follow/spring',
                 },
                 {
                   title: 'django',
-                  itemId: '/tags/django',
+                  // itemId: '/follow/django',
                 },
               ],
             },
             {
               title: '북마크',
-              itemId: '/bookmark',
-              elemBefore: () => <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />,
+              // itemId: '/bookmark',
+              elemBefore: () => (
+                <Icon name="bookmark" style={{ fontSize: '1.2rem', color: '#858f9a' }} />
+              ),
             },
             {
               title: '읽은 목록',
-              itemId: '/read_list',
-              elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
+              // itemId: '/read_list',
+              elemBefore: () => (
+                <Icon name="eye" style={{ fontSize: '1.2rem', color: '#858f9a' }} />
+              ),
             },
           ]}
         />
