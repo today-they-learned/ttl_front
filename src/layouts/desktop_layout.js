@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
-import PostList from 'components/post_list/post_list';
 import COLOR from 'constants/color.constant';
 
-const DesktopLayout = () => {
-  const [feedType, setFeedType] = useState({ item: 'main', title: '피드' });
-  const selectFeedType = (type) => {
-    setFeedType(type);
-  };
+const DesktopLayout = (props) => {
   return (
     <div
       style={{
@@ -26,8 +21,8 @@ const DesktopLayout = () => {
           height: '100%',
         }}
       >
-        <SideBar selectFeedType={selectFeedType} />
-        <PostList feedType={feedType} />
+        <SideBar />
+        <div>{props.children}</div>
       </div>
     </div>
   );

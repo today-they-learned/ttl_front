@@ -1,18 +1,13 @@
-/* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React from 'react';
 import MobileSideBar from 'components/mobile_sidebar/mobile_sidebar';
-import PostList from 'components/post_list/post_list';
 import MobileNavbar from 'components/mobile_navbar/mobile_navbar';
+import COLOR from 'constants/color.constant';
 
-const MobileLayout = () => {
-  const [feedType, setFeedType] = useState({ item: 'main', title: '피드' });
-  const selectFeedType = (type) => {
-    setFeedType(type);
-  };
+const MobileLayout = (props) => {
   return (
     <div
       style={{
-        backgroundColor: '#f8f8f8',
+        backgroundColor: `${COLOR.BACKGROUND}`,
         width: '100%',
       }}
     >
@@ -26,8 +21,8 @@ const MobileLayout = () => {
           height: '100%',
         }}
       >
-        <MobileSideBar selectFeedType={selectFeedType} />
-        <PostList feedType={feedType} />
+        <MobileSideBar />
+        <div>{props.children}</div>
       </div>
     </div>
   );

@@ -9,22 +9,18 @@ import { Navigation } from 'react-minimal-side-navigation';
 const Bar = styled.div`
   position: sticky;
   top: 200px;
-  width: 12.5rem;
+  width: 10.5rem;
   height: 100%;
 `;
 
-const SideBar = ({ selectFeedType }) => {
+const SideBar = () => {
   return (
     <>
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            if (itemId) {
-              selectFeedType(itemId);
-            } else {
-              selectFeedType({ item: 'main', title: '피드' });
-            }
-            // 지금은 예시라 피드, 팔로우, 그룹 말고 다른 것을 선택했을 때는 피드를 보여주도록 했습니다.
+            console.log(itemId);
+            // 나중에 여기에서 피드 타입 설정을 해줄 예정입니다. route를 수정하면서 해당 메뉴를 눌렀을 떄 보여주는 기능은 잠시 없어졌어요
           }}
           items={[
             {
@@ -44,37 +40,33 @@ const SideBar = ({ selectFeedType }) => {
             },
             {
               title: '관심태그',
-              // itemId: '/tag',
+              itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: [
                 {
                   title: 'aws',
-                  // itemId: '/follow/aws',
+                  itemId: '/tags/aws',
                 },
                 {
                   title: 'spring',
-                  // itemId: '/follow/spring',
+                  itemId: '/tags/spring',
                 },
                 {
                   title: 'django',
-                  // itemId: '/follow/django',
+                  itemId: '/tags/django',
                 },
               ],
             },
             {
               title: '북마크',
-              // itemId: '/bookmark',
-              elemBefore: () => (
-                <Icon name="bookmark" style={{ fontSize: '1.2rem', color: '#858f9a' }} />
-              ),
+              itemId: { item: 'bookmark', title: '북마크' },
+              elemBefore: () => <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />,
             },
             {
               title: '읽은 목록',
-              // itemId: '/read_list',
-              elemBefore: () => (
-                <Icon name="eye" style={{ fontSize: '1.2rem', color: '#858f9a' }} />
-              ),
+              itemId: { item: 'read_list', title: '읽은 목록' },
+              elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
             },
           ]}
         />

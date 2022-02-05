@@ -16,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  width: 100%;
+  width: 171px;
 }
 .side-navigation-panel
   .side-navigation-panel-select
@@ -34,7 +34,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  /* color: #707bf3; */
+  color: #707bf3;
 }
 
 .side-navigation-panel
@@ -77,8 +77,16 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  /* color: #707bf3; */
 }
+
+.side-navigation-panel-select-option-selected span:last-of-type {
+  color: #707bf3;
+}
+
+.side-navigation-panel-select-inner-option-selected span:last-of-type {
+  color: #707bf3;
+}
+
 .side-navigation-panel
   .side-navigation-panel-select
   .side-navigation-panel-select-inner
@@ -132,6 +140,7 @@
   font-family: 'GS-R';
   margin-top: 0.3rem;
   letter-spacing: -0.6px;
+  /* color: #858f9a; */
 }
 
 /* sidebar 위 아래 구분 */
@@ -142,6 +151,7 @@
 .side-navigation-panel-select-inner-option-text {
   font-family: 'GS-B';
   letter-spacing: -0.6px;
+  /* color: #858f9a; */
 }
 
 /* subnav 클릭했을 때 선택 표시 */
@@ -153,7 +163,6 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  /* color: #707bf3; */
   font-family: 'TR-B';
 }
 

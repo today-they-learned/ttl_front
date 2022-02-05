@@ -6,6 +6,7 @@ import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
 import ResponsiveLayout from 'layouts/responsive.layout';
+import PostList from 'components/post_list/post_list';
 
 const App = () => {
   return (
@@ -14,10 +15,10 @@ const App = () => {
       <BrowserRouter>
         <ResponsiveLayout>
           <Routes>
-            <Route exact path="/" element={<ResponsiveLayout />} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/mypage" component={Mypage} />
+            <Route exact path="/" element={<PostList />} />
+            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/mypage" element={<Mypage />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>
