@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProfileInfo from 'components/mypage/ProfileInfo';
@@ -21,17 +18,14 @@ const initialInfo = {
   tags: ['#algorithm', '#python', '#react'],
   repository: 'https://github.com/soyekwon/TIL',
   mailable: true,
-  edit_mode: false,
 };
 
 function Mypage() {
   const [info, setInfo] = useState(initialInfo);
+  const [editMode, setEditMode] = useState(false);
 
   const onChangeMode = () => {
-    setInfo({
-      ...info,
-      edit_mode: !info.edit_mode,
-    });
+    setEditMode(!editMode);
   };
 
   const handleSubmit = (_username, _email, _introduce) => {
@@ -40,13 +34,13 @@ function Mypage() {
       username: _username,
       email: _email,
       introduce: _introduce,
-      edit_mode: !info.edit_mode,
     });
+    setEditMode(!editMode);
   };
 
   return (
     <>
-      {info.edit_mode ? (
+      {editMode ? (
         <MyPage>
           <ProfileEdit data={info} handleSubmit={handleSubmit} />
         </MyPage>
