@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
 import * as Styled from './ProfileInfoStyled';
+import CalendarHeatMap from './CalendarHeatMap';
+import TIL from './TIL';
 
 const ProfileInfo = (props) => {
   const [tab, setTab] = useState(true);
@@ -31,7 +33,7 @@ const ProfileInfo = (props) => {
         </Styled.IconContainer>
       </Styled.ContainerRight>
 
-      <Styled.ContainerBottom>
+      <Styled.ContainerTab>
         <Styled.Line />
 
         <button
@@ -52,7 +54,8 @@ const ProfileInfo = (props) => {
         >
           {props.data.username}&apos;s TIL
         </button>
-      </Styled.ContainerBottom>
+      </Styled.ContainerTab>
+      <Styled.ContainerBottom>{tab ? <CalendarHeatMap /> : <TIL />}</Styled.ContainerBottom>
     </Styled.Profile>
   );
 };

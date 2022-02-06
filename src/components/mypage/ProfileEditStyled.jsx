@@ -39,8 +39,8 @@ export const ContainerBottom = styled.div`
 `;
 
 export const ProfileImg = styled.img`
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 3.5rem;
   margin-right: 0;
 `;
@@ -80,7 +80,7 @@ export const UploadButton = styled.button`
   height: 1.5rem;
   font-size: 0.5rem;
   margin-top: 0.6rem;
-  margin-left: 0.8rem;
+  margin-left: 1.1rem;
   background-color: #707bf3;
   color: white;
 `;

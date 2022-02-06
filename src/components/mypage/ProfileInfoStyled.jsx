@@ -65,15 +65,20 @@ export const ContainerRight = styled.div`
   padding-top: 0.9rem;
   float: left;
 `;
-export const ContainerBottom = styled.div`
+export const ContainerTab = styled.div`
   clear: left;
-  text-align: center;
-  width: 50rem;
-  height: 9rem;
+  width: 63rem;
+  height: 3rem;
+  margin-left: 2.8rem;
+`;
+
+export const ContainerBottom = styled.div`
+  width: 63rem;
+  margin-left: 2.8rem;
 `;
 export const ProfileImg = styled.img`
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 3.5rem;
   margin-right: 0;
 `;
@@ -149,8 +154,7 @@ export const TwittIcon = styled.img`
 
 export const Line = styled.div`
   clear: left;
-  width: 60rem;
+  width: 62.5rem;
   height: 0.1rem;
-  margin-left: 2.2rem;
   background-color: #eaeaea;
 `;
