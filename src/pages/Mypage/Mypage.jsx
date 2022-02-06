@@ -3,19 +3,17 @@ import styled from 'styled-components';
 import ProfileInfo from 'components/mypage/ProfileInfo';
 import ProfileEdit from 'components/mypage/ProfileEdit';
 
-const MyPage = styled.div`
-  background-color: #f8f8f8;
-`;
+const MyPage = styled.div``;
 
 const initialInfo = {
-  tistory_user_id: 'soye0710',
-  github_user_id: 'soyekwon',
-  velog_user_id: 'SoyE',
   username: 'SoyE',
   email: 'soye0710@naver.com',
   password: 'qwertyuiop',
+  facebook_account: 'soye0710',
+  insta_account: 'soyekwon',
+  twitter_account: 'SoyE',
   introduce: '안녕하세요 :) 국민대학교 재학중인 개발자 준비생 권소예입니다.',
-  tags: ['#algorithm', '#python', '#react'],
+  tags: ['algorithm', 'python', 'react'],
   repository: 'https://github.com/soyekwon/TIL',
   mailable: true,
 };
@@ -35,7 +33,7 @@ function Mypage() {
       email: _email,
       introduce: _introduce,
     });
-    setEditMode(!editMode);
+    setEditMode(false);
   };
 
   return (

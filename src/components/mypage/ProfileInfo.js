@@ -17,15 +17,17 @@ const ProfileInfo = (props) => {
         <Styled.UserName>{username}</Styled.UserName>
         <Styled.Email>{email}</Styled.Email>
         <Styled.Introduce>{introduce}</Styled.Introduce>
-        <Styled.Tags className="tag">{tags.join()}</Styled.Tags>
+        {tags.map((tag) => (
+          <Styled.Tags>{tag}</Styled.Tags>
+        ))}
       </Styled.ContainerCenter>
 
       <Styled.ContainerRight>
-        <Styled.EditButton onClick={props.onChangeMode}>Profile Edit</Styled.EditButton>
+        <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
         <Styled.IconContainer>
-          <Styled.Icon src="images/facebook.png" alt="insta_icon" />
-          <Styled.Icon src="images/instagram.png" alt="fb_icon" />
-          <Styled.Icon src="images/twitter.png" alt="twitter_icon" />
+          <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
+          <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
+          <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
         </Styled.IconContainer>
       </Styled.ContainerRight>
 

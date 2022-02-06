@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, TextArea } from 'semantic-ui-react';
-import useInput from '../../hooks/useInput';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
-  const [info, setInfo] = useInput(props.data);
+  const [info, setInfo] = useState(props.data);
+
+  const inputHandler = (e) => {
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const editInfo = () => {
     props.handleSubmit(info.username, info.email, info.introduce);
@@ -25,48 +31,46 @@ const ProfileEdit = (props) => {
               name="username"
               placeholder={info.username}
               value={info.username}
-              onChange={setInfo}
+              onChange={inputHandler}
             />
           </Styled.UNField>
-          <Styled.EditButton>Profile Edit</Styled.EditButton>
-          <Styled.EmailField>
-            <Form.Field
-              control={Input}
-              name="email"
-              placeholder={info.email}
-              value={info.email}
-              onChange={setInfo}
-            />
-          </Styled.EmailField>
+          <Styled.BackButton>취소</Styled.BackButton>
+          <Styled.EditButton>저장</Styled.EditButton>
+
           <Styled.AboutField>
             <Form.Field
               control={TextArea}
               name="introduce"
               placeholder={info.introduce}
               value={info.introduce}
-              onChange={setInfo}
+              onChange={inputHandler}
             />
           </Styled.AboutField>
+
+          <Styled.TagField>
+            <Form.Field
+              control={Input}
+              name="tags"
+              placeholder={props.data.tags.join()}
+              value={info.tags.join()}
+            />
+          </Styled.TagField>
         </Form>
       </Styled.ContainerCenter>
       <Styled.ContainerBottom>
         <Form>
-          <Styled.TagLabel>관심 태그</Styled.TagLabel>
-          <Styled.TagField>
-            <Form.Field control={Input} name="tags" placeholder={props.data.tags.join()} />
-          </Styled.TagField>
           <Styled.TagLabel>facebook_username</Styled.TagLabel>
-          <Styled.TagField>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.tistory_user_id} />
-          </Styled.TagField>
+          </Styled.SnsField>
           <Styled.TagLabel>instagram_username</Styled.TagLabel>
-          <Styled.TagField>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.github_user_id} />
-          </Styled.TagField>
+          </Styled.SnsField>
           <Styled.TagLabel>twitter_username</Styled.TagLabel>
-          <Styled.TagField>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.velog_user_id} />
-          </Styled.TagField>
+          </Styled.SnsField>
         </Form>
       </Styled.ContainerBottom>
     </Styled.InfoEdit>
