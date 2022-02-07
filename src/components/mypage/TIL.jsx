@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-import PostCard from '../post_card/post_card';
+import PostCard from 'components/post_card/post_card';
 
-import postsData from '../post_list/posts.json';
+import postsData from 'components/post_list/posts.json';
 
 const Post = styled.div`
   display: flex;

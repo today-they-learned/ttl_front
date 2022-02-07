@@ -14,7 +14,6 @@ const ProfileEdit = (props) => {
 
   const editInfo = () => {
     props.handleSubmit(info.username, info.email, info.introduce);
-    console.log(info.username);
   };
 
   return (
@@ -61,15 +60,15 @@ const ProfileEdit = (props) => {
         <Form>
           <Styled.TagLabel>facebook_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder={props.data.tistory_user_id} />
+            <Form.Field control={Input} placeholder="페이스북 계정을 입력하세요" />
           </Styled.SnsField>
           <Styled.TagLabel>instagram_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder={props.data.github_user_id} />
+            <Form.Field control={Input} placeholder="인스타그램 계정을 입력하세요" />
           </Styled.SnsField>
           <Styled.TagLabel>twitter_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder={props.data.velog_user_id} />
+            <Form.Field control={Input} placeholder="트위터 계정을 입력하세요" />
           </Styled.SnsField>
         </Form>
       </Styled.ContainerBottom>

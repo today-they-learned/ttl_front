@@ -33,7 +33,7 @@ export const ContainerBottom = styled.div`
   clear: left;
   margin-left: 1.5rem;
   padding-left: 11.5rem;
-  padding-top: 0.1rem;
+  padding-top: 2rem;
   font-size: 12px;
   border-radius: 0.2rem;
 `;
@@ -87,7 +87,7 @@ export const UploadButton = styled.button`
 
 export const UNField = styled(Form.Field)`
   width: 8rem;
-  height: 1.6rem;
+  height: 1.8rem;
   float: left;
   margin-bottom: 0;
   font-size: 0.8rem;
@@ -96,7 +96,7 @@ export const UNField = styled(Form.Field)`
 
 export const AboutField = styled(Form.Field)`
   width: 38rem;
-  height: 4rem;
+  height: 4.1rem;
   clear: left;
   font-size: 0.8rem;
 `;
@@ -104,10 +104,10 @@ export const AboutField = styled(Form.Field)`
 export const TagField = styled(Form.Field)`
   clear: left;
   width: 38rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 `;
 
 export const SnsField = styled(Form.Field)`
-  width: 32.5rem;
+  width: 38rem;
   font-size: 0.6rem;
 `;

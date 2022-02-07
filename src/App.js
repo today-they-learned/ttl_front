@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Mypage, SignIn, SignUp } from 'pages';
+import { Mypage, SignIn, SignUp, Setting } from 'pages';
 
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
@@ -19,6 +19,7 @@ const App = () => {
             <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/mypage" element={<Mypage />} />
+            <Route exact path="/setting" element={<Setting />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>
