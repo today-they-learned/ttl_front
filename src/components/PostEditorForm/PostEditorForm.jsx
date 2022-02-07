@@ -1,6 +1,6 @@
-import React, { createRef } from 'react';
+import React, { createRef, useRef, useState } from 'react';
 
-import '@toast-ui/editor/dist/toastui-editor.css';
+import './toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
 import Prism from 'prismjs';
@@ -13,37 +13,101 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
+import COLOR from 'constants/color.constant';
+import Modal from 'components/PostModal/PostModal';
 
 const Title = styled.input`
   width: 100%;
   height: 5rem;
-  background-color: #cccbcb;
   font-size: 1.5rem;
+  color: grey;
+  font-weight: 700;
+  padding-left: 1rem;
+`;
+
+const Button = styled.button`
+  /* width: 5rem;
+  height: 1.5rem; */
+  color: ${COLOR.PRIMARY};
+  font-family: 'GS-B';
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.5rem;
+
+  &:hover {
+    background-color: ${COLOR.PRIMARY};
+    color: white;
+    cursor: pointer;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  background-color: white;
+  padding: 0.5rem;
+  text-align: right;
+
+  /* box-shadow: 1px -1px 10px -5px black; */
 `;
 
 const PostEditorForm = () => {
+  const [titleText, setTitleText] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const titleRef = useRef();
   const editorRef = createRef();
+
+  const onChangeTitle = (e) => {
+    setTitleText(e.target.value);
+  };
 
   const onChangeEditorTextHandler = () => {
     console.log(editorRef.current.getInstance().getMarkdown());
   };
 
-  return (
-    <div>
-      <Title type="title" placeholder="제목을 입력하세요" />
+  const openModal = () => {
+    setModalVisible(true);
+    console.log(titleRef.current);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
-      <Editor
-        previewStyle="vertical"
-        height="79vh"
-        initialEditType="markdown"
-        initialValue="마크다운으로 내용을 입력하세요"
-        ref={editorRef}
-        plugins={[colorSyntax, [codeSyntaxHighlight, { hightlighter: Prism }]]}
-        onChange={onChangeEditorTextHandler}
-      />
-      <button type="submit">Post</button>
-      <button type="submit">Cancel</button>
-    </div>
+  return (
+    <>
+      <div>
+        <Title
+          type="title"
+          placeholder="제목을 입력하세요"
+          ref={titleRef}
+          value={titleText}
+          onChange={onChangeTitle}
+        />
+
+        <Editor
+          previewStyle="vertical"
+          height="79vh"
+          initialEditType="markdown"
+          placeholder="마크다운으로 내용을 입력하세요..."
+          ref={editorRef}
+          plugins={[colorSyntax, [codeSyntaxHighlight, { hightlighter: Prism }]]}
+          onChange={onChangeEditorTextHandler}
+        />
+        <ButtonContainer>
+          <Button>취소</Button>
+          <Button onClick={openModal}>완료</Button>
+        </ButtonContainer>
+      </div>
+      {modalVisible && (
+        <Modal
+          visible={modalVisible}
+          closable
+          maskClosable
+          onClose={closeModal}
+          titleText={titleText}
+        />
+      )}
+    </>
   );
 };
 
