@@ -37,13 +37,13 @@ const PostTop = styled.div`
   }
 `;
 
-const PostList = () => {
+const PostList = (props) => {
   const feedType = { item: 'main', title: '피드' };
+  console.log(props);
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
     setPosts(postsData.main);
-    // 임시 데이터로 설정해놨습니다.
   });
 
   return (

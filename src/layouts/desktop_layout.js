@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
 import COLOR from 'constants/color.constant';
 
 const DesktopLayout = (props) => {
+  const [feedType, setFeedType] = useState({ item: 'main', title: '피드' });
+  const selectFeedType = (type) => {
+    setFeedType(type);
+  };
+
   return (
     <div
       style={{
@@ -21,8 +26,8 @@ const DesktopLayout = (props) => {
           height: '100%',
         }}
       >
-        <SideBar />
-        <div>{props.children}</div>
+        <SideBar selectFeedType={selectFeedType} />
+        <div feedType={feedType}>{props.children || null}</div>
       </div>
     </div>
   );

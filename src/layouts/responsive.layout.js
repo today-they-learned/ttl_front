@@ -8,6 +8,7 @@ import DesktopLayout from './desktop_layout';
 import MobileLayout from './mobile_layout';
 
 const ResponsiveLayout = ({ children }) => {
+  console.log(children);
   const Desktop = () => {
     const isDesktop = useMediaQuery({ minWidth: 763 });
     return isDesktop && <DesktopLayout>{children}</DesktopLayout>;
