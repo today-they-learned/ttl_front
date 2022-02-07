@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
-import { Profile } from './ProfileInfoStyled';
+import * as Styled from './ProfileInfoStyled';
 
 const ProfileInfo = (props) => {
   const [tab, setTab] = useState(true);
@@ -8,31 +8,31 @@ const ProfileInfo = (props) => {
   const { username, email, introduce, tags } = props.data;
 
   return (
-    <Profile>
-      <div className="containerLeft">
-        <img className="profileImg" src="images/profile.jpg" alt="profile" />
-      </div>
+    <Styled.Profile>
+      <Styled.ContainerLeft>
+        <Styled.ProfileImg src="images/profile.jpg" />
+      </Styled.ContainerLeft>
 
-      <div className="containerCenter">
-        <ul className="userName">{username}</ul>
-        <ul className="email">{email}</ul>
-        <div className="introduce">{introduce}</div>
-        <ul className="tag">{tags.join()}</ul>
-      </div>
+      <Styled.ContainerCenter>
+        <Styled.UserName>{username}</Styled.UserName>
+        <Styled.Email>{email}</Styled.Email>
+        <Styled.Introduce>{introduce}</Styled.Introduce>
+        {tags.map((tag) => (
+          <Styled.Tags>{tag}</Styled.Tags>
+        ))}
+      </Styled.ContainerCenter>
 
-      <div className="containerRight">
-        <Button className="editButton" onClick={props.onChangeMode}>
-          Profile Edit
-        </Button>
-        <div className="iconContainer">
-          <img className="icon" src="images/facebook.png" alt="insta_icon" />
-          <img className="icon" src="images/instagram.png" alt="fb_icon" />
-          <img className="icon" src="images/twitter.png" alt="twitter_icon" />
-        </div>
-      </div>
+      <Styled.ContainerRight>
+        <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
+        <Styled.IconContainer>
+          <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
+          <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
+          <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
+        </Styled.IconContainer>
+      </Styled.ContainerRight>
 
-      <div className="containerBottom">
-        <div className="line" />
+      <Styled.ContainerBottom>
+        <Styled.Line />
 
         <button
           type="button"
@@ -52,8 +52,8 @@ const ProfileInfo = (props) => {
         >
           {props.data.username}&apos;s TIL
         </button>
-      </div>
-    </Profile>
+      </Styled.ContainerBottom>
+    </Styled.Profile>
   );
 };
 

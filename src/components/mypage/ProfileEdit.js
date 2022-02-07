@@ -1,69 +1,79 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Button, Form, Input, TextArea } from 'semantic-ui-react';
-import { InfoEdit, UNField, EmailField, AboutField, TagField } from './ProfileEditStyled';
+import { Form, Input, TextArea } from 'semantic-ui-react';
+import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
-  const [info] = useState(props.data);
+  const [info, setInfo] = useState(props.data);
+
+  const inputHandler = (e) => {
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const editInfo = () => {
     props.handleSubmit(info.username, info.email, info.introduce);
+    console.log(info.username);
   };
 
   return (
-    <InfoEdit>
-      <div className="containerLeft">
-        <img className="profileImg" src="images/profile.jpg" alt="profile" />
-        <Button className="uploadButton">Photo upload</Button>
-      </div>
-      <div className="containerCenter">
+    <Styled.InfoEdit>
+      <Styled.ContainerLeft>
+        <Styled.ProfileImg src="images/profile.jpg" alt="profile" />
+        <Styled.UploadButton>Photo upload</Styled.UploadButton>
+      </Styled.ContainerLeft>
+      <Styled.ContainerCenter>
         <Form onSubmit={editInfo}>
-          <UNField>
+          <Styled.UNField>
             <Form.Field
               control={Input}
               name="username"
               placeholder={info.username}
               value={info.username}
+              onChange={inputHandler}
             />
-          </UNField>
-          <Button type="submit" className="editButton">
-            Profile Edit
-          </Button>
-          <EmailField>
-            <Form.Field control={Input} name="email" placeholder={info.email} value={info.email} />
-          </EmailField>
-          <AboutField>
+          </Styled.UNField>
+          <Styled.BackButton>취소</Styled.BackButton>
+          <Styled.EditButton>저장</Styled.EditButton>
+
+          <Styled.AboutField>
             <Form.Field
               control={TextArea}
               name="introduce"
               placeholder={info.introduce}
               value={info.introduce}
+              onChange={inputHandler}
             />
-          </AboutField>
+          </Styled.AboutField>
+
+          <Styled.TagField>
+            <Form.Field
+              control={Input}
+              name="tags"
+              placeholder={props.data.tags.join()}
+              value={info.tags.join()}
+            />
+          </Styled.TagField>
         </Form>
-      </div>
-      <div className="containerBottom">
+      </Styled.ContainerCenter>
+      <Styled.ContainerBottom>
         <Form>
-          <ul className="tagLabel">관심 태그</ul>
-          <TagField>
-            <Form.Field control={Input} name="tags" placeholder={props.data.tags.join()} />
-          </TagField>
-          <ul className="tagLabel">tistory_user_id</ul>
-          <TagField>
+          <Styled.TagLabel>facebook_username</Styled.TagLabel>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.tistory_user_id} />
-          </TagField>
-          <ul className="tagLabel">github_user_id</ul>
-          <TagField>
+          </Styled.SnsField>
+          <Styled.TagLabel>instagram_username</Styled.TagLabel>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.github_user_id} />
-          </TagField>
-          <ul className="tagLabel">velog_user_id</ul>
-          <TagField>
+          </Styled.SnsField>
+          <Styled.TagLabel>twitter_username</Styled.TagLabel>
+          <Styled.SnsField>
             <Form.Field control={Input} placeholder={props.data.velog_user_id} />
-          </TagField>
+          </Styled.SnsField>
         </Form>
-      </div>
-    </InfoEdit>
+      </Styled.ContainerBottom>
+    </Styled.InfoEdit>
   );
 };
 

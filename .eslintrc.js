@@ -24,7 +24,6 @@ module.exports = {
     'no-console': 0,
     'import/prefer-default-export': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'import/no-unresolved': 'off',
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
   },
