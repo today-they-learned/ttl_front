@@ -14,15 +14,13 @@ const App = () => {
     <>
       <GlobalStyles />
       <BrowserRouter>
-        <Routes>
-          <Route exact path="/post" element={<TestEditorForm />} />
-        </Routes>
         <ResponsiveLayout>
           <Routes>
             <Route exact path="/" element={<PostList />} />
             <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/mypage" element={<Mypage />} />
+            <Route exact path="/post" element={<TestEditorForm />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>

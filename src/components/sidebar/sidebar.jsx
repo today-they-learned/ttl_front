@@ -13,13 +13,13 @@ const Bar = styled.div`
   height: 100%;
 `;
 
-const SideBar = ({ selectFeedType }) => {
+const SideBar = () => {
   return (
     <>
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            selectFeedType(itemId);
+            console.log(itemId);
             // 나중에 여기에서 피드 타입 설정을 해줄 예정입니다. route를 수정하면서 해당 메뉴를 눌렀을 떄 보여주는 기능은 잠시 없어졌어요
           }}
           items={[

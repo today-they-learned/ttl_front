@@ -1,7 +1,8 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useRef } from 'react';
 import { Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
+import COLOR from 'constants/color.constant';
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -32,7 +33,7 @@ const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
+  background-color: ${COLOR.BACKGROUND};
   border-radius: 10px;
   width: 100%;
   height: 50%;
@@ -44,29 +45,96 @@ const ModalInner = styled.div`
 
 const ModalContent = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 100%;
 `;
 
-const Title = styled.div`
-  font-size: 2rem;
-`;
-
-const ButtonContainer = styled.div`
+const ModalLeft = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 15rem;
+  background-color: #e9e9e9;
+  margin-right: 3rem;
 `;
 
-const Button = styled.button`
-  width: 5rem;
-  height: 1.5rem;
-  border: 1px solid black;
+const ThumnailBtn = styled.button`
+  width: 10rem;
+  height: 2rem;
+  background-color: ${COLOR.BACKGROUND};
+  color: ${COLOR.PRIMARY};
+  margin-top: 1.5rem;
   border-radius: 0.3rem;
 
   &:hover {
     cursor: pointer;
+    background-color: #f7f7f7;
+  }
+`;
+
+const VerticalLine = styled.div`
+  border: 1px solid #d6d3d3;
+  width: 1px;
+  height: 100%;
+`;
+
+const ModalRight = styled.div`
+  text-align: left;
+  width: 30rem;
+  height: 100%;
+  margin-left: 2rem;
+  margin-top: 5rem;
+`;
+
+const ContentTitle = styled.div`
+  font-size: 1.5rem;
+  text-align: left;
+  margin-bottom: 0.7rem;
+`;
+
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 2.5rem;
+  background-color: white;
+  margin-bottom: 2rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 5rem;
+`;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 0.3rem;
+  color: ${COLOR.PRIMARY};
+  padding: 1rem 1rem;
+  font-size: 1.2rem;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: ${COLOR.PRIMARY};
   }
 `;
 
 const Modal = ({ className, onClose, maskClosable, closable, visible, titleText }) => {
+  const inputRef = useRef();
+  const onButtonClick = () => {
+    inputRef.current.click();
+  };
+
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose(e);
@@ -95,34 +163,36 @@ const Modal = ({ className, onClose, maskClosable, closable, visible, titleText 
       >
         <ModalInner tabIndex="0">
           <ModalContent>
-            <div
-              style={{
-                width: '20rem',
-                height: '100%',
-                backgroundColor: 'grey',
-                marginBottom: '3rem',
-              }}
-            >
+            <ModalLeft>
               <Icon name="images" style={{ fontSize: '5rem' }} />
-              <input type="file" onChange={onImageChange} />
-            </div>
-            <div style={{ width: '30rem' }}>
-              <h1>제목</h1>
-              <Title>{titleText}</Title>
-              <h1>태그 설정</h1>
               <input
-                type="text"
-                placeholder="쉼표로 구분해서 작성하면 태그를 등록할 수 있습니다"
-                style={{ width: '100%', backgroundColor: '#f0f0f0', height: '3rem' }}
+                type="file"
+                onChange={onImageChange}
+                ref={inputRef}
+                style={{ display: 'none' }}
               />
-            </div>
+              <ThumnailBtn onClick={onButtonClick}>썸네일 추가</ThumnailBtn>
+            </ModalLeft>
+            <VerticalLine />
+            <ModalRight>
+              <div>
+                <ContentTitle>제목</ContentTitle>
+                <Title>{titleText}</Title>
+                <ContentTitle>태그 설정</ContentTitle>
+                <input
+                  type="text"
+                  placeholder="쉼표로 구분해서 작성하면 태그를 등록할 수 있습니다"
+                  style={{ width: '100%', backgroundColor: '#f0f0f0', height: '2.5rem' }}
+                />
+              </div>
+              {closable && (
+                <ButtonContainer>
+                  <Button onClick={close}>취소</Button>
+                  <Button>발행</Button>
+                </ButtonContainer>
+              )}
+            </ModalRight>
           </ModalContent>
-          {closable && (
-            <ButtonContainer>
-              <Button onClick={close}>취소</Button>
-              <Button>발행</Button>
-            </ButtonContainer>
-          )}
         </ModalInner>
       </ModalWrapper>
     </>

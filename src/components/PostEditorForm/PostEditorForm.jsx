@@ -18,7 +18,7 @@ import Modal from 'components/PostModal/PostModal';
 
 const Title = styled.input`
   width: 100%;
-  height: 5rem;
+  height: 10vh;
   font-size: 1.5rem;
   color: grey;
   font-weight: 700;
@@ -66,8 +66,11 @@ const PostEditorForm = () => {
   };
 
   const openModal = () => {
-    setModalVisible(true);
-    console.log(titleRef.current);
+    if (titleText) {
+      setModalVisible(true);
+    } else {
+      alert('제목을 입력해주세요!');
+    }
   };
   const closeModal = () => {
     setModalVisible(false);
@@ -86,7 +89,7 @@ const PostEditorForm = () => {
 
         <Editor
           previewStyle="vertical"
-          height="79vh"
+          height="85vh"
           initialEditType="markdown"
           placeholder="마크다운으로 내용을 입력하세요..."
           ref={editorRef}
