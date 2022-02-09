@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = styled.nav`
   position: sticky;
@@ -29,6 +30,7 @@ const DropText = styled.div`
 `;
 
 const TopNavbar = () => {
+  const navigate = useNavigate();
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
@@ -41,7 +43,13 @@ const TopNavbar = () => {
         }}
       >
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
-        <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
+        <Icon
+          name="pencil alternate"
+          style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
+          onClick={() => {
+            navigate('/post');
+          }}
+        />
         <Avatar src="images/avatar.png" />
         {/* 임시 유저 아이콘 사용 */}
 
@@ -50,7 +58,11 @@ const TopNavbar = () => {
             <Dropdown.Item>
               <DropText>프로필</DropText>
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                navigate('/post');
+              }}
+            >
               <DropText>글쓰기</DropText>
             </Dropdown.Item>
             <Dropdown.Item>

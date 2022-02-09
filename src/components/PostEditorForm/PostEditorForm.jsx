@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 
 import './toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
@@ -15,6 +15,7 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
 import COLOR from 'constants/color.constant';
 import Modal from 'components/PostModal/PostModal';
+import { useNavigate } from 'react-router-dom';
 
 const Title = styled.input`
   width: 100%;
@@ -51,8 +52,11 @@ const ButtonContainer = styled.div`
 `;
 
 const PostEditorForm = () => {
+  const navigate = useNavigate();
+
   const [titleText, setTitleText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [postContent, setPostContent] = useState();
 
   const titleRef = useRef();
   const editorRef = createRef();
@@ -62,8 +66,13 @@ const PostEditorForm = () => {
   };
 
   const onChangeEditorTextHandler = () => {
-    console.log(editorRef.current.getInstance().getMarkdown());
+    setPostContent(editorRef.current.getInstance().getMarkdown());
   };
+
+  useEffect(() => {
+    editorRef.current.getInstance().setMarkdown('## load Markdown');
+    // 글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드합니다.
+  }, []);
 
   const openModal = () => {
     if (titleText) {
@@ -97,7 +106,13 @@ const PostEditorForm = () => {
           onChange={onChangeEditorTextHandler}
         />
         <ButtonContainer>
-          <Button>취소</Button>
+          <Button
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            취소
+          </Button>
           <Button onClick={openModal}>완료</Button>
         </ButtonContainer>
       </div>
@@ -108,6 +123,7 @@ const PostEditorForm = () => {
           maskClosable
           onClose={closeModal}
           titleText={titleText}
+          postContent={postContent}
         />
       )}
     </>

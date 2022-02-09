@@ -129,7 +129,7 @@ const Button = styled.button`
   }
 `;
 
-const Modal = ({ className, onClose, maskClosable, closable, visible, titleText }) => {
+const Modal = ({ className, onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const inputRef = useRef();
   const onButtonClick = () => {
     inputRef.current.click();
@@ -151,6 +151,10 @@ const Modal = ({ className, onClose, maskClosable, closable, visible, titleText 
     const formData = new FormData();
     console.log(img, formData);
     // 이 함수로 image 데이터를 보낼 계획입니다.
+  };
+
+  const onSubmitPost = () => {
+    console.log(postContent, titleText);
   };
   return (
     <>
@@ -188,7 +192,7 @@ const Modal = ({ className, onClose, maskClosable, closable, visible, titleText 
               {closable && (
                 <ButtonContainer>
                   <Button onClick={close}>취소</Button>
-                  <Button>발행</Button>
+                  <Button onClick={onSubmitPost}>발행</Button>
                 </ButtonContainer>
               )}
             </ModalRight>
