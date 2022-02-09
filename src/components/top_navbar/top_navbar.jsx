@@ -32,6 +32,12 @@ const DropText = styled.div`
 
 const TopNavbar = () => {
   const { user } = useSelector((state) => state.authentication);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('user');
+    window.location.replace('/');
+  };
+
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
@@ -62,7 +68,7 @@ const TopNavbar = () => {
                 <Dropdown.Item>
                   <DropText>설정</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item onClick={handleSignOut}>
                   <DropText>로그아웃</DropText>
                 </Dropdown.Item>
               </Dropdown.Menu>
