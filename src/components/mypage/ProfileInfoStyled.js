@@ -107,7 +107,7 @@ export const Introduce = styled.div`
 `;
 export const Tags = styled.span`
   margin-top: 0.3rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin-left: 0.15rem;
   margin-right: 0.35rem;
   border-radius: 0.8rem;
@@ -118,8 +118,9 @@ export const Tags = styled.span`
 `;
 export const EditButton = styled.button`
   width: 4.5rem;
-  height: 1.5rem;
-  font-size: 0.5rem;
+  height: 1.6rem;
+  border-radius: 0.1rem;
+  font-size: 0.7rem;
   margin-top: 0.5rem;
   margin-left: 3.2rem;
   padding: 0;

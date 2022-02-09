@@ -48,6 +48,7 @@ export const ProfileImg = styled.img`
 export const BackButton = styled.button`
   width: 2.5rem;
   height: 1.5rem;
+  border-radius: 0.1rem;
   float: left;
   margin-left: 30.5rem;
   margin-top: 0.45rem;
@@ -59,6 +60,7 @@ export const BackButton = styled.button`
 export const EditButton = styled.button`
   width: 2.5rem;
   height: 1.5rem;
+  border-radius: 0.1rem;
   font-size: 0.5rem;
   margin-top: 0.45rem;
   margin-left: 0.6rem;
@@ -78,6 +80,7 @@ export const TagLabel = styled.span`
 export const UploadButton = styled.button`
   width: 5rem;
   height: 1.5rem;
+  border-radius: 0.1rem;
   font-size: 0.5rem;
   margin-top: 0.6rem;
   margin-left: 1.1rem;
