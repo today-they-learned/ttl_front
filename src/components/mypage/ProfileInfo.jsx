@@ -5,9 +5,10 @@ import CalendarHeatMap from './CalendarHeatMap';
 import TIL from './TIL';
 
 const ProfileInfo = (props) => {
+  console.log(props.data);
   const [tab, setTab] = useState(true);
 
-  const { username, email, introduce, tags } = props.data;
+  const { username, email } = props.data;
 
   return (
     <Styled.Profile>
@@ -18,10 +19,10 @@ const ProfileInfo = (props) => {
       <Styled.ContainerCenter>
         <Styled.UserName>{username}</Styled.UserName>
         <Styled.Email>{email}</Styled.Email>
-        <Styled.Introduce>{introduce}</Styled.Introduce>
+        {/* <Styled.Introduce>{introduce}</Styled.Introduce>
         {tags.map((tag) => (
           <Styled.Tags>{tag}</Styled.Tags>
-        ))}
+        ))} */}
       </Styled.ContainerCenter>
 
       <Styled.ContainerRight>

@@ -40,7 +40,7 @@ const ProfileEdit = (props) => {
             <Form.Field
               control={TextArea}
               name="introduce"
-              placeholder={info.introduce}
+              placeholder="한 줄 소개를 입력하세요"
               value={info.introduce}
               onChange={inputHandler}
             />
@@ -50,7 +50,7 @@ const ProfileEdit = (props) => {
             <Form.Field
               control={Input}
               name="tags"
-              placeholder={props.data.tags.join()}
+              placeholder="관심분야를 입력하세요"
               value={info.tags.join()}
             />
           </Styled.TagField>
@@ -60,15 +60,27 @@ const ProfileEdit = (props) => {
         <Form>
           <Styled.TagLabel>facebook_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="페이스북 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              placeholder="페이스북 계정을 입력하세요"
+              value={info.facebook_account}
+            />
           </Styled.SnsField>
           <Styled.TagLabel>instagram_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="인스타그램 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              placeholder="인스타그램 계정을 입력하세요"
+              value={info.instagram_account}
+            />
           </Styled.SnsField>
           <Styled.TagLabel>twitter_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="트위터 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              placeholder="트위터 계정을 입력하세요"
+              value={info.twitter_account}
+            />
           </Styled.SnsField>
         </Form>
       </Styled.ContainerBottom>
