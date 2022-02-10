@@ -35,6 +35,7 @@ function Mypage() {
       setInfo(response.data); // 데이터는 response.data 안에 들어있습니다.
     } catch (e) {
       setError(e);
+      console.log(e);
     }
     setLoading(false);
   };
