@@ -37,9 +37,8 @@ const PostTop = styled.div`
   }
 `;
 
-const PostList = (props) => {
+const PostList = () => {
   const feedType = { item: 'main', title: '피드' };
-  console.log(props);
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
