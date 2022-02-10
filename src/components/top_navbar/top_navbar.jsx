@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Icon, Dropdown } from 'semantic-ui-react';
+import { Icon, Dropdown, Button } from 'semantic-ui-react';
 
 const Nav = styled.nav`
   position: sticky;
@@ -29,14 +31,19 @@ const DropText = styled.div`
 `;
 
 const TopNavbar = () => {
-  const handleMypage = () => {
-    window.location.replace('/mypage');
+  const { user } = useSelector((state) => state.authentication);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('user');
+    window.location.replace('/');
   };
 
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
-      <h1>TTL</h1>
+      <Link to="/">
+        <h1>TTL</h1>
+      </Link>
       <div
         style={{
           display: 'flex',
@@ -45,26 +52,34 @@ const TopNavbar = () => {
         }}
       >
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
-        <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
-        <Avatar src="images/avatar.png" />
-        {/* 임시 유저 아이콘 사용 */}
-
-        <Dropdown direction="left">
-          <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
-            <Dropdown.Item onClick={handleMypage}>
-              <DropText>프로필</DropText>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <DropText>글쓰기</DropText>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <DropText>설정</DropText>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <DropText>로그아웃</DropText>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        {user ? (
+          <>
+            <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
+            <Avatar src="images/avatar.png" />
+            {/* 임시 유저 아이콘 */}
+            <Dropdown direction="left">
+              <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
+                <Dropdown.Item>
+                  <DropText>프로필</DropText>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <DropText>글쓰기</DropText>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <DropText>설정</DropText>
+                </Dropdown.Item>
+                <Dropdown.Item onClick={handleSignOut}>
+                  <DropText>로그아웃</DropText>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        ) : (
+          <Link to="/signin">
+            <Button>로그인</Button>
+          </Link>
+          // 임시
+        )}
       </div>
     </Nav>
   );

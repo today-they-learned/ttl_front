@@ -5,6 +5,8 @@ import { Mypage, SignIn, SignUp, Setting } from 'pages';
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
+
+import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
 import PostList from 'components/post_list/post_list';
 
@@ -27,4 +29,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default wrapper.withRedux(App);

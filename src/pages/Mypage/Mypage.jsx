@@ -21,6 +21,7 @@ const MyPage = styled.div``;
 
 function Mypage() {
   const { user } = useSelector((state) => state.authentication);
+  console.log(user);
   const [info, setInfo] = useState(null);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
