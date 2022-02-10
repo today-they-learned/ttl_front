@@ -124,6 +124,12 @@ li.ProseMirror-selectednode:after {
   margin-top: 0 !important;
 }
 
+.toastui-editor-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .toastui-editor-md-container .toastui-editor-md-preview .toastui-editor-contents {
   padding-top: 8px;
 }

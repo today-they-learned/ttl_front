@@ -88,17 +88,18 @@ const PostEditorForm = () => {
   }, []);
 
   useEffect(() => {
-    // 이미지 업로드 시 base64 인코딩 url 방식으로 처리
     if (editorRef.current) {
       editorRef.current.getInstance().removeHook('addImageBlobHook');
-      editorRef.current.getInstance().addHook('addImageBlobHook', (blob) => {
+      editorRef.current.getInstance().addHook('addImageBlobHook', (blob, callback) => {
         (async () => {
           const formData = new FormData();
           formData.append('file', blob);
 
-          console.log(formData, '이미지 생성');
-
-          // 서버 연동 필요, 서버 연동 후에 코드 추가할 예정
+          // axios.defaults.withCredentials = true;
+          // const { data: url } = await axios.post(`${backUrl}image.do`, formData, {
+          //   header: { 'content-type': 'multipart/formdata' },
+          // });
+          callback('alt text');
         })();
 
         return false;
