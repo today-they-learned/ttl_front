@@ -26,5 +26,6 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
+    'no-param-reassign': 'off',
   },
 };

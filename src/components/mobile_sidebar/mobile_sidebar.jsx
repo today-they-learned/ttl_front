@@ -10,10 +10,10 @@ const Bar = styled.div`
   position: fixed;
   top: 1.2rem;
   left: -1rem;
-  width: 15rem;
+  width: 1px;
   height: 100%;
-  margin-right: 1rem;
   z-index: 1;
+  background-color: grey;
 `;
 
 const Toggle = styled.div`
@@ -27,6 +27,7 @@ const SidebarList = styled.div`
 
   background-color: white;
   transition: all 100ms ease-in-out;
+  width: 15rem;
   height: 100%;
 `;
 
