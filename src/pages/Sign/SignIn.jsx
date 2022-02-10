@@ -1,7 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from 'hooks/useInput';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { signinRequestAction } from 'reducers/authentication';
+
 import { Form, Grid, Checkbox, Divider } from 'semantic-ui-react';
 import * as Container from 'components/common/Containers';
 import * as Btn from 'components/common/Button';
@@ -27,13 +30,28 @@ const Field = styled(Form.Field)`
 `;
 
 const Signin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { signinLoading, signinDone, signinError } = useSelector((state) => state.authentication);
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 여기부터 api 처리
-  };
+  useEffect(() => {
+    if (signinError) {
+      // eslint-disable-next-line no-alert
+      alert(signinError);
+    }
+  }, signinError);
+
+  useEffect(() => {
+    if (signinDone) {
+      navigate('/');
+    }
+  }, [signinDone]);
+
+  const handleSubmit = useCallback(() => {
+    dispatch(signinRequestAction({ email, password }));
+  }, [email, password]);
 
   return (
     <SignContainer>
@@ -44,6 +62,7 @@ const Signin = () => {
             fluid
             placeholder="이메일"
             type="email"
+            required
             control={Form.Input}
             value={email}
             onChange={setEmail}
@@ -52,12 +71,13 @@ const Signin = () => {
             fluid
             placeholder="비밀번호"
             type="password"
+            required
             control={Form.Input}
             value={password}
             onChange={setPassword}
           />
           <Field>
-            <Btn.PrimaryBtn fluid type="submit">
+            <Btn.PrimaryBtn fluid type="submit" disble={signinLoading}>
               로그인
             </Btn.PrimaryBtn>
           </Field>
