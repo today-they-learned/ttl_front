@@ -25,11 +25,12 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
     const img = e.target.files[0];
     const formData = new FormData();
     console.log(img, formData);
-    // 이 함수로 image 데이터를 보낼 계획입니다.
+    // 이 함수로 image 데이터를 보낼 계획
   };
 
   const onSubmitPost = () => {
     console.log(postContent, titleText);
+    // Title, Content를 담아 데이터 보내기
   };
   return (
     <>

@@ -84,7 +84,7 @@ const PostEditorForm = () => {
 
   useEffect(() => {
     editorRef.current.getInstance().setMarkdown('## 해당 Content가 들어갈 내용');
-    // 글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드합니다. navigate로 인자를 전달해서 글 작성인지 수정인지 구분하도록 할 예정인데 이렇게 해도 될지 궁금..
+    // 글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드
   }, []);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const PostEditorForm = () => {
 
           console.log(formData, '이미지 생성');
 
-          // 서버 연동 필요, 서버 연동 후에 코드 추가할 예정입니다.
+          // 서버 연동 필요, 서버 연동 후에 코드 추가할 예정
         })();
 
         return false;
