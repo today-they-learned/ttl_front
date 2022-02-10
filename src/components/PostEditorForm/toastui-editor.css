@@ -246,7 +246,7 @@ li.ProseMirror-selectednode:after {
 .toastui-editor-defaultUI .toastui-editor-ok-button {
   min-width: 63px;
   height: 32px;
-  background-color: #00a9ff;
+  background-color: #707bf3;
   color: #fff;
   outline-color: #009bf2;
 }
@@ -408,7 +408,7 @@ li.ProseMirror-selectednode:after {
 }
 
 .toastui-editor-defaultUI-toolbar .scroll-sync.active::before {
-  color: #00a9ff;
+  color: #707bf3;
 }
 
 .toastui-editor-defaultUI-toolbar .scroll-sync input {
@@ -430,7 +430,7 @@ li.ProseMirror-selectednode:after {
 }
 
 .toastui-editor-defaultUI-toolbar input:checked + .switch {
-  background-color: #acddfa;
+  background-color: #8992ee;
 }
 
 .toastui-editor-defaultUI-toolbar .switch::before {
@@ -447,7 +447,7 @@ li.ProseMirror-selectednode:after {
 }
 
 .toastui-editor-defaultUI-toolbar input:checked + .switch::before {
-  background-color: #00a9ff;
+  background-color: #707bf3;
   -webkit-transform: translateX(12px);
   -moz-transform: translateX(12px);
   -ms-transform: translateX(12px);
@@ -515,7 +515,7 @@ li.ProseMirror-selectednode:after {
 }
 
 .toastui-editor-popup-body input[type='text']:focus {
-  outline: 1px solid #00a9ff;
+  outline: 1px solid #707bf3;
   border-color: transparent;
 }
 
@@ -568,8 +568,8 @@ li.ProseMirror-selectednode:after {
 }
 
 .toastui-editor-popup-add-image .toastui-editor-tabs .tab-item.active {
-  color: #00a9ff;
-  border-bottom: 2px solid #00a9ff;
+  color: #707bf3;
+  border-bottom: 2px solid #707bf3;
 }
 
 .toastui-editor-popup-add-image .toastui-editor-file-name {
@@ -639,7 +639,7 @@ li.ProseMirror-selectednode:after {
   position: absolute;
   top: 0;
   left: 0;
-  border: 1px solid #00a9ff;
+  border: 1px solid #707bf3;
   background: rgba(0, 169, 255, 0.1);
   z-index: 30;
 }
@@ -979,12 +979,12 @@ li.ProseMirror-selectednode:after {
 
 table.ProseMirror-selectednode {
   border-radius: 2px;
-  outline: 2px solid #00a9ff;
+  outline: 2px solid #707bf3;
 }
 
 .html-block.ProseMirror-selectednode {
   border-radius: 2px;
-  outline: 2px solid #00a9ff;
+  outline: 2px solid #707bf3;
 }
 
 .toastui-editor-contents {
@@ -1441,7 +1441,7 @@ table.ProseMirror-selectednode {
 
 .toastui-editor-contents .toastui-editor-md-preview-highlight::after {
   content: '';
-  background-color: rgba(255, 245, 131, 0.5);
+  /* background-color: rgba(255, 245, 131, 0.5); */
   border-radius: 4px;
   z-index: -1;
   position: absolute;
