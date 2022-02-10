@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import * as Styled from './PostModal';
+import * as Styled from './PostModalStyle';
 
 const Modal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const inputRef = useRef();
