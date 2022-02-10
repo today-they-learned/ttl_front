@@ -66,7 +66,7 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
               {closable && (
                 <Styled.ButtonContainer>
                   <Styled.CancelButton onClick={close}>취소</Styled.CancelButton>
-                  <Styled.SubmitButton onClick={onSubmitPost}>발행</Styled.SubmitButton>
+                  <Styled.SubmitButton onClick={onSubmitPost}>작성 완료</Styled.SubmitButton>
                 </Styled.ButtonContainer>
               )}
             </Styled.ModalRight>
