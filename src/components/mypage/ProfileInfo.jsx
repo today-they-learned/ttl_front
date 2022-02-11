@@ -5,7 +5,6 @@ import CalendarHeatMap from './CalendarHeatMap';
 import TIL from './TIL';
 
 const ProfileInfo = (props) => {
-  console.log(props.data);
   const [tab, setTab] = useState(true);
 
   const { username, email } = props.data;

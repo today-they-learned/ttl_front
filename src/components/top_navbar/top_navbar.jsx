@@ -38,6 +38,9 @@ const TopNavbar = () => {
     window.location.replace('/');
   };
 
+  const handleMypage = () => {
+    window.location.replace('/mypage');
+  };
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
@@ -59,7 +62,7 @@ const TopNavbar = () => {
             {/* 임시 유저 아이콘 */}
             <Dropdown direction="left">
               <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
-                <Dropdown.Item>
+                <Dropdown.Item onClick={handleMypage}>
                   <DropText>프로필</DropText>
                 </Dropdown.Item>
                 <Dropdown.Item>
