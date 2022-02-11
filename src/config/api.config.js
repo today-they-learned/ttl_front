@@ -1,1 +1,1 @@
-export const apiUrl = 'http://3.38.58.82/';
+export const apiUrl = 'http://api.todaytheylearn.com';
