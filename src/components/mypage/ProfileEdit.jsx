@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Form, Input, TextArea } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
   const [info, setInfo] = useState(props.data);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // console.log(info.username);
 
   const inputHandler = (e) => {
     setInfo({
@@ -12,9 +16,43 @@ const ProfileEdit = (props) => {
     });
   };
 
-  const editInfo = () => {
-    props.handleSubmit(info.username, info.email, info.introduce);
-  };
+  // const editInfo = () => {
+  //   props.handleSubmit(info.username, info.email, info.introduce);
+  // };
+
+  // const fetchUsers = async () => {
+  //   try {
+  //     // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+  //     setError(null);
+  //     setInfo(null);
+  //     // loading 상태를 true 로 바꿉니다.
+  //     setLoading(true);
+  //     const response = axios.put('http://15.164.165.131/api/users/user/', {
+  //       tags: [],
+  //       facebook_account: ' ',
+  //       instagram_account: ' ',
+  //       twitter_account: ' ',
+  //     });
+  //     setInfo(response.data); // 데이터는 response.data 안에 들어있습니다.
+  //   } catch (e) {
+  //     setError(e);
+  //   }
+  //   setLoading(false);
+  // };
+
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
+
+  // if (loading) return <div>로딩중..</div>;
+  // if (error) return <div>에러가 발생했습니다</div>;
+  // if (!info) return null;
+  const put = axios.put('http://15.164.165.131/api/users/user/', {
+    tags: [],
+    facebook_account: 'soye',
+    instagram_account: ' ',
+    twitter_account: ' ',
+  });
 
   return (
     <Styled.InfoEdit>
@@ -23,7 +61,7 @@ const ProfileEdit = (props) => {
         <Styled.UploadButton>Photo upload</Styled.UploadButton>
       </Styled.ContainerLeft>
       <Styled.ContainerCenter>
-        <Form onSubmit={editInfo}>
+        <Form onSubmit={put}>
           <Styled.UNField>
             <Form.Field
               control={Input}

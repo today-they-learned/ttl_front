@@ -7,7 +7,7 @@ import TIL from './TIL';
 const ProfileInfo = (props) => {
   const [tab, setTab] = useState(true);
 
-  const { username, email } = props.data;
+  const { username, email, tags } = props.data;
 
   return (
     <Styled.Profile>
@@ -18,10 +18,10 @@ const ProfileInfo = (props) => {
       <Styled.ContainerCenter>
         <Styled.UserName>{username}</Styled.UserName>
         <Styled.Email>{email}</Styled.Email>
-        {/* <Styled.Introduce>{introduce}</Styled.Introduce>
+        {/* <Styled.Introduce>{introduce}</Styled.Introduce> */}
         {tags.map((tag) => (
           <Styled.Tags>{tag}</Styled.Tags>
-        ))} */}
+        ))}
       </Styled.ContainerCenter>
 
       <Styled.ContainerRight>

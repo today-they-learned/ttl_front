@@ -41,6 +41,10 @@ const TopNavbar = () => {
   const handleMypage = () => {
     window.location.replace('/mypage');
   };
+
+  const handleSetting = () => {
+    window.location.replace('/setting');
+  };
   return (
     <Nav>
       {/* 로고 대신 텍스트로 우선 작성 */}
@@ -68,7 +72,7 @@ const TopNavbar = () => {
                 <Dropdown.Item>
                   <DropText>글쓰기</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item onClick={handleSetting}>
                   <DropText>설정</DropText>
                 </Dropdown.Item>
                 <Dropdown.Item onClick={handleSignOut}>

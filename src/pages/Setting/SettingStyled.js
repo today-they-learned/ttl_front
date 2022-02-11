@@ -17,7 +17,7 @@ export const Label = styled.div`
 
 export const TermsLabel = styled.div`
   width: 8rem;
-  margin-top: 1.2rem;
+  margin-top: 1.4rem;
   margin-left: 0.3rem;
   margin-bottom: 1rem;
 `;
@@ -68,16 +68,14 @@ export const GitField = styled.div`
 export const VelogField = styled.div`
   width: 20rem;
   height: 2.5rem;
+  margin-bottom: 0.9rem;
   font-size: 0.8rem;
 `;
-export const TistoryField = styled.div`
-  width: 20rem;
-  height: 3rem;
-  font-size: 0.8rem;
-`;
+
 export const BorderLine = styled.div`
   clear: left;
-  margin-top: 0.8rem;
+  margin-top: 1.3rem;
+  margin-bottom: 0.4rem;
   width: 28rem;
   height: 0.1rem;
   background-color: #c5cbd3;
@@ -94,6 +92,7 @@ export const MailPhrase = styled.span`
   height: 2rem;
   float: left;
   margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
   padding-left: 0.3rem;
 `;
 
@@ -110,7 +109,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonPhrase = styled.span`
-  width: 23rem;
+  width: 22rem;
   height: 2rem;
   float: left;
   margin-top: 0.6rem;

@@ -3,16 +3,11 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import styled from 'styled-components';
 
+const CHMContainer = styled.div`
+  width: 55rem;
+`;
+
 const CHM = styled.div`
-  width: 55rem;
-`;
-
-const TilCHM = styled.div`
-  width: 55rem;
-  padding-left: 3.25rem;
-`;
-
-const TtlCHM = styled.div`
   width: 55rem;
   padding-left: 3.25rem;
 `;
@@ -31,9 +26,9 @@ const TtlLabel = styled.div`
 
 const CalendarHeatMap = () => {
   return (
-    <CHM>
+    <CHMContainer>
       <TilLabel>내가 작성한 TIL</TilLabel>
-      <TilCHM>
+      <CHM>
         <CalendarHeatmap
           startDate={new Date('2022-1-1')}
           endDate={new Date('2022-12-31')}
@@ -53,9 +48,9 @@ const CalendarHeatMap = () => {
             { date: '2022-02-28' },
           ]}
         />
-      </TilCHM>
+      </CHM>
       <TtlLabel>내가 본 TTL</TtlLabel>
-      <TtlCHM>
+      <CHM>
         <CalendarHeatmap
           startDate={new Date('2022-1-1')}
           endDate={new Date('2022-12-31')}
@@ -88,8 +83,8 @@ const CalendarHeatMap = () => {
             { date: '2022-03-12' },
           ]}
         />
-      </TtlCHM>
-    </CHM>
+      </CHM>
+    </CHMContainer>
   );
 };
 

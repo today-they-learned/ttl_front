@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Profile = styled.div`
   width: 65rem;
-  /* background: #eaeaea; */
   .choice1 {
     margin-top: 0.6rem;
     margin-left: 3rem;
