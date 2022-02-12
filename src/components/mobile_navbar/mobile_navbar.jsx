@@ -9,7 +9,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 4rem;
+  padding: 1rem 1rem 1rem 4rem;
   margin-bottom: 4rem;
   z-index: 1;
 `;
