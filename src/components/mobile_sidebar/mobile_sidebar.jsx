@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
 import { Icon } from 'semantic-ui-react';
@@ -85,6 +85,15 @@ const MobileSideBar = () => {
       onClose(e);
     }
   };
+
+  useEffect(() => {
+    // 사이드바 보여줄 때 영역 밖 스크롤 금지
+    if (sidebarToggled === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [sidebarToggled]);
 
   return (
     <>
