@@ -19,7 +19,7 @@ const test = () => {
     <>
       {loadArticleLoading}
       <p>아이디: {singleArticle?.id}</p>
-      <p>유저: {singleArticle?.user}</p>
+      <p>유저: {singleArticle?.user.email}</p>
       <p>타이틀: {singleArticle?.title}</p>
       <p>콘텐츠: {singleArticle?.content}</p>
       <p>태그: {singleArticle?.tags}</p>
