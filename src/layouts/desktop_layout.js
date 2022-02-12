@@ -23,7 +23,10 @@ const DesktopLayout = (props) => {
           height: '100%',
         }}
       >
-        {location.pathname.startsWith('/sign') ? null : <SideBar />}
+        {location.pathname.startsWith('/sign') || location.pathname.startsWith('/mypage') ? null : (
+          <SideBar />
+        )}
+
         <div>{props.children}</div>
       </div>
     </div>

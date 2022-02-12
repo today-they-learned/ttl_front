@@ -7,7 +7,7 @@ import TIL from './TIL';
 const ProfileInfo = (props) => {
   const [tab, setTab] = useState(true);
 
-  const { username, email, tags } = props.data;
+  const { username, email, tags, introduce } = props.data;
 
   return (
     <Styled.Profile>
@@ -18,7 +18,7 @@ const ProfileInfo = (props) => {
       <Styled.ContainerCenter>
         <Styled.UserName>{username}</Styled.UserName>
         <Styled.Email>{email}</Styled.Email>
-        {/* <Styled.Introduce>{introduce}</Styled.Introduce> */}
+        <Styled.Introduce>{introduce}</Styled.Introduce>
         {tags.map((tag) => (
           <Styled.Tags>{tag}</Styled.Tags>
         ))}
@@ -36,7 +36,7 @@ const ProfileInfo = (props) => {
       <Styled.ContainerTab>
         <Styled.Line />
 
-        <button
+        <Styled.TabButton
           type="button"
           className={`choice1 ${tab === true ? 'active' : ''}`}
           onClick={() => {
@@ -44,8 +44,8 @@ const ProfileInfo = (props) => {
           }}
         >
           Calendar heatmap
-        </button>
-        <button
+        </Styled.TabButton>
+        <Styled.TabButton
           type="button"
           className={`choice2 ${tab === false ? 'active' : ''}`}
           onClick={() => {
@@ -53,7 +53,7 @@ const ProfileInfo = (props) => {
           }}
         >
           {props.data.username}&apos;s TIL
-        </button>
+        </Styled.TabButton>
       </Styled.ContainerTab>
       <Styled.ContainerBottom>{tab ? <CalendarHeatMap /> : <TIL />}</Styled.ContainerBottom>
     </Styled.Profile>

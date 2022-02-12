@@ -38,26 +38,25 @@ export const Profile = styled.div`
   }
 `;
 export const ContainerLeft = styled.div`
-  width: 8rem;
-  height: 10rem;
+  width: 10rem;
+  height: 11.5rem;
   float: left;
   color: black;
-  margin: 0.5rem auto auto 1.6rem;
-  padding-top: 1.5rem;
-  padding-left: 2.8rem;
+  padding-top: 2.5rem;
+  padding-left: 2.3rem;
 `;
 export const ContainerCenter = styled.div`
-  width: 32rem;
-  height: 10rem;
+  width: 34rem;
+  height: 11.5rem;
   float: left;
   margin-top: 0.5rem;
-  padding-left: 3.2rem;
-  padding-top: 1rem;
+  padding-left: 1.8rem;
+  padding-top: 1.2rem;
   font-size: 12px;
 `;
 export const ContainerRight = styled.div`
   width: 9rem;
-  height: 10rem;
+  height: 11.5rem;
   margin-top: 0.5rem;
   margin-left: 10rem;
   padding-left: 0.5rem;
@@ -66,47 +65,46 @@ export const ContainerRight = styled.div`
 `;
 export const ContainerTab = styled.div`
   clear: left;
-  width: 63rem;
+  width: 65rem;
   height: 3rem;
-  margin-left: 2.8rem;
 `;
 
 export const ContainerBottom = styled.div`
-  width: 63rem;
-  margin-left: 2.8rem;
+  width: 65rem;
+  /* margin-left: 2.8rem; */
 `;
 export const ProfileImg = styled.img`
-  width: 7rem;
-  height: 7rem;
-  border-radius: 3.5rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 3.75rem;
   margin-right: 0;
 `;
 export const UserName = styled.span`
   float: left;
   margin-bottom: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   font-family: 'NS-R';
 `;
 export const Email = styled.span`
   float: left;
   margin-bottom: 0.4rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin-left: 0.3rem;
   margin-top: 0.5rem;
 `;
 export const Introduce = styled.div`
   clear: left;
   margin-bottom: 1.6rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  height: 3.8rem;
+  height: 5rem;
   margin-top: 1rem;
   padding-top: 0.5rem;
 `;
 export const Tags = styled.span`
   margin-top: 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin-left: 0.15rem;
   margin-right: 0.35rem;
   border-radius: 0.8rem;
@@ -120,7 +118,7 @@ export const EditButton = styled.button`
   height: 1.6rem;
   border-radius: 0.1rem;
   font-size: 0.7rem;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   margin-left: 3.2rem;
   padding: 0;
   background-color: #707bf3;
@@ -128,33 +126,40 @@ export const EditButton = styled.button`
 `;
 export const IconContainer = styled.div`
   width: 12rem;
-  height: 2rem;
+  height: 4rem;
   padding-left: 3.2rem;
-  padding-top: 4.7rem;
+  padding-top: 6rem;
 `;
 
 export const FBIcon = styled.img`
-  float: left;
-  width: 1.3rem;
-  height: 1.3rem;
-  margin-right: 0.5rem;
-`;
-export const InstaIcon = styled.img`
-  float: left;
-  width: 1.4rem;
-  height: 1.4rem;
-  margin-right: 0.5rem;
-`;
-export const TwittIcon = styled.img`
   float: left;
   width: 1.35rem;
   height: 1.35rem;
   margin-right: 0.5rem;
 `;
+export const InstaIcon = styled.img`
+  float: left;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-right: 0.5rem;
+`;
+export const TwittIcon = styled.img`
+  float: left;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.5rem;
+`;
 
 export const Line = styled.div`
   clear: left;
-  width: 62.5rem;
+  width: 65rem;
   height: 0.1rem;
+  margin-right: 2rem;
   background-color: #eaeaea;
+`;
+
+export const TabButton = styled.div`
+  font-size: 1.15rem;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
 `;

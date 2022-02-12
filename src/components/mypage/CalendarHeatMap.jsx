@@ -4,22 +4,21 @@ import 'react-calendar-heatmap/dist/styles.css';
 import styled from 'styled-components';
 
 const CHMContainer = styled.div`
-  width: 55rem;
+  width: 62rem;
+  text-align: center;
 `;
 
 const CHM = styled.div`
-  width: 55rem;
-  padding-left: 3.25rem;
+  width: 62rem;
+  padding-left: 3.5rem;
 `;
 
 const TilLabel = styled.div`
-  text-align: center;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 `;
 
 const TtlLabel = styled.div`
-  text-align: center;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 `;
