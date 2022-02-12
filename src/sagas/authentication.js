@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from 'reducers/authentication';
 
-const signinAPI = (data) => axios.post('/api/users/login/', data);
+const signinAPI = (data) => axios.post('/users/login/', data);
 
 function* signin(action) {
   try {
