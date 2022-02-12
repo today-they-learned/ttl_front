@@ -13,6 +13,7 @@ module.exports = {
     es6: true,
     node: true,
   },
+  parser: 'babel-eslint',
   extends: ['airbnb', 'prettier', 'eslint:recommended', 'plugin:prettier/recommended'],
   rules: {
     'react/jsx-filename-extension': [
