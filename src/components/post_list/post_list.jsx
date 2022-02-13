@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-
-import postsData from './posts.json';
 
 const Post = styled.div`
   display: flex;
@@ -38,13 +38,52 @@ const PostTop = styled.div`
 `;
 
 const PostList = () => {
+  const dispatch = useDispatch();
+  const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
+    (state) => state.article,
+  );
+
   const feedType = { item: 'main', title: '피드' };
-  const [posts, setPosts] = useState({});
 
   useEffect(() => {
-    setPosts(postsData.main);
-    // 임시 데이터로 설정해놨습니다.
-  });
+    dispatch({
+      type: LOAD_ARTICLES_REQUEST,
+      data: {
+        // tab: 'bookmark',
+        // user_id: 4,
+        // search: 'python',
+      },
+    });
+  }, [dispatch]);
+  // 여기 data값을 적당하게 바꿔서 api 요청, sagas/article 참고
+  // user_id 가 있으면 해당 유저의 article을 가져옴
+
+  const onScroll = () => {
+    if (
+      window.scrollY + document.documentElement.clientHeight >
+      document.documentElement.scrollHeight - 300
+    ) {
+      if (hasMoreArticle && !loadArticlesLoading) {
+        dispatch({
+          type: LOAD_ARTICLES_REQUEST,
+          data: {
+            page: currentPage,
+            // tab: 'bookmark',
+            // user_id: 4,
+            // search: 'python',
+          },
+        });
+      }
+    }
+  };
+  // 인피니티 스크롤
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [hasMoreArticle, loadArticlesLoading]);
 
   return (
     <Post>
@@ -69,8 +108,8 @@ const PostList = () => {
         </div>
       </PostTop>
       <PostCards>
-        {Object.keys(posts).map((key) => (
-          <PostCard key={key} post={posts[key]} />
+        {feedArticles.map((article) => (
+          <PostCard post={article[1]} />
         ))}
       </PostCards>
     </Post>
