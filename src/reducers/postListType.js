@@ -3,7 +3,7 @@ export const initialState = {
   title: '피드',
 };
 
-const postListType = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'main':
       return {
@@ -40,4 +40,4 @@ const postListType = (state = initialState, action) => {
   }
 };
 
-export default postListType;
+export default reducer;

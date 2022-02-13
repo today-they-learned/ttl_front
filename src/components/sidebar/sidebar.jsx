@@ -1,11 +1,11 @@
+/* eslint-disable no-new-object */
 import React from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
-
-import { Navigation } from 'react-minimal-side-navigation';
 
 const Bar = styled.div`
   position: sticky;
@@ -16,6 +16,18 @@ const Bar = styled.div`
 
 const SideBar = () => {
   const dispatch = useDispatch();
+  const { tags, loadTagLoading } = useSelector((state) => state.tag);
+  console.log(tags, loadTagLoading);
+
+  // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
+  const tagEx = ['aws', 'javascript', 'react'];
+  const setArr = [];
+  tagEx.forEach((tag) => {
+    const curObj = new Object();
+    curObj.title = tag;
+    curObj.itemId = `/tags/${tag}`;
+    setArr.push(curObj);
+  });
 
   const setType = (itemId) => {
     dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
@@ -26,7 +38,6 @@ const SideBar = () => {
         <Navigation
           onSelect={({ itemId }) => {
             setType(itemId);
-            // 나중에 여기에서 피드 타입 설정을 해줄 예정입니다. route를 수정하면서 해당 메뉴를 눌렀을 떄 보여주는 기능은 잠시 없어졌어요
           }}
           items={[
             {
@@ -49,20 +60,21 @@ const SideBar = () => {
               itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-              subNav: [
-                {
-                  title: 'aws',
-                  itemId: '/tags/aws',
-                },
-                {
-                  title: 'spring',
-                  itemId: '/tags/spring',
-                },
-                {
-                  title: 'django',
-                  itemId: '/tags/django',
-                },
-              ],
+              subNav: setArr,
+              // [
+              //   {
+              //     title: 'aws',
+              //     itemId: '/tags/aws',
+              //   },
+              //   {
+              //     title: 'spring',
+              //     itemId: '/tags/spring',
+              //   },
+              //   {
+              //     title: 'django',
+              //     itemId: '/tags/django',
+              //   },
+              // ],
             },
             {
               title: '북마크',

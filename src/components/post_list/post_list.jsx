@@ -41,10 +41,9 @@ const PostList = () => {
   const feedType = { item: 'main', title: '피드' };
   const [posts, setPosts] = useState({});
   const { type, title } = useSelector((state) => state.postListType);
-  console.log(type, title);
+
   useEffect(() => {
     setPosts(postsData[type]);
-    // 임시 데이터로 설정해놨습니다.
   });
 
   return (
