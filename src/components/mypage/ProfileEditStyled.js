@@ -36,7 +36,7 @@ export const Container = styled.div`
 `;
 
 export const Container2 = styled.div`
-  margin-left: 10rem;
+  margin-left: 9.9rem;
   margin-bottom: 1.5rem;
   float: left;
 `;
@@ -131,4 +131,65 @@ export const SnsField = styled(Form.Field)`
   width: 33rem;
   float: left;
   font-size: 0.9rem;
+`;
+export const InfoEditMobile = styled.div`
+  width: 28rem;
+`;
+export const FieldContainerMobile = styled.div`
+  margin-left: 0.5rem;
+  height: 3.2rem;
+`;
+export const FieldContainerMobile2 = styled.div`
+  margin-left: 0.5rem;
+  height: 5.8rem;
+`;
+export const UNField2 = styled(Form.Field)`
+  width: 26rem;
+  height: 1rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+`;
+export const AboutField2 = styled(Form.Field)`
+  width: 26rem;
+  height: 15rem;
+  font-size: 0.9rem;
+`;
+
+export const TagField2 = styled(Form.Field)`
+  width: 26rem;
+  font-size: 0.9rem;
+`;
+
+export const SnsField2 = styled(Form.Field)`
+  width: 26rem;
+  font-size: 0.9rem;
+`;
+export const ButtonContainer2 = styled.div`
+  width: 28rem;
+  height: 3rem;
+`;
+export const BackButton2 = styled.button`
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 0.1rem;
+  float: left;
+  margin-left: 20.7rem;
+  margin-top: 0.45rem;
+  font-size: 0.5rem;
+  background-color: white;
+  color: #707bf3;
+`;
+
+export const EditButton2 = styled.button`
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 0.1rem;
+  float: left;
+  font-size: 0.5rem;
+  margin-top: 0.45rem;
+  margin-left: 0.6rem;
+  padding: 0;
+  background-color: #707bf3;
+  color: white;
 `;

@@ -46,7 +46,7 @@ export const ContainerLeft = styled.div`
   padding-left: 2.3rem;
 `;
 export const ContainerCenter = styled.div`
-  width: 34rem;
+  width: 43rem;
   height: 11.5rem;
   float: left;
   margin-top: 0.5rem;
@@ -58,7 +58,7 @@ export const ContainerRight = styled.div`
   width: 9rem;
   height: 11.5rem;
   margin-top: 0.5rem;
-  margin-left: 10rem;
+  margin-left: 1rem;
   padding-left: 0.5rem;
   padding-top: 0.9rem;
   float: left;
@@ -71,7 +71,6 @@ export const ContainerTab = styled.div`
 
 export const ContainerBottom = styled.div`
   width: 65rem;
-  /* margin-left: 2.8rem; */
 `;
 export const ProfileImg = styled.img`
   width: 7.5rem;
@@ -162,4 +161,115 @@ export const TabButton = styled.div`
   font-size: 1.15rem;
   margin-left: 1rem;
   margin-right: 0.5rem;
+`;
+
+export const ProfileMobile = styled.div`
+  width: 28rem;
+  .choice1 {
+    margin-top: 0.6rem;
+    margin-left: 3rem;
+    float: left;
+    font-weight: 1000;
+    font-family: 'NS-R';
+    color: #363636;
+  }
+  .choice1.active {
+    margin-top: 0.6rem;
+    margin-left: 3rem;
+    float: left;
+    font-weight: 1000;
+    font-family: 'NS-R';
+    text-decoration: underline;
+    color: #707bf3;
+  }
+  .choice2 {
+    margin-top: 0.6rem;
+    margin-left: 1.5rem;
+    float: left;
+    font-weight: 1000;
+    font-family: 'NS-R';
+    color: #363636;
+  }
+  .choice2.active {
+    margin-top: 0.6rem;
+    margin-left: 1.5rem;
+    float: left;
+    font-weight: 1000;
+    font-family: 'NS-R';
+    text-decoration: underline;
+    color: #707bf3;
+  }
+`;
+
+export const ContainerTop = styled.div`
+  width: 28rem;
+  height: 9.5rem;
+  float: left;
+  /* background-color: grey; */
+`;
+export const ProfileImg2 = styled.img`
+  float: left;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-left: 1rem;
+  border-radius: 3.75rem;
+  margin-right: 0;
+`;
+export const UserName2 = styled.span`
+  float: left;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'NS-R';
+`;
+export const Email2 = styled.span`
+  float: left;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+  margin-top: 0.8rem;
+`;
+export const EditButton2 = styled.button`
+  float: left;
+  width: 4.2rem;
+  height: 1.4rem;
+  border-radius: 0.1rem;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 1rem;
+  padding: 0;
+  background-color: white;
+  color: #707bf3;
+`;
+
+export const ContainerTag = styled.div`
+  margin-top: 2.5rem;
+  padding-left: 7rem;
+`;
+export const Tags2 = styled.span`
+  font-size: 0.75rem;
+  margin-left: 1rem;
+  border-radius: 0.8rem;
+  color: white;
+  background-color: #707bf3;
+  padding: 0.25rem 0.45rem;
+  font-family: 'NS-R';
+`;
+export const Introduce2 = styled.div`
+  clear: left;
+  margin-left: 1.6rem;
+  margin-right: 1.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  height: 5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+`;
+export const Line2 = styled.div`
+  clear: left;
+  width: 28rem;
+  height: 0.1rem;
+  margin-right: 2rem;
+  background-color: #eaeaea;
 `;

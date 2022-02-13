@@ -1245,7 +1245,6 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-<<<<<<< HEAD
 "@babel/runtime@^7.15.4", "@babel/runtime@^7.6.3":
   version "7.17.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.0.tgz#b8d142fc0f7664fb3d9b5833fd40dcbab89276c0"
@@ -1253,8 +1252,6 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-=======
->>>>>>> c2b1ca706aaf902df59eb704fdc54f1141b4c13d
 "@babel/runtime@^7.16.7", "@babel/runtime@^7.7.6":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
