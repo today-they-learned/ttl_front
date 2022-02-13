@@ -6,7 +6,7 @@ import 'styles/fonts.css';
 
 import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
-import { Mypage, SignIn, SignUp } from 'pages';
+import { Mypage, SignIn, SignUp, Article } from 'pages';
 import PostList from 'components/post_list/post_list';
 
 const App = () => {
@@ -20,6 +20,7 @@ const App = () => {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/mypage" element={<Mypage />} />
+            <Route path="/article/:id" element={<Article />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>

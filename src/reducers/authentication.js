@@ -1,4 +1,4 @@
-import produce from '../utils/produce.util';
+import produce from 'utils/produce.util';
 
 const user = JSON.parse(localStorage.getItem('user'));
 

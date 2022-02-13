@@ -1,1 +1,1 @@
-export const apiUrl = 'https://api.todaytheylearn.com/api/';
+export const apiUrl = 'https://api.todaytheylearn.com';
