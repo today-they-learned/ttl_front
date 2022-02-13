@@ -1,5 +1,5 @@
 /* eslint-disable no-new-object */
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,13 +19,18 @@ const SideBar = () => {
 
   const { user } = useSelector((state) => state.authentication);
 
-  // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
   const setArr = [];
-  user.user.tags.forEach((tag) => {
-    const curObj = new Object();
-    curObj.title = tag;
-    curObj.itemId = `/tags/${tag}`;
-    setArr.push(curObj);
+
+  useEffect(() => {
+    // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
+    if (user) {
+      user.user.tags.forEach((tag) => {
+        const curObj = new Object();
+        curObj.title = tag;
+        curObj.itemId = `/tags/${tag}`;
+        setArr.push(curObj);
+      });
+    }
   });
 
   const setType = (itemId) => {
@@ -36,7 +41,12 @@ const SideBar = () => {
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            setType(itemId);
+            if (user) {
+              setType(itemId);
+            }
+            if (!user && itemId.item !== 'main') {
+              alert('로그인 해주세요');
+            }
           }}
           items={[
             {
@@ -59,7 +69,7 @@ const SideBar = () => {
               itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-              subNav: setArr,
+              subNav: user ? setArr : null,
               // [
               //   {
               //     title: 'aws',
