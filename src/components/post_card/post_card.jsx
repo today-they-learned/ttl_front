@@ -53,7 +53,6 @@ const PostCard = ({ post }) => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Avatar src={user.avatar} />
           <UserName>{user.username}</UserName>
-          {/* 일단 확인용으로 이메일 넣어둠, 추후 username으로 수정 */}
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Icon name="heart" />
