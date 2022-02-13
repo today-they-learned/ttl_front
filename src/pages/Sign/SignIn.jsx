@@ -122,10 +122,10 @@ const Signin = () => {
             <Checkbox checked={isRemember} onChange={handleOnChange} />
             <p style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>이메일 저장</p>
           </Container.AlignMiddleContainer>
-          <Link to="/">
-            {/* 추후 비밀번호 찾기(재설정) 페이지 연결.. 찾기인 이유는 워딩이 안예뻐서 */}
+          {/* 비밀번호 재설정 기능 (비활성화) */}
+          {/* <Link to="/">
             <p style={{ marginTop: '0.05rem' }}>비밀번호 찾기</p>
-          </Link>
+          </Link> */}
         </div>
         <Divider />
         <Container.AlignCenterContainer>
