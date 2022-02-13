@@ -49,10 +49,6 @@ const Signin = () => {
     }
   }, []);
 
-  const handleOnChange = () => {
-    setIsRemember(!isRemember);
-  };
-
   useEffect(() => {
     if (signinError) {
       // eslint-disable-next-line no-shadow
@@ -119,7 +115,12 @@ const Signin = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 0 3rem 0' }}>
           <Container.AlignMiddleContainer>
             {/* 이메일 저장용 체크박스 */}
-            <Checkbox checked={isRemember} onChange={handleOnChange} />
+            <Checkbox
+              checked={isRemember}
+              onChange={() => {
+                setIsRemember(!isRemember);
+              }}
+            />
             <p style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>이메일 저장</p>
           </Container.AlignMiddleContainer>
           {/* 비밀번호 재설정 기능 (비활성화) */}
