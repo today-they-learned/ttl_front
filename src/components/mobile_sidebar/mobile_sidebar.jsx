@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Icon } from 'semantic-ui-react';
 import { Navigation } from 'react-minimal-side-navigation';
 
@@ -67,6 +69,10 @@ const CloseIcon = styled.div`
 `;
 
 const MobileSideBar = () => {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.authentication);
+
   const [sidebarToggled, setSidebarToggled] = useState(false);
   const [maskClosable] = useState(true);
 
@@ -85,6 +91,7 @@ const MobileSideBar = () => {
       onClose(e);
     }
   };
+  const setArr = [];
 
   useEffect(() => {
     // 사이드바 보여줄 때 영역 밖 스크롤 금지
@@ -94,6 +101,22 @@ const MobileSideBar = () => {
       document.body.style.overflow = 'unset';
     }
   }, [sidebarToggled]);
+
+  useEffect(() => {
+    // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
+    if (user) {
+      user.user.tags.forEach((tag) => {
+        const curObj = {};
+        curObj.title = tag;
+        curObj.itemId = `/tags/${tag}`;
+        setArr.push(curObj);
+      });
+    }
+  });
+
+  const setType = (itemId) => {
+    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+  };
 
   return (
     <>
@@ -124,7 +147,12 @@ const MobileSideBar = () => {
 
               <Navigation
                 onSelect={({ itemId }) => {
-                  console.log(itemId);
+                  if (user) {
+                    setType(itemId);
+                  }
+                  if (!user && itemId.item !== 'main') {
+                    alert('로그인 해주세요');
+                  }
                   setSidebarToggled(!sidebarToggled);
                 }}
                 items={[
@@ -148,20 +176,7 @@ const MobileSideBar = () => {
                     itemId: '/tag',
                     elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-                    subNav: [
-                      {
-                        title: 'aws',
-                        itemId: '/follow/aws',
-                      },
-                      {
-                        title: 'spring',
-                        itemId: '/follow/spring',
-                      },
-                      {
-                        title: 'django',
-                        itemId: '/follow/django',
-                      },
-                    ],
+                    subNav: user ? setArr : null,
                   },
                   {
                     title: '북마크',

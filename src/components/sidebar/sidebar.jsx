@@ -1,4 +1,3 @@
-/* eslint-disable no-new-object */
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
@@ -25,7 +24,7 @@ const SideBar = () => {
     // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
     if (user) {
       user.user.tags.forEach((tag) => {
-        const curObj = new Object();
+        const curObj = {};
         curObj.title = tag;
         curObj.itemId = `/tags/${tag}`;
         setArr.push(curObj);
@@ -70,20 +69,6 @@ const SideBar = () => {
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: user ? setArr : null,
-              // [
-              //   {
-              //     title: 'aws',
-              //     itemId: '/tags/aws',
-              //   },
-              //   {
-              //     title: 'spring',
-              //     itemId: '/tags/spring',
-              //   },
-              //   {
-              //     title: 'django',
-              //     itemId: '/tags/django',
-              //   },
-              // ],
             },
             {
               title: '북마크',
