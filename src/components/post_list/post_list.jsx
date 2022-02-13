@@ -49,6 +49,7 @@ const PostList = () => {
     dispatch({
       type: LOAD_ARTICLES_REQUEST,
       data: {
+        // orderby: 'score',
         // tab: 'bookmark',
         // tag: 'python',
         // search: 'test',
@@ -68,6 +69,7 @@ const PostList = () => {
           type: LOAD_ARTICLES_REQUEST,
           data: {
             page: currentPage,
+            // orderby: 'score',
             // tab: 'bookmark',
             // tag: 'python',
             // search: 'test',

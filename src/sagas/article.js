@@ -17,6 +17,7 @@ function* feedArticles(action) {
     let queryString = `/articles/?`;
 
     if (data && data.page) queryString += `page=${data.page}&`;
+    if (data && data.orderby) queryString += `ordering=-${data.orderby}&`;
     if (data && data.tab) queryString += `tab=${data.tab}&`;
     if (data && data.tag) queryString += `tag=${data.tag}&`;
     if (data && data.search) queryString += `search=${data.search}&`;
