@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 
 import authentication from './authentication';
 import postListType from './postListType';
-import tag from './tag';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -13,7 +12,6 @@ const rootReducer = (state, action) => {
       const combinedReducer = combineReducers({
         authentication,
         postListType,
-        tag,
       });
       return combinedReducer(state, action);
     }

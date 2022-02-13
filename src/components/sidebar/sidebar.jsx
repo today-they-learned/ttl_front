@@ -16,13 +16,12 @@ const Bar = styled.div`
 
 const SideBar = () => {
   const dispatch = useDispatch();
-  const { tags, loadTagLoading } = useSelector((state) => state.tag);
-  console.log(tags, loadTagLoading);
+
+  const { user } = useSelector((state) => state.authentication);
 
   // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
-  const tagEx = ['aws', 'javascript', 'react'];
   const setArr = [];
-  tagEx.forEach((tag) => {
+  user.user.tags.forEach((tag) => {
     const curObj = new Object();
     curObj.title = tag;
     curObj.itemId = `/tags/${tag}`;
