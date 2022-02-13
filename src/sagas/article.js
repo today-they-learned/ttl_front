@@ -18,8 +18,9 @@ function* feedArticles(action) {
 
     if (data && data.page) queryString += `page=${data.page}&`;
     if (data && data.tab) queryString += `tab=${data.tab}&`;
-    if (data && data.user_id) queryString += `user_id=${data.user_id}&`;
-    if (data && data.search) queryString += `search=${data.search}`;
+    if (data && data.tag) queryString += `tag=${data.tag}&`;
+    if (data && data.search) queryString += `search=${data.search}&`;
+    if (data && data.user_id) queryString += `user_id=${data.user_id}`;
 
     const result = yield call(axios.get, queryString, { headers: authHeader() });
     yield put({

@@ -50,13 +50,13 @@ const PostList = () => {
       type: LOAD_ARTICLES_REQUEST,
       data: {
         // tab: 'bookmark',
+        // tag: 'python',
+        // search: 'test',
         // user_id: 4,
-        // search: 'python',
       },
     });
   }, [dispatch]);
-  // 여기 data값을 적당하게 바꿔서 api 요청, sagas/article 참고
-  // user_id 가 있으면 해당 유저의 article을 가져옴
+  // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
 
   const onScroll = () => {
     if (
@@ -69,8 +69,9 @@ const PostList = () => {
           data: {
             page: currentPage,
             // tab: 'bookmark',
+            // tag: 'python',
+            // search: 'test',
             // user_id: 4,
-            // search: 'python',
           },
         });
       }
