@@ -14,7 +14,6 @@ const Post = styled.div`
 
 const PostCards = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
 `;
@@ -38,7 +37,6 @@ const PostTop = styled.div`
 `;
 
 const PostList = () => {
-  const feedType = { item: 'main', title: '피드' };
   const [posts, setPosts] = useState({});
   const { type, title } = useSelector((state) => state.postListType);
 
@@ -49,9 +47,9 @@ const PostList = () => {
   return (
     <Post>
       <PostTop>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{title}</p>
-          {feedType.item === 'main' && (
+          {type === 'main' && (
             <select
               name="post_option"
               id=""

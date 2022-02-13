@@ -17,14 +17,13 @@ const DesktopLayout = (props) => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'center',
           maxWidth: '1170px',
           margin: 'auto',
           height: '100%',
         }}
       >
         {location.pathname.startsWith('/sign') ? null : <SideBar />}
-        <div>{props.children}</div>
+        <div style={{ width: '100%' }}>{props.children}</div>
       </div>
     </div>
   );
