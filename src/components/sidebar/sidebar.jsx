@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
+import { useDispatch } from 'react-redux';
 
 import { Icon } from 'semantic-ui-react';
 
@@ -14,12 +15,17 @@ const Bar = styled.div`
 `;
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+
+  const setType = (itemId) => {
+    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+  };
   return (
     <>
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            console.log(itemId);
+            setType(itemId);
             // 나중에 여기에서 피드 타입 설정을 해줄 예정입니다. route를 수정하면서 해당 메뉴를 눌렀을 떄 보여주는 기능은 잠시 없어졌어요
           }}
           items={[

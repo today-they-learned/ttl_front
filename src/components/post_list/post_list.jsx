@@ -2,7 +2,7 @@
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
 import postsData from './posts.json';
 
 const Post = styled.div`
@@ -40,9 +40,10 @@ const PostTop = styled.div`
 const PostList = () => {
   const feedType = { item: 'main', title: '피드' };
   const [posts, setPosts] = useState({});
-
+  const { type, title } = useSelector((state) => state.postListType);
+  console.log(type, title);
   useEffect(() => {
-    setPosts(postsData.main);
+    setPosts(postsData[type]);
     // 임시 데이터로 설정해놨습니다.
   });
 
@@ -50,7 +51,7 @@ const PostList = () => {
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{feedType.title}</p>
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{title}</p>
           {feedType.item === 'main' && (
             <select
               name="post_option"
