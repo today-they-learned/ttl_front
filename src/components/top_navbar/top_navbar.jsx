@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
@@ -50,6 +50,7 @@ const Login = styled.button`
 `;
 
 const TopNavbar = () => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.authentication);
 
   const handleSignOut = () => {
@@ -79,18 +80,28 @@ const TopNavbar = () => {
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
         {user ? (
           <>
-            <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
+            <Icon
+              name="pencil alternate"
+              style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
+              onClick={() => {
+                navigate('/post');
+              }}
+            />
             {/* 임시 유저 아이콘 */}
             <Dropdown
               direction="left"
               trigger={trigger}
               style={{ display: 'flex', alignItems: 'center' }}
             >
-              <Dropdown.Menu style={{ marginTop: '0.7rem' }}>
+              <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
                 <Dropdown.Item>
                   <DropText>프로필</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    navigate('/post');
+                  }}
+                >
                   <DropText>글쓰기</DropText>
                 </Dropdown.Item>
                 <Dropdown.Item>

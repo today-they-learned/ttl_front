@@ -1,10 +1,9 @@
 /* eslint-disable import/no-unresolved */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/post_card/post_card';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 const Post = styled.div`
   display: flex;
@@ -43,8 +42,6 @@ const PostList = () => {
   const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
     (state) => state.article,
   );
-
-  const feedType = { item: 'main', title: '피드' };
 
   useEffect(() => {
     dispatch({
