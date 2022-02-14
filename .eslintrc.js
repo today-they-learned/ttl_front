@@ -27,6 +27,5 @@ module.exports = {
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'no-param-reassign': 'off',
-    'import/no-unresolved': 'off',
   },
 };

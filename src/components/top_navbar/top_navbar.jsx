@@ -96,7 +96,7 @@ const TopNavbar = () => {
                 <Dropdown.Item>
                   <DropText>설정</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item onClick={handleSignOut}>
                   <DropText>로그아웃</DropText>
                 </Dropdown.Item>
               </Dropdown.Menu>

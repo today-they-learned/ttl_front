@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { all, fork } from 'redux-saga/effects';
 import axios from 'axios';
 
