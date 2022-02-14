@@ -14,7 +14,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   margin-bottom: 4rem;
   z-index: 1;
   box-shadow: 1px 1px 10px -5px black;
@@ -48,6 +48,11 @@ const Login = styled.button`
   }
 `;
 
+const Logo = styled.img`
+  width: 7rem;
+  height: auto;
+`;
+
 const TopNavbar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.authentication);
@@ -66,7 +71,7 @@ const TopNavbar = () => {
   return (
     <Nav>
       <Link to="/">
-        <img url="images/Logo.gif" alt="logo" />
+        <Logo src="images/Logo.gif" alt="logo" />
       </Link>
       <div
         style={{

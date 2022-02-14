@@ -144,7 +144,7 @@ const MobileSideBar = () => {
         <Toggle>
           <Icon
             name="align justify"
-            style={{ fontSize: '1.5rem' }}
+            style={{ fontSize: '1.35rem' }}
             onClick={() => {
               setSidebarToggled(!sidebarToggled);
             }}

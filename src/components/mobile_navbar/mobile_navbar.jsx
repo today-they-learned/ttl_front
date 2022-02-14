@@ -10,7 +10,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 1rem 1rem 4rem;
+  padding: 0.8rem 1rem 0.8rem 3rem;
   margin-bottom: 4rem;
   z-index: 1;
 `;
@@ -28,11 +28,16 @@ const DropText = styled.div`
   font-weight: 500;
 `;
 
+const Logo = styled.img`
+  width: 7rem;
+  height: auto;
+`;
+
 const MobileNavbar = () => {
   return (
     <Nav>
       <Link to="/">
-        <img url="images/Logo.gif" alt="logo" />
+        <Logo src="images/Logo.gif" alt="logo" />
       </Link>
       <div
         style={{
