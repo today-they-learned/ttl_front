@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import TopNavbar from 'components/top_navbar/top_navbar';
 import SideBar from 'components/sidebar/sidebar';
 import COLOR from 'constants/color.constant';
-import { useLocation } from 'react-router-dom';
 
 const DesktopLayout = (props) => {
   const location = useLocation();
