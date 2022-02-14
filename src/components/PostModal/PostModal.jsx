@@ -1,10 +1,21 @@
 /* eslint-disable react/button-has-type */
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { Icon } from 'semantic-ui-react';
+import { POST_REQUEST } from 'reducers/post';
 
 import * as Styled from './PostModalStyle';
 
 const Modal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { postError, postDone } = useSelector((state) => state.post);
+
+  const [tags, setTags] = useState([]);
+
+  const tagsRef = useRef();
   const inputRef = useRef();
   const onButtonClick = () => {
     inputRef.current.click();
@@ -28,10 +39,32 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
     // 이 함수로 image 데이터를 보낼 계획
   };
 
-  const onSubmitPost = () => {
-    console.log(postContent, titleText);
-    // Title, Content를 담아 데이터 보내기
+  const onTagsChange = (e) => {
+    setTags(e.target.value.split(','));
   };
+
+  const onSubmitPost = useCallback(() => {
+    dispatch({
+      type: POST_REQUEST,
+      data: {
+        title: titleText,
+        content: postContent,
+        tags,
+      },
+    });
+    console.log(postContent, titleText);
+  });
+
+  useEffect(() => {
+    if (postError) {
+      console.log('뭔가 에러남..');
+    }
+    if (postDone) {
+      console.log('작성됨');
+      navigate('/');
+    }
+  }, [postError, postDone]);
+
   return (
     <>
       <Styled.ModalOverlay visible={visible} />
@@ -61,6 +94,8 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
                 <Styled.TagInput
                   type="text"
                   placeholder="쉼표로 구분해서 작성하면 태그를 등록할 수 있습니다"
+                  ref={tagsRef}
+                  onChange={onTagsChange}
                 />
               </div>
               {closable && (

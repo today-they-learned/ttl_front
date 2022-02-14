@@ -82,10 +82,10 @@ const PostEditorForm = () => {
     setPostContent(editorRef.current.getInstance().getMarkdown());
   };
 
-  useEffect(() => {
-    editorRef.current.getInstance().setMarkdown('## 해당 Content가 들어갈 내용');
-    // 글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드
-  }, []);
+  // useEffect(() => {
+  //   editorRef.current.getInstance().setMarkdown('## 해당 Content가 들어갈 내용');
+  //   글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드
+  // }, []);
 
   useEffect(() => {
     if (editorRef.current) {
