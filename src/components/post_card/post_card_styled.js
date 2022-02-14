@@ -93,14 +93,6 @@ export const CreatedAt = styled.div`
 
 export const CardBody = styled.div`
   flex-basis: 95%;
-  /* &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #eeeeee;
-    transform: translateY(0.1rem);
-  } */
 `;
 
 export const Line = styled.div`
