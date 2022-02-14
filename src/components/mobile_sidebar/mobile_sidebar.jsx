@@ -7,23 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 import { Navigation } from 'react-minimal-side-navigation';
 
-const FadeInLeft = keyframes`
-   from {
-      transform: translate(-100%, 0);
+const SidebarShowUp = keyframes`
+   0% {
+      transform: translate(-30%, 0);
     }
-    to {
+    100% {
       transform: translate(0, 0);
     }
 `;
 
-const FadeOut = keyframes`
-   from {
+const SidebarShowDown = keyframes`
+   0% {
       transform: translate(0, 0);
 
     }
-    to {
+    100% {
       transform: translate(-100%, 0);
-
     }
 `;
 
@@ -58,7 +57,12 @@ const SidebarOverlay = styled.div`
 `;
 const SidebarWrapper = styled.div`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  display: ${(props) => props.visible === null && 'none'};
+  ${(props) =>
+    props.sidebarToggled !== null &&
+    css`
+      animation: 0.7s ${props.sidebarToggled ? SidebarShowUp : SidebarShowDown} forwards;
+    `}
 
   position: fixed;
   top: -1rem;
@@ -76,15 +80,12 @@ const SidebarInner = styled.div`
 `;
 
 const SidebarList = styled.div`
-  display: ${(props) => (props.sidebarToggled ? 'block' : 'none')};
-  animation: ${(props) =>
-    props.visible
-      ? css`
-          ${FadeOut} 500ms
-        `
-      : css`
-          ${FadeInLeft} 500ms
-        `};
+  ${(props) =>
+    props.sidebarToggled !== null &&
+    css`
+      animation: 0.5s ${props.sidebarToggled ? SidebarShowUp : SidebarShowDown} forwards;
+    `}
+
   background-color: white;
   transition: all 0.3s;
   width: 11rem;
@@ -97,7 +98,7 @@ const MobileSideBar = () => {
 
   const { user } = useSelector((state) => state.authentication);
 
-  const [sidebarToggled, setSidebarToggled] = useState(false);
+  const [sidebarToggled, setSidebarToggled] = useState(null);
   const [maskClosable] = useState(true);
 
   const onClose = () => {
@@ -151,6 +152,7 @@ const MobileSideBar = () => {
         </Toggle>
         <SidebarOverlay visible={sidebarToggled} />
         <SidebarWrapper
+          sidebarToggled={sidebarToggled}
           onClick={maskClosable ? onMaskClick : null}
           tabIndex="-1"
           visible={sidebarToggled}
