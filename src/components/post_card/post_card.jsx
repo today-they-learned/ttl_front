@@ -13,6 +13,7 @@ import {
   CreatedAt,
   CardBody,
   CardBottom,
+  Line,
 } from './post_card_styled';
 
 const PostCard = ({ post }) => {
@@ -20,10 +21,10 @@ const PostCard = ({ post }) => {
 
   return (
     <Card>
-      <Thumbnail src={thumbnail} />
+      {thumbnail && <Thumbnail src={thumbnail} />}
       <CardBody>
         <Title>{title}</Title>
-        <Content>{content}</Content>
+        <Content thumbnail={thumbnail}>{content}</Content>
         <div
           style={{
             display: 'flex',
@@ -48,7 +49,7 @@ const PostCard = ({ post }) => {
           </div>
         </div>
       </CardBody>
-      <hr />
+      <Line />
       <CardBottom>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Avatar src={avatar} />
