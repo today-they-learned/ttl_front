@@ -11,12 +11,6 @@ const reducer = (state = initialState, action) => {
         type: 'main',
         title: '피드',
       };
-    case 'group':
-      return {
-        ...state,
-        type: 'group',
-        title: '그룹',
-      };
     case 'follow':
       return {
         ...state,

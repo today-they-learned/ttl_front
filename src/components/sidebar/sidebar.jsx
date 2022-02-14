@@ -55,11 +55,7 @@ const SideBar = () => {
               itemId: { item: 'main', title: '피드' },
               elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
-            {
-              title: '그룹',
-              itemId: { item: 'group', title: '그룹' },
-              elemBefore: () => <Icon name="users" style={{ fontSize: '1.2rem' }} />,
-            },
+
             {
               title: '팔로우',
               itemId: { item: 'follow', title: '팔로우' },
