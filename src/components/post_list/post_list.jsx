@@ -14,7 +14,6 @@ const Post = styled.div`
 
 const PostCards = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
 `;
