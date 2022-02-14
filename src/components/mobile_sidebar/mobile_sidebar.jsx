@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
 import { Navigation } from 'react-minimal-side-navigation';
+
+const FadeInLeft = keyframes`
+   from {
+      transform: translate(-100%, 0);
+    }
+    to {
+      transform: translate(0, 0);
+    }
+`;
+
+const FadeOut = keyframes`
+   from {
+      transform: translate(0, 0);
+
+    }
+    to {
+      transform: translate(-100%, 0);
+
+    }
+`;
 
 const Bar = styled.div`
   position: fixed;
@@ -27,8 +47,9 @@ const Toggle = styled.div`
 const SidebarOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
+
   position: fixed;
-  top: 72px;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
@@ -38,13 +59,13 @@ const SidebarOverlay = styled.div`
 const SidebarWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
+
   position: fixed;
-  top: 55px;
+  top: -1rem;
   right: 0;
   bottom: 0;
   left: -1rem;
   z-index: 1000;
-  /* overflow: auto; */
   outline: 0;
 `;
 const SidebarInner = styled.div`
@@ -56,8 +77,16 @@ const SidebarInner = styled.div`
 
 const SidebarList = styled.div`
   display: ${(props) => (props.sidebarToggled ? 'block' : 'none')};
+  animation: ${(props) =>
+    props.visible
+      ? css`
+          ${FadeOut} 500ms
+        `
+      : css`
+          ${FadeInLeft} 500ms
+        `};
   background-color: white;
-  transition: all 100ms ease-in-out;
+  transition: all 0.3s;
   width: 11rem;
   height: 100%;
 `;
