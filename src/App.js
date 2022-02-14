@@ -16,11 +16,11 @@ const App = () => {
       <BrowserRouter>
         <ResponsiveLayout>
           <Routes>
-            <Route exact path="/" element={<PostList />} />
-            <Route exact path="/signin" element={<SignIn />} />
-            <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/mypage" element={<Mypage />} />
-            <Route exact path="/post" element={<TestEditorForm />} />
+            <Route path="/" element={<PostList />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/mypage" element={<Mypage />} />
+            <Route path="/post" element={<TestEditorForm />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>
