@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
@@ -14,6 +15,7 @@ const Bar = styled.div`
 `;
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.authentication);
@@ -44,7 +46,7 @@ const SideBar = () => {
               setType(itemId);
             }
             if (!user && itemId.item !== 'main') {
-              alert('로그인 해주세요');
+              navigate('/signin');
             }
           }}
           items={[
