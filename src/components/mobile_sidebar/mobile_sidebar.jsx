@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
 import { Navigation } from 'react-minimal-side-navigation';
@@ -27,7 +28,7 @@ const SidebarOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
-  top: 0;
+  top: 72px;
   left: 0;
   bottom: 0;
   right: 0;
@@ -51,24 +52,18 @@ const SidebarInner = styled.div`
   position: relative;
   width: 7rem;
   height: 100%;
-  background-color: black;
 `;
 
 const SidebarList = styled.div`
   display: ${(props) => (props.sidebarToggled ? 'block' : 'none')};
   background-color: white;
   transition: all 100ms ease-in-out;
-  width: 15rem;
+  width: 11rem;
   height: 100%;
 `;
 
-const CloseIcon = styled.div`
-  font-size: 1.2rem;
-  text-align: right;
-  margin: 0.5rem;
-`;
-
 const MobileSideBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.authentication);
@@ -86,11 +81,6 @@ const MobileSideBar = () => {
     }
   };
 
-  const close = (e) => {
-    if (onClose) {
-      onClose(e);
-    }
-  };
   const setArr = [];
 
   useEffect(() => {
@@ -141,17 +131,13 @@ const MobileSideBar = () => {
               sidebarToggled={sidebarToggled}
               style={{ margin: '1rem', padding: '0.5rem 0' }}
             >
-              <CloseIcon>
-                <Icon name="close" onClick={close} />
-              </CloseIcon>
-
               <Navigation
                 onSelect={({ itemId }) => {
                   if (user) {
                     setType(itemId);
                   }
                   if (!user && itemId.item !== 'main') {
-                    alert('로그인 해주세요');
+                    navigate('/signin');
                   }
                   setSidebarToggled(!sidebarToggled);
                 }}
