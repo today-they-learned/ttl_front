@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+// eslint-disable-next-line import/no-named-as-default
 import ProfileInfo from 'components/mypage/ProfileInfo';
 import ProfileEdit from 'components/mypage/ProfileEdit';
 

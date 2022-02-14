@@ -1,21 +1,31 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Form, Input, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileInfoStyled';
 import CalendarHeatMap from './CalendarHeatMap';
 import CalendarHeatMapMobile from './CalendarHeatMapMobile';
 import TIL from './TIL';
 
-const tag = ['algorithm', 'python', 'react', 'django'];
-const introducee =
-  '안녕하세요 국민대학교 재학중인 권소예입니다 만나서 반가워요 블라블라 응애응애 응애..... 응애.';
-
 const ProfileInfo = (props) => {
+  const introducee =
+    '안녕하세요 국민대학교 재학중인 권소예입니다 만나서 반가워요 블라블라 응애응애 응애..... 응애.';
+  const [tags, setTags] = useState(['algorithm', 'python', 'react']);
   const [tab, setTab] = useState(true);
+  const [tagEdit, setTagEdit] = useState(true);
   const { username, email } = props.data;
+  const deleteTag = (e) => {
+    const value = e.target.parentElement.id;
+    setTags(tags.filter((tag) => tag !== value));
+  };
 
   const Desktop = () => {
     const isDesktop = useMediaQuery({ minWidth: 763 });
+    const TagSubmit = () => {
+      // api put code
+      setTagEdit(!tagEdit);
+    };
+
     return (
       isDesktop && (
         <Styled.Profile>
@@ -27,9 +37,34 @@ const ProfileInfo = (props) => {
             <Styled.UserName>{username}</Styled.UserName>
             <Styled.Email>{email}</Styled.Email>
             <Styled.Introduce>{introducee}</Styled.Introduce>
-            {tag.map((t) => (
-              <Styled.Tags>{t}</Styled.Tags>
-            ))}
+            {tagEdit ? (
+              <div>
+                <Styled.TagContainer>
+                  {tags.map((tag) => (
+                    <Styled.Tagg id={tag}>
+                      {tag}
+                      <Icon name="delete" onClick={deleteTag} />
+                    </Styled.Tagg>
+                  ))}
+                </Styled.TagContainer>
+                <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+              </div>
+            ) : (
+              <div>
+                <Styled.TagContainer>
+                  {tags.map((tag) => (
+                    <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
+                  ))}
+                </Styled.TagContainer>
+
+                <Form onSubmit={TagSubmit}>
+                  <Styled.TagField>
+                    <Form.Field control={Input} />
+                  </Styled.TagField>
+                  <Styled.TagButton>추가</Styled.TagButton>
+                </Form>
+              </div>
+            )}
           </Styled.ContainerCenter>
 
           <Styled.ContainerRight>
@@ -79,10 +114,36 @@ const ProfileInfo = (props) => {
             <Styled.UserName2>{username}</Styled.UserName2>
             <Styled.Email2>{email}</Styled.Email2>
             <Styled.EditButton2 onClick={props.onChangeMode}>프로필 편집</Styled.EditButton2>
+
             <Styled.ContainerTag>
-              {tag.map((t) => (
-                <Styled.Tags2>{t}</Styled.Tags2>
-              ))}
+              {tagEdit ? (
+                <div>
+                  <Styled.TagContainer>
+                    {tags.map((tag) => (
+                      <Styled.Tagg id={tag}>
+                        {tag}
+                        <Icon name="delete" onClick={deleteTag} />
+                      </Styled.Tagg>
+                    ))}
+                  </Styled.TagContainer>
+                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+                </div>
+              ) : (
+                <div>
+                  <Styled.TagContainer>
+                    {tags.map((tag) => (
+                      <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
+                    ))}
+                  </Styled.TagContainer>
+
+                  <Form>
+                    <Styled.TagField>
+                      <Form.Field control={Input} />
+                    </Styled.TagField>
+                    <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+                  </Form>
+                </div>
+              )}
             </Styled.ContainerTag>
             <Styled.Introduce2>{introducee}</Styled.Introduce2>
           </Styled.ContainerTop>

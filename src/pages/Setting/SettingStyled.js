@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { Form } from 'semantic-ui-react';
 
 export const SettingContainer = styled.div`
-  width: 53rem;
+  width: 55rem;
   height: 40rem;
-  margin-left: 8rem;
-  padding-top: 3.5rem;
+  margin-left: 25rem;
+  padding-top: 5rem;
 `;
 
 export const Label = styled.div`
@@ -15,8 +16,35 @@ export const Label = styled.div`
   margin-bottom: 1rem;
 `;
 
+export const GitLabel = styled.div`
+  width: 5rem;
+  float: left;
+  margin-top: 1.4rem;
+  font-size: 0.9rem;
+`;
+export const VelogLabel = styled.button`
+  width: 2.8rem;
+  height: 1.4rem;
+  background-color: #707bf3;
+  color: white;
+  margin-top: 0.3rem;
+  margin-left: 0.1rem;
+  float: left;
+  font-size: 0.7rem;
+`;
+
+export const Container = styled.button`
+  width: 32rem;
+`;
+
+export const ButtonContainer = styled.button`
+  padding-top: 1rem;
+  width: 20rem;
+  float: left;
+`;
+
 export const TermsLabel = styled.div`
-  width: 8rem;
+  width: 12rem;
   margin-top: 1.4rem;
   margin-left: 0.3rem;
   margin-bottom: 1rem;
@@ -34,18 +62,6 @@ export const EditButton = styled.button`
   color: white;
 `;
 
-export const BackButton = styled.button`
-  width: 2.9rem;
-  height: 1.6rem;
-  border-radius: 0.1rem;
-  float: left;
-  font-size: 0.7rem;
-  margin-top: 1rem;
-  margin-left: 2.4rem;
-  background-color: white;
-  color: #707bf3;
-`;
-
 export const SaveButton = styled.button`
   width: 2.9rem;
   height: 1.6rem;
@@ -60,16 +76,14 @@ export const SaveButton = styled.button`
 
 export const GitField = styled.div`
   width: 20rem;
-  height: 2.5rem;
-  clear: left;
-  font-size: 0.8rem;
+  height: 1.5rem;
+  font-size: 0.6rem;
 `;
 
 export const VelogField = styled.div`
   width: 20rem;
-  height: 2.5rem;
-  margin-bottom: 0.9rem;
-  font-size: 0.8rem;
+  height: 1.5rem;
+  font-size: 0.6rem;
 `;
 
 export const BorderLine = styled.div`
@@ -112,6 +126,29 @@ export const ButtonPhrase = styled.span`
   width: 22rem;
   height: 2rem;
   float: left;
-  margin-top: 0.6rem;
+  margin-top: 0.7rem;
   padding-left: 0.3rem;
+`;
+
+export const GitIcon = styled.img`
+  width: 1.8rem;
+  float: left;
+  margin-top: 1.2rem;
+  padding-left: 0.3rem;
+`;
+
+export const VelogIcon = styled.img`
+  width: 1.8rem;
+  float: left;
+  margin-top: 1.2rem;
+  margin-right: 0.6rem;
+  padding-left: 0.3rem;
+  border-radius: 0.2rem;
+`;
+
+export const Field = styled(Form.Field)`
+  width: 15rem;
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  float: left;
 `;

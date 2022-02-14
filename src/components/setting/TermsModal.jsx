@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Modal } from 'semantic-ui-react';
 
 const ConfirmButton = styled.button`
-  width: 5rem;
+  width: 6.8rem;
   height: 1.7rem;
   border-radius: 0.1rem;
   margin-left: 0.4rem;

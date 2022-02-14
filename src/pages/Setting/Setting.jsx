@@ -5,30 +5,55 @@ import ServiceModal from 'components/setting/ServiceModal';
 import * as Styled from './SettingStyled';
 
 const Setting = () => {
-  const [editMode, setEditMode] = useState(true);
+  const [gitEitMode, setGitMode] = useState(true);
+  const [velogEitMode, setEditMode] = useState(true);
 
-  const onChangeMode = () => {
-    setEditMode(!editMode);
+  const onChangeModeGit = () => {
+    setGitMode(!gitEitMode);
+  };
+  const onChangeModeVelog = () => {
+    setEditMode(!velogEitMode);
   };
   return (
     <Styled.SettingContainer>
-      <Form>
-        <Styled.Label>git, velog, tistory 글 연동</Styled.Label>
-        {editMode ? (
-          <Styled.EditButton onClick={onChangeMode}>수정</Styled.EditButton>
-        ) : (
-          <div>
-            <Styled.BackButton onClick={onChangeMode}>취소</Styled.BackButton>
-            <Styled.SaveButton onClick={onChangeMode}>저장</Styled.SaveButton>
-          </div>
-        )}
-        <Styled.GitField>
-          <Form.Field control={Input} placeholder="git 주소를 입력하세요" />
-        </Styled.GitField>
-        <Styled.VelogField>
-          <Form.Field control={Input} placeholder="velog 계정을 입력하세요" />
-        </Styled.VelogField>
-      </Form>
+      <Styled.Container>
+        <Styled.GitIcon src="images/github.png" />
+        <Styled.GitLabel>Git 연동</Styled.GitLabel>
+        <Styled.ButtonContainer>
+          {gitEitMode ? (
+            <Styled.VelogLabel onClick={onChangeModeGit}>수정</Styled.VelogLabel>
+          ) : (
+            <div>
+              <Form>
+                <Styled.Field>
+                  <Form.Field control={Input} placeholder="git 주소를 입력하세요" />
+                </Styled.Field>
+              </Form>
+              <Styled.VelogLabel onClick={onChangeModeGit}>수정</Styled.VelogLabel>
+            </div>
+          )}
+        </Styled.ButtonContainer>
+      </Styled.Container>
+
+      <Styled.Container>
+        <Styled.VelogIcon src="images/velog.jpg" />
+        <Styled.GitLabel>Velog 연동</Styled.GitLabel>
+        <Styled.ButtonContainer>
+          {velogEitMode ? (
+            <Styled.VelogLabel onClick={onChangeModeVelog}>수정</Styled.VelogLabel>
+          ) : (
+            <div>
+              <Form>
+                <Styled.Field>
+                  <Form.Field control={Input} placeholder="velog 계정을 입력하세요" />
+                </Styled.Field>
+              </Form>
+              <Styled.VelogLabel onClick={onChangeModeVelog}>수정</Styled.VelogLabel>
+            </div>
+          )}
+        </Styled.ButtonContainer>
+      </Styled.Container>
+
       <Styled.BorderLine />
       <Styled.Label>메일 수신 동의</Styled.Label>
       <Styled.Toggle>

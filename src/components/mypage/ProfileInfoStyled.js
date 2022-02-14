@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form, Label } from 'semantic-ui-react';
 
 export const Profile = styled.div`
   width: 65rem;
@@ -35,6 +36,30 @@ export const Profile = styled.div`
     font-family: 'NS-R';
     text-decoration: underline;
     color: #707bf3;
+  }
+  .tag {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    margin-left: 0.15rem;
+    margin-right: 0.35rem;
+    border-radius: 0.8rem;
+    color: white;
+    background-color: #707bf3;
+    padding: 0.25rem 0.45rem;
+    font-family: 'NS-R';
+    float: left;
+  }
+  .tag.active {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    margin-left: 0.15rem;
+    margin-right: 0.35rem;
+    border-radius: 0.8rem;
+    color: #707bf3;
+    background-color: white;
+    padding: 0.25rem 0.45rem;
+    font-family: 'NS-R';
+    float: left;
   }
 `;
 export const ContainerLeft = styled.div`
@@ -94,7 +119,7 @@ export const Email = styled.span`
 `;
 export const Introduce = styled.div`
   clear: left;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
   font-size: 1.1rem;
   font-weight: 500;
   height: 5rem;
@@ -111,6 +136,7 @@ export const Tags = styled.span`
   background-color: #707bf3;
   padding: 0.25rem 0.45rem;
   font-family: 'NS-R';
+  float: left;
 `;
 export const EditButton = styled.button`
   width: 4.5rem;
@@ -161,6 +187,34 @@ export const TabButton = styled.div`
   font-size: 1.15rem;
   margin-left: 1rem;
   margin-right: 0.5rem;
+`;
+export const TagButton = styled.button`
+  float: left;
+  width: 3rem;
+  height: 1.4rem;
+  border-radius: 0.1rem;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  color: #707bf3;
+`;
+export const TagField = styled(Form.Field)`
+  width: 10.5rem;
+  float: left;
+  font-size: 0.8rem;
+`;
+export const TagContainer = styled.div`
+  float: left;
+  font-size: 0.8rem;
+`;
+export const Tagg = styled(Label)`
+  background-color: #707bf3 !important;
+  color: white !important;
+  border-radius: 1rem !important;
+  font-size: 0.75rem !important;
+  margin-bottom: 0.3rem !important;
 `;
 
 export const ProfileMobile = styled.div`
@@ -245,7 +299,7 @@ export const EditButton2 = styled.button`
 
 export const ContainerTag = styled.div`
   margin-top: 2.5rem;
-  padding-left: 7rem;
+  padding-left: 7.7rem;
 `;
 export const Tags2 = styled.span`
   font-size: 0.75rem;

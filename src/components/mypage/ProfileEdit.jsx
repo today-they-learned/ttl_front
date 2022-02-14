@@ -38,72 +38,74 @@ const ProfileEdit = (props) => {
 
           <Styled.FieldContainer>
             <Form onSubmit={editInfo}>
-              <Styled.Label>이름</Styled.Label>
               <Styled.Container>
-                <Styled.UNField>
-                  <Form.Field
-                    control={Input}
-                    name="username"
-                    placeholder="이름을 입력하세요"
-                    value={info.username}
-                    onChange={inputHandler}
-                  />
-                </Styled.UNField>
+                <Styled.Label>이름</Styled.Label>
+                <Styled.Container2>
+                  <Styled.UNField>
+                    <Form.Field
+                      control={Input}
+                      name="username"
+                      placeholder="이름을 입력하세요"
+                      value={info.username}
+                      onChange={inputHandler}
+                    />
+                  </Styled.UNField>
+                </Styled.Container2>
               </Styled.Container>
-              <Styled.Label2>한 줄 소개</Styled.Label2>
-              <Styled.Container2>
-                <Styled.AboutField>
-                  <Form.Field
-                    control={TextArea}
-                    name="introduce"
-                    placeholder="한 줄 소개를 입력하세요"
-                    value={info.introduce}
-                    onChange={inputHandler}
-                  />
-                </Styled.AboutField>
-              </Styled.Container2>
-              <Styled.Label2>관심 태그</Styled.Label2>
-              <Styled.Container2>
-                <Styled.TagField>
-                  <Form.Field
-                    control={Input}
-                    name="tags"
-                    placeholder="관심분야를 입력하세요"
-                    value={info.tags}
-                    onChange={inputHandler}
-                  />
-                </Styled.TagField>
-              </Styled.Container2>
-              <Styled.Label2>페이스북 계정</Styled.Label2>
-              <Styled.Container2>
-                <Styled.SnsField>
-                  <Form.Field
-                    control={Input}
-                    placeholder="페이스북 계정을 입력하세요"
-                    value={info.facebook_account}
-                  />
-                </Styled.SnsField>
-              </Styled.Container2>
-              <Styled.Label2>인스타 계정</Styled.Label2>
-              <Styled.Container2>
-                <Styled.SnsField>
-                  <Form.Field
-                    control={Input}
-                    placeholder="인스타그램 계정을 입력하세요"
-                    value={info.insta_account}
-                  />
-                </Styled.SnsField>
-              </Styled.Container2>
-              <Styled.Label2>트위터 계정</Styled.Label2>
-              <Styled.Container2>
-                <Styled.SnsField>
-                  <Form.Field
-                    control={Input}
-                    placeholder="트위터 계정을 입력하세요"
-                    value={info.twitter_account}
-                  />
-                </Styled.SnsField>
-              </Styled.Container2>
+
+              <Styled.Container3>
+                <Styled.Label>한 줄 소개</Styled.Label>
+                <Styled.Container2>
+                  <Styled.AboutField>
+                    <Form.Field
+                      control={TextArea}
+                      name="introduce"
+                      placeholder="한 줄 소개를 입력하세요"
+                      value={info.introduce}
+                      onChange={inputHandler}
+                    />
+                  </Styled.AboutField>
+                </Styled.Container2>
+              </Styled.Container3>
+
+              <Styled.Container>
+                <Styled.Label>페이스북 계정</Styled.Label>
+                <Styled.Container2>
+                  <Styled.SnsField>
+                    <Form.Field
+                      control={Input}
+                      placeholder="페이스북 계정을 입력하세요"
+                      value={info.facebook_account}
+                    />
+                  </Styled.SnsField>
+                </Styled.Container2>
+              </Styled.Container>
+
+              <Styled.Container>
+                <Styled.Label>인스타 계정</Styled.Label>
+                <Styled.Container2>
+                  <Styled.SnsField>
+                    <Form.Field
+                      control={Input}
+                      placeholder="인스타그램 계정을 입력하세요"
+                      value={info.insta_account}
+                    />
+                  </Styled.SnsField>
+                </Styled.Container2>
+              </Styled.Container>
+
+              <Styled.Container>
+                <Styled.Label>트위터 계정</Styled.Label>
+                <Styled.Container2>
+                  <Styled.SnsField>
+                    <Form.Field
+                      control={Input}
+                      placeholder="트위터 계정을 입력하세요"
+                      value={info.twitter_account}
+                    />
+                  </Styled.SnsField>
+                </Styled.Container2>
+              </Styled.Container>
             </Form>
           </Styled.FieldContainer>
         </Styled.InfoEdit>
@@ -116,70 +118,98 @@ const ProfileEdit = (props) => {
     return (
       isMobile && (
         <Styled.InfoEditMobile>
+          <Styled.PhotoContainer>
+            <Styled.ProfileImg2 src="images/profile.jpg" alt="profile" />
+            <Styled.UploadButton2>Photo upload</Styled.UploadButton2>
+          </Styled.PhotoContainer>
           <Styled.ButtonContainer2>
             <Styled.BackButton2>취소</Styled.BackButton2>
             <Styled.EditButton2 onClick={editInfo}>저장</Styled.EditButton2>
           </Styled.ButtonContainer2>
+
           <Form onSubmit={editInfo}>
             <Styled.FieldContainerMobile>
-              <Styled.UNField2>
-                <Form.Field
-                  control={Input}
-                  name="username"
-                  placeholder="이름을 입력하세요"
-                  value={info.username}
-                  onChange={inputHandler}
-                />
-              </Styled.UNField2>
+              <Styled.FieldLabel>이름</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.UNField2>
+                  <Form.Field
+                    control={Input}
+                    name="username"
+                    placeholder="이름을 입력하세요"
+                    value={info.username}
+                    onChange={inputHandler}
+                  />
+                </Styled.UNField2>
+              </Styled.Containerr>
             </Styled.FieldContainerMobile>
-            <Styled.FieldContainerMobile2>
-              <Styled.AboutField2>
-                <Form.Field
-                  control={TextArea}
-                  name="introduce"
-                  placeholder="한 줄 소개를 입력하세요"
-                  value={introducee}
-                  onChange={inputHandler}
-                />
-              </Styled.AboutField2>
-            </Styled.FieldContainerMobile2>
+
             <Styled.FieldContainerMobile>
-              <Styled.TagField2>
-                <Form.Field
-                  control={Input}
-                  name="tags"
-                  placeholder="관심분야를 입력하세요"
-                  value={tag}
-                  onChange={inputHandler}
-                />
-              </Styled.TagField2>
+              <Styled.FieldLabel>한 줄 소개</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.AboutField2>
+                  <Form.Field
+                    control={TextArea}
+                    name="introduce"
+                    placeholder="한 줄 소개를 입력하세요"
+                    value={introducee}
+                    onChange={inputHandler}
+                  />
+                </Styled.AboutField2>
+              </Styled.Containerr>
             </Styled.FieldContainerMobile>
+
             <Styled.FieldContainerMobile>
-              <Styled.SnsField2>
-                <Form.Field
-                  control={Input}
-                  placeholder="페이스북 계정을 입력하세요"
-                  value={info.facebook_account}
-                />
-              </Styled.SnsField2>
+              <Styled.FieldLabel>태그</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.TagField2>
+                  <Form.Field
+                    control={Input}
+                    name="tags"
+                    placeholder="관심분야를 입력하세요"
+                    value={tag}
+                    onChange={inputHandler}
+                  />
+                </Styled.TagField2>
+              </Styled.Containerr>
             </Styled.FieldContainerMobile>
+
             <Styled.FieldContainerMobile>
-              <Styled.SnsField2>
-                <Form.Field
-                  control={Input}
-                  placeholder="인스타그램 계정을 입력하세요"
-                  value={info.insta_account}
-                />
-              </Styled.SnsField2>
+              <Styled.FieldLabel>페이스북</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.SnsField2>
+                  <Form.Field
+                    control={Input}
+                    placeholder="페이스북 계정을 입력하세요"
+                    value={info.facebook_account}
+                  />
+                </Styled.SnsField2>
+              </Styled.Containerr>
             </Styled.FieldContainerMobile>
+
             <Styled.FieldContainerMobile>
-              <Styled.SnsField2>
-                <Form.Field
-                  control={Input}
-                  placeholder="트위터 계정을 입력하세요"
-                  value={info.twitter_account}
-                />
-              </Styled.SnsField2>
+              <Styled.FieldLabel>인스타그램</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.SnsField2>
+                  <Form.Field
+                    control={Input}
+                    placeholder="인스타그램 계정을 입력하세요"
+                    value={info.insta_account}
+                  />
+                </Styled.SnsField2>
+              </Styled.Containerr>
+            </Styled.FieldContainerMobile>
+
+            <Styled.FieldContainerMobile>
+              <Styled.FieldLabel>트위터</Styled.FieldLabel>
+              <Styled.Containerr>
+                <Styled.SnsField2>
+                  <Form.Field
+                    control={Input}
+                    placeholder="트위터 계정을 입력하세요"
+                    value={info.twitter_account}
+                  />
+                </Styled.SnsField2>
+              </Styled.Containerr>
             </Styled.FieldContainerMobile>
           </Form>
         </Styled.InfoEditMobile>
