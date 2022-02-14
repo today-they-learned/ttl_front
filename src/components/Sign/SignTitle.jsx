@@ -7,13 +7,19 @@ const Logo = styled.img`
   height: 4rem;
 `;
 
+const P = styled.p`
+  text-align: center;
+  font-family: 'NS-R';
+  font-size: 15px;
+`;
+
 const SignTitle = () => {
   return (
     <>
       <ColumnMiddleContainer>
         <Logo src="images/Logo.gif" alt="Logo" />
         <br />
-        <p style={{ marginBottom: '5rem' }}>모든 TIL을 한 곳에서 모아보세요.</p>
+        <P style={{ marginBottom: '5rem' }}>모든 TIL을 한 곳에서 모아보세요.</P>
       </ColumnMiddleContainer>
     </>
   );

@@ -9,6 +9,7 @@ import { Form, Grid, Divider } from 'semantic-ui-react';
 import * as Container from 'components/common/Containers';
 import * as Btn from 'components/common/Button';
 import SignTitle from 'components/Sign/SignTitle';
+import COLOR from 'constants/color.constant';
 
 const SignContainer = styled(Container.AlignCenterContainer)`
   margin-top: 6rem;
@@ -27,6 +28,25 @@ const Field = styled(Form.Field)`
       font-family: 'NS-R' !important;
     }
   }
+`;
+
+const Span = styled.span`
+  text-align: center;
+  font-family: 'NS-R';
+  font-size: 12.5px;
+  color: ${COLOR.GRAY};
+`;
+
+const Strong = styled.strong`
+  text-align: center;
+  font-family: 'NS-EB';
+  font-size: 15px;
+  color: ${COLOR.PRIMARY};
+`;
+const P = styled.p`
+  text-align: center;
+  font-family: 'NS-R';
+  font-size: 15px;
 `;
 
 const SignUp = () => {
@@ -113,7 +133,7 @@ const SignUp = () => {
             value={passwordCheck}
             onChange={onChangePasswordCheck}
           />
-          <p style={{ color: 'red', fontSize: '15px' }}>{nonFieldError}</p>
+          <P style={{ color: 'red', fontSize: '15px' }}>{nonFieldError}</P>
           <Field>
             <Btn.PrimaryBtn fluid type="submit" disabled={signupLoading}>
               회원가입
@@ -123,13 +143,13 @@ const SignUp = () => {
         <Container.AlignCenterContainer style={{ marginBottom: '1.5rem' }}>
           <div style={{ marginRight: '1rem' }}>이미 계정이 있으세요?</div>
           <Link to="/signin">
-            <strong>로그인</strong>
+            <Strong>로그인</Strong>
           </Link>
         </Container.AlignCenterContainer>
         <Divider />
         {/* 약관확인 */}
-        <p>
-          <span>
+        <P>
+          <Span>
             회원가입 시 TTL의{' '}
             <a href="/" style={{ fontFamily: 'NS-B' }}>
               서비스 약관
@@ -139,8 +159,8 @@ const SignUp = () => {
               개인정보 처리방침
             </a>
             을 확인하였으며, 동의합니다.
-          </span>
-        </p>
+          </Span>
+        </P>
       </Grid.Column>
     </SignContainer>
   );

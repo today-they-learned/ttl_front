@@ -1,11 +1,12 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signinRequestAction } from 'reducers/authentication';
 import { useCookies } from 'react-cookie';
 import useInput from 'hooks/useInput';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { signinRequestAction } from 'reducers/authentication';
+import COLOR from 'constants/color.constant';
 
 import { Form, Grid, Checkbox, Divider } from 'semantic-ui-react';
 import * as Container from 'components/common/Containers';
@@ -29,6 +30,19 @@ const Field = styled(Form.Field)`
       font-family: 'NS-R' !important;
     }
   }
+`;
+
+const Strong = styled.strong`
+  text-align: center;
+  font-family: 'NS-EB';
+  font-size: 15px;
+  color: ${COLOR.PRIMARY};
+`;
+
+const P = styled.p`
+  text-align: center;
+  font-family: 'NS-R';
+  font-size: 15px;
 `;
 
 const Signin = () => {
@@ -105,7 +119,7 @@ const Signin = () => {
             value={password}
             onChange={onChangePassword}
           />
-          <p style={{ color: 'red', fontSize: '15px' }}>{nonFieldError}</p>
+          <P style={{ color: 'red', fontSize: '15px' }}>{nonFieldError}</P>
           <Field>
             <Btn.PrimaryBtn fluid type="submit" disble={signinLoading}>
               로그인
@@ -121,7 +135,7 @@ const Signin = () => {
                 setIsRemember(!isRemember);
               }}
             />
-            <p style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>이메일 저장</p>
+            <P style={{ marginLeft: '0.3rem', marginTop: '0.05rem' }}>이메일 저장</P>
           </Container.AlignMiddleContainer>
           {/* 비밀번호 재설정 기능 (비활성화) */}
           {/* <Link to="/">
@@ -132,7 +146,7 @@ const Signin = () => {
         <Container.AlignCenterContainer>
           <div style={{ marginRight: '1.5rem' }}>아직 회원이 아니세요?</div>
           <Link to="/signup">
-            <strong>회원가입</strong>
+            <Strong>회원가입</Strong>
           </Link>
         </Container.AlignCenterContainer>
       </Grid.Column>

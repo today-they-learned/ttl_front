@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
@@ -30,8 +31,9 @@ const DropText = styled.div`
 const MobileNavbar = () => {
   return (
     <Nav>
-      {/* 로고 대신 텍스트로 우선 작성 */}
-      <h1>TTL</h1>
+      <Link to="/">
+        <img url="images/Logo.gif" alt="logo" />
+      </Link>
       <div
         style={{
           display: 'flex',

@@ -65,9 +65,8 @@ const TopNavbar = () => {
 
   return (
     <Nav>
-      {/* 로고 대신 텍스트로 우선 작성 */}
       <Link to="/">
-        <h1>TTL</h1>
+        <img url="images/Logo.gif" alt="logo" />
       </Link>
       <div
         style={{
