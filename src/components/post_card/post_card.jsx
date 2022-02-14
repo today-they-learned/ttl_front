@@ -16,7 +16,7 @@ import {
 } from './post_card_styled';
 
 const PostCard = ({ post }) => {
-  const { thumbnail, title, content, tags, created_at, like, avatar, username } = post;
+  const { thumbnail, title, content, tags, createdAt, feedbackCount, user } = post;
 
   return (
     <Card>
@@ -44,19 +44,19 @@ const PostCard = ({ post }) => {
               alignItems: 'center',
             }}
           >
-            <CreatedAt>{created_at}</CreatedAt>
+            <CreatedAt>{createdAt}</CreatedAt>
           </div>
         </div>
       </CardBody>
       <hr />
       <CardBottom>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar src={avatar} />
-          <UserName>{username}</UserName>
+          <Avatar src={user.avatar} />
+          <UserName>{user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Icon name="heart" />
-          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{like}</p>
+          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{feedbackCount}</p>
         </div>
       </CardBottom>
     </Card>
