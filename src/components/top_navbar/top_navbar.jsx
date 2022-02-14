@@ -36,10 +36,9 @@ const DropText = styled.div`
 const Login = styled.button`
   background: ${COLOR.PRIMARY} !important;
   color: white !important;
-  font-family: 'NS-B' !important;
-  font-weight: 100 !important;
+  font-family: 'NS-R' !important;
   height: 2rem;
-  font-size: 12px !important;
+  font-size: 14px !important;
   letter-spacing: 0.1rem;
   border-radius: 0.3rem;
   padding: 0 1rem;
