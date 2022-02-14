@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Card = styled.div`
   width: 18.75rem;
@@ -30,18 +30,36 @@ export const Title = styled.div`
 `;
 
 export const Content = styled.div`
-  font-size: 0.7rem;
-  margin: 0 1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  word-wrap: break-word;
-  line-height: 1rem;
-  height: 3rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.3px;
+  ${(props) =>
+    props.thumbnail
+      ? css`
+          font-size: 0.7rem;
+          margin: 0 1rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          word-wrap: break-word;
+          line-height: 1rem;
+          height: 3rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 0.5rem;
+          letter-spacing: -0.3px;
+        `
+      : css`
+          font-size: 0.7rem;
+          margin: 0 1rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 8;
+          -webkit-box-orient: vertical;
+          word-wrap: break-word;
+          line-height: 1rem;
+          max-height: 13.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 0.5rem;
+          letter-spacing: -0.3px;
+        `}
 `;
 
 export const Tag = styled.div`
@@ -74,14 +92,16 @@ export const CreatedAt = styled.div`
 `;
 
 export const CardBody = styled.div`
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #eeeeee;
-    transform: translateY(0.1rem);
-  }
+  flex-basis: 95%;
+`;
+
+export const Line = styled.div`
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #eeeeee;
+  margin-bottom: 1rem;
 `;
 
 export const CardBottom = styled.div`
@@ -90,5 +110,6 @@ export const CardBottom = styled.div`
   align-items: center;
   margin: 0 1rem;
   height: 2rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  flex-basis: 5%;
 `;
