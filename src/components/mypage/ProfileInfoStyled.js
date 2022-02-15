@@ -3,6 +3,7 @@ import { Form, Label } from 'semantic-ui-react';
 
 export const Profile = styled.div`
   width: 65rem;
+  padding-left: 2rem;
   .choice1 {
     margin-top: 0.6rem;
     float: left;
