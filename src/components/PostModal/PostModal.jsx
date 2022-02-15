@@ -52,7 +52,6 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
         tags,
       },
     });
-    console.log(postContent, titleText);
   });
 
   useEffect(() => {

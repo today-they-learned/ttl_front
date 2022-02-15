@@ -18,6 +18,12 @@ import Modal from 'components/PostModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
+// import axios from 'axios';
+// import { apiUrl } from 'config/api.config';
+import { useDispatch, useSelector } from 'react-redux';
+// import { IMAGE_REQUEST } from 'reducers/imageUpload';
+import axios from 'axios';
+import authHeader from 'sagas/auth-header';
 
 const Title = styled.input`
   width: 100%;
@@ -66,6 +72,9 @@ const ButtonContainer = styled.div`
 
 const PostEditorForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log(dispatch);
+  const { imageError, imageDone } = useSelector((state) => state.imageUpload);
 
   const [titleText, setTitleText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -82,24 +91,22 @@ const PostEditorForm = () => {
     setPostContent(editorRef.current.getInstance().getMarkdown());
   };
 
-  // useEffect(() => {
-  //   editorRef.current.getInstance().setMarkdown('## 해당 Content가 들어갈 내용');
-  //   글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드
-  // }, []);
-
   useEffect(() => {
     if (editorRef.current) {
+      // 기존에 Image 를 Import 하는 Hook 을 제거한다.
       editorRef.current.getInstance().removeHook('addImageBlobHook');
+
+      // 새롭게 Image 를 Import 하는 Hook 을 생성한다.
       editorRef.current.getInstance().addHook('addImageBlobHook', (blob, callback) => {
         (async () => {
           const formData = new FormData();
-          formData.append('file', blob);
+          formData.append('image', blob);
 
-          // axios.defaults.withCredentials = true;
-          // const { data: url } = await axios.post(`${backUrl}image.do`, formData, {
-          //   header: { 'content-type': 'multipart/formdata' },
-          // });
-          callback('alt text');
+          const { data: filename } = await axios.post('/articles/upload_image/', formData, {
+            headers: authHeader(),
+          });
+
+          callback(filename.url, 'alt text');
         })();
 
         return false;
@@ -108,6 +115,16 @@ const PostEditorForm = () => {
 
     return () => {};
   }, [editorRef]);
+
+  useEffect(() => {
+    if (imageError) {
+      console.log('뭔가 에러남..');
+    }
+    if (imageDone) {
+      console.log('업로드 성공');
+      navigate('/');
+    }
+  }, [imageError, imageDone]);
 
   const openModal = () => {
     if (titleText) {
