@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStyles from 'styles/GlobalStyles';
 import 'semantic-ui-css/semantic.min.css';
 import 'styles/fonts.css';
@@ -9,12 +9,16 @@ import ResponsiveLayout from 'layouts/responsive.layout';
 import { Mypage, SignIn, SignUp, Article } from 'pages';
 import PostList from 'components/post_list/post_list';
 import TestEditorForm from 'components/PostEditorForm/PostEditorForm';
+import ReactGA from 'react-ga';
+import LocationTracker from 'trackers/location_tracker';
+
+ReactGA.initialize('UA-220387661-1');
 
 const App = () => {
   return (
     <>
       <GlobalStyles />
-      <BrowserRouter>
+      <Router>
         <ResponsiveLayout>
           <Routes>
             <Route path="/" element={<PostList />} />
@@ -25,7 +29,8 @@ const App = () => {
             <Route path="/post" element={<TestEditorForm />} />
           </Routes>
         </ResponsiveLayout>
-      </BrowserRouter>
+        <LocationTracker />
+      </Router>
     </>
   );
 };
