@@ -18,10 +18,7 @@ import Modal from 'components/PostModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
-// import axios from 'axios';
-// import { apiUrl } from 'config/api.config';
-import { useDispatch, useSelector } from 'react-redux';
-// import { IMAGE_REQUEST } from 'reducers/imageUpload';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import authHeader from 'sagas/auth-header';
 
@@ -74,7 +71,6 @@ const PostEditorForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   console.log(dispatch);
-  const { imageError, imageDone } = useSelector((state) => state.imageUpload);
 
   const [titleText, setTitleText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -106,25 +102,14 @@ const PostEditorForm = () => {
             headers: authHeader(),
           });
 
-          callback(filename.url, 'alt text');
+          callback(filename.url, 'image alt');
         })();
-
         return false;
       });
     }
 
     return () => {};
   }, [editorRef]);
-
-  useEffect(() => {
-    if (imageError) {
-      console.log('뭔가 에러남..');
-    }
-    if (imageDone) {
-      console.log('업로드 성공');
-      navigate('/');
-    }
-  }, [imageError, imageDone]);
 
   const openModal = () => {
     if (titleText) {
