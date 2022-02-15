@@ -76,9 +76,8 @@ const ProfileInfo = (props) => {
             </Styled.IconContainer>
           </Styled.ContainerRight>
 
+          <Styled.Line />
           <Styled.ContainerTab>
-            <Styled.Line />
-
             <Styled.TabButton
               type="button"
               className={`choice1 ${tab === true ? 'active' : ''}`}
@@ -148,7 +147,8 @@ const ProfileInfo = (props) => {
             <Styled.Introduce2>{introducee}</Styled.Introduce2>
           </Styled.ContainerTop>
           <Styled.Line2 />
-          <Styled.TabButton
+
+          <Styled.TabButton2
             type="button"
             className={`choice1 ${tab === true ? 'active' : ''}`}
             onClick={() => {
@@ -156,8 +156,8 @@ const ProfileInfo = (props) => {
             }}
           >
             Calendar heatmap
-          </Styled.TabButton>
-          <Styled.TabButton
+          </Styled.TabButton2>
+          <Styled.TabButton2
             type="button"
             className={`choice2 ${tab === false ? 'active' : ''}`}
             onClick={() => {
@@ -165,7 +165,8 @@ const ProfileInfo = (props) => {
             }}
           >
             {props.data.username}&apos;s TIL
-          </Styled.TabButton>
+          </Styled.TabButton2>
+
           <Styled.ContainerBottom>
             {tab ? <CalendarHeatMapMobile /> : <TIL />}
           </Styled.ContainerBottom>

@@ -118,10 +118,10 @@ const ProfileEdit = (props) => {
     return (
       isMobile && (
         <Styled.InfoEditMobile>
-          <Styled.PhotoContainer>
+          <Styled.PhotoContainer2>
             <Styled.ProfileImg2 src="images/profile.jpg" alt="profile" />
             <Styled.UploadButton2>Photo upload</Styled.UploadButton2>
-          </Styled.PhotoContainer>
+          </Styled.PhotoContainer2>
           <Styled.ButtonContainer2>
             <Styled.BackButton2>취소</Styled.BackButton2>
             <Styled.EditButton2 onClick={editInfo}>저장</Styled.EditButton2>

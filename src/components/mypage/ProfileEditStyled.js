@@ -216,3 +216,7 @@ export const Containerr = styled.div`
   margin-left: 3rem;
   float: left;
 `;
+export const PhotoContainer2 = styled.div`
+  width: 65rem;
+  height: 9rem;
+`;

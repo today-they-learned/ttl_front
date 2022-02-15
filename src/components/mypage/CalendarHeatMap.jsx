@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const CHMContainer = styled.div`
   width: 62rem;
-  text-align: center;
 `;
 
 const CHM = styled.div`
@@ -15,12 +14,16 @@ const CHM = styled.div`
 
 const TilLabel = styled.div`
   margin-top: 1.5rem;
+  margin-left: 5rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 `;
 
 const TtlLabel = styled.div`
   margin-top: 2.5rem;
+  margin-left: 5rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 `;
 
 const CalendarHeatMap = () => {

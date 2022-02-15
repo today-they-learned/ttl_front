@@ -5,7 +5,6 @@ export const Profile = styled.div`
   width: 65rem;
   .choice1 {
     margin-top: 0.6rem;
-    margin-left: 3rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -13,7 +12,6 @@ export const Profile = styled.div`
   }
   .choice1.active {
     margin-top: 0.6rem;
-    margin-left: 3rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -22,7 +20,7 @@ export const Profile = styled.div`
   }
   .choice2 {
     margin-top: 0.6rem;
-    margin-left: 1.5rem;
+    margin-left: 1.1rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -30,36 +28,12 @@ export const Profile = styled.div`
   }
   .choice2.active {
     margin-top: 0.6rem;
-    margin-left: 1.5rem;
+    margin-left: 1.1rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
     text-decoration: underline;
     color: #707bf3;
-  }
-  .tag {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    margin-left: 0.15rem;
-    margin-right: 0.35rem;
-    border-radius: 0.8rem;
-    color: white;
-    background-color: #707bf3;
-    padding: 0.25rem 0.45rem;
-    font-family: 'NS-R';
-    float: left;
-  }
-  .tag.active {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    margin-left: 0.15rem;
-    margin-right: 0.35rem;
-    border-radius: 0.8rem;
-    color: #707bf3;
-    background-color: white;
-    padding: 0.25rem 0.45rem;
-    font-family: 'NS-R';
-    float: left;
   }
 `;
 export const ContainerLeft = styled.div`
@@ -92,6 +66,7 @@ export const ContainerTab = styled.div`
   clear: left;
   width: 65rem;
   height: 3rem;
+  margin-left: 3rem;
 `;
 
 export const ContainerBottom = styled.div`
@@ -179,6 +154,7 @@ export const Line = styled.div`
   clear: left;
   width: 65rem;
   height: 0.1rem;
+  margin-left: 0.5rem;
   margin-right: 2rem;
   background-color: #eaeaea;
 `;
@@ -221,7 +197,7 @@ export const ProfileMobile = styled.div`
   width: 28rem;
   .choice1 {
     margin-top: 0.6rem;
-    margin-left: 3rem;
+    margin-left: 1.1rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -229,7 +205,7 @@ export const ProfileMobile = styled.div`
   }
   .choice1.active {
     margin-top: 0.6rem;
-    margin-left: 3rem;
+    margin-left: 1.1rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -238,7 +214,7 @@ export const ProfileMobile = styled.div`
   }
   .choice2 {
     margin-top: 0.6rem;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -246,7 +222,7 @@ export const ProfileMobile = styled.div`
   }
   .choice2.active {
     margin-top: 0.6rem;
-    margin-left: 1.5rem;
+    margin-left: 1em;
     float: left;
     font-weight: 1000;
     font-family: 'NS-R';
@@ -326,4 +302,8 @@ export const Line2 = styled.div`
   height: 0.1rem;
   margin-right: 2rem;
   background-color: #eaeaea;
+`;
+export const TabButton2 = styled.div`
+  font-size: 1rem;
+  margin-right: 0.5rem;
 `;
