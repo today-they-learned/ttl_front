@@ -8,7 +8,9 @@ const LocationTracker = () => {
 
   // Fired on every route change
   useEffect(() => {
-    ReactGA.pageview(location.pathname + location.search);
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.pageview(location.pathname + location.search);
+    }
   }, [location]);
 
   return <></>;
