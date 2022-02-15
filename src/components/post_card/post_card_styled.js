@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Card = styled.div`
   width: 18.75rem;
@@ -30,22 +30,32 @@ export const Title = styled.div`
 `;
 
 export const Content = styled.div`
-  font-size: 0.7rem;
+  font-family: 'NS-R';
+  font-size: 0.85rem;
   margin: 0 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   line-height: 1rem;
-  height: 3rem;
   overflow: hidden;
-  text-overflow: ellipsis;
   margin-bottom: 0.5rem;
   letter-spacing: -0.3px;
+  text-overflow: ellipsis;
+
+  ${(props) =>
+    props.thumbnail
+      ? css`
+          -webkit-line-clamp: 3;
+          height: 3rem;
+        `
+      : css`
+          -webkit-line-clamp: 8;
+          max-height: 13.5rem;
+        `}
 `;
 
 export const Tag = styled.div`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin-left: 0.5rem;
   border-radius: 1rem;
   color: white;
@@ -63,25 +73,27 @@ export const Avatar = styled.img`
 `;
 
 export const UserName = styled.p`
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: 'NS-R';
 `;
 
 export const CreatedAt = styled.div`
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   margin: 0.5rem 1rem;
   color: #adadad;
 `;
 
 export const CardBody = styled.div`
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #eeeeee;
-    transform: translateY(0.1rem);
-  }
+  flex-basis: 95%;
+`;
+
+export const Line = styled.div`
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #eeeeee;
+  margin-bottom: 1rem;
 `;
 
 export const CardBottom = styled.div`
@@ -90,5 +102,6 @@ export const CardBottom = styled.div`
   align-items: center;
   margin: 0 1rem;
   height: 2rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  flex-basis: 5%;
 `;

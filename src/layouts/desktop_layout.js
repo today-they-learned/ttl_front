@@ -23,13 +23,9 @@ const DesktopLayout = (props) => {
           height: '100%',
         }}
       >
-        {location.pathname.startsWith('/sign') ||
-        location.pathname.startsWith('/mypage') ||
-        location.pathname.startsWith('/setting') ? null : (
-          <SideBar />
-        )}
-
-        <div>{props.children}</div>
+        {/* 메인 페이지에서만 사이드바 렌더링 */}
+        {location.pathname === '/' ? <SideBar /> : null}
+        <div style={{ width: '100%' }}>{props.children}</div>
       </div>
     </div>
   );

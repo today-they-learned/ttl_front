@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
-
-import { Navigation } from 'react-minimal-side-navigation';
 
 const Bar = styled.div`
   position: sticky;
@@ -14,13 +15,39 @@ const Bar = styled.div`
 `;
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.authentication);
+
+  const setArr = [];
+
+  useEffect(() => {
+    // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
+    if (user) {
+      user.user.tags.forEach((tag) => {
+        const curObj = {};
+        curObj.title = tag;
+        curObj.itemId = `/tags/${tag}`;
+        setArr.push(curObj);
+      });
+    }
+  });
+
+  const setType = (itemId) => {
+    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+  };
   return (
     <>
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
-            console.log(itemId);
-            // 나중에 여기에서 피드 타입 설정을 해줄 예정입니다. route를 수정하면서 해당 메뉴를 눌렀을 떄 보여주는 기능은 잠시 없어졌어요
+            if (user) {
+              setType(itemId);
+            }
+            if (!user && itemId.item !== 'main') {
+              navigate('/signin');
+            }
           }}
           items={[
             {
@@ -28,11 +55,7 @@ const SideBar = () => {
               itemId: { item: 'main', title: '피드' },
               elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
-            {
-              title: '그룹',
-              itemId: { item: 'group', title: '그룹' },
-              elemBefore: () => <Icon name="users" style={{ fontSize: '1.2rem' }} />,
-            },
+
             {
               title: '팔로우',
               itemId: { item: 'follow', title: '팔로우' },
@@ -43,20 +66,7 @@ const SideBar = () => {
               itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-              subNav: [
-                {
-                  title: 'aws',
-                  itemId: '/tags/aws',
-                },
-                {
-                  title: 'spring',
-                  itemId: '/tags/spring',
-                },
-                {
-                  title: 'django',
-                  itemId: '/tags/django',
-                },
-              ],
+              subNav: user ? setArr : null,
             },
             {
               title: '북마크',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
@@ -9,7 +10,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 4rem;
+  padding: 0.8rem 1rem 0.8rem 3rem;
   margin-bottom: 4rem;
   z-index: 1;
 `;
@@ -27,11 +28,17 @@ const DropText = styled.div`
   font-weight: 500;
 `;
 
+const Logo = styled.img`
+  width: 7rem;
+  height: auto;
+`;
+
 const MobileNavbar = () => {
   return (
     <Nav>
-      {/* 로고 대신 텍스트로 우선 작성 */}
-      <h1>TTL</h1>
+      <Link to="/">
+        <Logo src="images/Logo.gif" alt="logo" />
+      </Link>
       <div
         style={{
           display: 'flex',

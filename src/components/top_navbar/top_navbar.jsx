@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Icon, Dropdown, Button } from 'semantic-ui-react';
+import { Icon, Dropdown } from 'semantic-ui-react';
+import COLOR from 'constants/color.constant';
+import { darken } from 'polished';
 
 const Nav = styled.nav`
   position: sticky;
@@ -11,7 +14,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   margin-bottom: 4rem;
   z-index: 1;
   box-shadow: 1px 1px 10px -5px black;
@@ -30,7 +33,28 @@ const DropText = styled.div`
   font-weight: 500;
 `;
 
+const Login = styled.button`
+  background: ${COLOR.PRIMARY} !important;
+  color: white !important;
+  font-family: 'NS-R' !important;
+  height: 2rem;
+  font-size: 14px !important;
+  letter-spacing: 0.1rem;
+  border-radius: 0.3rem;
+  padding: 0 1rem;
+  cursor: pointer;
+  &:hover {
+    background: ${darken(0.03, COLOR.PRIMARY)} !important;
+  }
+`;
+
+const Logo = styled.img`
+  width: 7rem;
+  height: auto;
+`;
+
 const TopNavbar = () => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.authentication);
 
   const handleSignOut = () => {
@@ -45,11 +69,16 @@ const TopNavbar = () => {
   const handleSetting = () => {
     window.location.replace('/setting');
   };
+  const trigger = (
+    <span>
+      <Avatar src="images/avatar.png" style={{ cursor: 'pointer' }} />
+    </span>
+  );
+
   return (
     <Nav>
-      {/* 로고 대신 텍스트로 우선 작성 */}
       <Link to="/">
-        <h1>TTL</h1>
+        <Logo src="images/Logo.gif" alt="logo" />
       </Link>
       <div
         style={{
@@ -61,15 +90,28 @@ const TopNavbar = () => {
         <Icon name="search" style={{ fontSize: '1.5rem' }} />
         {user ? (
           <>
-            <Icon name="pencil alternate" style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }} />
-            <Avatar src="images/avatar.png" />
+            <Icon
+              name="pencil alternate"
+              style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
+              onClick={() => {
+                navigate('/post');
+              }}
+            />
             {/* 임시 유저 아이콘 */}
-            <Dropdown direction="left">
+            <Dropdown
+              direction="left"
+              trigger={trigger}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
               <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
                 <Dropdown.Item onClick={handleMypage}>
                   <DropText>프로필</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    navigate('/post');
+                  }}
+                >
                   <DropText>글쓰기</DropText>
                 </Dropdown.Item>
                 <Dropdown.Item onClick={handleSetting}>
@@ -79,13 +121,12 @@ const TopNavbar = () => {
                   <DropText>로그아웃</DropText>
                 </Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown>{' '}
           </>
         ) : (
           <Link to="/signin">
-            <Button>로그인</Button>
+            <Login>로그인</Login>
           </Link>
-          // 임시
         )}
       </div>
     </Nav>
