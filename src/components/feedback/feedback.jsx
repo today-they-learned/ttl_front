@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import EMOJI from 'constants/emoji.constant';
 
 const EmojiWrapper = styled.span`
   display: flex;
@@ -21,28 +22,20 @@ const EmojiBox2 = styled.div`
   padding: 0.3rem 0.5rem;
 `;
 
-const EMOJI = {
-  thumbs_up: '👍',
-  heart: '❤',
-  clap: '👏',
-  lion: '🦁',
-  thinking: '🤔',
-  smile: '☺️',
-  clover: '🍀',
-  eyes: '👀',
-  perfect: '💯',
-  bulb: '💡',
-};
-
 const Feedback = ({ feedback }) => {
   const emoJiLen = feedback.length;
-  const sortedFeedback = feedback.sort((a, b) => {
-    return b.total - a.total;
-  });
+  const feedbackArr = [...feedback];
+
   const [firstEmoji, setFirstEmoji] = useState('');
   const [firstEmojiCount, setFirstEmojiCount] = useState(0);
   const [secondEmoji, setSecondEmoji] = useState('');
   const [secondEmojiValue, setSecondEmojiValue] = useState(0);
+  const [sortedFeedback] = useState(
+    feedback &&
+      feedbackArr.sort((a, b) => {
+        return b.total - a.total;
+      }),
+  );
 
   useEffect(() => {
     switch (emoJiLen) {
@@ -57,6 +50,7 @@ const Feedback = ({ feedback }) => {
         setFirstEmojiCount(sortedFeedback[0].total);
         setSecondEmoji('');
         setSecondEmojiValue(0);
+
         break;
       default:
         setFirstEmoji(sortedFeedback[0].category);
@@ -64,8 +58,6 @@ const Feedback = ({ feedback }) => {
         setSecondEmoji(sortedFeedback[1].category);
         setSecondEmojiValue(sortedFeedback[1].total);
     }
-
-    console.log(firstEmoji, firstEmojiCount, secondEmojiValue);
   });
   return (
     <EmojiWrapper>

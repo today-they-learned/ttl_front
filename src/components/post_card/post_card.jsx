@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
 import Feedback from 'components/feedback/feedback';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Card,
   Thumbnail,
@@ -17,49 +17,7 @@ import {
 } from './post_card_styled';
 
 const PostCard = ({ post }) => {
-  const { thumbnail, title, content, tags, createdAt, feedbackCount, user } = post;
-  const [feedback] = useState([
-    {
-      category: 'thumbs_up',
-      total: 3,
-    },
-    {
-      category: 'heart',
-      total: 2,
-    },
-    {
-      category: 'clap',
-      total: 1,
-    },
-    {
-      category: 'lion',
-      total: 4,
-    },
-    {
-      category: 'thinking',
-      total: 6,
-    },
-    {
-      category: 'smile',
-      total: 3,
-    },
-    {
-      category: 'clover',
-      total: 3,
-    },
-    {
-      category: 'eyes',
-      total: 3,
-    },
-    {
-      category: 'perfect',
-      total: 3,
-    },
-    {
-      category: 'bulb',
-      total: 3,
-    },
-  ]);
+  const { thumbnail, title, content, tags, createdAt, feedback, feedbackCount, user } = post;
 
   return (
     <Card>
