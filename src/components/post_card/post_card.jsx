@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
-import React from 'react';
-import { Icon } from 'semantic-ui-react';
+import Feedback from 'components/feedback/feedback';
+import React, { useState } from 'react';
 import {
   Card,
   Thumbnail,
@@ -18,6 +18,48 @@ import {
 
 const PostCard = ({ post }) => {
   const { thumbnail, title, content, tags, createdAt, feedbackCount, user } = post;
+  const [feedback] = useState([
+    {
+      category: 'thumbs_up',
+      total: 3,
+    },
+    {
+      category: 'heart',
+      total: 2,
+    },
+    {
+      category: 'clap',
+      total: 1,
+    },
+    {
+      category: 'lion',
+      total: 4,
+    },
+    {
+      category: 'thinking',
+      total: 6,
+    },
+    {
+      category: 'smile',
+      total: 3,
+    },
+    {
+      category: 'clover',
+      total: 3,
+    },
+    {
+      category: 'eyes',
+      total: 3,
+    },
+    {
+      category: 'perfect',
+      total: 3,
+    },
+    {
+      category: 'bulb',
+      total: 3,
+    },
+  ]);
 
   return (
     <Card>
@@ -56,8 +98,10 @@ const PostCard = ({ post }) => {
           <UserName>{user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Icon name="heart" />
-          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{feedbackCount}</p>
+          <Feedback feedback={feedback} />
+          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
+            {`+${feedbackCount}`}
+          </p>
         </div>
       </CardBottom>
     </Card>
