@@ -4,8 +4,8 @@ import { Form } from 'semantic-ui-react';
 export const SettingContainer = styled.div`
   width: 55rem;
   height: 40rem;
-  margin-left: 20rem;
-  padding-top: 5.1rem;
+  margin-left: 27rem;
+  padding-top: 4.9rem;
 `;
 
 export const Label = styled.div`
@@ -123,7 +123,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonPhrase = styled.span`
-  width: 22rem;
+  width: 24rem;
   height: 2rem;
   float: left;
   margin-top: 0.7rem;

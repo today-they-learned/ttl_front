@@ -68,7 +68,7 @@ const Setting = () => {
       <Styled.Label>회원 탈퇴</Styled.Label>
       <Styled.Button>회원 탈퇴</Styled.Button>
       <Styled.ButtonPhrase>
-        탈퇴 시 작성하신 포스트 및 댓글이 모두 삭제되며 복구되지 않습니다.
+        탈퇴 시 작성한 포스트 및 댓글이 삭제되며 복구되지 않습니다.
       </Styled.ButtonPhrase>
     </Styled.SettingContainer>
   );

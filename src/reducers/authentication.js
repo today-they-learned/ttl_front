@@ -1,6 +1,7 @@
 import produce from 'utils/produce.util';
 
 const user = JSON.parse(localStorage.getItem('user'));
+console.log(user);
 
 export const initialState = {
   user,
@@ -10,6 +11,9 @@ export const initialState = {
   signupLoading: false,
   signupDone: false,
   signupError: null,
+  updateUserLoading: false,
+  updatUserDone: false,
+  updateUserError: null,
 };
 
 export const SIGN_IN_REQUEST = 'SIGNIN_REQUEST';
@@ -19,6 +23,10 @@ export const SIGN_IN_FAILURE = 'SIGNIN_FAILURE';
 export const SIGN_UP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGNUP_FAILURE';
+
+export const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 export const signinRequestAction = (data) => ({
   type: SIGN_IN_REQUEST,
@@ -58,6 +66,20 @@ const reducer = (state = initialState, action) =>
       case SIGN_UP_FAILURE:
         draft.signupLoading = false;
         draft.signupError = action.error;
+        break;
+      case UPDATE_USER_REQUEST:
+        draft.updateUserLoading = true;
+        draft.updateUserDone = false;
+        draft.updateUserError = null;
+        break;
+      case UPDATE_USER_SUCCESS:
+        draft.updateUserLoading = false;
+        draft.updateUserDone = true;
+        draft.user = action.data;
+        break;
+      case UPDATE_USER_FAILURE:
+        draft.updateUserLoading = false;
+        draft.updateUserwError = action.error;
         break;
       default:
         break;

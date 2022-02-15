@@ -8,12 +8,10 @@ import CalendarHeatMapMobile from './CalendarHeatMapMobile';
 import TIL from './TIL';
 
 const ProfileInfo = (props) => {
-  const introducee =
-    '안녕하세요 국민대학교 재학중인 권소예입니다 만나서 반가워요 블라블라 응애응애 응애..... 응애.';
   const [tags, setTags] = useState(['algorithm', 'python', 'react']);
   const [tab, setTab] = useState(true);
   const [tagEdit, setTagEdit] = useState(true);
-  const { username, email } = props.data;
+  const { username, email, introduce } = props.data;
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
     setTags(tags.filter((tag) => tag !== value));
@@ -36,7 +34,7 @@ const ProfileInfo = (props) => {
           <Styled.ContainerCenter>
             <Styled.UserName>{username}</Styled.UserName>
             <Styled.Email>{email}</Styled.Email>
-            <Styled.Introduce>{introducee}</Styled.Introduce>
+            <Styled.Introduce>{introduce}</Styled.Introduce>
             {tagEdit ? (
               <div>
                 <Styled.TagContainer>
@@ -144,7 +142,7 @@ const ProfileInfo = (props) => {
                 </div>
               )}
             </Styled.ContainerTag>
-            <Styled.Introduce2>{introducee}</Styled.Introduce2>
+            <Styled.Introduce2>{introduce}</Styled.Introduce2>
           </Styled.ContainerTop>
           <Styled.Line2 />
 

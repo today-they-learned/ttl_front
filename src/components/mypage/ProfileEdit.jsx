@@ -4,8 +4,7 @@ import { Form, Input, TextArea } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const tag = ['algorithm', 'python', 'react', 'django'];
-const introducee =
-  '안녕하세요 국민대학교 재학중인 권소예입니다 만나서 반가워요 블라블라 응애응애 응애..... 응애.';
+
 const ProfileEdit = (props) => {
   const [info, setInfo] = useState(props.data);
 
@@ -14,11 +13,6 @@ const ProfileEdit = (props) => {
       ...info,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const editInfo = () => {
-    props.handleSubmit(info.username, info.email, info.introduce);
-    console.log('hi');
   };
 
   const Desktop = () => {
@@ -33,11 +27,11 @@ const ProfileEdit = (props) => {
 
           <Styled.ButtonContainer>
             <Styled.BackButton>취소</Styled.BackButton>
-            <Styled.EditButton onClick={editInfo}>저장</Styled.EditButton>
+            <Styled.EditButton>저장</Styled.EditButton>
           </Styled.ButtonContainer>
 
           <Styled.FieldContainer>
-            <Form onSubmit={editInfo}>
+            <Form>
               <Styled.Container>
                 <Styled.Label>이름</Styled.Label>
                 <Styled.Container2>
@@ -124,10 +118,10 @@ const ProfileEdit = (props) => {
           </Styled.PhotoContainer2>
           <Styled.ButtonContainer2>
             <Styled.BackButton2>취소</Styled.BackButton2>
-            <Styled.EditButton2 onClick={editInfo}>저장</Styled.EditButton2>
+            <Styled.EditButton2>저장</Styled.EditButton2>
           </Styled.ButtonContainer2>
 
-          <Form onSubmit={editInfo}>
+          <Form>
             <Styled.FieldContainerMobile>
               <Styled.FieldLabel>이름</Styled.FieldLabel>
               <Styled.Containerr>
@@ -151,7 +145,7 @@ const ProfileEdit = (props) => {
                     control={TextArea}
                     name="introduce"
                     placeholder="한 줄 소개를 입력하세요"
-                    value={introducee}
+                    value={info.introduce}
                     onChange={inputHandler}
                   />
                 </Styled.AboutField2>
