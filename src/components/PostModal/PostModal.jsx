@@ -13,10 +13,12 @@ import * as Styled from './PostModalStyle';
 const Modal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { postDone } = useSelector((state) => state.post);
+  const { postError, postDone } = useSelector((state) => state.post);
 
   const [tags, setTags] = useState([]);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [imageError, setimageError] = useState('');
+  const [errorAnimation, setErrorAnimation] = useState(false);
 
   const tagsRef = useRef();
   const inputRef = useRef();
@@ -40,16 +42,19 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
       const img = e.target.files[0];
       const formData = new FormData();
       formData.append('image', img);
-      const { data: filename } = await axios.post('/articles/upload_image/', formData, {
-        headers: authHeader(),
-      });
-      console.log(filename);
-
-      setThumbnailUrl(`${filename.url}`);
+      try {
+        const { data: filename } = await axios.post('/articles/upload_image/', formData, {
+          headers: authHeader(),
+        });
+        setimageError('');
+        setThumbnailUrl(`${filename.url}`);
+      } catch (err) {
+        setThumbnailUrl('');
+        setimageError('올바르지 않은 파일 형식입니다.');
+        setErrorAnimation(false);
+      }
     })();
     return false;
-
-    // 이 함수로 image 데이터를 보낼 계획
   };
 
   const onTagsChange = (e) => {
@@ -59,7 +64,6 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
   const onSubmitPost = useCallback(() => {
     const img = inputRef.current.files[0];
     const formData = new FormData();
-    console.log(tags);
     formData.append('title', titleText);
     formData.append('content', postContent);
     formData.append('tags', JSON.stringify(tags));
@@ -72,6 +76,12 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
       data: formData,
     });
   });
+
+  useEffect(() => {
+    if (postError) {
+      setErrorAnimation(true);
+    }
+  }, [postError]);
 
   useEffect(() => {
     if (postDone) {
@@ -102,6 +112,11 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
                 style={{ display: 'none' }}
               />
               <Styled.ThumbnailBtn onClick={onButtonClick}>썸네일 추가</Styled.ThumbnailBtn>
+              {imageError && (
+                <Styled.ErrorMessage errorAnimation={errorAnimation}>
+                  {imageError}
+                </Styled.ErrorMessage>
+              )}
             </Styled.ModalLeft>
             <Styled.VerticalLine />
             <Styled.ModalRight>

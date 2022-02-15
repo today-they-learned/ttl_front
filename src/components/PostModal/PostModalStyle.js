@@ -1,7 +1,16 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import COLOR from 'constants/color.constant';
 
 import { darken, lighten } from 'polished';
+
+const errorAnimation = keyframes`
+   0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+`;
 
 export const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -79,6 +88,17 @@ export const ThumbnailBtn = styled.button`
     cursor: pointer;
     background-color: ${lighten(0.05, COLOR.BACKGROUND)};
   }
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
+  margin: 2rem;
+
+  ${(props) =>
+    props.errorAnimation &&
+    css`
+      animation: 0.5s ${errorAnimation};
+    `}
 `;
 
 export const VerticalLine = styled.div`
