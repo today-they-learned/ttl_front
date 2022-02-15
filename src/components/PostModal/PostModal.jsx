@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
 import { POST_REQUEST } from 'reducers/post';
+import authHeader from 'sagas/auth-header';
+import axios from 'axios';
 
 import * as Styled from './PostModalStyle';
 
 const Modal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { postError, postDone } = useSelector((state) => state.post);
+  const { postDone } = useSelector((state) => state.post);
 
   const [tags, setTags] = useState([]);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   const tagsRef = useRef();
   const inputRef = useRef();
@@ -33,9 +36,19 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
     }
   };
   const onImageChange = (e) => {
-    const img = e.target.files[0];
-    const formData = new FormData();
-    console.log(img, formData);
+    (async () => {
+      const img = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', img);
+      const { data: filename } = await axios.post('/articles/upload_image/', formData, {
+        headers: authHeader(),
+      });
+      console.log(filename);
+
+      setThumbnailUrl(`${filename.url}`);
+    })();
+    return false;
+
     // 이 함수로 image 데이터를 보낼 계획
   };
 
@@ -44,25 +57,27 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
   };
 
   const onSubmitPost = useCallback(() => {
+    const img = inputRef.current.files[0];
+    const formData = new FormData();
+    console.log(tags);
+    formData.append('title', titleText);
+    formData.append('content', postContent);
+    formData.append('tags', JSON.stringify(tags));
+    if (img) {
+      formData.append('thumbnail', img);
+    }
+
     dispatch({
       type: POST_REQUEST,
-      data: {
-        title: titleText,
-        content: postContent,
-        tags,
-      },
+      data: formData,
     });
   });
 
   useEffect(() => {
-    if (postError) {
-      console.log('뭔가 에러남..');
-    }
     if (postDone) {
-      console.log('작성됨');
       navigate('/');
     }
-  }, [postError, postDone]);
+  }, [postDone]);
 
   return (
     <>
@@ -75,14 +90,18 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
         <Styled.ModalInner tabIndex="0">
           <Styled.ModalContent>
             <Styled.ModalLeft>
-              <Icon name="images" style={{ fontSize: '5rem' }} />
+              {thumbnailUrl ? (
+                <Styled.ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
+              ) : (
+                <Icon name="images" style={{ fontSize: '5rem' }} />
+              )}
               <input
                 type="file"
                 onChange={onImageChange}
                 ref={inputRef}
                 style={{ display: 'none' }}
               />
-              <Styled.ThumnailBtn onClick={onButtonClick}>썸네일 추가</Styled.ThumnailBtn>
+              <Styled.ThumbnailBtn onClick={onButtonClick}>썸네일 추가</Styled.ThumbnailBtn>
             </Styled.ModalLeft>
             <Styled.VerticalLine />
             <Styled.ModalRight>

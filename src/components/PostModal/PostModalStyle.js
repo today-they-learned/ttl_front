@@ -61,7 +61,12 @@ export const ModalLeft = styled.div`
   margin-right: 3rem;
 `;
 
-export const ThumnailBtn = styled.button`
+export const ThumbnailImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const ThumbnailBtn = styled.button`
   width: 10rem;
   height: 2rem;
   background-color: ${COLOR.BACKGROUND};

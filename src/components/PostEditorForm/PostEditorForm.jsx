@@ -18,7 +18,6 @@ import Modal from 'components/PostModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import authHeader from 'sagas/auth-header';
 
@@ -69,8 +68,6 @@ const ButtonContainer = styled.div`
 
 const PostEditorForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  console.log(dispatch);
 
   const [titleText, setTitleText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
