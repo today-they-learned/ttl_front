@@ -11,7 +11,7 @@ const ProfileInfo = (props) => {
   const [tags, setTags] = useState(['algorithm', 'python', 'react']);
   const [tab, setTab] = useState(true);
   const [tagEdit, setTagEdit] = useState(true);
-  const { username, email, introduce } = props.data;
+  const { username, email, introduce, avatar } = props.data;
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
     setTags(tags.filter((tag) => tag !== value));
@@ -28,7 +28,7 @@ const ProfileInfo = (props) => {
       isDesktop && (
         <Styled.Profile>
           <Styled.ContainerLeft>
-            <Styled.ProfileImg src="images/profile.jpg" />
+            <Styled.ProfileImg src={avatar} />
           </Styled.ContainerLeft>
 
           <Styled.ContainerCenter>

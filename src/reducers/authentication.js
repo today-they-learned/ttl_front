@@ -78,6 +78,8 @@ const reducer = (state = initialState, action) =>
       case UPDATE_USER_SUCCESS:
         draft.updateUserLoading = false;
         draft.updateUserDone = true;
+        console.log('성공');
+        console.log(action.data);
         temp = JSON.parse(localStorage.getItem('user'));
         temp.user = action.data;
         localStorage.setItem('user', JSON.stringify(temp));

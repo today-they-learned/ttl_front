@@ -76,7 +76,7 @@ export const TagLabel = styled.span`
   font-size: 0.8rem;
 `;
 
-export const UploadButton = styled.button`
+export const PhotoInput = styled.input`
   width: 5rem;
   height: 1.5rem;
   font-size: 0.5rem;

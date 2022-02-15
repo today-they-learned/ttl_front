@@ -9,23 +9,13 @@ const MyPage = styled.div``;
 
 function Mypage() {
   const { user } = useSelector((state) => state.authentication);
-  // console.log(user.user);
+  console.log(user.user);
   const [info] = useState(user.user);
   const [editMode, setEditMode] = useState(false);
 
   const onChangeMode = () => {
     setEditMode(!editMode);
   };
-
-  // const handleSubmit = (_username, _email, _introduce) => {
-  //   setInfo({
-  //     ...info,
-  //     username: _username,
-  //     email: _email,
-  //     introduce: _introduce,
-  //   });
-  //   setEditMode(false);
-  // };
 
   return (
     <>

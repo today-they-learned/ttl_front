@@ -14,32 +14,40 @@ const ProfileEdit = (props) => {
     });
   };
 
-  // const editInfo = () => {
-  //   props.handleSubmit(info.username, info.email, info.introduce);
-  // };
-
   const dispatch = useDispatch();
+  const formData = new FormData();
 
-  const handleSubmitt = useCallback(() => {
+  const onChange = (e) => {
+    const img = e.target.files[0];
+    formData.append('avatar', img);
+  };
+
+  const handleSubmit = useCallback(() => {
+    formData.append('username', info.username);
+    formData.append('email', info.email);
+    formData.append('introduce', info.introduce);
     dispatch({
       type: UPDATE_USER_REQUEST,
-      data: {
-        username: info.username,
-        email: info.email,
-        introduce: info.introduce,
-      },
+      data: formData,
     });
     props.onChangeMode();
-  }, [dispatch, info.username, info.email, info.introduce]);
+  }, [dispatch, formData]);
 
   return (
     <Styled.InfoEdit>
       <Styled.ContainerLeft>
-        <Styled.ProfileImg src="images/profile.jpg" alt="profile" />
-        <Styled.UploadButton>Photo upload</Styled.UploadButton>
+        <Styled.ProfileImg src={info.avatar} alt="profile" />
+        <div>
+          <Styled.PhotoInput
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="profile_img"
+            onChange={onChange}
+          />
+        </div>
       </Styled.ContainerLeft>
       <Styled.ContainerCenter>
-        <Form onSubmit={handleSubmitt}>
+        <Form onSubmit={handleSubmit}>
           <Styled.UNField>
             <Form.Field
               control={Input}
