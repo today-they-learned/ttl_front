@@ -110,7 +110,9 @@ const PutEditorForm = () => {
     editorRef.current.getInstance().setMarkdown(postContent);
     setPostContent(postContent);
 
-    urlToFile(thumbnailFile).then((file) => setThumbnailFile(file));
+    if (thumbnailFile) {
+      urlToFile(thumbnailFile).then((file) => setThumbnailFile(file));
+    }
   }, []);
 
   useEffect(() => {
