@@ -25,7 +25,7 @@ const SideBar = () => {
   useEffect(() => {
     // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
     if (user) {
-      user.user.tags.forEach((tag) => {
+      (user.user.tags || []).forEach((tag) => {
         const curObj = {};
         curObj.title = tag;
         curObj.itemId = `/tags/${tag}`;
