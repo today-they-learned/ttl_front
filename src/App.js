@@ -8,7 +8,8 @@ import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
 import { Mypage, SignIn, SignUp, Article } from 'pages';
 import PostList from 'components/post_list/post_list';
-import TestEditorForm from 'components/PostEditorForm/PostEditorForm';
+import PostEditorForm from 'components/PostEditorForm/PostEditorForm';
+import PutEditorForm from 'components/PutEditorForm/PutEditorForm';
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/article/:id" element={<Article />} />
-            <Route path="/post" element={<TestEditorForm />} />
+            <Route path="/post" element={<PostEditorForm />} />
+            <Route path="/put/:id" element={<PutEditorForm />} />
           </Routes>
         </ResponsiveLayout>
       </BrowserRouter>

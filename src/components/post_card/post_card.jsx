@@ -4,6 +4,7 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import {
   Card,
+  ThumbnailContainer,
   Thumbnail,
   Title,
   Content,
@@ -21,8 +22,12 @@ const PostCard = ({ post }) => {
 
   return (
     <Card>
-      {thumbnail && <Thumbnail src={thumbnail} />}
-      <CardBody>
+      {thumbnail && (
+        <ThumbnailContainer>
+          <Thumbnail src={thumbnail} />
+        </ThumbnailContainer>
+      )}
+      <CardBody thumbnail={thumbnail}>
         <Title>{title}</Title>
         <Content thumbnail={thumbnail}>{content}</Content>
         <div
