@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form } from 'semantic-ui-react';
+import { Form, Label, Input } from 'semantic-ui-react';
 
 export const InfoEdit = styled.div`
   width: 65rem;
@@ -18,13 +18,25 @@ export const ContainerLeft = styled.div`
 
 export const ContainerCenter = styled.div`
   width: 50rem;
-  height: 40rem;
+  height: 13rem;
   float: left;
   margin-top: 0.5rem;
   margin-left: 1rem;
   margin-bottom: 1.2rem;
   padding-left: 2.5rem;
   padding-top: 1rem;
+  font-size: 12px;
+  border-radius: 0.2rem;
+`;
+
+export const ContainerBottom = styled.div`
+  width: 50rem;
+  height: 20rem;
+  float: left;
+  margin-top: 0.5rem;
+  margin-left: 10.6rem;
+  margin-bottom: 1.2rem;
+  padding-left: 2.5rem;
   font-size: 12px;
   border-radius: 0.2rem;
 `;
@@ -59,21 +71,51 @@ export const EditButton = styled.button`
 `;
 
 export const TagLabel = styled.span`
-  float: left;
-  margin-top: 0.8rem;
+  clear: left !important;
+  margin-top: 1.2rem;
   margin-left: 0.2rem;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
 `;
 
-export const PhotoInput = styled.input`
-  width: 5rem;
-  height: 1.5rem;
-  font-size: 0.5rem;
-  margin-top: 0.6rem;
-  margin-left: 1.2rem;
-  background-color: #707bf3;
-  color: white;
+export const TagContainer = styled.div`
+  font-size: 0.8rem;
+`;
+export const TagField = styled(Form.Field)`
+  width: 10.5rem;
+  float: left;
+  font-size: 0.8rem;
+`;
+export const Tagg = styled(Label)`
+  float: left;
+  background-color: #707bf3 !important;
+  color: white !important;
+  border-radius: 1rem !important;
+  font-size: 0.75rem !important;
+  margin-right: 0.4rem !important;
+  margin-bottom: 0.3rem !important;
+`;
+
+export const TagButton = styled.button`
+  width: 3rem;
+  height: 1.4rem;
+  border-radius: 0.1rem;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  color: #707bf3;
+`;
+
+export const PhotoInput = styled(Input)`
+  width: 5rem !important;
+  height: 1.5rem !important;
+  font-size: 0.5rem !important;
+  margin-top: 0.6rem !important;
+  margin-left: 1.2rem !important;
+  background-color: #707bf3 !important;
+  color: white !important;
 `;
 
 export const UNField = styled(Form.Field)`
@@ -87,7 +129,7 @@ export const UNField = styled(Form.Field)`
 
 export const AboutField = styled(Form.Field)`
   width: 42rem;
-  height: 5rem;
+  height: 4.8rem;
   clear: left;
   font-size: 0.9rem;
   resize: none;

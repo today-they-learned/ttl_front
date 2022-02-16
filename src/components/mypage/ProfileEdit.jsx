@@ -1,12 +1,19 @@
 import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
-import { Form, Input, TextArea } from 'semantic-ui-react';
+import { Form, Input, TextArea, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
   const { user } = useSelector((state) => state.authentication);
   const [info, setInfo] = useState(user.user);
+  const [tags, setTags] = useState(user.user.tags);
+  const [tagEdit, setTagEdit] = useState(true);
+
+  const deleteTag = (e) => {
+    const value = e.target.parentElement.id;
+    setTags(tags.filter((tag) => tag !== value));
+  };
 
   const inputHandler = (e) => {
     setInfo({
@@ -37,6 +44,10 @@ const ProfileEdit = (props) => {
     props.onChangeMode();
   }, [dispatch, formData]);
 
+  const TagSubmit = () => {
+    // api put code
+    setTagEdit(!tagEdit);
+  };
   return (
     <Styled.InfoEdit>
       <Styled.ContainerLeft>
@@ -74,6 +85,32 @@ const ProfileEdit = (props) => {
             />
           </Styled.AboutField>
 
+          {tagEdit ? (
+            <div>
+              <Styled.TagContainer>
+                {tags.map((tag) => (
+                  <Styled.Tagg id={tag}>
+                    {tag}
+                    <Icon name="delete" onClick={deleteTag} />
+                  </Styled.Tagg>
+                ))}
+              </Styled.TagContainer>
+              <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+            </div>
+          ) : (
+            <div>
+              <Styled.TagContainer>
+                <Form onSubmit={TagSubmit}>
+                  <Styled.TagField>
+                    <Form.Field control={Input} />
+                  </Styled.TagField>
+                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+                </Form>
+              </Styled.TagContainer>
+            </div>
+          )}
+        </Styled.ContainerCenter>
+        <Styled.ContainerBottom>
           <Styled.TagLabel>facebook_username</Styled.TagLabel>
           <Styled.SnsField>
             <Form.Field
@@ -104,7 +141,7 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-        </Styled.ContainerCenter>
+        </Styled.ContainerBottom>
       </Form>
     </Styled.InfoEdit>
   );

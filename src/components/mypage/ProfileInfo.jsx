@@ -10,12 +10,11 @@ import TIL from './TIL';
 
 const ProfileInfo = (props) => {
   const { user } = useSelector((state) => state.authentication);
-  console.log(user.user.tags);
   const [info] = useState(user.user);
 
   const [tags, setTags] = useState(user.user.tags);
-  const [tab, setTab] = useState(true);
   const [tagEdit, setTagEdit] = useState(true);
+  const [tab, setTab] = useState(true);
 
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
