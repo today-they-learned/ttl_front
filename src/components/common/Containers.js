@@ -10,6 +10,17 @@ export const AlignMiddleContainer = styled.div`
   align-items: center;
 `;
 
+export const RowStartContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
+
+export const ColumnStartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 export const ColumnMiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
