@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import Feedback from 'components/Feedback/feedback';
+import Feedback from 'components/Feedback/Feedback';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDate from 'hooks/useDate';

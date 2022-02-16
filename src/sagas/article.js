@@ -40,7 +40,7 @@ function* feedArticles(action) {
   }
 }
 
-const singleArticleAPI = (id) => axios.get(`/articles/${id}`, { headers: authHeader() });
+const singleArticleAPI = (id) => axios.get(`/articles/${id}/`, { headers: authHeader() });
 
 function* singleArticle(action) {
   try {
@@ -58,7 +58,7 @@ function* singleArticle(action) {
   }
 }
 
-const articleDestroyAPI = (id) => axios.delete(`/articles/${id}`, { headers: authHeader() });
+const articleDestroyAPI = (id) => axios.delete(`/articles/${id}/`, { headers: authHeader() });
 
 function* articleDestory(action) {
   try {

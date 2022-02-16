@@ -31,7 +31,7 @@ function* commentNEW(action) {
   }
 }
 
-const commentDestroyAPI = (id) => axios.delete(`/comments/${id}`, { headers: authHeader() });
+const commentDestroyAPI = (id) => axios.delete(`/comments/${id}/`, { headers: authHeader() });
 
 function* commentDestroy(action) {
   try {
@@ -49,7 +49,7 @@ function* commentDestroy(action) {
 }
 
 const commentUpdateAPI = (id, data) =>
-  axios.patch(`/comments/${id}`, data, { headers: authHeader() });
+  axios.patch(`/comments/${id}/`, data, { headers: authHeader() });
 
 function* commentUpdate(action) {
   try {

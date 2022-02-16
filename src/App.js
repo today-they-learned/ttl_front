@@ -8,7 +8,7 @@ import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
 import { Mypage, SignIn, SignUp, Article } from 'pages';
 import ReactGA from 'react-ga';
-import LocationTracker from 'trackers/location_tracker';
+import LocationTracker from 'trackers/LocationTracker';
 
 import PostList from 'components/PostList/PostList';
 import PostEditorForm from 'components/EditorForm/PostEditorForm';
