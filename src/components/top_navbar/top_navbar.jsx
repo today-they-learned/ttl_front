@@ -71,7 +71,7 @@ const TopNavbar = () => {
   return (
     <Nav>
       <Link to="/">
-        <Logo src="images/Logo.gif" alt="logo" />
+        <Logo src={`${process.env.PUBLIC_URL}/images/Logo.gif`} alt="logo" />
       </Link>
       <div
         style={{

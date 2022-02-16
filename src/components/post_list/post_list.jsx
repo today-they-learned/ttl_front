@@ -44,16 +44,18 @@ const PostList = () => {
   );
 
   useEffect(() => {
-    dispatch({
-      type: LOAD_ARTICLES_REQUEST,
-      data: {
-        // orderby: 'score',
-        // tab: type == 'main' ? null : type,
-        // tag: 'python',
-        // search: 'test',
-        // user_id: 4,
-      },
-    });
+    if (currentPage === 1) {
+      dispatch({
+        type: LOAD_ARTICLES_REQUEST,
+        data: {
+          orderby: 'created_at',
+          // tab: type == 'main' ? null : type,
+          // tag: 'python',
+          // search: 'test',
+          // user_id: 4,
+        },
+      });
+    }
   }, [dispatch]);
   // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
 
@@ -67,7 +69,7 @@ const PostList = () => {
           type: LOAD_ARTICLES_REQUEST,
           data: {
             page: currentPage,
-            // orderby: 'score',
+            orderby: 'created_at',
             // tab: type == 'main' ? null : type,
             // tag: 'python',
             // search: 'test',
@@ -108,8 +110,8 @@ const PostList = () => {
         </div>
       </PostTop>
       <PostCards>
-        {feedArticles.map((article) => (
-          <PostCard post={article[1]} />
+        {feedArticles.map((article, index) => (
+          <PostCard key={('postcard', index)} post={article[1]} />
         ))}
       </PostCards>
     </Post>

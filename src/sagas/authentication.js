@@ -19,7 +19,7 @@ function* signin(action) {
     const result = yield call(signinAPI, action.data);
     yield put({
       type: SIGN_IN_SUCCESS,
-      data: result.data,
+      data: camelize(result.data),
     });
   } catch (err) {
     console.error(err);
