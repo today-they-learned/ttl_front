@@ -14,7 +14,7 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
 import COLOR from 'constants/color.constant';
-import Modal from 'components/PostModal/PostModal';
+import PostModal from 'components/EditorModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
@@ -151,7 +151,7 @@ const PostEditorForm = () => {
         </ButtonContainer>
       </div>
       {modalVisible && (
-        <Modal
+        <PostModal
           visible={modalVisible}
           closable
           maskClosable

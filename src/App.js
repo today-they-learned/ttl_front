@@ -7,10 +7,12 @@ import 'styles/fonts.css';
 import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
 import { Mypage, SignIn, SignUp, Article } from 'pages';
-import PostList from 'components/post_list/post_list';
-import TestEditorForm from 'components/PostEditorForm/PostEditorForm';
 import ReactGA from 'react-ga';
 import LocationTracker from 'trackers/location_tracker';
+
+import PostList from 'components/PostList/PostList';
+import PostEditorForm from 'components/EditorForm/PostEditorForm';
+import PutEditorForm from 'components/EditorForm/PutEditorForm';
 
 ReactGA.initialize('UA-220387661-1');
 
@@ -26,7 +28,8 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/article/:id" element={<Article />} />
-            <Route path="/post" element={<TestEditorForm />} />
+            <Route path="/post" element={<PostEditorForm />} />
+            <Route path="/put/:id" element={<PutEditorForm />} />
           </Routes>
         </ResponsiveLayout>
         <LocationTracker />

@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,14 +7,24 @@ import { POST_REQUEST } from 'reducers/post';
 import authHeader from 'sagas/auth-header';
 import axios from 'axios';
 
-import * as Styled from './PostModalStyle';
+import * as Styled from './ModalStyle';
 
-const Modal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
+const PutModal = ({
+  onClose,
+  maskClosable,
+  closable,
+  visible,
+  titleText,
+  postContent,
+  tags,
+  onChangeTags,
+  thumbnailFile,
+  onChangeThumbnail,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { postError, postDone } = useSelector((state) => state.post);
 
-  const [tags, setTags] = useState([]);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [imageError, setimageError] = useState('');
   const [errorAnimation, setErrorAnimation] = useState(false);
@@ -40,15 +49,18 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
   const onImageChange = (e) => {
     (async () => {
       const img = e.target.files[0];
+      onChangeThumbnail(img);
+      console.log(img);
       const formData = new FormData();
       formData.append('image', img);
       try {
         const { data: filename } = await axios.post('/articles/upload_image/', formData, {
           headers: authHeader(),
         });
-        setimageError('');
         setThumbnailUrl(`${filename.url}`);
+        setimageError('');
       } catch (err) {
+        onChangeThumbnail('');
         setThumbnailUrl('');
         setimageError('올바르지 않은 파일 형식입니다.');
         setErrorAnimation(false);
@@ -57,12 +69,23 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
     return false;
   };
 
+  useEffect(() => {
+    const urlName = thumbnailFile.name;
+    setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
+    console.log(inputRef);
+    console.log(inputRef.current.files);
+    console.log(thumbnailFile);
+  }, []);
+
   const onTagsChange = (e) => {
-    setTags(e.target.value.split(','));
+    console.log(e);
+    onChangeTags(e.target.value.split(','));
   };
 
   const onSubmitPost = useCallback(() => {
-    const img = inputRef.current.files[0];
+    const img = thumbnailFile;
+    console.log(img);
+
     const formData = new FormData();
     formData.append('title', titleText);
     formData.append('content', postContent);
@@ -100,7 +123,7 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
         <Styled.ModalInner tabIndex="0">
           <Styled.ModalContent>
             <Styled.ModalLeft>
-              {thumbnailUrl ? (
+              {thumbnailFile ? (
                 <Styled.ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
               ) : (
                 <Icon name="images" style={{ fontSize: '5rem' }} />
@@ -145,4 +168,4 @@ const Modal = ({ onClose, maskClosable, closable, visible, titleText, postConten
   );
 };
 
-export default Modal;
+export default PutModal;
