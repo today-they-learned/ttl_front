@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import TopNavbar from 'components/top_navbar/top_navbar';
-import SideBar from 'components/sidebar/sidebar';
+import TopNavbar from 'components/Navbar/DesktopNavbar';
+import SideBar from 'components/Sidebar/DesktopSidebar';
 import COLOR from 'constants/color.constant';
 
 const DesktopLayout = (props) => {

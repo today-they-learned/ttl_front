@@ -1,7 +1,16 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import COLOR from 'constants/color.constant';
 
 import { darken, lighten } from 'polished';
+
+const errorAnimation = keyframes`
+   0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+`;
 
 export const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -61,7 +70,12 @@ export const ModalLeft = styled.div`
   margin-right: 3rem;
 `;
 
-export const ThumnailBtn = styled.button`
+export const ThumbnailImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const ThumbnailBtn = styled.button`
   width: 10rem;
   height: 2rem;
   background-color: ${COLOR.BACKGROUND};
@@ -74,6 +88,17 @@ export const ThumnailBtn = styled.button`
     cursor: pointer;
     background-color: ${lighten(0.05, COLOR.BACKGROUND)};
   }
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
+  margin: 2rem;
+
+  ${(props) =>
+    props.errorAnimation &&
+    css`
+      animation: 0.5s ${errorAnimation};
+    `}
 `;
 
 export const VerticalLine = styled.div`
