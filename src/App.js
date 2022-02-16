@@ -29,7 +29,7 @@ const App = () => {
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/article/:id" element={<Article />} />
             <Route path="/post" element={<PostEditorForm />} />
-            <Route path="/put/:id" element={<PutEditorForm />} />
+            <Route path="/put/" element={<PutEditorForm />} />
           </Routes>
         </ResponsiveLayout>
         <LocationTracker />

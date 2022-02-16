@@ -192,7 +192,7 @@ const Article = () => {
             </SubContainer>
             {user?.user.id === singleArticle?.user.id ? (
               <SubContainer>
-                <Link to="/post" state={singleArticle}>
+                <Link to="/put" state={singleArticle}>
                   <MenuText>수정</MenuText>
                 </Link>
                 <MenuText onClick={handleDelete}>삭제</MenuText>
@@ -203,14 +203,12 @@ const Article = () => {
           {singleArticle?.thumbnail ? (
             <Thumbnail src={singleArticle?.thumbnail} alt="thumbnail" />
           ) : null}
-
           {loadArticleDone ? (
             <Viewer
               plugins={[[codeSyntaxHighlight, { hightlighter: Prism }]]}
               initialValue={singleArticle?.content}
             />
           ) : null}
-
           <TagContainer>
             <Icon name="tag" style={{ marginRight: '0.5rem' }} />
             {singleArticle?.tags.map((tag, index) => (
@@ -235,7 +233,6 @@ const Article = () => {
               </Container.AlignCenterContainer>
             </Form>
           ) : null}
-
           <Grid.Column style={{ marginTop: '1rem' }}>
             {comments?.map((c, index) => (
               <CommentContainer key={('comment', index)}>

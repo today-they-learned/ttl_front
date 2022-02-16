@@ -14,7 +14,7 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
 import COLOR from 'constants/color.constant';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
 import axios from 'axios';
@@ -66,19 +66,16 @@ const ButtonContainer = styled.div`
   text-align: right;
 `;
 
-const PutEditorForm = (props) => {
-  console.log(props); // 나중에 prop으로 글 정보 받아올거임.
-  //   const { thumbnail, title, content, tags, user } = article;
-
+const PutEditorForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [titleText, setTitleText] = useState('title');
-  const [postContent, setPostContent] = useState('content');
-  const [tags, setTags] = useState([]);
-  const [thumbnailFile, setThumbnailFile] = useState(
-    'http://api.todaytheylearn.com/media/uploads/google.png',
-  );
+  const [titleText, setTitleText] = useState(location.state.title);
+  const [postContent, setPostContent] = useState(location.state.content);
+  const [tags, setTags] = useState(location.state.tags.join(','));
+  const [thumbnailFile, setThumbnailFile] = useState(location.state.thumbnail);
+  const [articleId] = useState(location.state.id);
 
   const titleRef = useRef();
   const editorRef = createRef();
@@ -112,7 +109,9 @@ const PutEditorForm = (props) => {
     editorRef.current.getInstance().setMarkdown(postContent);
     setPostContent(postContent);
 
-    urlToFile(thumbnailFile).then((file) => setThumbnailFile(file));
+    if (thumbnailFile) {
+      urlToFile(thumbnailFile).then((file) => setThumbnailFile(file));
+    }
   }, []);
 
   useEffect(() => {
@@ -169,7 +168,6 @@ const PutEditorForm = (props) => {
           ref={editorRef}
           plugins={[colorSyntax, [codeSyntaxHighlight, { hightlighter: Prism }]]}
           onChange={onChangeEditorTextHandler}
-          //   initialValue={postContent}
         />
         <ButtonContainer>
           <CancelButton
@@ -194,6 +192,7 @@ const PutEditorForm = (props) => {
           onChangeTags={onChangeTags}
           thumbnailFile={thumbnailFile}
           onChangeThumbnail={onChangeThumbnail}
+          id={articleId}
         />
       )}
     </>
