@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -174,12 +175,12 @@ const Article = () => {
               </LightText>
               <LightText>
                 <Icon name="comment" />
-                {singleArticle?.comments.length}
+                {/* {singleArticle?.comments.length} */}
               </LightText>
             </SubContainer>
             {user?.user.id === singleArticle?.user.id ? (
               <SubContainer>
-                <Link to="/post" state={singleArticle}>
+                <Link to={`/put/${singleArticle.id}`} state={singleArticle}>
                   <MenuText>수정</MenuText>
                 </Link>
                 <MenuText onClick={handleDelete}>삭제</MenuText>
@@ -204,9 +205,9 @@ const Article = () => {
               <Tag key={('tag', index)}>{tag}</Tag>
             ))}
           </TagContainer>
-          <strong style={{ marginBottom: '0.6rem' }}>
+          {/* <strong style={{ marginBottom: '0.6rem' }}>
             댓글 {singleArticle?.comments.length}개
-          </strong>
+          </strong> */}
           {user ? (
             <Form onSubmit={handleCommentSubmit} style={{ marginBottom: '4rem' }}>
               <Field
@@ -225,7 +226,7 @@ const Article = () => {
             </Form>
           ) : null}
 
-          <Grid.Column style={{ marginTop: '1rem' }}>
+          {/* <Grid.Column style={{ marginTop: '1rem' }}>
             {singleArticle?.comments.map((c, index) => (
               <CommentContainer key={('comment', index)}>
                 <Comment comment={c} />
@@ -234,7 +235,7 @@ const Article = () => {
                 ) : null}
               </CommentContainer>
             ))}
-          </Grid.Column>
+          </Grid.Column> */}
         </ArticleBody>
         <FloatMenu feedback={singleArticle?.feedback} feedbackCnt={singleArticle?.feedbackCount} />
       </Container.AlignCenterContainer>

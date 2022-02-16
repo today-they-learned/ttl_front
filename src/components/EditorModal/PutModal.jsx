@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
-import { POST_REQUEST } from 'reducers/post';
+import { PUT_REQUEST } from 'reducers/post';
 import authHeader from 'sagas/auth-header';
 import axios from 'axios';
 
@@ -20,10 +20,12 @@ const PutModal = ({
   onChangeTags,
   thumbnailFile,
   onChangeThumbnail,
+  id,
 }) => {
+  console.log(thumbnailFile);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { postError, postDone } = useSelector((state) => state.post);
+  const { putError, putDone } = useSelector((state) => state.post);
 
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [imageError, setimageError] = useState('');
@@ -72,45 +74,55 @@ const PutModal = ({
   useEffect(() => {
     const urlName = thumbnailFile.name;
     setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
-    console.log(inputRef);
-    console.log(inputRef.current.files);
-    console.log(thumbnailFile);
+
+    tagsRef.current.value = tags;
   }, []);
 
   const onTagsChange = (e) => {
-    console.log(e);
-    onChangeTags(e.target.value.split(','));
+    const coma = ',';
+    e.target.value.includes(coma);
+    if (e.target.value.includes(coma)) {
+      onChangeTags(e.target.value.split(','));
+    } else {
+      onChangeTags(e.target.value.split());
+    }
+
+    // const tagsArr = onChangeTags(e.target.value.split(','));
   };
 
   const onSubmitPost = useCallback(() => {
     const img = thumbnailFile;
     console.log(img);
-
+    console.log(tags);
     const formData = new FormData();
-    formData.append('title', titleText);
-    formData.append('content', postContent);
-    formData.append('tags', JSON.stringify(tags));
     if (img) {
       formData.append('thumbnail', img);
     }
+    axios.post('/articles/upload_image/', formData, {
+      headers: authHeader(),
+    });
+    formData.append('title', titleText);
+    formData.append('content', postContent);
+    formData.append('tags', JSON.stringify(tags));
 
     dispatch({
-      type: POST_REQUEST,
+      type: PUT_REQUEST,
       data: formData,
+      id,
     });
   });
 
   useEffect(() => {
-    if (postError) {
+    if (putError) {
       setErrorAnimation(true);
     }
-  }, [postError]);
+  }, [putError]);
 
   useEffect(() => {
-    if (postDone) {
+    if (putDone) {
       navigate('/');
     }
-  }, [postDone]);
+  }, [putDone]);
 
   return (
     <>
@@ -124,7 +136,9 @@ const PutModal = ({
           <Styled.ModalContent>
             <Styled.ModalLeft>
               {thumbnailFile ? (
-                <Styled.ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
+                <Styled.ThumbnailContainer>
+                  <Styled.ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
+                </Styled.ThumbnailContainer>
               ) : (
                 <Icon name="images" style={{ fontSize: '5rem' }} />
               )}
