@@ -69,7 +69,6 @@ const ButtonContainer = styled.div`
 const PutEditorForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { id, thumbnail, title, content, tags, user } = loaction.state;
 
   const [modalVisible, setModalVisible] = useState(false);
   const [titleText, setTitleText] = useState(location.state.title);

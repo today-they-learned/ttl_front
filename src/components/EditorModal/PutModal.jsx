@@ -22,7 +22,6 @@ const PutModal = ({
   onChangeThumbnail,
   id,
 }) => {
-  console.log(thumbnailFile);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { putError, putDone } = useSelector((state) => state.post);
@@ -52,7 +51,6 @@ const PutModal = ({
     (async () => {
       const img = e.target.files[0];
       onChangeThumbnail(img);
-      console.log(img);
       const formData = new FormData();
       formData.append('image', img);
       try {
@@ -92,8 +90,6 @@ const PutModal = ({
 
   const onSubmitPost = useCallback(() => {
     const img = thumbnailFile;
-    console.log(img);
-    console.log(tags);
     const formData = new FormData();
     if (img) {
       formData.append('thumbnail', img);
