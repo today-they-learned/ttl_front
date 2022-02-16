@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
+import Feedback from 'components/feedback/feedback';
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
 import {
   Card,
   ThumbnailContainer,
@@ -18,7 +18,7 @@ import {
 } from './post_card_styled';
 
 const PostCard = ({ post }) => {
-  const { thumbnail, title, content, tags, createdAt, feedbackCount, user } = post;
+  const { thumbnail, title, content, tags, createdAt, feedback, feedbackCount, user } = post;
 
   return (
     <Card>
@@ -61,8 +61,10 @@ const PostCard = ({ post }) => {
           <UserName>{user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Icon name="heart" />
-          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>{feedbackCount}</p>
+          <Feedback feedback={feedback} />
+          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
+            {`+${feedbackCount}`}
+          </p>
         </div>
       </CardBottom>
     </Card>
