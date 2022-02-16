@@ -1,6 +1,10 @@
 import produce from 'utils/produce.util';
 
 export const initialState = {
+  comments: [],
+  loadCommentsLoading: false,
+  loadCommentsDone: false,
+  loadCommentsError: null,
   addCommentLoading: false,
   addCommentDone: false,
   addCommentError: null,
@@ -11,6 +15,10 @@ export const initialState = {
   destroyCommentDone: false,
   destroyCommentError: null,
 };
+
+export const LOAD_COMMENTS_REQUEST = 'LOAD_COMMENTS_REQUEST';
+export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
+export const LOAD_COMMENTS_FAILURE = 'LOAD_COMMENTS_FAILURE';
 
 export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
@@ -27,6 +35,21 @@ export const DESTROY_COMMENT_FAILURE = 'DESTROY_COMMENT_FAILURE';
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
+      case LOAD_COMMENTS_REQUEST:
+        draft.loadCommentsLoading = true;
+        draft.loadCommentsDone = false;
+        draft.loadCommentsError = null;
+        draft.comments = [];
+        break;
+      case LOAD_COMMENTS_SUCCESS:
+        draft.loadCommentsLoading = false;
+        draft.loadCommentsDone = true;
+        draft.comments = action.data;
+        break;
+      case LOAD_COMMENTS_FAILURE:
+        draft.loadCommentsLoading = false;
+        draft.loadCommentsDone = true;
+        break;
       case ADD_COMMENT_REQUEST:
         draft.addCommentLoading = true;
         draft.addCommentDone = false;

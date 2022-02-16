@@ -24,7 +24,7 @@ const PutModal = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { putError, putDone } = useSelector((state) => state.post);
+  const { post, putError, putDone } = useSelector((state) => state.post);
 
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [imageError, setimageError] = useState('');
@@ -114,7 +114,7 @@ const PutModal = ({
 
   useEffect(() => {
     if (putDone) {
-      navigate('/');
+      navigate(`/article/${post.id}`);
     }
   }, [putDone]);
 
