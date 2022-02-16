@@ -84,8 +84,6 @@ const PutModal = ({
     } else {
       onChangeTags(e.target.value.split());
     }
-
-    // const tagsArr = onChangeTags(e.target.value.split(','));
   };
 
   const onSubmitPost = useCallback(() => {
