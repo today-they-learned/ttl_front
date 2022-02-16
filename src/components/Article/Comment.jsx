@@ -150,7 +150,7 @@ const Comment = (props) => {
             />
             <Container.AlignCenterContainer style={{ justifyContent: 'flex-end' }}>
               <CancleBtn onClick={handleCancle}>취소</CancleBtn>
-              <SubmitBtn type="submit">등록</SubmitBtn>
+              <SubmitBtn type="submit"></SubmitBtn>
             </Container.AlignCenterContainer>
           </Form>
         )}
