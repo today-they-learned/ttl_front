@@ -51,6 +51,7 @@ const Login = styled.button`
 const Logo = styled.img`
   width: 7rem;
   height: auto;
+  cursor: poiner;
 `;
 
 const TopNavbar = () => {
@@ -70,9 +71,11 @@ const TopNavbar = () => {
 
   return (
     <Nav>
-      <Link to="/">
-        <Logo src={`${process.env.PUBLIC_URL}/images/Logo.gif`} alt="logo" />
-      </Link>
+      <Logo
+        onClick={() => window.location.replace('/')}
+        src={`${process.env.PUBLIC_URL}/images/Logo.gif`}
+        alt="logo"
+      />
       <div
         style={{
           display: 'flex',

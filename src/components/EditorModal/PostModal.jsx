@@ -13,7 +13,7 @@ import * as Styled from './ModalStyle';
 const PostModal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { postError, postDone } = useSelector((state) => state.post);
+  const { post, postError, postDone } = useSelector((state) => state.post);
 
   const [tags, setTags] = useState([]);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
@@ -85,7 +85,7 @@ const PostModal = ({ onClose, maskClosable, closable, visible, titleText, postCo
 
   useEffect(() => {
     if (postDone) {
-      navigate('/');
+      navigate(`/article/${post.id}`);
     }
   }, [postDone]);
 
