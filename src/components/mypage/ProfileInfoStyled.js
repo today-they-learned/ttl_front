@@ -191,6 +191,7 @@ export const Tagg = styled(Label)`
   color: white !important;
   border-radius: 1rem !important;
   font-size: 0.75rem !important;
+  margin-right: 0.4rem !important;
   margin-bottom: 0.3rem !important;
 `;
 

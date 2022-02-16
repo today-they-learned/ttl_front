@@ -44,13 +44,9 @@ const ProfileInfo = (props) => {
               <div>
                 <Styled.TagContainer>
                   {tags.map((tag) => (
-                    <Styled.Tagg id={tag}>
-                      {tag}
-                      <Icon name="delete" onClick={deleteTag} />
-                    </Styled.Tagg>
+                    <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
                   ))}
                 </Styled.TagContainer>
-                <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
               </div>
             ) : (
               <div>
