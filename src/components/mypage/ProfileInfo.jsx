@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Form, Input, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileInfoStyled';
@@ -8,10 +9,14 @@ import CalendarHeatMapMobile from './CalendarHeatMapMobile';
 import TIL from './TIL';
 
 const ProfileInfo = (props) => {
+  const { user } = useSelector((state) => state.authentication);
+  console.log(user.user);
+  const [info] = useState(user.user);
+
   const [tags, setTags] = useState(['algorithm', 'python', 'react']);
   const [tab, setTab] = useState(true);
   const [tagEdit, setTagEdit] = useState(true);
-  const { username, email, introduce, avatar } = props.data;
+
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
     setTags(tags.filter((tag) => tag !== value));
@@ -28,13 +33,13 @@ const ProfileInfo = (props) => {
       isDesktop && (
         <Styled.Profile>
           <Styled.ContainerLeft>
-            <Styled.ProfileImg src={avatar} />
+            <Styled.ProfileImg src={info.avatar} />
           </Styled.ContainerLeft>
 
           <Styled.ContainerCenter>
-            <Styled.UserName>{username}</Styled.UserName>
-            <Styled.Email>{email}</Styled.Email>
-            <Styled.Introduce>{introduce}</Styled.Introduce>
+            <Styled.UserName>{info.username}</Styled.UserName>
+            <Styled.Email>{info.email}</Styled.Email>
+            <Styled.Introduce>{info.introduce}</Styled.Introduce>
             {tagEdit ? (
               <div>
                 <Styled.TagContainer>
@@ -68,9 +73,15 @@ const ProfileInfo = (props) => {
           <Styled.ContainerRight>
             <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
             <Styled.IconContainer>
-              <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
-              <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
-              <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
+              <a href={info.facebookAccount}>
+                <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
+              </a>
+              <a href={info.instagramAccount}>
+                <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
+              </a>
+              <a href={info.twitterAccount}>
+                <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
+              </a>
             </Styled.IconContainer>
           </Styled.ContainerRight>
 
@@ -92,7 +103,7 @@ const ProfileInfo = (props) => {
                 setTab(!tab);
               }}
             >
-              {props.data.username}&apos;s TIL
+              {info.username}&apos;s TIL
             </Styled.TabButton>
           </Styled.ContainerTab>
           <Styled.ContainerBottom>{tab ? <CalendarHeatMap /> : <TIL />}</Styled.ContainerBottom>
@@ -108,8 +119,8 @@ const ProfileInfo = (props) => {
         <Styled.ProfileMobile>
           <Styled.ContainerTop>
             <Styled.ProfileImg2 src="images/profile.jpg" />
-            <Styled.UserName2>{username}</Styled.UserName2>
-            <Styled.Email2>{email}</Styled.Email2>
+            <Styled.UserName2>{info.username}</Styled.UserName2>
+            <Styled.Email2>{info.email}</Styled.Email2>
             <Styled.EditButton2 onClick={props.onChangeMode}>프로필 편집</Styled.EditButton2>
 
             <Styled.ContainerTag>
@@ -142,7 +153,7 @@ const ProfileInfo = (props) => {
                 </div>
               )}
             </Styled.ContainerTag>
-            <Styled.Introduce2>{introduce}</Styled.Introduce2>
+            <Styled.Introduce2>{info.introduce}</Styled.Introduce2>
           </Styled.ContainerTop>
           <Styled.Line2 />
 
@@ -162,7 +173,7 @@ const ProfileInfo = (props) => {
               setTab(!tab);
             }}
           >
-            {props.data.username}&apos;s TIL
+            {info.username}&apos;s TIL
           </Styled.TabButton2>
 
           <Styled.ContainerBottom>

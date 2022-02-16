@@ -18,23 +18,13 @@ export const ContainerLeft = styled.div`
 
 export const ContainerCenter = styled.div`
   width: 50rem;
-  height: 10rem;
+  height: 40rem;
   float: left;
   margin-top: 0.5rem;
   margin-left: 1rem;
   margin-bottom: 1.2rem;
   padding-left: 2.5rem;
   padding-top: 1rem;
-  font-size: 12px;
-  border-radius: 0.2rem;
-`;
-
-export const ContainerBottom = styled.div`
-  width: 47.2rem;
-  clear: left;
-  margin-left: 1.5rem;
-  padding-left: 11.5rem;
-  padding-top: 2rem;
   font-size: 12px;
   border-radius: 0.2rem;
 `;

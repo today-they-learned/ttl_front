@@ -16,6 +16,9 @@ export const initialState = {
   updateUserLoading: false,
   updatUserDone: false,
   updateUserError: null,
+  destroyUserLoading: false,
+  destroyUserDone: false,
+  destroyUserError: null,
 };
 
 export const SIGN_IN_REQUEST = 'SIGNIN_REQUEST';
@@ -29,6 +32,10 @@ export const SIGN_UP_FAILURE = 'SIGNUP_FAILURE';
 export const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
+
+export const DESTROY_USER_REQUEST = 'DESTROY_USER_REQUEST';
+export const DESTROY_USER_SUCCESS = 'DESTROY_USER_SUCCESS';
+export const DESTROY_USER_FAILURE = 'DESTROY_USER_FAILURE';
 
 export const signinRequestAction = (data) => ({
   type: SIGN_IN_REQUEST,
@@ -69,12 +76,12 @@ const reducer = (state = initialState, action) =>
         draft.signupLoading = false;
         draft.signupError = action.error;
         break;
+
       case UPDATE_USER_REQUEST:
         draft.updateUserLoading = true;
         draft.updateUserDone = false;
         draft.updateUserError = null;
         break;
-
       case UPDATE_USER_SUCCESS:
         draft.updateUserLoading = false;
         draft.updateUserDone = true;
@@ -85,11 +92,26 @@ const reducer = (state = initialState, action) =>
         localStorage.setItem('user', JSON.stringify(temp));
         draft.user = temp;
         break;
-
       case UPDATE_USER_FAILURE:
+        console.log('실패');
         draft.updateUserLoading = false;
         draft.updateUserError = action.error;
         break;
+
+      case DESTROY_USER_REQUEST:
+        draft.destroyUserLoading = true;
+        draft.destroyUserDone = false;
+        draft.destroyUserError = null;
+        break;
+      case DESTROY_USER_SUCCESS:
+        draft.destroyUserLoading = false;
+        draft.destroyUserDone = true;
+        break;
+      case DESTROY_USER_FAILURE:
+        draft.destroyUserLoading = false;
+        draft.destroyUserError = action.error;
+        break;
+
       default:
         break;
     }

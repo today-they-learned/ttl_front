@@ -22,7 +22,29 @@ export const GitLabel = styled.div`
   margin-top: 1.4rem;
   font-size: 0.9rem;
 `;
-export const VelogLabel = styled.button`
+export const VelogEdit = styled.button`
+  width: 2.8rem;
+  height: 1.4rem;
+  background-color: #707bf3;
+  color: white;
+  margin-top: 0.3rem;
+  margin-left: 0.1rem;
+  float: left;
+  font-size: 0.7rem;
+`;
+
+export const GitEdit = styled.button`
+  width: 2.8rem;
+  height: 1.4rem;
+  background-color: #707bf3;
+  color: white;
+  margin-top: 0.3rem;
+  margin-left: 0.1rem;
+  float: left;
+  font-size: 0.7rem;
+`;
+
+export const MailEdit = styled.button`
   width: 2.8rem;
   height: 1.4rem;
   background-color: #707bf3;

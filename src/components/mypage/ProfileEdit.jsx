@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
 import { Form, Input, TextArea } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
-  const [info, setInfo] = useState(props.data);
+  const { user } = useSelector((state) => state.authentication);
+  const [info, setInfo] = useState(user.user);
 
   const inputHandler = (e) => {
     setInfo({
@@ -26,6 +27,9 @@ const ProfileEdit = (props) => {
     formData.append('username', info.username);
     formData.append('email', info.email);
     formData.append('introduce', info.introduce);
+    formData.append('facebook_account', info.facebookAccount);
+    formData.append('instagram_account', info.instagramAccount);
+    formData.append('twitter_account', info.twitterAccount);
     dispatch({
       type: UPDATE_USER_REQUEST,
       data: formData,
@@ -46,8 +50,8 @@ const ProfileEdit = (props) => {
           />
         </div>
       </Styled.ContainerLeft>
-      <Styled.ContainerCenter>
-        <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
+        <Styled.ContainerCenter>
           <Styled.UNField>
             <Form.Field
               control={Input}
@@ -69,24 +73,39 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.AboutField>
-        </Form>
-      </Styled.ContainerCenter>
-      <Styled.ContainerBottom>
-        <Form>
+
           <Styled.TagLabel>facebook_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="페이스북 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              name="facebookAccount"
+              placeholder="페이스북 계정을 입력하세요"
+              value={info.facebookAccount}
+              onChange={inputHandler}
+            />
           </Styled.SnsField>
           <Styled.TagLabel>instagram_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="인스타그램 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              name="instagramAccount"
+              placeholder="인스타그램 계정을 입력하세요"
+              value={info.instagramAccount}
+              onChange={inputHandler}
+            />
           </Styled.SnsField>
           <Styled.TagLabel>twitter_username</Styled.TagLabel>
           <Styled.SnsField>
-            <Form.Field control={Input} placeholder="트위터 계정을 입력하세요" />
+            <Form.Field
+              control={Input}
+              name="twitterAccount"
+              placeholder="트위터 계정을 입력하세요"
+              value={info.twitterAccount}
+              onChange={inputHandler}
+            />
           </Styled.SnsField>
-        </Form>
-      </Styled.ContainerBottom>
+        </Styled.ContainerCenter>
+      </Form>
     </Styled.InfoEdit>
   );
 };
