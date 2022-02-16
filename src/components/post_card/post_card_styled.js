@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Card = styled.div`
+  cursor: pointer;
   width: 18.75rem;
   height: 24rem;
   margin: 1rem;
