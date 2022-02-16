@@ -8,6 +8,9 @@ import {
   LOAD_ARTICLE_REQUEST,
   LOAD_ARTICLE_SUCCESS,
   LOAD_ARTICLE_FAILURE,
+  DESTROY_ARTICLE_REQUEST,
+  DESTROY_ARTICLE_SUCCESS,
+  DESTROY_ARTICLE_FAILURE,
 } from 'reducers/article';
 import authHeader from './auth-header';
 
@@ -32,7 +35,7 @@ function* feedArticles(action) {
     console.log(err);
     yield put({
       type: LOAD_ARTICLES_FAILURE,
-      error: err,
+      error: err.response.data,
     });
   }
 }
@@ -50,7 +53,24 @@ function* singleArticle(action) {
     console.error(err);
     yield put({
       type: LOAD_ARTICLE_FAILURE,
-      error: err,
+      error: err.response.data,
+    });
+  }
+}
+
+const articleDestroyAPI = (id) => axios.delete(`/articles/${id}`, { headers: authHeader() });
+
+function* articleDestory(action) {
+  try {
+    const result = yield call(articleDestroyAPI, action.id);
+    yield put({
+      type: DESTROY_ARTICLE_SUCCESS,
+      data: result?.data,
+    });
+  } catch (err) {
+    yield put({
+      type: DESTROY_ARTICLE_FAILURE,
+      error: err.response?.data,
     });
   }
 }
@@ -63,6 +83,10 @@ function* watchsingleArticle() {
   yield takeLatest(LOAD_ARTICLE_REQUEST, singleArticle);
 }
 
+function* watcharticleDestory() {
+  yield takeLatest(DESTROY_ARTICLE_REQUEST, articleDestory);
+}
+
 export default function* article() {
-  yield all([fork(watchsingleArticle), fork(watchfeedArticles)]);
+  yield all([fork(watchsingleArticle), fork(watchfeedArticles), fork(watcharticleDestory)]);
 }
