@@ -10,10 +10,10 @@ import TIL from './TIL';
 
 const ProfileInfo = (props) => {
   const { user } = useSelector((state) => state.authentication);
-  console.log(user.user);
+  console.log(user.user.tags);
   const [info] = useState(user.user);
 
-  const [tags, setTags] = useState(['algorithm', 'python', 'react']);
+  const [tags, setTags] = useState(user.user.tags);
   const [tab, setTab] = useState(true);
   const [tagEdit, setTagEdit] = useState(true);
 
