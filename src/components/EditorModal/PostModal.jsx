@@ -8,26 +8,15 @@ import { POST_REQUEST } from 'reducers/post';
 import authHeader from 'sagas/auth-header';
 import axios from 'axios';
 
-import * as Styled from './PutModalStyle';
+import * as Styled from './ModalStyle';
 
-const PutModal = ({
-  onClose,
-  maskClosable,
-  closable,
-  visible,
-  titleText,
-  postContent,
-  tags,
-  onChangeTags,
-  thumbnailUrl,
-  onChangeThumbnail,
-}) => {
+const PostModal = ({ onClose, maskClosable, closable, visible, titleText, postContent }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { postError, postDone } = useSelector((state) => state.post);
 
-  //   const [tags, setTags] = useState([]);
-  //   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [tags, setTags] = useState([]);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [imageError, setimageError] = useState('');
   const [errorAnimation, setErrorAnimation] = useState(false);
 
@@ -51,19 +40,16 @@ const PutModal = ({
   const onImageChange = (e) => {
     (async () => {
       const img = e.target.files[0];
-      console.log(img);
       const formData = new FormData();
       formData.append('image', img);
       try {
         const { data: filename } = await axios.post('/articles/upload_image/', formData, {
           headers: authHeader(),
         });
-        onChangeThumbnail(`${filename.url}`);
-        // setThumbnailUrl(`${filename.url}`);
         setimageError('');
+        setThumbnailUrl(`${filename.url}`);
       } catch (err) {
-        onChangeThumbnail('');
-        // setThumbnailUrl('');
+        setThumbnailUrl('');
         setimageError('올바르지 않은 파일 형식입니다.');
         setErrorAnimation(false);
       }
@@ -71,15 +57,8 @@ const PutModal = ({
     return false;
   };
 
-  useEffect(() => {
-    console.log(thumbnailUrl);
-    // inputRef.current.files = thumbnailUrl;
-  }, []);
-
   const onTagsChange = (e) => {
-    console.log(e);
-    onChangeTags(e.target.value.split(','));
-    // setTags(e.target.value.split(','));
+    setTags(e.target.value.split(','));
   };
 
   const onSubmitPost = useCallback(() => {
@@ -166,4 +145,4 @@ const PutModal = ({
   );
 };
 
-export default PutModal;
+export default PostModal;

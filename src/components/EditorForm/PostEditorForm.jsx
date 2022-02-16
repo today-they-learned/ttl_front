@@ -14,12 +14,12 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
 import COLOR from 'constants/color.constant';
+import PostModal from 'components/EditorModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
 import axios from 'axios';
 import authHeader from 'sagas/auth-header';
-import PutModal from 'components/PutModal/PutModal';
 
 const Title = styled.input`
   width: 100%;
@@ -66,19 +66,12 @@ const ButtonContainer = styled.div`
   text-align: right;
 `;
 
-const PutEditorForm = (props) => {
-  console.log(props); // 나중에 여기에 article 받아올거임
-  //   const { thumbnail, title, content, tags, user } = article;
-
+const PostEditorForm = () => {
   const navigate = useNavigate();
 
+  const [titleText, setTitleText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [titleText, setTitleText] = useState('title');
-  const [postContent, setPostContent] = useState('content');
-  const [tags, setTags] = useState([]);
-  const [thumbnailUrl, setThumbnailUrl] = useState(
-    'http://api.todaytheylearn.com/media/uploads/google.png',
-  );
+  const [postContent, setPostContent] = useState();
 
   const titleRef = useRef();
   const editorRef = createRef();
@@ -90,21 +83,6 @@ const PutEditorForm = (props) => {
   const onChangeEditorTextHandler = () => {
     setPostContent(editorRef.current.getInstance().getMarkdown());
   };
-
-  const onChangeTags = (tag) => {
-    setTags(tag);
-  };
-
-  const onChangeThumbnail = (url) => {
-    setThumbnailUrl(url);
-    console.log(url);
-  };
-
-  useEffect(() => {
-    setTitleText(titleText);
-    editorRef.current.getInstance().setMarkdown(postContent);
-    setPostContent(postContent);
-  }, []);
 
   useEffect(() => {
     if (editorRef.current) {
@@ -160,7 +138,6 @@ const PutEditorForm = (props) => {
           ref={editorRef}
           plugins={[colorSyntax, [codeSyntaxHighlight, { hightlighter: Prism }]]}
           onChange={onChangeEditorTextHandler}
-          //   initialValue={postContent}
         />
         <ButtonContainer>
           <CancelButton
@@ -174,21 +151,17 @@ const PutEditorForm = (props) => {
         </ButtonContainer>
       </div>
       {modalVisible && (
-        <PutModal
+        <PostModal
           visible={modalVisible}
           closable
           maskClosable
           onClose={closeModal}
           titleText={titleText}
           postContent={postContent}
-          tags={tags}
-          onChangeTags={onChangeTags}
-          thumbnailUrl={thumbnailUrl}
-          onChangeThumbnail={onChangeThumbnail}
         />
       )}
     </>
   );
 };
 
-export default PutEditorForm;
+export default PostEditorForm;

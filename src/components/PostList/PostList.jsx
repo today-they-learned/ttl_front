@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_REQUEST } from 'reducers/article';
-import PostCard from 'components/post_card/post_card';
+import PostCard from 'components/PostList/PostCard';
 import styled from 'styled-components';
 
 const Post = styled.div`

@@ -7,9 +7,9 @@ import 'styles/fonts.css';
 import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
 import { Mypage, SignIn, SignUp, Article } from 'pages';
-import PostList from 'components/post_list/post_list';
-import PostEditorForm from 'components/PostEditorForm/PostEditorForm';
-import PutEditorForm from 'components/PutEditorForm/PutEditorForm';
+import PostList from 'components/PostList/PostList';
+import PostEditorForm from 'components/EditorForm/PostEditorForm';
+import PutEditorForm from 'components/EditorForm/PutEditorForm';
 
 const App = () => {
   return (

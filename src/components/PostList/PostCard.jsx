@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import Feedback from 'components/feedback/feedback';
+import Feedback from 'components/Feedback/Feedback';
 import React from 'react';
 import {
   Card,
@@ -15,7 +15,7 @@ import {
   CardBody,
   CardBottom,
   Line,
-} from './post_card_styled';
+} from './PostCardStyled';
 
 const PostCard = ({ post }) => {
   const { thumbnail, title, content, tags, createdAt, feedback, feedbackCount, user } = post;
