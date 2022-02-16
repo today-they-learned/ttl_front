@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,15 +18,14 @@ const PutModal = ({
   postContent,
   tags,
   onChangeTags,
-  thumbnailUrl,
+  thumbnailFile,
   onChangeThumbnail,
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { postError, postDone } = useSelector((state) => state.post);
 
-  //   const [tags, setTags] = useState([]);
-  //   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [imageError, setimageError] = useState('');
   const [errorAnimation, setErrorAnimation] = useState(false);
 
@@ -51,6 +49,7 @@ const PutModal = ({
   const onImageChange = (e) => {
     (async () => {
       const img = e.target.files[0];
+      onChangeThumbnail(img);
       console.log(img);
       const formData = new FormData();
       formData.append('image', img);
@@ -58,12 +57,11 @@ const PutModal = ({
         const { data: filename } = await axios.post('/articles/upload_image/', formData, {
           headers: authHeader(),
         });
-        onChangeThumbnail(`${filename.url}`);
-        // setThumbnailUrl(`${filename.url}`);
+        setThumbnailUrl(`${filename.url}`);
         setimageError('');
       } catch (err) {
         onChangeThumbnail('');
-        // setThumbnailUrl('');
+        setThumbnailUrl('');
         setimageError('올바르지 않은 파일 형식입니다.');
         setErrorAnimation(false);
       }
@@ -72,18 +70,22 @@ const PutModal = ({
   };
 
   useEffect(() => {
-    console.log(thumbnailUrl);
-    // inputRef.current.files = thumbnailUrl;
+    const urlName = thumbnailFile.name;
+    setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
+    console.log(inputRef);
+    console.log(inputRef.current.files);
+    console.log(thumbnailFile);
   }, []);
 
   const onTagsChange = (e) => {
     console.log(e);
     onChangeTags(e.target.value.split(','));
-    // setTags(e.target.value.split(','));
   };
 
   const onSubmitPost = useCallback(() => {
-    const img = inputRef.current.files[0];
+    const img = thumbnailFile;
+    console.log(img);
+
     const formData = new FormData();
     formData.append('title', titleText);
     formData.append('content', postContent);
@@ -121,7 +123,7 @@ const PutModal = ({
         <Styled.ModalInner tabIndex="0">
           <Styled.ModalContent>
             <Styled.ModalLeft>
-              {thumbnailUrl ? (
+              {thumbnailFile ? (
                 <Styled.ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
               ) : (
                 <Icon name="images" style={{ fontSize: '5rem' }} />

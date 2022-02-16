@@ -67,7 +67,7 @@ const ButtonContainer = styled.div`
 `;
 
 const PutEditorForm = (props) => {
-  console.log(props); // 나중에 여기에 article 받아올거임
+  console.log(props); // 나중에 prop으로 글 정보 받아올거임.
   //   const { thumbnail, title, content, tags, user } = article;
 
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ const PutEditorForm = (props) => {
   const [titleText, setTitleText] = useState('title');
   const [postContent, setPostContent] = useState('content');
   const [tags, setTags] = useState([]);
-  const [thumbnailUrl, setThumbnailUrl] = useState(
+  const [thumbnailFile, setThumbnailFile] = useState(
     'http://api.todaytheylearn.com/media/uploads/google.png',
   );
 
@@ -95,15 +95,24 @@ const PutEditorForm = (props) => {
     setTags(tag);
   };
 
-  const onChangeThumbnail = (url) => {
-    setThumbnailUrl(url);
-    console.log(url);
+  const onChangeThumbnail = (file) => {
+    setThumbnailFile(file);
+  };
+
+  const urlToFile = async (url) => {
+    const response = await fetch(url);
+    const imageName = url.slice(44);
+    const blob = await response.blob();
+    const file = new File([blob], `${imageName}`, { type: blob.type });
+    return file;
   };
 
   useEffect(() => {
     setTitleText(titleText);
     editorRef.current.getInstance().setMarkdown(postContent);
     setPostContent(postContent);
+
+    urlToFile(thumbnailFile).then((file) => setThumbnailFile(file));
   }, []);
 
   useEffect(() => {
@@ -183,7 +192,7 @@ const PutEditorForm = (props) => {
           postContent={postContent}
           tags={tags}
           onChangeTags={onChangeTags}
-          thumbnailUrl={thumbnailUrl}
+          thumbnailFile={thumbnailFile}
           onChangeThumbnail={onChangeThumbnail}
         />
       )}
