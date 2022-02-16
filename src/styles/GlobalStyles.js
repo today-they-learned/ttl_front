@@ -34,6 +34,29 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
   }
 
+  .toastui-editor-contents > pre {
+    background-color: #e9ecf3;
+  }
+
+  .token.operator {
+    background: none;
+  }
+
+  .loading * {
+  background-color: #d8dde1!important;
+  color: transparent!important;
+  border: transparent!important;
+  border-radius: 0!important;
+  }
+  .loading img {
+    opacity: 0!important;
+    visibility: hidden!important;
+  }
+
+  .loading .ui.circular.label {
+    display: none!important;
+  }
+
 `;
 
 export default GlobalStyles;

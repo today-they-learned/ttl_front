@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 import authentication from './authentication';
 import article from './article';
+import comment from './comment';
 import postListType from './postListType';
 import post from './post';
 
@@ -14,6 +15,7 @@ const rootReducer = (state, action) => {
       const combinedReducer = combineReducers({
         authentication,
         article,
+        comment,
         postListType,
         post,
       });

@@ -13,9 +13,12 @@ export const initialState = {
   loadArticleLoading: false,
   loadArticleDone: false,
   loadArticleError: null,
+  // 글 삭제
+  destroyArticleLoading: false,
+  destroyArticleDone: false,
+  destroyArticleError: null,
 };
 
-export const PAGE_SIZE = 12;
 export const LOAD_ARTICLES_REQUEST = 'LOAD_ARTICLES_REQUEST';
 export const LOAD_ARTICLES_SUCCESS = 'LOAD_ARTICLES_SUCCESS';
 export const LOAD_ARTICLES_FAILURE = 'LOAD_ARTICLES_FAILURE';
@@ -23,6 +26,10 @@ export const LOAD_ARTICLES_FAILURE = 'LOAD_ARTICLES_FAILURE';
 export const LOAD_ARTICLE_REQUEST = 'LOAD_ARTICLE_REQUEST';
 export const LOAD_ARTICLE_SUCCESS = 'LOAD_ARTICLE_SUCCESS';
 export const LOAD_ARTICLE_FAILURE = 'LOAD_ARTICLE_FAILURE';
+
+export const DESTROY_ARTICLE_REQUEST = 'DESTROY_ARTICLE_REQUEST';
+export const DESTROY_ARTICLE_SUCCESS = 'DESTROY_ARTICLE_SUCCESS';
+export const DESTROY_ARTICLE_FAILURE = 'DESTROY_ARTICLE_FAILURE';
 
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -44,7 +51,6 @@ const reducer = (state = initialState, action) =>
         draft.loadArticlesLoading = false;
         draft.loadArticlesError = action.error;
         break;
-
       case LOAD_ARTICLE_REQUEST:
         draft.loadArticleLoading = true;
         draft.loadArticleDone = false;
@@ -58,6 +64,19 @@ const reducer = (state = initialState, action) =>
       case LOAD_ARTICLE_FAILURE:
         draft.loadArticleLoading = false;
         draft.loadArticleError = action.error;
+        break;
+      case DESTROY_ARTICLE_REQUEST:
+        draft.destroyArticleLoading = true;
+        draft.destroyArticleDone = false;
+        draft.destroyArticleError = null;
+        break;
+      case DESTROY_ARTICLE_SUCCESS:
+        draft.destroyArticleLoading = false;
+        draft.destroyArticleDone = true;
+        break;
+      case DESTROY_ARTICLE_FAILURE:
+        draft.destroyArticleLoading = false;
+        draft.destroyArticleError = action.error;
         break;
       default:
         break;
