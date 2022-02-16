@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import produce from 'utils/produce.util';
 
 const user = JSON.parse(localStorage.getItem('user'));
-console.log(user);
+// console.log(user);
 let temp = 'bar';
 
 export const initialState = {
@@ -85,15 +84,15 @@ const reducer = (state = initialState, action) =>
       case UPDATE_USER_SUCCESS:
         draft.updateUserLoading = false;
         draft.updateUserDone = true;
-        console.log('성공');
-        console.log(action.data);
+        // console.log('성공');
+        // console.log(action.data);
         temp = JSON.parse(localStorage.getItem('user'));
         temp.user = action.data;
         localStorage.setItem('user', JSON.stringify(temp));
         draft.user = temp;
         break;
       case UPDATE_USER_FAILURE:
-        console.log('실패');
+        // console.log('실패');
         draft.updateUserLoading = false;
         draft.updateUserError = action.error;
         break;

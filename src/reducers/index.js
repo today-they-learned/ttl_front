@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import authentication from './authentication';
 import article from './article';
 import postListType from './postListType';
+import grass from './grass';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -14,6 +15,7 @@ const rootReducer = (state, action) => {
         authentication,
         article,
         postListType,
+        grass,
       });
       return combinedReducer(state, action);
     }

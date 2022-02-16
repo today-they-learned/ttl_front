@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { GRASS_REQUEST } from 'reducers/grass';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import styled from 'styled-components';
@@ -27,6 +29,28 @@ const TtlLabel = styled.div`
 `;
 
 const CalendarHeatMap = () => {
+  const { user } = useSelector((state) => state.authentication);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: GRASS_REQUEST,
+      id: user.user.id,
+    });
+  }, [dispatch]);
+  const { grass } = useSelector((state) => state.grass);
+
+  console.log(grass);
+
+  // const result = [];
+  // for (let i = 0; i < grass.length; i += 1) {
+  //   result.push({
+  //     date: grass[i].createdAt,
+  //     count: grass[i].studyCount,
+  //   });
+  // }
+  // console.log(result);
+
   return (
     <CHMContainer>
       <TilLabel>내가 작성한 TIL</TilLabel>
@@ -35,8 +59,8 @@ const CalendarHeatMap = () => {
           startDate={new Date('2022-1-1')}
           endDate={new Date('2022-12-31')}
           values={[
-            { date: '2022-01-01' },
-            { date: '2022-01-22' },
+            { date: '2022-01-02', count: 12 },
+            { date: '2022-01-12', count: 123 },
             { date: '2022-01-23' },
             { date: '2022-01-24' },
             { date: '2022-01-25' },
