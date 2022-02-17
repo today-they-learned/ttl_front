@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
+import { SET_TYPE } from 'reducers/postListType';
 
 const Bar = styled.div`
   position: sticky;
@@ -32,10 +33,26 @@ const SideBar = () => {
         setArr.push(curObj);
       });
     }
-  });
+  }, []);
 
   const setType = (itemId) => {
-    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+    if (typeof itemId === 'object') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.item}`,
+        title: `${itemId.title}`,
+        isTag: false,
+      });
+    }
+
+    if (typeof itemId === 'string') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.slice(6)}`,
+        title: `${itemId.slice(6)}`,
+        isTag: true,
+      });
+    }
   };
   return (
     <>
@@ -63,7 +80,6 @@ const SideBar = () => {
             },
             {
               title: '관심태그',
-              itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: user ? setArr : null,
@@ -75,7 +91,7 @@ const SideBar = () => {
             },
             {
               title: '읽은 목록',
-              itemId: { item: 'read_list', title: '읽은 목록' },
+              itemId: { item: 'study', title: '읽은 목록' },
               elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
             },
           ]}
