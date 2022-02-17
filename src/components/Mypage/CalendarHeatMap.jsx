@@ -1,8 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
+import CalendarHeatmap from 'react-calendar-heatmap';
 import { useSelector, useDispatch } from 'react-redux';
 import { GRASS_REQUEST } from 'reducers/grass';
-import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
+import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
 
 const CHMContainer = styled.div`
@@ -79,7 +81,25 @@ const CalendarHeatMap = () => {
             if (!value) {
               return 'color-empty';
             }
-            return `color-github-${value.count}`;
+
+            const count = value.count || 0;
+
+            if (count > 4) {
+              return 'color-github-5';
+            }
+            if (count > 3) {
+              return 'color-github-4';
+            }
+            if (count > 2) {
+              return 'color-github-3';
+            }
+            if (count > 1) {
+              return 'color-github-2';
+            }
+            if (count > 0) {
+              return 'color-github-1';
+            }
+            return 'color-empty';
           }}
         />
       </CHM>
@@ -94,7 +114,22 @@ const CalendarHeatMap = () => {
             if (!value) {
               return 'color-empty';
             }
-            return `color-gitlab-${value.count}`;
+
+            const count = value.count || 0;
+
+            if (count > 16) {
+              return 'color-gitlab-4';
+            }
+            if (count > 11) {
+              return 'color-gitlab-3';
+            }
+            if (count > 6) {
+              return 'color-gitlab-2';
+            }
+            if (count > 0) {
+              return 'color-gitlab-1';
+            }
+            return 'color-empty';
           }}
         />
       </CHM>

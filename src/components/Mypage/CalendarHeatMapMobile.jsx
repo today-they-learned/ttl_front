@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
+import { useSelector, useDispatch } from 'react-redux';
+import { GRASS_REQUEST } from 'reducers/grass';
 import 'react-calendar-heatmap/dist/styles.css';
+import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
 
 const CHMContainer = styled.div`
@@ -31,63 +34,105 @@ const TtlLabel = styled.div`
 `;
 
 const CalendarHeatMapMobile = () => {
+  const { user } = useSelector((state) => state.authentication);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: GRASS_REQUEST,
+      id: user.user.id,
+    });
+  }, [dispatch]);
+
+  const { grass, grassDone } = useSelector((state) => state.grass);
+
+  const [TILCount, setTILCount] = useState([]);
+  const [TTLCount, setTTLCount] = useState([]);
+
+  const tilCount = [];
+  const ttlCount = [];
+
+  useEffect(() => {
+    if (grassDone) {
+      for (let i = 0; i < grass.length; i += 1) {
+        tilCount.push({
+          date: grass[i].createdAt,
+          count: grass[i].writeCount + grass[i].editCount,
+        });
+      }
+      for (let i = 0; i < grass.length; i += 1) {
+        ttlCount.push({
+          date: grass[i].createdAt,
+          count: grass[i].studyCount,
+        });
+      }
+      setTILCount(tilCount);
+      setTTLCount(ttlCount);
+    }
+  }, [grassDone]);
+
   return (
     <CHMContainer>
       <TilLabel>작성한 TIL</TilLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2022-1-1')}
-          endDate={new Date('2022-12-31')}
-          values={[
-            { date: '2022-01-01' },
-            { date: '2022-01-22' },
-            { date: '2022-01-23' },
-            { date: '2022-01-24' },
-            { date: '2022-01-25' },
-            { date: '2022-01-26' },
-            { date: '2022-01-27' },
-            { date: '2022-01-30' },
-            { date: '2022-02-17' },
-            { date: '2022-02-18' },
-            { date: '2022-02-21' },
-            { date: '2022-02-22' },
-            { date: '2022-02-28' },
-          ]}
+          startDate={new Date('2021-9-1')}
+          endDate={new Date('2022-9-31')}
+          values={TILCount}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+
+            const count = value.count || 0;
+
+            if (count > 4) {
+              return 'color-github-5';
+            }
+            if (count > 3) {
+              return 'color-github-4';
+            }
+            if (count > 2) {
+              return 'color-github-3';
+            }
+            if (count > 1) {
+              return 'color-github-2';
+            }
+            if (count > 0) {
+              return 'color-github-1';
+            }
+            return 'color-empty';
+          }}
         />
       </CHM>
       <TtlLabel>공부한 TTL</TtlLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2022-1-1')}
-          endDate={new Date('2022-12-31')}
-          values={[
-            { date: '2022-01-01', count: 100 },
-            { date: '2022-01-05' },
-            { date: '2022-01-07' },
-            { date: '2022-01-17' },
-            { date: '2022-01-22' },
-            { date: '2022-01-23' },
-            { date: '2022-01-24' },
-            { date: '2022-01-25' },
-            { date: '2022-01-26' },
-            { date: '2022-01-27' },
-            { date: '2022-01-30' },
-            { date: '2022-02-2' },
-            { date: '2022-02-4' },
-            { date: '2022-02-13' },
-            { date: '2022-02-14' },
-            { date: '2022-02-17' },
-            { date: '2022-02-18' },
-            { date: '2022-02-21' },
-            { date: '2022-02-22' },
-            { date: '2022-02-24' },
-            { date: '2022-02-28' },
-            { date: '2022-03-6' },
-            { date: '2022-03-8' },
-            { date: '2022-03-9' },
-            { date: '2022-03-10' },
-            { date: '2022-03-12' },
-          ]}
+          startDate={new Date('2021-9-1')}
+          endDate={new Date('2022-9-31')}
+          values={TTLCount}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+
+            const count = value.count || 0;
+
+            if (count > 16) {
+              return 'color-gitlab-4';
+            }
+            if (count > 11) {
+              return 'color-gitlab-3';
+            }
+            if (count > 6) {
+              return 'color-gitlab-2';
+            }
+            if (count > 0) {
+              return 'color-gitlab-1';
+            }
+            return 'color-empty';
+          }}
         />
       </CHM>
     </CHMContainer>

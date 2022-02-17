@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
@@ -48,6 +49,7 @@ const ProfileEdit = (props) => {
     // api put code
     setTagEdit(!tagEdit);
   };
+
   return (
     <Styled.InfoEdit>
       <Styled.ContainerLeft>
@@ -55,17 +57,19 @@ const ProfileEdit = (props) => {
           src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
           alt="profile"
         />
-        <div>
-          <Styled.PhotoInput
-            type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
-            name="profile_img"
-            onChange={onChange}
-          />
-        </div>
+        <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
+
+        <Styled.PhotoInput
+          id="input_file"
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg"
+          name="profile_img"
+          onChange={onChange}
+        />
       </Styled.ContainerLeft>
       <Form onSubmit={handleSubmit}>
         <Styled.ContainerCenter>
+          <Styled.Labell>username</Styled.Labell>
           <Styled.UNField>
             <Form.Field
               control={Input}
@@ -77,7 +81,7 @@ const ProfileEdit = (props) => {
           </Styled.UNField>
           <Styled.BackButton>취소</Styled.BackButton>
           <Styled.EditButton>저장</Styled.EditButton>
-
+          <Styled.Labell>introduce</Styled.Labell>
           <Styled.AboutField>
             <Form.Field
               control={TextArea}
@@ -98,7 +102,7 @@ const ProfileEdit = (props) => {
                   </Styled.Tagg>
                 ))}
               </Styled.TagContainer>
-              <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+              <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>태그 추가</Styled.TagButton>
             </div>
           ) : (
             <div>
@@ -107,7 +111,9 @@ const ProfileEdit = (props) => {
                   <Styled.TagField>
                     <Form.Field control={Input} />
                   </Styled.TagField>
-                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
+                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>
+                    태그 추가
+                  </Styled.TagButton>
                 </Form>
               </Styled.TagContainer>
             </div>
