@@ -1,12 +1,16 @@
 /* eslint-disable import/no-unresolved */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
+import { LOAD_USER_REQUEST } from 'reducers/users';
 import { Form, Input, TextArea, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
-  const { user } = useSelector((state) => state.authentication);
+  const dispatch = useDispatch();
+  const formData = new FormData();
+  const { user, updateUserDone } = useSelector((state) => state.authentication);
+  const { loadUserDone } = useSelector((state) => state.users);
   const [info, setInfo] = useState(user.user);
   const [tags, setTags] = useState(user.user.tags);
   const [tagEdit, setTagEdit] = useState(true);
@@ -22,9 +26,6 @@ const ProfileEdit = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const dispatch = useDispatch();
-  const formData = new FormData();
 
   const onChange = (e) => {
     const img = e.target.files[0];
@@ -42,13 +43,27 @@ const ProfileEdit = (props) => {
       type: UPDATE_USER_REQUEST,
       data: formData,
     });
-    props.onChangeMode();
   }, [dispatch, formData]);
 
   const TagSubmit = () => {
     // api put code
     setTagEdit(!tagEdit);
   };
+
+  useEffect(() => {
+    if (updateUserDone) {
+      dispatch({
+        type: LOAD_USER_REQUEST,
+        id: info.id,
+      });
+    }
+  }, [updateUserDone]);
+
+  useEffect(() => {
+    if (loadUserDone) {
+      props.onChangeMode();
+    }
+  }, [loadUserDone]);
 
   return (
     <Styled.InfoEdit>

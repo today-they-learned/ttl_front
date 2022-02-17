@@ -1,7 +1,7 @@
 import produce from 'utils/produce.util';
 
 const user = JSON.parse(localStorage.getItem('user'));
-let temp = 'bar';
+let temp = '';
 
 export const initialState = {
   user,
@@ -12,16 +12,12 @@ export const initialState = {
   signupDone: false,
   signupError: null,
   updateUserLoading: false,
-  updatUserDone: false,
+  updateUserDone: false,
   updateUserError: null,
   destroyUserLoading: false,
   destroyUserDone: false,
   destroyUserError: null,
 };
-
-export const LOAD_USER_REQUEST = 'SIGNIN_REQUEST';
-export const LOAD_USER_SUCCESS = 'SIGNIN_SUCCESS';
-export const LOAD_USER_FAILURE = 'SIGNIN_FAILURE';
 
 export const SIGN_IN_REQUEST = 'SIGNIN_REQUEST';
 export const SIGN_IN_SUCCESS = 'SIGNIN_SUCCESS';
