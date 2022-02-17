@@ -52,23 +52,28 @@ const ProfileEdit = (props) => {
 
   return (
     <Styled.InfoEdit>
-      <Styled.ContainerLeft>
-        <Styled.ProfileImg
-          src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
-          alt="profile"
-        />
-        <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
-
-        <Styled.PhotoInput
-          id="input_file"
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg"
-          name="profile_img"
-          onChange={onChange}
-        />
-      </Styled.ContainerLeft>
       <Form onSubmit={handleSubmit}>
-        <Styled.ContainerCenter>
+        <Styled.AvatarFormContainer>
+          <Styled.ProfileImg
+            src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+            alt="profile"
+          />
+          <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
+
+          <Styled.PhotoInput
+            id="input_file"
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg"
+            name="profile_img"
+            onChange={onChange}
+          />
+        </Styled.AvatarFormContainer>
+        <Styled.ActionContainer>
+          <Styled.BackButton>취소</Styled.BackButton>
+          <Styled.EditButton>저장</Styled.EditButton>
+        </Styled.ActionContainer>
+
+        <Styled.ProfileFormContainer>
           <Styled.Labell>username</Styled.Labell>
           <Styled.UNField>
             <Form.Field
@@ -79,8 +84,6 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.UNField>
-          <Styled.BackButton>취소</Styled.BackButton>
-          <Styled.EditButton>저장</Styled.EditButton>
           <Styled.Labell>introduce</Styled.Labell>
           <Styled.AboutField>
             <Form.Field
@@ -118,10 +121,9 @@ const ProfileEdit = (props) => {
               </Styled.TagContainer>
             </div>
           )}
-        </Styled.ContainerCenter>
-        <Styled.ContainerBottom>
-          <Styled.TagLabel>facebook_username</Styled.TagLabel>
+          <br />
           <Styled.SnsField>
+            <Styled.TagLabel>facebook_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="facebookAccount"
@@ -130,8 +132,8 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-          <Styled.TagLabel>instagram_username</Styled.TagLabel>
           <Styled.SnsField>
+            <Styled.TagLabel>instagram_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="instagramAccount"
@@ -140,8 +142,8 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-          <Styled.TagLabel>twitter_username</Styled.TagLabel>
           <Styled.SnsField>
+            <Styled.TagLabel>twitter_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="twitterAccount"
@@ -150,7 +152,7 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-        </Styled.ContainerBottom>
+        </Styled.ProfileFormContainer>
       </Form>
     </Styled.InfoEdit>
   );

@@ -13,19 +13,12 @@ const CHMContainer = styled.div`
 
 const CHM = styled.div`
   width: 100%;
-  padding-left: 3.5rem;
+  padding: 3rem;
 `;
 
-const TilLabel = styled.div`
+const ChartLabel = styled.div`
   margin-top: 1.5rem;
-  margin-left: 5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-`;
-
-const TtlLabel = styled.div`
-  margin-top: 2.5rem;
-  margin-left: 5rem;
+  margin-left: 2rem;
   margin-bottom: 1rem;
   font-weight: 600;
 `;
@@ -71,7 +64,7 @@ const CalendarHeatMap = () => {
 
   return (
     <CHMContainer>
-      <TilLabel>작성한 TIL</TilLabel>
+      <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}
@@ -104,7 +97,7 @@ const CalendarHeatMap = () => {
         />
       </CHM>
 
-      <TtlLabel>공부한 TTL</TtlLabel>
+      <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}
