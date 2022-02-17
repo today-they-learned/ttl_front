@@ -69,7 +69,6 @@ const PostList = () => {
   const { item, title, isTag } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
-  console.log(feedArticles);
 
   useEffect(() => {
     dispatch({

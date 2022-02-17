@@ -37,10 +37,8 @@ const putAPI = (data, id) => {
 };
 
 function* articlePut(action) {
-  console.log(action);
   try {
     const result = yield call(putAPI, action.data, action.id);
-    console.log(result);
     yield put({
       type: PUT_SUCCESS,
       data: result?.data,
