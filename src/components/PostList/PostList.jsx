@@ -22,7 +22,7 @@ const Post = styled.div`
 
 const PostCards = styled.div`
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
   width: 100%;
   ${(props) =>
