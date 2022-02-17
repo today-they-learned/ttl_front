@@ -84,6 +84,22 @@ const PostList = () => {
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
 
+  const postNoneMsg = () => {
+    if (title === '팔로우') {
+      return '팔로우한 유저의 글이 없습니다';
+    }
+    if (title === '북마크') {
+      return '아직 북마크한 글이 없습니다';
+    }
+    if (title === '읽은 목록') {
+      return '아직 읽은 글이 없습니다.';
+    }
+    if (isTag) {
+      return `${item} 에 대한 글이 없습니다.`;
+    }
+    return '피드에 글이 없습니다.';
+  };
+
   useEffect(() => {
     dispatch({
       type: LOAD_ARTICLES_CLEAR,
@@ -159,9 +175,7 @@ const PostList = () => {
           ? feedArticles.map((article, index) => (
               <PostCard key={('postcard', index)} post={article[1]} />
             ))
-          : loadArticlesDone && (
-              <PostNone>{title || `피드`}에 대한 게시물이 아직 없습니다</PostNone>
-            )}
+          : loadArticlesDone && <PostNone>{postNoneMsg()}</PostNone>}
         {/* {feedArticles.map((article, index) => (
           <PostCard key={('postcard', index)} post={article[1]} />
         ))} */}
