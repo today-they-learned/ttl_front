@@ -47,9 +47,9 @@ const Login = styled.button`
 `;
 
 const Logo = styled.img`
+  cursor: pointer;
   width: 7rem;
   height: auto;
-  cursor: poiner;
 `;
 
 const TopNavbar = () => {
@@ -84,12 +84,15 @@ const TopNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} />
+        <Icon
+          name="search"
+          style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
+        />
         {user ? (
           <>
             <Icon
               name="pencil alternate"
-              style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
+              style={{ fontSize: '1.5rem', marginLeft: '0.5rem', cursor: 'pointer' }}
               onClick={() => {
                 navigate('/post');
               }}

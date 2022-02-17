@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Divider, Checkbox, Button } from 'semantic-ui-react';
 import * as C from 'components/common/Containers';
 import COLOR from 'constants/color.constant';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 import media from 'styles/media';
 
 export const SettingContainer = styled.div`
@@ -52,6 +52,7 @@ export const Label = styled.div`
 
 export const Btn = styled(Button)`
   cursor: pointer;
+  min-width: 3rem;
   background: ${COLOR.PRIMARY} !important;
   color: white !important;
   font-size: 0.9rem !important;
@@ -87,4 +88,16 @@ export const Line = styled(Divider)`
 export const Slider = styled(Checkbox)`
   width: 2rem;
   margin: 0;
+`;
+
+export const Github = styled.div`
+  cursor: pointer;
+  font-family: 'NS-R' !important;
+  font-size: 0.8rem;
+  margin-right: 1rem;
+  color: ${COLOR.PRIMARY};
+
+  &:hover {
+    color: ${lighten(0.1, COLOR.PRIMARY)};
+  }
 `;
