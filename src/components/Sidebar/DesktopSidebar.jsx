@@ -9,10 +9,13 @@ import { Icon } from 'semantic-ui-react';
 import { SET_TYPE } from 'reducers/postListType';
 
 const Bar = styled.div`
-  position: sticky;
+  /* position: sticky;
   top: 200px;
   width: 10.5rem;
-  height: 100%;
+  height: 100%; */
+  position: fixed;
+  left: 19rem;
+  top: 12rem;
 `;
 
 const SideBar = () => {

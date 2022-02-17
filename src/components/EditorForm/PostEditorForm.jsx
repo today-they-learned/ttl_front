@@ -121,7 +121,7 @@ const PostEditorForm = () => {
 
   return (
     <>
-      <div style={{ marginTop: '5rem' }}>
+      <div>
         <Title
           type="title"
           placeholder="제목을 입력하세요"
