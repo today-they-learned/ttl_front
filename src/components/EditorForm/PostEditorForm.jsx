@@ -99,7 +99,7 @@ const PostEditorForm = () => {
             headers: authHeader(),
           });
 
-          callback(filename.url, 'image alt');
+          callback(filename.url, '');
         })();
         return false;
       });
