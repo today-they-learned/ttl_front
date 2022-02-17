@@ -84,10 +84,10 @@ const TopNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon
+        {/* <Icon
           name="search"
           style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
-        />
+        /> */}
         {user ? (
           <>
             <Icon

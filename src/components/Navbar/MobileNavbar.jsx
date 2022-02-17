@@ -81,7 +81,7 @@ const MobileNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} />
+        {/* <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} /> */}
         {user ? (
           <>
             <Dropdown
