@@ -96,7 +96,7 @@ export const Email = styled.span`
 export const Introduce = styled.div`
   clear: left;
   margin-bottom: 1.2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   height: 5rem;
   margin-top: 1rem;
@@ -137,18 +137,21 @@ export const FBIcon = styled.img`
   width: 1.35rem;
   height: 1.35rem;
   margin-right: 0.5rem;
+  opacity: 0.6;
 `;
 export const InstaIcon = styled.img`
   float: left;
   width: 1.45rem;
   height: 1.45rem;
   margin-right: 0.5rem;
+  opacity: 0.6;
 `;
 export const TwittIcon = styled.img`
   float: left;
   width: 1.4rem;
   height: 1.4rem;
   margin-right: 0.5rem;
+  opacity: 0.6;
 `;
 
 export const Line = styled.div`

@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
   const [info] = useState(user.user);
 
   const [tags, setTags] = useState(user.user.tags);
-  const [tab, setTab] = useState(true);
+  const [tab, setTab] = useState(false);
   const [tagEdit, setTagEdit] = useState(true);
 
   const deleteTag = (e) => {
@@ -39,7 +39,9 @@ const ProfileInfo = (props) => {
           <Styled.ContainerCenter>
             <Styled.UserName>{info.username}</Styled.UserName>
             <Styled.Email>{info.email}</Styled.Email>
-            <Styled.Introduce>{info.introduce}</Styled.Introduce>
+            <Styled.Introduce>
+              {info.introduce ? info.introduce : '소개글이 없습니다.'}
+            </Styled.Introduce>
             {tagEdit ? (
               <div>
                 <Styled.TagContainer>
@@ -69,15 +71,21 @@ const ProfileInfo = (props) => {
           <Styled.ContainerRight>
             <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
             <Styled.IconContainer>
-              <a href={info.facebookAccount}>
-                <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
-              </a>
-              <a href={info.instagramAccount}>
-                <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
-              </a>
-              <a href={info.twitterAccount}>
-                <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
-              </a>
+              {info.facebookAccount ? (
+                <a href={`https://www.facebook.com/${info.facebookAccount}`}>
+                  <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
+                </a>
+              ) : null}
+              {info.instagramAccount ? (
+                <a href={`https://www.instagram.com/${info.instagramAccount}`}>
+                  <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
+                </a>
+              ) : null}
+              {info.twitterAccount ? (
+                <a href={`https://twitter.com/${info.twitterAccount}`}>
+                  <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
+                </a>
+              ) : null}
             </Styled.IconContainer>
           </Styled.ContainerRight>
 
@@ -90,7 +98,7 @@ const ProfileInfo = (props) => {
                 setTab(!tab);
               }}
             >
-              Calendar heatmap
+              잔디
             </Styled.TabButton>
             <Styled.TabButton
               type="button"
@@ -99,7 +107,7 @@ const ProfileInfo = (props) => {
                 setTab(!tab);
               }}
             >
-              {info.username}&apos;s TIL
+              내 TIL
             </Styled.TabButton>
           </Styled.ContainerTab>
           <Styled.ContainerBottom>{tab ? <CalendarHeatMap /> : <TIL />}</Styled.ContainerBottom>

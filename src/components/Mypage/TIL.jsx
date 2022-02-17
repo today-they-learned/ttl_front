@@ -18,7 +18,6 @@ const PostCards = styled.div`
 
 const TIL = () => {
   const posts = [];
-  // const [posts, setPosts] = useState({});
 
   return (
     <Post>
