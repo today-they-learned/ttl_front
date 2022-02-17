@@ -57,6 +57,14 @@ const GlobalStyles = createGlobalStyle`
     display: none!important;
   }
 
+  .ui.slider.checkbox input:checked~label:before {
+    background-color: ${COLOR.PRIMARY} !important;
+  }
+  
+  .ui.slider.checkbox input:focus:checked~.box:before, .ui.slider.checkbox input:focus:checked~label:before {
+    background-color: ${COLOR.PRIMARY} !important;
+  }
+
 `;
 
 export default GlobalStyles;

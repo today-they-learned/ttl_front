@@ -1,134 +1,180 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { UPDATE_USER_REQUEST } from 'reducers/authentication';
-import { Form, Input, Checkbox } from 'semantic-ui-react';
-import TermsModal from 'components/Setting/TermsModal';
-import ServiceModal from 'components/Setting/ServiceModal';
+import { DESTROY_USER_REQUEST, UPDATE_USER_REQUEST } from 'reducers/authentication';
+import { Form, Input, Icon } from 'semantic-ui-react';
+import TermModal from 'components/Setting/TermModal';
+import PrivacyModal from 'components/Setting/PrivacyModal';
+import * as Container from 'components/common/Containers';
+import useInput from 'hooks/useInput';
 import * as Styled from './SettingStyled';
 
 const Setting = () => {
-  const { user } = useSelector((state) => state.authentication);
-  const [info, setInfo] = useState(user.user);
-  const [mailable, setMailable] = useState(user.user.subscribeRecommendedMail);
-
-  const [gitEitMode, setGitMode] = useState(true);
-  const [velogEitMode, setEditMode] = useState(true);
-
-  const onChangeModeGit = () => {
-    setGitMode(!gitEitMode);
-  };
-  const onChangeModeVelog = () => {
-    setEditMode(!velogEitMode);
-  };
-
-  const inputHandler = (e) => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authentication);
+  const info = user.user;
+  const [repository, onChangeRepository] = useInput(info.repository);
+  const [velogUsername, onChangeVelogUsername] = useInput(info.velogUsername);
+  const [gitEditMode, setGitEditMode] = useState(false);
+  const [velogEditMode, setVelogEditMode] = useState(false);
+  const [mailable, setMailable] = useState(info.subscribeRecommendedMail);
+  const { destroyUserDone } = useSelector((state) => state.authentication);
 
   const handleSubmitGit = useCallback(() => {
-    console.log(info.repository);
     dispatch({
       type: UPDATE_USER_REQUEST,
       data: {
-        repository: info.repository,
+        repository,
       },
     });
-    onChangeModeGit();
-  }, [dispatch, info.repository]);
+    setGitEditMode(false);
+  }, [dispatch, repository]);
 
   const handleSubmitVelog = useCallback(() => {
-    console.log(info.velogUsername);
     dispatch({
       type: UPDATE_USER_REQUEST,
       data: {
-        velog_username: info.velogUsername,
+        velog_username: velogUsername,
       },
     });
-    onChangeModeVelog();
-  }, [dispatch, info.velogUsername]);
+    setVelogEditMode(false);
+  }, [dispatch, velogUsername]);
 
-  const changeMail = useCallback(() => {
+  const handleSubmitMailable = useCallback(() => {
     dispatch({
       type: UPDATE_USER_REQUEST,
       data: {
-        subscribe_recommended_mail: mailable,
+        subscribe_recommended_mail: !mailable,
       },
     });
+    setMailable(!mailable);
   }, [dispatch, mailable]);
 
+  const handleWithdraw = () => {
+    if (window.confirm('정말 탈퇴하시겠습니까?\n모든 글과 댓글이 사라집니다. 😥')) {
+      alert('삭제되었습니다');
+      dispatch({
+        type: DESTROY_USER_REQUEST,
+      });
+    } else {
+      alert('취소되었습니다 😊');
+    }
+  };
+
+  useEffect(() => {
+    if (destroyUserDone) {
+      window.location.replace('/');
+    }
+  });
+
   return (
-    <Styled.SettingContainer>
-      <Styled.Container>
-        <Styled.GitIcon src="images/github.png" />
-        <Styled.GitLabel>Git 연동</Styled.GitLabel>
-        <Styled.ButtonContainer>
-          {gitEitMode ? (
-            <Styled.GitEdit onClick={onChangeModeGit}>수정</Styled.GitEdit>
-          ) : (
-            <div>
-              <Form onSubmit={handleSubmitGit}>
-                <Styled.Field>
-                  <Form.Field
-                    control={Input}
-                    name="repository"
-                    placeholder="git 주소를 입력하세요"
-                    value={info.repository}
-                    onChange={inputHandler}
-                  />
-                </Styled.Field>
-                <Styled.GitEdit>제출</Styled.GitEdit>
-              </Form>
-            </div>
-          )}
-        </Styled.ButtonContainer>
-      </Styled.Container>
-      <Styled.Container>
-        <Styled.VelogIcon src="images/velog.jpg" />
-        <Styled.GitLabel>Velog 연동</Styled.GitLabel>
-        <Styled.ButtonContainer>
-          {velogEitMode ? (
-            <Styled.VelogEdit onClick={onChangeModeVelog}>수정</Styled.VelogEdit>
-          ) : (
-            <div>
-              <Form onSubmit={handleSubmitVelog}>
-                <Styled.Field>
-                  <Form.Field
-                    control={Input}
-                    name="velogUsername"
-                    placeholder="velog 주소를 입력하세요"
-                    value={info.velogUsername}
-                    onChange={inputHandler}
-                  />
-                </Styled.Field>
-                <Styled.VelogEdit>제출</Styled.VelogEdit>
-              </Form>
-            </div>
-          )}
-        </Styled.ButtonContainer>
-      </Styled.Container>
-      <Styled.BorderLine />
-      <Styled.Label>메일 수신 동의</Styled.Label>
-      <Styled.MailEdit onClick={changeMail}>저장</Styled.MailEdit>
-      <Styled.Toggle>
-        <Checkbox toggle checked={mailable} onChange={() => setMailable(!mailable)} />
-      </Styled.Toggle>
-      <Styled.MailPhrase>관심사 TTL 소식을 메일로 받아보세요</Styled.MailPhrase>
-      <Styled.BorderLine />
-      <Styled.TermsLabel>개인정보 처리 및 약관</Styled.TermsLabel>
-      <TermsModal />
-      <ServiceModal />
-      <Styled.BorderLine />
-      <Styled.Label>회원 탈퇴</Styled.Label>
-      <Styled.Button>회원 탈퇴</Styled.Button>
-      <Styled.ButtonPhrase>
-        탈퇴 시 작성한 포스트 및 댓글이 삭제되며 복구되지 않습니다.
-      </Styled.ButtonPhrase>
-    </Styled.SettingContainer>
+    <>
+      <Container.AlignCenterContainer>
+        <Styled.SettingContainer>
+          <Styled.Container>
+            <Styled.LabelContainer>
+              <Styled.Title>
+                <Styled.Icon src="images/github.png" />
+                <Styled.Label>Git 연동</Styled.Label>
+              </Styled.Title>
+              {gitEditMode ? (
+                <Form id="git" onSubmit={handleSubmitGit}>
+                  <Styled.Field>
+                    <Form.Field
+                      control={Input}
+                      placeholder="ex) user/TIL"
+                      value={repository}
+                      onChange={onChangeRepository}
+                    />
+                  </Styled.Field>
+                </Form>
+              ) : (
+                <Styled.Content>{info.repository}</Styled.Content>
+              )}
+            </Styled.LabelContainer>
+            {gitEditMode ? (
+              <Styled.Btn form="git" type="submit">
+                완료
+              </Styled.Btn>
+            ) : (
+              <Styled.Btn
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setGitEditMode(!gitEditMode);
+                }}
+              >
+                수정
+              </Styled.Btn>
+            )}
+          </Styled.Container>
+          <Styled.LightText>
+            Git의 레포지토리 이름을 등록하세요. 예시 : username/TIL{' '}
+          </Styled.LightText>
+          <Styled.Line />
+          <Styled.Container>
+            <Styled.LabelContainer>
+              <Styled.Title>
+                <Styled.Icon src="images/velog.jpg" style={{ borderRadius: '50%' }} />
+                <Styled.Label>Velog 연동</Styled.Label>
+              </Styled.Title>
+              {velogEditMode ? (
+                <Form id="velog" onSubmit={handleSubmitVelog}>
+                  <Styled.Field>
+                    <Form.Field
+                      control={Input}
+                      placeholder="velog id"
+                      value={velogUsername}
+                      onChange={onChangeVelogUsername}
+                    />
+                  </Styled.Field>
+                </Form>
+              ) : (
+                <Styled.Content>{info.velogUsername}</Styled.Content>
+              )}
+            </Styled.LabelContainer>
+            {velogEditMode ? (
+              <Styled.Btn form="velog" type="submit">
+                완료
+              </Styled.Btn>
+            ) : (
+              <Styled.Btn
+                onClick={(e) => {
+                  e.preventDefault();
+                  setVelogEditMode(!velogEditMode);
+                }}
+              >
+                수정
+              </Styled.Btn>
+            )}
+          </Styled.Container>
+          <Styled.LightText>Velog 아이디를 입력하세요.</Styled.LightText>
+          <Styled.Line />
+          <Styled.Container>
+            <Styled.LabelContainer>
+              <Styled.Title>
+                <Icon name="mail" size="large" color="grey" style={{ marginRight: '0.5rem' }} />
+                <Styled.Label>메일 수신 설정</Styled.Label>
+              </Styled.Title>
+              <Styled.LightText>관심태그 TTL을 메일로 받아보세요.</Styled.LightText>
+            </Styled.LabelContainer>
+            <Styled.Slider slider checked={mailable} onChange={handleSubmitMailable} />
+          </Styled.Container>
+          <Styled.Line />
+          <Styled.Container>
+            <Styled.LightText>
+              탈퇴 시 작성한 글 및 댓글이 삭제되며 복구되지 않습니다.
+            </Styled.LightText>
+            <Styled.Btn style={{ width: '5rem' }} onClick={handleWithdraw}>
+              회원 탈퇴
+            </Styled.Btn>
+          </Styled.Container>
+          <Styled.Title style={{ width: '100%' }}>
+            <PrivacyModal />
+            <TermModal />
+          </Styled.Title>
+        </Styled.SettingContainer>
+      </Container.AlignCenterContainer>
+    </>
   );
 };
 
