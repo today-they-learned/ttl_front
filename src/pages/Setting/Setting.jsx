@@ -171,6 +171,9 @@ const Setting = () => {
           <Styled.Title style={{ width: '100%' }}>
             <PrivacyModal />
             <TermModal />
+            <a href="https://github.com/today-they-learned/ttl_front">
+              <Styled.Github>TTL Github</Styled.Github>
+            </a>
           </Styled.Title>
         </Styled.SettingContainer>
       </Container.AlignCenterContainer>
