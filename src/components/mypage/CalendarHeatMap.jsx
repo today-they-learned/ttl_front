@@ -62,7 +62,6 @@ const CalendarHeatMap = () => {
           count: grass[i].studyCount,
         });
       }
-      console.log(tilCount);
       setTILCount(tilCount);
       setTTLCount(ttlCount);
     }

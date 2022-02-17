@@ -108,6 +108,18 @@ export const TagButton = styled.button`
   color: #707bf3;
 `;
 
+export const TagButton2 = styled.button`
+  width: 3rem;
+  height: 1.4rem;
+  border-radius: 0.1rem;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  color: #707bf3;
+`;
+
 export const PhotoInput = styled(Input)`
   width: 5rem !important;
   height: 1.5rem !important;
