@@ -88,7 +88,9 @@ const Setting = () => {
                   </Styled.Field>
                 </Form>
               ) : (
-                <Styled.Content>{info.repository}</Styled.Content>
+                <Styled.Content>
+                  {info.repository ? info.repository : '연동된 계정이 없습니다.'}
+                </Styled.Content>
               )}
             </Styled.LabelContainer>
             {gitEditMode ? (
@@ -129,7 +131,9 @@ const Setting = () => {
                   </Styled.Field>
                 </Form>
               ) : (
-                <Styled.Content>{info.velogUsername}</Styled.Content>
+                <Styled.Content>
+                  {info.velogUsername ? info.velogUsername : '연동된 계정이 없습니다.'}
+                </Styled.Content>
               )}
             </Styled.LabelContainer>
             {velogEditMode ? (
