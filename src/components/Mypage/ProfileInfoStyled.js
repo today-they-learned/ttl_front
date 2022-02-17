@@ -3,7 +3,6 @@ import { Form, Label } from 'semantic-ui-react';
 
 export const Profile = styled.div`
   width: 100%;
-  padding-left: 2rem;
   .choice1 {
     margin-top: 0.6rem;
     float: left;
@@ -64,10 +63,10 @@ export const ContainerRight = styled.div`
   float: left;
 `;
 export const ContainerTab = styled.div`
-  clear: left;
   width: 100%;
   height: 3rem;
-  margin-left: 3rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
 `;
 
 export const ContainerBottom = styled.div`
@@ -200,6 +199,7 @@ export const Tagg = styled(Label)`
 
 export const ProfileMobile = styled.div`
   width: 28rem;
+  max-width: 100%;
   .choice1 {
     margin-top: 0.6rem;
     margin-left: 1.1rem;
@@ -238,6 +238,7 @@ export const ProfileMobile = styled.div`
 
 export const ContainerTop = styled.div`
   width: 28rem;
+  max-width: 100%;
   height: 9.5rem;
   float: left;
   /* background-color: grey; */
@@ -304,6 +305,7 @@ export const Introduce2 = styled.div`
 export const Line2 = styled.div`
   clear: left;
   width: 28rem;
+  max-width: 100%;
   height: 0.1rem;
   margin-right: 2rem;
   background-color: #eaeaea;
@@ -314,4 +316,5 @@ export const TabButton2 = styled.div`
 `;
 export const ContainerBottom2 = styled.div`
   width: 28rem;
+  max-width: 100%;
 `;

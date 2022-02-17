@@ -8,11 +8,13 @@ import styled from 'styled-components';
 
 const CHMContainer = styled.div`
   width: 28rem;
+  max-width: 100%;
   padding-top: 2rem;
 `;
 
 const CHM = styled.div`
   width: 27.6rem;
+  max-width: 100%;
   padding-left: 0.2rem;
 `;
 

@@ -1,12 +1,16 @@
 /* eslint-disable import/no-unresolved */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
+import { LOAD_USER_REQUEST } from 'reducers/users';
 import { Form, Input, TextArea, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
 const ProfileEdit = (props) => {
-  const { user } = useSelector((state) => state.authentication);
+  const dispatch = useDispatch();
+  const formData = new FormData();
+  const { user, updateUserDone } = useSelector((state) => state.authentication);
+  const { loadUserDone } = useSelector((state) => state.users);
   const [info, setInfo] = useState(user.user);
   const [tags, setTags] = useState(user.user.tags);
   const [tagEdit, setTagEdit] = useState(true);
@@ -22,9 +26,6 @@ const ProfileEdit = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const dispatch = useDispatch();
-  const formData = new FormData();
 
   const onChange = (e) => {
     const img = e.target.files[0];
@@ -42,7 +43,6 @@ const ProfileEdit = (props) => {
       type: UPDATE_USER_REQUEST,
       data: formData,
     });
-    props.onChangeMode();
   }, [dispatch, formData]);
 
   const TagSubmit = () => {
@@ -50,25 +50,45 @@ const ProfileEdit = (props) => {
     setTagEdit(!tagEdit);
   };
 
+  useEffect(() => {
+    if (updateUserDone) {
+      dispatch({
+        type: LOAD_USER_REQUEST,
+        id: info.id,
+      });
+    }
+  }, [updateUserDone]);
+
+  useEffect(() => {
+    if (loadUserDone) {
+      props.onChangeMode();
+    }
+  }, [loadUserDone]);
+
   return (
     <Styled.InfoEdit>
-      <Styled.ContainerLeft>
-        <Styled.ProfileImg
-          src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
-          alt="profile"
-        />
-        <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
-
-        <Styled.PhotoInput
-          id="input_file"
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg"
-          name="profile_img"
-          onChange={onChange}
-        />
-      </Styled.ContainerLeft>
       <Form onSubmit={handleSubmit}>
-        <Styled.ContainerCenter>
+        <Styled.AvatarFormContainer>
+          <Styled.ProfileImg
+            src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+            alt="profile"
+          />
+          <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
+
+          <Styled.PhotoInput
+            id="input_file"
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg"
+            name="profile_img"
+            onChange={onChange}
+          />
+        </Styled.AvatarFormContainer>
+        <Styled.ActionContainer>
+          <Styled.BackButton>취소</Styled.BackButton>
+          <Styled.EditButton>저장</Styled.EditButton>
+        </Styled.ActionContainer>
+
+        <Styled.ProfileFormContainer>
           <Styled.Labell>username</Styled.Labell>
           <Styled.UNField>
             <Form.Field
@@ -79,8 +99,6 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.UNField>
-          <Styled.BackButton>취소</Styled.BackButton>
-          <Styled.EditButton>저장</Styled.EditButton>
           <Styled.Labell>introduce</Styled.Labell>
           <Styled.AboutField>
             <Form.Field
@@ -118,10 +136,9 @@ const ProfileEdit = (props) => {
               </Styled.TagContainer>
             </div>
           )}
-        </Styled.ContainerCenter>
-        <Styled.ContainerBottom>
-          <Styled.TagLabel>facebook_username</Styled.TagLabel>
+          <br />
           <Styled.SnsField>
+            <Styled.TagLabel>facebook_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="facebookAccount"
@@ -130,8 +147,8 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-          <Styled.TagLabel>instagram_username</Styled.TagLabel>
           <Styled.SnsField>
+            <Styled.TagLabel>instagram_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="instagramAccount"
@@ -140,8 +157,8 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-          <Styled.TagLabel>twitter_username</Styled.TagLabel>
           <Styled.SnsField>
+            <Styled.TagLabel>twitter_username</Styled.TagLabel>
             <Form.Field
               control={Input}
               name="twitterAccount"
@@ -150,7 +167,7 @@ const ProfileEdit = (props) => {
               onChange={inputHandler}
             />
           </Styled.SnsField>
-        </Styled.ContainerBottom>
+        </Styled.ProfileFormContainer>
       </Form>
     </Styled.InfoEdit>
   );
