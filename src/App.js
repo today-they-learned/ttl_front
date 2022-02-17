@@ -6,7 +6,7 @@ import 'styles/fonts.css';
 
 import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
-import { Mypage, SignIn, SignUp, Article } from 'pages';
+import { Mypage, SignIn, SignUp, Article, NotFound } from 'pages';
 import ReactGA from 'react-ga';
 import LocationTracker from 'trackers/LocationTracker';
 
@@ -30,6 +30,7 @@ const App = () => {
             <Route path="/article/:id" element={<Article />} />
             <Route path="/post" element={<PostEditorForm />} />
             <Route path="/put/" element={<PutEditorForm />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ResponsiveLayout>
         <LocationTracker />
