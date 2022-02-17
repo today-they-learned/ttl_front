@@ -88,9 +88,7 @@ const Setting = () => {
                   </Styled.Field>
                 </Form>
               ) : (
-                <Styled.Content>
-                  {info.repository ? info.repository : '연동된 계정이 없습니다.'}
-                </Styled.Content>
+                <Styled.Content>{info.repository ? info.repository : '-'}</Styled.Content>
               )}
             </Styled.LabelContainer>
             {gitEditMode ? (
@@ -110,7 +108,7 @@ const Setting = () => {
             )}
           </Styled.Container>
           <Styled.LightText>
-            Git의 레포지토리 이름을 등록하세요. 예시 : username/TIL{' '}
+            Git의 레포지토리 이름을 등록하세요. Public 레포지토리만 연동 가능합니다. ex. user/TIL
           </Styled.LightText>
           <Styled.Line />
           <Styled.Container>
@@ -131,9 +129,7 @@ const Setting = () => {
                   </Styled.Field>
                 </Form>
               ) : (
-                <Styled.Content>
-                  {info.velogUsername ? info.velogUsername : '연동된 계정이 없습니다.'}
-                </Styled.Content>
+                <Styled.Content>{info.velogUsername ? info.velogUsername : '-'}</Styled.Content>
               )}
             </Styled.LabelContainer>
             {velogEditMode ? (
@@ -168,7 +164,7 @@ const Setting = () => {
             <Styled.LightText>
               탈퇴 시 작성한 글 및 댓글이 삭제되며 복구되지 않습니다.
             </Styled.LightText>
-            <Styled.Btn style={{ width: '5rem' }} onClick={handleWithdraw}>
+            <Styled.Btn style={{ minWidth: '4.8rem', marginLeft: '1rem' }} onClick={handleWithdraw}>
               회원 탈퇴
             </Styled.Btn>
           </Styled.Container>

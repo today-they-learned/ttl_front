@@ -52,6 +52,7 @@ export const Label = styled.div`
 
 export const Btn = styled(Button)`
   cursor: pointer;
+  min-width: 3rem;
   background: ${COLOR.PRIMARY} !important;
   color: white !important;
   font-size: 0.9rem !important;
