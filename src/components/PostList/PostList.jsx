@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
 import styled from 'styled-components';
+import COLOR from 'constants/color.constant';
 
 const Post = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const PostCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: 80vh;
 `;
 
 const PostTop = styled.div`
@@ -35,12 +37,24 @@ const PostTop = styled.div`
   }
 `;
 
+const PostNone = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  font-family: 'GS-M';
+  letter-spacing: -0.6px;
+  color: ${COLOR.PRIMARY};
+`;
+
 const PostList = () => {
   const dispatch = useDispatch();
   const { item, title, isTag } = useSelector((state) => state.postListType);
-  const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
-    (state) => state.article,
-  );
+  const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
+    useSelector((state) => state.article);
+  console.log(feedArticles);
 
   useEffect(() => {
     dispatch({
@@ -50,7 +64,7 @@ const PostList = () => {
       type: LOAD_ARTICLES_REQUEST,
       data: {
         orderby: 'created_at',
-        tab: item === 'read_list' ? 'study' : item,
+        tab: item,
         tag: isTag && item,
         // search: 'test',
         // user_id: user && user.user.id,
@@ -71,7 +85,7 @@ const PostList = () => {
           data: {
             page: currentPage,
             orderby: 'created_at',
-            tab: item === 'read_list' ? 'study' : item,
+            tab: item,
             tag: isTag && item,
             // search: 'test',
             // user_id: user && user.user.id,
@@ -113,9 +127,14 @@ const PostList = () => {
         </div>
       </PostTop>
       <PostCards>
-        {feedArticles.map((article, index) => (
+        {feedArticles.length !== 0
+          ? feedArticles.map((article, index) => (
+              <PostCard key={('postcard', index)} post={article[1]} />
+            ))
+          : loadArticlesDone && <PostNone>{item}에 대한 피드가 아직 없습니다</PostNone>}
+        {/* {feedArticles.map((article, index) => (
           <PostCard key={('postcard', index)} post={article[1]} />
-        ))}
+        ))} */}
       </PostCards>
     </Post>
   );

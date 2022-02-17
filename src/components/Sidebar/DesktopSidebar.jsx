@@ -92,7 +92,7 @@ const SideBar = () => {
             },
             {
               title: '읽은 목록',
-              itemId: { item: 'read_list', title: '읽은 목록' },
+              itemId: { item: 'study', title: '읽은 목록' },
               elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
             },
           ]}
