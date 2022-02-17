@@ -80,7 +80,6 @@ const SideBar = () => {
             },
             {
               title: '관심태그',
-              itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
               subNav: user ? setArr : null,

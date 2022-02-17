@@ -56,6 +56,12 @@ const PostNone = styled.div`
   font-family: 'GS-M';
   letter-spacing: -0.6px;
   color: ${COLOR.PRIMARY};
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+
+    font-size: 1.5rem;
+  }
 `;
 
 const PostList = () => {
@@ -140,7 +146,9 @@ const PostList = () => {
           ? feedArticles.map((article, index) => (
               <PostCard key={('postcard', index)} post={article[1]} />
             ))
-          : loadArticlesDone && <PostNone>{item}에 대한 피드가 아직 없습니다</PostNone>}
+          : loadArticlesDone && (
+              <PostNone>{title || `피드`}에 대한 게시물이 아직 없습니다</PostNone>
+            )}
         {/* {feedArticles.map((article, index) => (
           <PostCard key={('postcard', index)} post={article[1]} />
         ))} */}
