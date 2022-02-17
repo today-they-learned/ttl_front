@@ -155,10 +155,10 @@ const Setting = () => {
                 <Icon name="mail" size="large" color="grey" style={{ marginRight: '0.5rem' }} />
                 <Styled.Label>메일 수신 설정</Styled.Label>
               </Styled.Title>
-              <Styled.LightText>관심태그 TTL을 메일로 받아보세요. (추가 예정)</Styled.LightText>
             </Styled.LabelContainer>
             <Styled.Slider slider checked={mailable} onChange={handleSubmitMailable} />
           </Styled.Container>
+          <Styled.LightText>관심태그 TTL을 메일로 받아보세요. (추가 예정)</Styled.LightText>
           <Styled.Line />
           <Styled.Container>
             <Styled.LightText>
