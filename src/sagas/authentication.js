@@ -9,10 +9,16 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
 } from 'reducers/authentication';
+
+import authHeader from './auth-header';
 
 const signinAPI = (data) => axios.post('/users/login/', data);
 const signupAPI = (data) => axios.post('/users/', data);
+const userEditAPI = (data) => axios.patch('/users/user/', data, { headers: authHeader() });
 
 function* signin(action) {
   try {
@@ -53,6 +59,25 @@ function* watchSignup() {
   yield takeLatest(SIGN_UP_REQUEST, signup);
 }
 
+function* userEdit(action) {
+  try {
+    const result = yield call(userEditAPI, action.data);
+    yield put({
+      type: UPDATE_USER_SUCCESS,
+      data: camelize(result.data),
+    });
+  } catch (err) {
+    yield put({
+      type: UPDATE_USER_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function* watchUserEdit() {
+  yield takeLatest(UPDATE_USER_REQUEST, userEdit);
+}
+
 export default function* authenticationSaga() {
-  yield all([fork(watchSignin), fork(watchSignup)]);
+  yield all([fork(watchSignin), fork(watchSignup), fork(watchUserEdit)]);
 }

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable camelcase */
 
 import Feedback from 'components/Feedback/Feedback';

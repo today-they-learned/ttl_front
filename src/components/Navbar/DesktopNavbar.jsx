@@ -30,7 +30,7 @@ const Avatar = styled.img`
 `;
 
 const DropText = styled.div`
-  font-weight: 500;
+  font-weight: 500 !important;
 `;
 
 const Login = styled.button`
@@ -100,9 +100,14 @@ const TopNavbar = () => {
               style={{ display: 'flex', alignItems: 'center' }}
             >
               <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
-                <Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    navigate('/mypage');
+                  }}
+                >
                   <DropText>프로필</DropText>
                 </Dropdown.Item>
+
                 <Dropdown.Item
                   onClick={() => {
                     navigate('/post');
@@ -110,9 +115,15 @@ const TopNavbar = () => {
                 >
                   <DropText>글쓰기</DropText>
                 </Dropdown.Item>
-                <Dropdown.Item>
+
+                <Dropdown.Item
+                  onClick={() => {
+                    navigate('/setting');
+                  }}
+                >
                   <DropText>설정</DropText>
                 </Dropdown.Item>
+
                 <Dropdown.Item onClick={handleSignOut}>
                   <DropText>로그아웃</DropText>
                 </Dropdown.Item>
