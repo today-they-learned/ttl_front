@@ -10,6 +10,11 @@ const Post = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  margin-top: 8rem;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 const PostCards = styled.div`
@@ -17,6 +22,10 @@ const PostCards = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 80vh;
+
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const PostTop = styled.div`

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
 const Nav = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
