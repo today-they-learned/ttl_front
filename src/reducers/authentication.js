@@ -1,7 +1,6 @@
 import produce from 'utils/produce.util';
 
 const user = JSON.parse(localStorage.getItem('user'));
-// console.log(user);
 let temp = 'bar';
 
 export const initialState = {
@@ -19,6 +18,10 @@ export const initialState = {
   destroyUserDone: false,
   destroyUserError: null,
 };
+
+export const LOAD_USER_REQUEST = 'SIGNIN_REQUEST';
+export const LOAD_USER_SUCCESS = 'SIGNIN_SUCCESS';
+export const LOAD_USER_FAILURE = 'SIGNIN_FAILURE';
 
 export const SIGN_IN_REQUEST = 'SIGNIN_REQUEST';
 export const SIGN_IN_SUCCESS = 'SIGNIN_SUCCESS';
@@ -84,19 +87,15 @@ const reducer = (state = initialState, action) =>
       case UPDATE_USER_SUCCESS:
         draft.updateUserLoading = false;
         draft.updateUserDone = true;
-        // console.log('성공');
-        // console.log(action.data);
         temp = JSON.parse(localStorage.getItem('user'));
         temp.user = action.data;
         localStorage.setItem('user', JSON.stringify(temp));
         draft.user = temp;
         break;
       case UPDATE_USER_FAILURE:
-        // console.log('실패');
         draft.updateUserLoading = false;
         draft.updateUserError = action.error;
         break;
-
       case DESTROY_USER_REQUEST:
         draft.destroyUserLoading = true;
         draft.destroyUserDone = false;
@@ -105,6 +104,7 @@ const reducer = (state = initialState, action) =>
       case DESTROY_USER_SUCCESS:
         draft.destroyUserLoading = false;
         draft.destroyUserDone = true;
+        localStorage.removeItem('user');
         break;
       case DESTROY_USER_FAILURE:
         draft.destroyUserLoading = false;

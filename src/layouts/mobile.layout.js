@@ -18,6 +18,7 @@ const MobileLayout = (props) => {
           justifyContent: 'center',
           maxWidth: '1170px',
           margin: 'auto',
+          marginTop: '4rem',
           height: '100%',
         }}
       >

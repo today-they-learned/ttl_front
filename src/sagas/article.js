@@ -32,7 +32,7 @@ function* feedArticles(action) {
       data: camelize(result.data),
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     yield put({
       type: LOAD_ARTICLES_FAILURE,
       error: err.response.data,

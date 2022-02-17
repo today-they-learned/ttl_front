@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -8,8 +7,9 @@ import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 
 const Nav = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,8 +25,6 @@ const Avatar = styled.img`
   height: 2rem;
   margin-left: 0.5rem;
   border-radius: 50%;
-  background-color: black;
-  /* 동그라미 확인용 */
 `;
 
 const DropText = styled.div`
@@ -49,9 +47,9 @@ const Login = styled.button`
 `;
 
 const Logo = styled.img`
+  cursor: pointer;
   width: 7rem;
   height: auto;
-  cursor: poiner;
 `;
 
 const TopNavbar = () => {
@@ -65,7 +63,10 @@ const TopNavbar = () => {
 
   const trigger = (
     <span>
-      <Avatar src="images/avatar.png" style={{ cursor: 'pointer' }} />
+      <Avatar
+        src={user?.user.avatar ? user.user.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+        style={{ cursor: 'pointer' }}
+      />
     </span>
   );
 
@@ -83,17 +84,19 @@ const TopNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon name="search" style={{ fontSize: '1.5rem' }} />
+        <Icon
+          name="search"
+          style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
+        />
         {user ? (
           <>
             <Icon
               name="pencil alternate"
-              style={{ fontSize: '1.5rem', marginLeft: '0.5rem' }}
+              style={{ fontSize: '1.5rem', marginLeft: '0.5rem', cursor: 'pointer' }}
               onClick={() => {
                 navigate('/post');
               }}
             />
-            {/* 임시 유저 아이콘 */}
             <Dropdown
               direction="left"
               trigger={trigger}

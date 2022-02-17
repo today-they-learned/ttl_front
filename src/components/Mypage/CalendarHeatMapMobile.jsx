@@ -74,7 +74,7 @@ const CalendarHeatMapMobile = () => {
 
   return (
     <CHMContainer>
-      <TilLabel>내가 작성한 TIL</TilLabel>
+      <TilLabel>작성한 TIL</TilLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}
@@ -106,8 +106,7 @@ const CalendarHeatMapMobile = () => {
           }}
         />
       </CHM>
-
-      <TtlLabel>내가 본 TTL</TtlLabel>
+      <TtlLabel>공부한 TTL</TtlLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}

@@ -1,21 +1,32 @@
-/* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LOAD_ARTICLES_REQUEST } from 'reducers/article';
+import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
 import styled from 'styled-components';
+import COLOR from 'constants/color.constant';
 
 const Post = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  margin-left: 11rem;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 const PostCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: 80vh;
+
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const PostTop = styled.div`
@@ -24,7 +35,7 @@ const PostTop = styled.div`
   justify-content: center;
   padding: 0 1rem;
   margin-bottom: 2rem;
-  width: 100%;
+  width: 95%;
 
   &:after {
     content: '';
@@ -36,27 +47,46 @@ const PostTop = styled.div`
   }
 `;
 
+const PostNone = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  font-family: 'GS-M';
+  letter-spacing: -0.6px;
+  color: ${COLOR.PRIMARY};
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+
+    font-size: 1.5rem;
+  }
+`;
+
 const PostList = () => {
   const dispatch = useDispatch();
-  const { type, title } = useSelector((state) => state.postListType);
-  const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
-    (state) => state.article,
-  );
+  const { item, title, isTag } = useSelector((state) => state.postListType);
+  const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
+    useSelector((state) => state.article);
 
   useEffect(() => {
-    if (currentPage === 1) {
-      dispatch({
-        type: LOAD_ARTICLES_REQUEST,
-        data: {
-          orderby: 'created_at',
-          // tab: type == 'main' ? null : type,
-          // tag: 'python',
-          // search: 'test',
-          // user_id: 4,
-        },
-      });
-    }
-  }, [dispatch]);
+    dispatch({
+      type: LOAD_ARTICLES_CLEAR,
+    });
+    dispatch({
+      type: LOAD_ARTICLES_REQUEST,
+      data: {
+        orderby: 'created_at',
+        tab: item,
+        tag: isTag && item,
+        // search: 'test',
+        // user_id: user && user.user.id,
+      },
+    });
+  }, [item]);
+
   // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
 
   const onScroll = () => {
@@ -70,10 +100,10 @@ const PostList = () => {
           data: {
             page: currentPage,
             orderby: 'created_at',
-            // tab: type == 'main' ? null : type,
-            // tag: 'python',
+            tab: item,
+            tag: isTag && item,
             // search: 'test',
-            // user_id: 4,
+            // user_id: user && user.user.id,
           },
         });
       }
@@ -91,8 +121,10 @@ const PostList = () => {
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{title}</p>
-          {type === 'main' && (
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
+            {title || '피드'}
+          </p>
+          {item === 'main' && (
             <select
               name="post_option"
               id=""
@@ -110,9 +142,16 @@ const PostList = () => {
         </div>
       </PostTop>
       <PostCards>
-        {feedArticles.map((article, index) => (
+        {feedArticles.length !== 0
+          ? feedArticles.map((article, index) => (
+              <PostCard key={('postcard', index)} post={article[1]} />
+            ))
+          : loadArticlesDone && (
+              <PostNone>{title || `피드`}에 대한 게시물이 아직 없습니다</PostNone>
+            )}
+        {/* {feedArticles.map((article, index) => (
           <PostCard key={('postcard', index)} post={article[1]} />
-        ))}
+        ))} */}
       </PostCards>
     </Post>
   );

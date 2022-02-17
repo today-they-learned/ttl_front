@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
 import { Navigation } from 'react-minimal-side-navigation';
+import { SET_TYPE } from 'reducers/postListType';
 
 const SidebarShowUp = keyframes`
    0% {
@@ -19,7 +20,6 @@ const SidebarShowUp = keyframes`
 const SidebarShowDown = keyframes`
    0% {
       transform: translate(0, 0);
-
     }
     100% {
       transform: translate(-100%, 0);
@@ -55,6 +55,7 @@ const SidebarOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
 `;
+
 const SidebarWrapper = styled.div`
   box-sizing: border-box;
   display: ${(props) => props.visible === null && 'none'};
@@ -72,6 +73,7 @@ const SidebarWrapper = styled.div`
   z-index: 1000;
   outline: 0;
 `;
+
 const SidebarInner = styled.div`
   box-sizing: border-box;
   position: relative;
@@ -132,10 +134,26 @@ const MobileSideBar = () => {
         setArr.push(curObj);
       });
     }
-  });
+  }, []);
 
   const setType = (itemId) => {
-    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+    if (typeof itemId === 'object') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.item}`,
+        title: `${itemId.title}`,
+        isTag: false,
+      });
+    }
+
+    if (typeof itemId === 'string') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.slice(6)}`,
+        title: `${itemId.slice(6)}`,
+        isTag: true,
+      });
+    }
   };
 
   return (
@@ -164,7 +182,7 @@ const MobileSideBar = () => {
             >
               <Navigation
                 onSelect={({ itemId }) => {
-                  if (user) {
+                  if (user && itemId !== '/tags') {
                     setType(itemId);
                   }
                   if (!user && itemId.item !== 'main') {
@@ -186,19 +204,19 @@ const MobileSideBar = () => {
                   },
                   {
                     title: '관심태그',
-                    itemId: '/tag',
+                    itemId: '/tags',
                     elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
                     subNav: user ? setArr : null,
                   },
                   {
                     title: '북마크',
-                    itemId: '/bookmark',
+                    itemId: { item: 'bookmark', title: '북마크' },
                     elemBefore: () => <Icon name="bookmark" style={{ fontSize: '1.2rem' }} />,
                   },
                   {
                     title: '읽은 목록',
-                    itemId: '/read_list',
+                    itemId: { item: 'study', title: '읽은 목록' },
                     elemBefore: () => <Icon name="eye" style={{ fontSize: '1.2rem' }} />,
                   },
                 ]}

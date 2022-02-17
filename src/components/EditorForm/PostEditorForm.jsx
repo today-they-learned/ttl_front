@@ -99,7 +99,7 @@ const PostEditorForm = () => {
             headers: authHeader(),
           });
 
-          callback(filename.url, 'image alt');
+          callback(filename.url, '');
         })();
         return false;
       });
@@ -132,7 +132,7 @@ const PostEditorForm = () => {
 
         <Editor
           previewStyle="vertical"
-          height="83vh"
+          height="75vh"
           initialEditType="markdown"
           placeholder="마크다운으로 내용을 입력하세요..."
           ref={editorRef}

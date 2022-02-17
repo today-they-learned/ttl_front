@@ -77,6 +77,7 @@ export const ProfileImg = styled.img`
   height: 7.5rem;
   border-radius: 3.75rem;
   margin-right: 0;
+  margin-bottom: 0.5rem;
   @media screen and (max-width: 767px) {
     width: 7.5rem;
     height: 7.5rem;
@@ -181,12 +182,21 @@ export const TagButton2 = styled.button`
 
 export const PhotoInput = styled(Input)`
   width: 5rem !important;
+  height: 2.5rem !important;
+  display: none !important;
+`;
+
+export const PhotoButton = styled.label`
+  width: 5rem !important;
   height: 1.5rem !important;
-  font-size: 0.5rem !important;
-  margin-top: 0.6rem !important;
-  margin-left: 1.2rem !important;
+  font-size: 0.6rem !important;
+  margin-top: 1rem !important;
+  margin-left: 1.9rem !important;
+  padding: 0.4rem;
   background-color: #707bf3 !important;
   color: white !important;
+  font-family: 'NS-R' !important;
+  cursor: pointer;
 `;
 
 export const UNField = styled(Form.Field)`
