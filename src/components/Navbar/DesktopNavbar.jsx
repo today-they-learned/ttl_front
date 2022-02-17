@@ -47,9 +47,9 @@ const Login = styled.button`
 `;
 
 const Logo = styled.img`
+  cursor: pointer;
   width: 7rem;
   height: auto;
-  cursor: poiner;
 `;
 
 const TopNavbar = () => {
