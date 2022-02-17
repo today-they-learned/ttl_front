@@ -4,6 +4,7 @@ export const initialState = {
   item: 'main',
   title: '피드',
   isTag: false,
+  isSearch: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const reducer = (state = initialState, action) => {
         item: action.item,
         title: action.title,
         isTag: action.isTag,
+        isSearch: action.isSearch,
       };
     default:
       return state;

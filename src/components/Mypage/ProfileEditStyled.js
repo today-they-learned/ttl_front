@@ -1,75 +1,47 @@
 import styled from 'styled-components';
 import { Form, Label, Input } from 'semantic-ui-react';
+import media from 'styles/media';
 
 export const InfoEdit = styled.div`
-  width: 65rem;
-  padding-left: 2rem;
-  @media screen and (max-width: 767px) {
+  width: 100%;
+  position: relative;
+  padding: 8rem;
+
+  ${media.tablet`
     width: 28rem;
-    background-color: aqua;
-  }
+    padding: 5rem;
+  `}
+
+  ${media.mobile`
+    width: 28rem;
+    padding: 2rem;
+  `}
 `;
 
-export const ContainerLeft = styled.div`
+export const AvatarFormContainer = styled.div`
   width: 8rem;
   height: 10rem;
-  float: left;
   color: black;
-  margin: 0.5rem auto auto 1.6rem;
-  padding-top: 1.95rem;
-  padding-left: 0.7rem;
-  @media screen and (max-width: 767px) {
-    width: 8rem;
-    height: 8rem;
-    color: black;
-    margin-left: 8rem;
-  }
 `;
 
-export const ContainerCenter = styled.div`
-  width: 50rem;
+export const ProfileFormContainer = styled.div`
+  width: 100%;
   height: 13rem;
-  float: left;
   margin-top: 0.5rem;
-  margin-left: 1rem;
   margin-bottom: 1.2rem;
-  padding-left: 2.5rem;
   padding-top: 1rem;
   font-size: 12px;
   border-radius: 0.2rem;
   @media screen and (max-width: 767px) {
     width: 28rem;
     height: 12rem;
-    margin-top: 3rem;
-    margin-bottom: 1.2rem;
-    margin-left: 0.01rem;
-    padding-top: 1rem;
-    padding-left: 1.2rem;
-    font-size: 12px;
-    border-radius: 0.2rem;
   }
 `;
 
-export const ContainerBottom = styled.div`
-  width: 50rem;
-  height: 20rem;
-  float: left;
-  margin-top: 0.5rem;
-  margin-left: 10.6rem;
-  margin-bottom: 1.2rem;
-  padding-left: 2.5rem;
-  font-size: 12px;
-  border-radius: 0.2rem;
-  @media screen and (max-width: 767px) {
-    width: 28rem;
-    height: 12rem;
-    margin-top: 2rem;
-    margin-left: 0.01rem;
-    margin-bottom: 1.2rem;
-    padding-left: 1.2rem;
-    font-size: 12px;
-    border-radius: 0.2rem;
-  }
+export const ActionContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 export const ProfileImg = styled.img`
@@ -89,7 +61,6 @@ export const BackButton = styled.button`
   width: 2.5rem;
   height: 1.6rem;
   float: left;
-  margin-left: 32.5rem;
   margin-top: 0.45rem;
   font-size: 0.5rem;
   background-color: white;
@@ -218,7 +189,6 @@ export const UNField = styled(Form.Field)`
 `;
 
 export const AboutField = styled(Form.Field)`
-  width: 42rem;
   height: 4.8rem;
   clear: left;
   font-size: 0.9rem;
@@ -232,7 +202,6 @@ export const AboutField = styled(Form.Field)`
 `;
 
 export const SnsField = styled(Form.Field)`
-  width: 42rem;
   font-size: 0.9rem;
   @media screen and (max-width: 767px) {
     width: 22rem;

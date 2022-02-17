@@ -6,26 +6,28 @@ import { GRASS_REQUEST } from 'reducers/grass';
 import 'react-calendar-heatmap/dist/styles.css';
 import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
+import media from 'styles/media';
 
 const CHMContainer = styled.div`
-  width: 62rem;
+  width: 100%;
 `;
 
 const CHM = styled.div`
-  width: 62rem;
-  padding-left: 3.5rem;
+  width: 100%;
+  padding: 3rem;
+
+  ${media.tablet`
+    padding: 1rem;
+  `}
+
+  ${media.mobile`
+    padding: 0;
+  `}
 `;
 
-const TilLabel = styled.div`
+const ChartLabel = styled.div`
   margin-top: 1.5rem;
-  margin-left: 5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-`;
-
-const TtlLabel = styled.div`
-  margin-top: 2.5rem;
-  margin-left: 5rem;
+  margin-left: 2rem;
   margin-bottom: 1rem;
   font-weight: 600;
 `;
@@ -71,7 +73,7 @@ const CalendarHeatMap = () => {
 
   return (
     <CHMContainer>
-      <TilLabel>작성한 TIL</TilLabel>
+      <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}
@@ -104,7 +106,7 @@ const CalendarHeatMap = () => {
         />
       </CHM>
 
-      <TtlLabel>공부한 TTL</TtlLabel>
+      <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
           startDate={new Date('2021-9-1')}

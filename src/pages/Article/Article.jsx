@@ -24,6 +24,7 @@ import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 import Comment from 'components/Article/Comment';
 import FloatMenu from 'components/Article/FloatMenu';
+import { POST_CLEAR } from 'reducers/post';
 
 const ArticleBody = styled.div`
   display: flex;
@@ -160,6 +161,9 @@ const Article = () => {
     dispatch({
       type: LOAD_COMMENTS_REQUEST,
       id,
+    });
+    dispatch({
+      type: POST_CLEAR,
     });
   }, [dispatch]);
 

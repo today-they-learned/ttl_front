@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import ProfileInfo from 'components/Mypage/ProfileInfo';
 import ProfileEdit from 'components/Mypage/ProfileEdit';
 
-const MyPage = styled.div``;
+const MyPage = styled.div`
+  max-width: 100%;
+`;
 
 function Mypage() {
   const [editMode, setEditMode] = useState(false);

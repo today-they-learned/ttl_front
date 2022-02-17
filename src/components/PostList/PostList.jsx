@@ -22,6 +22,7 @@ const Post = styled.div`
 
 const PostCards = styled.div`
   display: flex;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
   width: 100%;
   ${(props) =>
@@ -78,9 +79,9 @@ const PostNone = styled.div`
   }
 `;
 
-const PostList = () => {
+const PostList = (props) => {
   const dispatch = useDispatch();
-  const { item, title, isTag } = useSelector((state) => state.postListType);
+  const { item, title, isTag, isSearch } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
 
@@ -110,8 +111,8 @@ const PostList = () => {
         orderby: 'created_at',
         tab: item,
         tag: isTag && item,
-        // search: 'test',
-        // user_id: user && user.user.id,
+        user_id: props.id,
+        search: isSearch && item,
       },
     });
   }, [item]);
@@ -131,8 +132,8 @@ const PostList = () => {
             orderby: 'created_at',
             tab: item,
             tag: isTag && item,
+            user_id: props.id,
             // search: 'test',
-            // user_id: user && user.user.id,
           },
         });
       }
@@ -148,28 +149,30 @@ const PostList = () => {
 
   return (
     <Post>
-      <PostTop>
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
-            {title || '피드'}
-          </p>
-          {item === 'main' && (
-            <select
-              name="post_option"
-              id=""
-              style={{
-                width: '4rem',
-                height: '2rem',
-                fontSize: '0.7rem',
-                padding: '.3em .5em',
-              }}
-            >
-              <option value="인기순">인기순</option>
-              <option value="최신순">최신순</option>
-            </select>
-          )}
-        </div>
-      </PostTop>
+      {props.id ? null : (
+        <PostTop>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
+              {title || '피드'}
+            </p>
+            {item === 'main' && (
+              <select
+                name="post_option"
+                id=""
+                style={{
+                  width: '4rem',
+                  height: '2rem',
+                  fontSize: '0.7rem',
+                  padding: '.3em .5em',
+                }}
+              >
+                <option value="인기순">인기순</option>
+                <option value="최신순">최신순</option>
+              </select>
+            )}
+          </div>
+        </PostTop>
+      )}
       <PostCards listNone={feedArticles.length === 0}>
         {feedArticles.length !== 0
           ? feedArticles.map((article, index) => (
