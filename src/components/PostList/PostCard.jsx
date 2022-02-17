@@ -1,13 +1,14 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable camelcase */
 
+import Feedback from 'components/Feedback/Feedback';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Icon } from 'semantic-ui-react';
 import useDate from 'hooks/useDate';
 import removeMarkdown from 'markdown-to-text';
 import {
   Card,
+  ThumbnailContainer,
   Thumbnail,
   Title,
   Content,
@@ -18,18 +19,23 @@ import {
   CardBody,
   CardBottom,
   Line,
-} from './post_card_styled';
+} from './PostCardStyled';
 
 const PostCard = ({ post }) => {
   const navigate = useNavigate();
+
   return (
     <Card
       onClick={() => {
         navigate(`/article/${post.id}`);
       }}
     >
-      {post.thumbnail && <Thumbnail src={post.thumbnail} />}
-      <CardBody>
+      {post.thumbnail && (
+        <ThumbnailContainer>
+          <Thumbnail src={post.thumbnail} />
+        </ThumbnailContainer>
+      )}
+      <CardBody thumbnail={post.thumbnail}>
         <Title>{post.title}</Title>
         <Content thumbnail={post.thumbnail}>
           <p>{removeMarkdown(post.content)}</p>
@@ -65,13 +71,9 @@ const PostCard = ({ post }) => {
           <UserName>{post.user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Icon name="heart" />
+          <Feedback feedback={post.feedback} />
           <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
-            {post.feedbackCount}
-          </p>
-          <Icon name="heart" />
-          <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
-            {post.feedbackCount}
+            {`+${post.feedbackCount}`}
           </p>
         </div>
       </CardBottom>

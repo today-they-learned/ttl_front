@@ -6,6 +6,7 @@ import article from './article';
 import comment from './comment';
 import postListType from './postListType';
 import grass from './grass';
+import post from './post';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -18,6 +19,7 @@ const rootReducer = (state, action) => {
         comment,
         postListType,
         grass,
+        post,
       });
       return combinedReducer(state, action);
     }

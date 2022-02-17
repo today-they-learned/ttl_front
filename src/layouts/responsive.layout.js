@@ -4,8 +4,8 @@ import React from 'react';
 
 import { useMediaQuery } from 'react-responsive';
 
-import DesktopLayout from './desktop_layout';
-import MobileLayout from './mobile_layout';
+import DesktopLayout from './desktop.layout';
+import MobileLayout from './mobile.layout';
 
 const ResponsiveLayout = ({ children }) => {
   const Desktop = () => {

@@ -14,10 +14,12 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import styled from 'styled-components';
 import COLOR from 'constants/color.constant';
-import Modal from 'components/PostModal/PostModal';
+import PostModal from 'components/EditorModal/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 import { darken, lighten } from 'polished';
+import axios from 'axios';
+import authHeader from 'sagas/auth-header';
 
 const Title = styled.input`
   width: 100%;
@@ -83,25 +85,22 @@ const PostEditorForm = () => {
   };
 
   useEffect(() => {
-    editorRef.current.getInstance().setMarkdown('## 해당 Content가 들어갈 내용');
-    // 글 수정을 눌러서 들어왔을 때, 해당 글 content를 로드
-  }, []);
-
-  useEffect(() => {
     if (editorRef.current) {
+      // 기존에 Image 를 Import 하는 Hook 을 제거한다.
       editorRef.current.getInstance().removeHook('addImageBlobHook');
+
+      // 새롭게 Image 를 Import 하는 Hook 을 생성한다.
       editorRef.current.getInstance().addHook('addImageBlobHook', (blob, callback) => {
         (async () => {
           const formData = new FormData();
-          formData.append('file', blob);
+          formData.append('image', blob);
 
-          // axios.defaults.withCredentials = true;
-          // const { data: url } = await axios.post(`${backUrl}image.do`, formData, {
-          //   header: { 'content-type': 'multipart/formdata' },
-          // });
-          callback('alt text');
+          const { data: filename } = await axios.post('/articles/upload_image/', formData, {
+            headers: authHeader(),
+          });
+
+          callback(filename.url, 'image alt');
         })();
-
         return false;
       });
     }
@@ -152,7 +151,7 @@ const PostEditorForm = () => {
         </ButtonContainer>
       </div>
       {modalVisible && (
-        <Modal
+        <PostModal
           visible={modalVisible}
           closable
           maskClosable

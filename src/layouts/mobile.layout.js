@@ -1,6 +1,6 @@
 import React from 'react';
-import MobileSideBar from 'components/mobile_sidebar/mobile_sidebar';
-import MobileNavbar from 'components/mobile_navbar/mobile_navbar';
+import MobileSideBar from 'components/Sidebar/MobileSidebar';
+import MobileNavbar from 'components/Navbar/MobileNavbar';
 import COLOR from 'constants/color.constant';
 
 const MobileLayout = (props) => {

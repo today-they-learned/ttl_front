@@ -17,9 +17,21 @@ export const Card = styled.div`
   }
 `;
 
-export const Thumbnail = styled.img`
+export const ThumbnailContainer = styled.div`
+  position: relative;
   width: 100%;
-  height: 200px;
+  height: 10rem;
+`;
+
+export const Thumbnail = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
 `;
 
 export const Title = styled.div`
@@ -50,8 +62,8 @@ export const Content = styled.div`
           height: 3rem;
         `
       : css`
-          -webkit-line-clamp: 8;
-          max-height: 13.5rem;
+          -webkit-line-clamp: 6;
+          max-height: 10rem;
         `}
 `;
 
@@ -85,7 +97,13 @@ export const CreatedAt = styled.div`
 `;
 
 export const CardBody = styled.div`
-  flex-basis: 95%;
+  height: 12rem;
+
+  ${(props) =>
+    props.thumbnail ||
+    css`
+      margin-bottom: 8.9rem;
+    `}
 `;
 
 export const Line = styled.div`
@@ -104,5 +122,4 @@ export const CardBottom = styled.div`
   margin: 0 1rem;
   height: 2rem;
   padding-bottom: 1rem;
-  flex-basis: 5%;
 `;

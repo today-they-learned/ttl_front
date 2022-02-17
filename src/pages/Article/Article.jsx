@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLE_REQUEST, DESTROY_ARTICLE_REQUEST } from 'reducers/article';
+import { LOAD_COMMENTS_REQUEST, ADD_COMMENT_REQUEST } from 'reducers/comment';
 import styled from 'styled-components';
 import useDate from 'hooks/useDate';
 import useInput from 'hooks/useInput';
@@ -13,7 +14,7 @@ import 'prismjs/themes/prism.css';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
-import 'components/PostEditorForm/toastui-editor.css';
+import 'components/EditorForm/toastui-editor.css';
 
 import { Divider, Icon, Form, Button, Grid } from 'semantic-ui-react';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -23,7 +24,6 @@ import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 import Comment from 'components/Article/Comment';
 import FloatMenu from 'components/Article/FloatMenu';
-import { ADD_COMMENT_REQUEST } from 'reducers/comment';
 
 const ArticleBody = styled.div`
   display: flex;
@@ -124,7 +124,7 @@ const Article = () => {
   const { singleArticle, loadArticleloading, loadArticleDone } = useSelector(
     (state) => state.article,
   );
-  const { addCommentDone, updateCommentDone, destroyCommentDone } = useSelector(
+  const { comments, addCommentDone, updateCommentDone, destroyCommentDone } = useSelector(
     (state) => state.comment,
   );
   const [comment, onChangeComment, setComment] = useInput('');
@@ -157,6 +157,19 @@ const Article = () => {
       type: LOAD_ARTICLE_REQUEST,
       id,
     });
+    dispatch({
+      type: LOAD_COMMENTS_REQUEST,
+      id,
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (addCommentDone || updateCommentDone || destroyCommentDone) {
+      dispatch({
+        type: LOAD_COMMENTS_REQUEST,
+        id,
+      });
+    }
   }, [dispatch, addCommentDone, updateCommentDone, destroyCommentDone]);
 
   return (
@@ -174,12 +187,12 @@ const Article = () => {
               </LightText>
               <LightText>
                 <Icon name="comment" />
-                {singleArticle?.comments.length}
+                {comments?.length}
               </LightText>
             </SubContainer>
             {user?.user.id === singleArticle?.user.id ? (
               <SubContainer>
-                <Link to="/post" state={singleArticle}>
+                <Link to="/put" state={singleArticle}>
                   <MenuText>수정</MenuText>
                 </Link>
                 <MenuText onClick={handleDelete}>삭제</MenuText>
@@ -190,23 +203,19 @@ const Article = () => {
           {singleArticle?.thumbnail ? (
             <Thumbnail src={singleArticle?.thumbnail} alt="thumbnail" />
           ) : null}
-
           {loadArticleDone ? (
             <Viewer
               plugins={[[codeSyntaxHighlight, { hightlighter: Prism }]]}
               initialValue={singleArticle?.content}
             />
           ) : null}
-
           <TagContainer>
             <Icon name="tag" style={{ marginRight: '0.5rem' }} />
             {singleArticle?.tags.map((tag, index) => (
               <Tag key={('tag', index)}>{tag}</Tag>
             ))}
           </TagContainer>
-          <strong style={{ marginBottom: '0.6rem' }}>
-            댓글 {singleArticle?.comments.length}개
-          </strong>
+          <strong style={{ marginBottom: '0.6rem' }}>댓글 {comments?.length}개</strong>
           {user ? (
             <Form onSubmit={handleCommentSubmit} style={{ marginBottom: '4rem' }}>
               <Field
@@ -224,14 +233,11 @@ const Article = () => {
               </Container.AlignCenterContainer>
             </Form>
           ) : null}
-
           <Grid.Column style={{ marginTop: '1rem' }}>
-            {singleArticle?.comments.map((c, index) => (
+            {comments?.map((c, index) => (
               <CommentContainer key={('comment', index)}>
                 <Comment comment={c} />
-                {index !== singleArticle?.comments.length - 1 ? (
-                  <Divider style={{ margin: '3rem 0' }} />
-                ) : null}
+                {index !== comments?.length - 1 ? <Divider style={{ margin: '3rem 0' }} /> : null}
               </CommentContainer>
             ))}
           </Grid.Column>
