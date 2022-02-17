@@ -27,7 +27,7 @@ const DesktopLayout = (props) => {
       >
         {/* 메인 페이지에서만 사이드바 렌더링 */}
         {location.pathname === '/' ? <SideBar /> : null}
-        <div style={{ width: '100%', height: '100%' }}>{props.children}</div>
+        <div style={{ width: '100%', height: '100%', marginTop: '7rem' }}>{props.children}</div>
       </div>
     </div>
   );

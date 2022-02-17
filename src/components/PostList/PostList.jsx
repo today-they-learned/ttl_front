@@ -10,7 +10,6 @@ const Post = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 8rem;
 
   @media only screen and (max-width: 768px) {
     margin-top: 2rem;
@@ -69,7 +68,6 @@ const PostList = () => {
   const { item, title, isTag } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
-  console.log(feedArticles);
 
   useEffect(() => {
     dispatch({
