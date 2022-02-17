@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
@@ -79,11 +79,20 @@ const PostNone = styled.div`
   }
 `;
 
+const Select = styled.select`
+  font-family: 'NS-R';
+  height: auto;
+  font-size: 1rem;
+  padding: 0rem 0.6rem;
+`;
+
 const PostList = (props) => {
   const dispatch = useDispatch();
   const { item, title, isTag, isSearch } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
+
+  const [filter, setFilter] = useState('score');
 
   const postNoneMsg = () => {
     if (title === '팔로우') {
@@ -108,16 +117,14 @@ const PostList = (props) => {
     dispatch({
       type: LOAD_ARTICLES_REQUEST,
       data: {
-        orderby: 'created_at',
+        orderby: props.id ? 'created_at' : filter,
         tab: item,
         tag: isTag && item,
         user_id: props.id,
         search: isSearch && item,
       },
     });
-  }, [item]);
-
-  // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
+  }, [item, filter]);
 
   const onScroll = () => {
     if (
@@ -129,7 +136,7 @@ const PostList = (props) => {
           type: LOAD_ARTICLES_REQUEST,
           data: {
             page: currentPage,
-            orderby: 'created_at',
+            orderby: props.id ? 'created_at' : filter,
             tab: item,
             tag: isTag && item,
             user_id: props.id,
@@ -147,6 +154,10 @@ const PostList = (props) => {
     };
   }, [hasMoreArticle, loadArticlesLoading]);
 
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
     <Post>
       {props.id ? null : (
@@ -156,19 +167,14 @@ const PostList = (props) => {
               {title || '피드'}
             </p>
             {item === 'main' && (
-              <select
-                name="post_option"
-                id=""
-                style={{
-                  width: '4rem',
-                  height: '2rem',
-                  fontSize: '0.7rem',
-                  padding: '.3em .5em',
-                }}
-              >
-                <option value="인기순">인기순</option>
-                <option value="최신순">최신순</option>
-              </select>
+              <Select onChange={handleFilter} value={filter}>
+                <option className="option" value="score">
+                  인기순
+                </option>
+                <option className="option" value="created_at">
+                  최신순
+                </option>
+              </Select>
             )}
           </div>
         </PostTop>
