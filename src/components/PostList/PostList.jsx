@@ -117,7 +117,7 @@ const PostList = (props) => {
     dispatch({
       type: LOAD_ARTICLES_REQUEST,
       data: {
-        orderby: props.id ? 'created_at' : filter,
+        orderby: props.id || item === 'study' ? 'created_at' : filter,
         tab: item,
         tag: isTag && item,
         user_id: props.id,
@@ -136,7 +136,7 @@ const PostList = (props) => {
           type: LOAD_ARTICLES_REQUEST,
           data: {
             page: currentPage,
-            orderby: props.id ? 'created_at' : filter,
+            orderby: props.id || item === 'study' ? 'created_at' : filter,
             tab: item,
             tag: isTag && item,
             user_id: props.id,
