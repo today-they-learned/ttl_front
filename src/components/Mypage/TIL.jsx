@@ -1,32 +1,11 @@
-import styled from 'styled-components';
 import React from 'react';
-import PostCard from 'components/PostList/PostCard';
+import PostList from 'components/PostList/PostList';
 
-const Post = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const PostCards = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-`;
-
-const TIL = () => {
-  const posts = [];
-
+const TIL = (props) => {
   return (
-    <Post>
-      <PostCards>
-        {Object.keys(posts).map((key) => (
-          <PostCard key={key} post={posts[key]} />
-        ))}
-      </PostCards>
-    </Post>
+    <div style={{ padding: '1rem 3rem' }}>
+      <PostList id={props.id} />
+    </div>
   );
 };
 export default TIL;

@@ -4,7 +4,7 @@ export const Card = styled.div`
   cursor: pointer;
   width: 18.75rem;
   height: 24rem;
-  margin: 1rem;
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   background-color: white;
