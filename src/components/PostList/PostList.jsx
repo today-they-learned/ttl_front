@@ -9,7 +9,9 @@ const Post = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  margin-left: 11rem;
 
   @media only screen and (max-width: 768px) {
     margin-top: 2rem;
@@ -33,7 +35,7 @@ const PostTop = styled.div`
   justify-content: center;
   padding: 0 1rem;
   margin-bottom: 2rem;
-  width: 100%;
+  width: 95%;
 
   &:after {
     content: '';
@@ -51,7 +53,7 @@ const PostNone = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: 'GS-M';
   letter-spacing: -0.6px;
   color: ${COLOR.PRIMARY};
