@@ -182,7 +182,7 @@ const MobileSideBar = () => {
             >
               <Navigation
                 onSelect={({ itemId }) => {
-                  if (user) {
+                  if (user && itemId !== '/tags') {
                     setType(itemId);
                   }
                   if (!user && itemId.item !== 'main') {
@@ -204,6 +204,7 @@ const MobileSideBar = () => {
                   },
                   {
                     title: '관심태그',
+                    itemId: '/tags',
                     elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
                     subNav: user ? setArr : null,
