@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import COLOR from 'constants/color.constant';
 
 const Post = styled.div`
@@ -24,7 +24,14 @@ const PostCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  ${(props) =>
+    props.listNone
+      ? css`
+          height: 100vh;
+        `
+      : css`
+          height: 100%;
+        `}
 
   @media only screen and (max-width: 1179px) {
     justify-content: center;
@@ -56,13 +63,13 @@ const PostTop = styled.div`
 const PostNone = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
-  height: 100%;
   font-size: 2rem;
   font-family: 'GS-M';
   letter-spacing: -0.6px;
   color: ${COLOR.PRIMARY};
+  margin-top: 10rem;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -147,7 +154,7 @@ const PostList = () => {
           )}
         </div>
       </PostTop>
-      <PostCards>
+      <PostCards listNone={feedArticles.length === 0}>
         {feedArticles.length !== 0
           ? feedArticles.map((article, index) => (
               <PostCard key={('postcard', index)} post={article[1]} />
