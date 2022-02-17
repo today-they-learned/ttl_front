@@ -9,12 +9,14 @@ const Post = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin: auto;
-  margin-left: 11rem;
+  /* margin-left: 10rem; */
 
   @media only screen and (max-width: 768px) {
     margin-top: 2rem;
+    margin-left: 0;
+    width: 100%;
   }
 `;
 
@@ -22,9 +24,9 @@ const PostCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 80vh;
+  height: 100%;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1179px) {
     justify-content: center;
   }
 `;
@@ -35,7 +37,7 @@ const PostTop = styled.div`
   justify-content: center;
   padding: 0 1rem;
   margin-bottom: 2rem;
-  width: 95%;
+  width: 100%;
 
   &:after {
     content: '';
@@ -44,6 +46,10 @@ const PostTop = styled.div`
     height: 1px;
     background-color: #c5cbd3;
     transform: translateY(1rem);
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-left: 0.5rem;
   }
 `;
 
