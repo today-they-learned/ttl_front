@@ -2,8 +2,8 @@ import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
 import { Form, Input, Checkbox } from 'semantic-ui-react';
-import TermsModal from 'components/setting/TermsModal';
-import ServiceModal from 'components/setting/ServiceModal';
+import TermsModal from 'components/Setting/TermsModal';
+import ServiceModal from 'components/Setting/ServiceModal';
 import * as Styled from './SettingStyled';
 
 const Setting = () => {

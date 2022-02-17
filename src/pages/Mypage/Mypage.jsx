@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// eslint-disable-next-line import/no-named-as-default
-import ProfileInfo from 'components/mypage/ProfileInfo';
-import ProfileEdit from 'components/mypage/ProfileEdit';
+import ProfileInfo from 'components/Mypage/ProfileInfo';
+import ProfileEdit from 'components/Mypage/ProfileEdit';
 
 const MyPage = styled.div``;
 

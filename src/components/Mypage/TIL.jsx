@@ -1,9 +1,6 @@
-/* eslint-disable import/no-unresolved */
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import PostCard from 'components/post_card/post_card';
-
-import postsData from 'components/post_list/posts.json';
+import React from 'react';
+import PostCard from 'components/PostList/PostCard';
 
 const Post = styled.div`
   display: flex;
@@ -20,12 +17,8 @@ const PostCards = styled.div`
 `;
 
 const TIL = () => {
-  const [posts, setPosts] = useState({});
-
-  useEffect(() => {
-    setPosts(postsData.main);
-    // 임시 데이터로 설정해놨습니다.
-  });
+  const posts = [];
+  // const [posts, setPosts] = useState({});
 
   return (
     <Post>
