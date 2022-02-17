@@ -13,6 +13,8 @@ const ProfileEdit = () => {
   const [info, setInfo] = useState(user.user);
   const [tags, setTags] = useState(user.user.tags);
   const [tagEdit, setTagEdit] = useState(true);
+  const [fileUrl, setFileUrl] = useState(info.avatar);
+  const [profile, setProfile] = useState(info.avatar);
 
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
@@ -27,11 +29,14 @@ const ProfileEdit = () => {
   };
 
   const onChange = (e) => {
-    const img = e.target.files[0];
-    formData.append('avatar', img);
+    const imageFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    setFileUrl(imageUrl);
+    setProfile(imageFile);
   };
 
   const handleSubmit = useCallback(() => {
+    formData.append('avatar', profile);
     formData.append('username', info.username);
     formData.append('email', info.email);
     formData.append('introduce', info.introduce);
@@ -63,10 +68,7 @@ const ProfileEdit = () => {
     <Styled.InfoEdit>
       <Form onSubmit={handleSubmit}>
         <Styled.AvatarFormContainer>
-          <Styled.ProfileImg
-            src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
-            alt="profile"
-          />
+          <Styled.ProfileImg src={fileUrl} alt="profile" />
           <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
 
           <Styled.PhotoInput
