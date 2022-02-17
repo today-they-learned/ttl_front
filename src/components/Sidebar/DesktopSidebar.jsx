@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
+import { SET_TYPE } from 'reducers/postListType';
 
 const Bar = styled.div`
   position: sticky;
@@ -32,20 +33,26 @@ const SideBar = () => {
         setArr.push(curObj);
       });
     }
-  });
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: 'main',
-  //     title: '피드',
-  //   });
-  // }, []);
+  }, []);
 
   const setType = (itemId) => {
-    dispatch({
-      type: `${itemId.item || itemId.slice(6)}`,
-      title: `${itemId.title}`,
-    });
+    if (typeof itemId === 'object') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.item}`,
+        title: `${itemId.title}`,
+        isTag: false,
+      });
+    }
+
+    if (typeof itemId === 'string') {
+      dispatch({
+        type: SET_TYPE,
+        item: `${itemId.slice(6)}`,
+        title: `${itemId.slice(6)}`,
+        isTag: true,
+      });
+    }
   };
   return (
     <>

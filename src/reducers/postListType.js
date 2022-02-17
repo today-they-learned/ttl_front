@@ -1,36 +1,19 @@
+export const SET_TYPE = 'SET_TYPE';
+
 export const initialState = {
-  item: null,
-  type: null,
-  title: null,
+  item: 'main',
+  title: '피드',
+  isTag: false,
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action.type);
-
   switch (action.type) {
-    case 'main':
+    case SET_TYPE:
       return {
         ...state,
-        type: 'main',
-        title: '피드',
-      };
-    case 'follow':
-      return {
-        ...state,
-        type: 'follow',
-        title: '팔로우',
-      };
-    case 'bookmark':
-      return {
-        ...state,
-        type: 'bookmark',
-        title: '북마크',
-      };
-    case 'read_list':
-      return {
-        ...state,
-        type: 'study',
-        title: '읽은 목록',
+        item: action.item,
+        title: action.title,
+        isTag: action.isTag,
       };
     default:
       return state;

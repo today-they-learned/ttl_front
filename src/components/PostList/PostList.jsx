@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
@@ -38,12 +37,10 @@ const PostTop = styled.div`
 
 const PostList = () => {
   const dispatch = useDispatch();
-  const { type, title } = useSelector((state) => state.postListType);
+  const { item, title, isTag } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
     (state) => state.article,
   );
-  // const { user } = useSelector((state) => state.authentication);
-  // console.log(user && user.user.tags);
 
   useEffect(() => {
     dispatch({
@@ -53,16 +50,13 @@ const PostList = () => {
       type: LOAD_ARTICLES_REQUEST,
       data: {
         orderby: 'created_at',
-        tab: type,
-        // tag: '4',
+        tab: item === 'read_list' ? 'study' : item,
+        tag: isTag && item,
         // search: 'test',
         // user_id: user && user.user.id,
       },
     });
-    // if (currentPage === 1) {
-    //   console.log('sd');
-    // }
-  }, [type]);
+  }, [item]);
 
   // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
 
@@ -77,10 +71,10 @@ const PostList = () => {
           data: {
             page: currentPage,
             orderby: 'created_at',
-            tab: type === 'main' ? null : type,
-            // tag: 'python',
+            tab: item === 'read_list' ? 'study' : item,
+            tag: isTag && item,
             // search: 'test',
-            // user_id: 4,
+            // user_id: user && user.user.id,
           },
         });
       }
@@ -101,7 +95,7 @@ const PostList = () => {
           <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
             {title || '피드'}
           </p>
-          {type === 'main' && (
+          {item === 'main' && (
             <select
               name="post_option"
               id=""
