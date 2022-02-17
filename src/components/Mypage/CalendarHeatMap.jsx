@@ -6,6 +6,7 @@ import { GRASS_REQUEST } from 'reducers/grass';
 import 'react-calendar-heatmap/dist/styles.css';
 import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
+import media from 'styles/media';
 
 const CHMContainer = styled.div`
   width: 100%;
@@ -14,6 +15,14 @@ const CHMContainer = styled.div`
 const CHM = styled.div`
   width: 100%;
   padding: 3rem;
+
+  ${media.tablet`
+    padding: 1rem;
+  `}
+
+  ${media.mobile`
+    padding: 0;
+  `}
 `;
 
 const ChartLabel = styled.div`
