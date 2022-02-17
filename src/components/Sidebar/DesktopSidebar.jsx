@@ -34,8 +34,18 @@ const SideBar = () => {
     }
   });
 
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'main',
+  //     title: '피드',
+  //   });
+  // }, []);
+
   const setType = (itemId) => {
-    dispatch({ type: `${itemId.item}`, title: `${itemId.title}` });
+    dispatch({
+      type: `${itemId.item || itemId.slice(6)}`,
+      title: `${itemId.title}`,
+    });
   };
   return (
     <>

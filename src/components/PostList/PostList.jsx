@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LOAD_ARTICLES_REQUEST } from 'reducers/article';
+import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
 import styled from 'styled-components';
 
@@ -42,21 +42,28 @@ const PostList = () => {
   const { feedArticles, currentPage, loadArticlesLoading, hasMoreArticle } = useSelector(
     (state) => state.article,
   );
+  // const { user } = useSelector((state) => state.authentication);
+  // console.log(user && user.user.tags);
 
   useEffect(() => {
-    if (currentPage === 1) {
-      dispatch({
-        type: LOAD_ARTICLES_REQUEST,
-        data: {
-          orderby: 'created_at',
-          // tab: type == 'main' ? null : type,
-          // tag: 'python',
-          // search: 'test',
-          // user_id: 4,
-        },
-      });
-    }
-  }, [dispatch]);
+    dispatch({
+      type: LOAD_ARTICLES_CLEAR,
+    });
+    dispatch({
+      type: LOAD_ARTICLES_REQUEST,
+      data: {
+        orderby: 'created_at',
+        tab: type,
+        // tag: '4',
+        // search: 'test',
+        // user_id: user && user.user.id,
+      },
+    });
+    // if (currentPage === 1) {
+    //   console.log('sd');
+    // }
+  }, [type]);
+
   // data값을 적당하게 바꿔서 api 요청, sagas/article 참고
 
   const onScroll = () => {
@@ -70,7 +77,7 @@ const PostList = () => {
           data: {
             page: currentPage,
             orderby: 'created_at',
-            // tab: type == 'main' ? null : type,
+            tab: type === 'main' ? null : type,
             // tag: 'python',
             // search: 'test',
             // user_id: 4,
@@ -91,7 +98,9 @@ const PostList = () => {
     <Post>
       <PostTop>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>{title}</p>
+          <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
+            {title || '피드'}
+          </p>
           {type === 'main' && (
             <select
               name="post_option"

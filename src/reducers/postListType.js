@@ -1,9 +1,12 @@
 export const initialState = {
-  type: 'main',
-  title: '피드',
+  item: null,
+  type: null,
+  title: null,
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action.type);
+
   switch (action.type) {
     case 'main':
       return {
