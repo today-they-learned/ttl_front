@@ -22,6 +22,7 @@ export const initialState = {
 export const LOAD_ARTICLES_REQUEST = 'LOAD_ARTICLES_REQUEST';
 export const LOAD_ARTICLES_SUCCESS = 'LOAD_ARTICLES_SUCCESS';
 export const LOAD_ARTICLES_FAILURE = 'LOAD_ARTICLES_FAILURE';
+export const LOAD_ARTICLES_CLEAR = ' LOAD_ARTICLES_CLEAR';
 
 export const LOAD_ARTICLE_REQUEST = 'LOAD_ARTICLE_REQUEST';
 export const LOAD_ARTICLE_SUCCESS = 'LOAD_ARTICLE_SUCCESS';
@@ -50,6 +51,11 @@ const reducer = (state = initialState, action) =>
       case LOAD_ARTICLES_FAILURE:
         draft.loadArticlesLoading = false;
         draft.loadArticlesError = action.error;
+        break;
+      case LOAD_ARTICLES_CLEAR:
+        draft.hasMoreArticle = null;
+        draft.currentPage = 1;
+        draft.feedArticles = [];
         break;
       case LOAD_ARTICLE_REQUEST:
         draft.loadArticleLoading = true;

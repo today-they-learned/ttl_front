@@ -20,7 +20,6 @@ export const PUT_FAILURE = 'PUT_FAILURE';
 
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    console.log(action);
     switch (action.type) {
       case POST_REQUEST:
         draft.postLoading = true;

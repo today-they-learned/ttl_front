@@ -7,8 +7,9 @@ import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 
 const Nav = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
