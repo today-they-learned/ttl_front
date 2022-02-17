@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -69,12 +69,15 @@ const TopNavbar = () => {
 
   const inputRef = useRef();
 
+  const [searchShow, setSearchShow] = useState(false);
+
   const handleSignOut = () => {
     localStorage.removeItem('user');
     window.location.replace('/');
   };
 
   const onSearch = () => {
+    navigate('/');
     dispatch({
       type: SET_TYPE,
       item: inputRef.current.value,
@@ -88,6 +91,10 @@ const TopNavbar = () => {
     if (e.key === 'Enter') {
       onSearch();
     }
+  };
+
+  const onChangeShow = () => {
+    setSearchShow(!searchShow);
   };
 
   const trigger = (
@@ -118,7 +125,12 @@ const TopNavbar = () => {
           }}
           onClick={onSearch}
         />
-        <SearchInput placeholder="키워드를 검색하세요" ref={inputRef} onKeyPress={onKeyPress} />
+        <SearchInput
+          placeholder="키워드를 검색하세요"
+          ref={inputRef}
+          onKeyPress={onKeyPress}
+          searchShow={searchShow}
+        />
       </div>
       <div
         style={{
@@ -127,10 +139,11 @@ const TopNavbar = () => {
           alignItems: 'center',
         }}
       >
-        {/* <Icon
+        <Icon
           name="search"
           style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
-        /> */}
+          onClick={onChangeShow}
+        />
         {user ? (
           <>
             <Icon
