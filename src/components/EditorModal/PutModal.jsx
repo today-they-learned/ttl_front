@@ -70,7 +70,7 @@ const PutModal = ({
   };
 
   useEffect(() => {
-    const urlName = thumbnailFile.name;
+    const urlName = thumbnailFile && thumbnailFile.name;
     setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
 
     tagsRef.current.value = tags;
