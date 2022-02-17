@@ -60,6 +60,7 @@ const SearchInput = styled.input`
   border-radius: 3rem;
   text-align: left;
   padding-left: 4.5rem;
+  font-family: 'NS-R';
 `;
 
 const TopNavbar = () => {
@@ -122,6 +123,7 @@ const TopNavbar = () => {
             cursor: 'pointer',
             position: 'relative',
             left: '4rem',
+            opacity: '0.6',
           }}
           onClick={onSearch}
         />
