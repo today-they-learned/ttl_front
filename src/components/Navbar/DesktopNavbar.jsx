@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -25,8 +24,6 @@ const Avatar = styled.img`
   height: 2rem;
   margin-left: 0.5rem;
   border-radius: 50%;
-  background-color: black;
-  /* 동그라미 확인용 */
 `;
 
 const DropText = styled.div`
@@ -65,7 +62,10 @@ const TopNavbar = () => {
 
   const trigger = (
     <span>
-      <Avatar src="images/avatar.png" style={{ cursor: 'pointer' }} />
+      <Avatar
+        src={user?.user.avatar ? user.user.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+        style={{ cursor: 'pointer' }}
+      />
     </span>
   );
 
@@ -83,7 +83,7 @@ const TopNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon name="search" style={{ fontSize: '1.5rem' }} />
+        <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} />
         {user ? (
           <>
             <Icon
@@ -93,7 +93,6 @@ const TopNavbar = () => {
                 navigate('/post');
               }}
             />
-            {/* 임시 유저 아이콘 */}
             <Dropdown
               direction="left"
               trigger={trigger}
