@@ -39,7 +39,6 @@ const Avatar = styled.img`
   height: 2rem;
   margin-left: 0.5rem;
   border-radius: 50%;
-  background-color: black;
 `;
 
 const DropText = styled.div`
