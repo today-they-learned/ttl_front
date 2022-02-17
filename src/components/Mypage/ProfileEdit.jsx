@@ -68,7 +68,10 @@ const ProfileEdit = () => {
     <Styled.InfoEdit>
       <Form onSubmit={handleSubmit}>
         <Styled.AvatarFormContainer>
-          <Styled.ProfileImg src={fileUrl} alt="profile" />
+          <Styled.ProfileImg
+            src={info?.avatar ? fileUrl : `${process.env.PUBLIC_URL}/images/missing.png`}
+            alt="profile"
+          />
           <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
 
           <Styled.PhotoInput
