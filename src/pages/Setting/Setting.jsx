@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';

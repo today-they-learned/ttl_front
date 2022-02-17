@@ -4,13 +4,19 @@ import { Form } from 'semantic-ui-react';
 export const SettingContainer = styled.div`
   width: 55rem;
   height: 40rem;
-  margin-left: 27rem;
+  margin-left: 22rem;
   padding-top: 4.9rem;
+  @media screen and (max-width: 767px) {
+    width: 28rem;
+    height: 40rem;
+    margin-left: 1rem;
+    padding-top: 4.9rem;
+  }
 `;
 
 export const Label = styled.div`
   float: left;
-  width: 11rem;
+  width: 6rem;
   margin-top: 1.2rem;
   margin-left: 0.3rem;
   margin-bottom: 1rem;
@@ -49,19 +55,19 @@ export const MailEdit = styled.button`
   height: 1.4rem;
   background-color: #707bf3;
   color: white;
-  margin-top: 0.3rem;
+  margin-top: 1rem;
   margin-left: 0.1rem;
   float: left;
   font-size: 0.7rem;
 `;
 
 export const Container = styled.button`
-  width: 32rem;
+  width: 28rem;
 `;
 
 export const ButtonContainer = styled.button`
   padding-top: 1rem;
-  width: 20rem;
+  width: 10rem;
   float: left;
 `;
 
@@ -130,6 +136,14 @@ export const MailPhrase = styled.span`
   margin-top: 0.5rem;
   margin-bottom: 0.2rem;
   padding-left: 0.3rem;
+  @media screen and (max-width: 767px) {
+    width: 20rem;
+    height: 2rem;
+    float: left;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    padding-left: 0.3rem;
+  }
 `;
 
 export const Button = styled.button`

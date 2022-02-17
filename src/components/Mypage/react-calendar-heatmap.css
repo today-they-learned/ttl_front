@@ -36,19 +36,22 @@
    */
 
 .react-calendar-heatmap .color-github-0 {
-  fill: #eeeeee;
+  fill: #eeeeee !important;
 }
 .react-calendar-heatmap .color-github-1 {
-  fill: #d6e685;
+  fill: #d6e685 !important;
 }
 .react-calendar-heatmap .color-github-2 {
-  fill: #d6e685;
+  fill: #8cc665 !important;
 }
 .react-calendar-heatmap .color-github-3 {
-  fill: #d6e685;
+  fill: #44a340 !important;
 }
 .react-calendar-heatmap .color-github-4 {
-  fill: #1e6823;
+  fill: #227c28 !important;
+}
+.react-calendar-heatmap .color-github-5 {
+  fill: #166327 !important;
 }
 
 /*
@@ -56,53 +59,20 @@
    */
 
 .react-calendar-heatmap .color-gitlab-0 {
-  fill: #ededed;
+  fill: #ededed !important;
 }
 .react-calendar-heatmap .color-gitlab-1 {
-  fill: #acd5f2;
+  fill: #acd5f2 !important;
 }
 .react-calendar-heatmap .color-gitlab-2 {
-  fill: #acd5f2;
+  fill: #7fa8d1 !important;
 }
 .react-calendar-heatmap .color-gitlab-3 {
-  fill: #acd5f2;
+  fill: #49729b !important;
 }
 .react-calendar-heatmap .color-gitlab-4 {
-  fill: #acd5f2;
+  fill: #254e77 !important;
 }
-.react-calendar-heatmap .color-gitlab-5 {
-  fill: #acd5f2;
-}
-.react-calendar-heatmap .color-gitlab-6 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-7 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-8 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-9 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-10 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-11 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-12 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-13 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-14 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-15 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-16 {
-  fill: #254e77;
+.react-calendar-heatmap .color-github-5 {
+  fill: #112544 !important;
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { Form, Input, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileInfoStyled';
 import CalendarHeatMap from './CalendarHeatMap';
 import CalendarHeatMapMobile from './CalendarHeatMapMobile';
@@ -11,21 +10,11 @@ const ProfileInfo = (props) => {
   const { user } = useSelector((state) => state.authentication);
   const [info] = useState(user.user);
 
-  const [tags, setTags] = useState(user.user.tags);
+  const [tags] = useState(user.user.tags);
   const [tab, setTab] = useState(true);
-  const [tagEdit, setTagEdit] = useState(true);
-
-  const deleteTag = (e) => {
-    const value = e.target.parentElement.id;
-    setTags(tags.filter((tag) => tag !== value));
-  };
 
   const Desktop = () => {
     const isDesktop = useMediaQuery({ minWidth: 763 });
-    const TagSubmit = () => {
-      // api put code
-      setTagEdit(!tagEdit);
-    };
 
     return (
       isDesktop && (
@@ -38,30 +27,11 @@ const ProfileInfo = (props) => {
             <Styled.UserName>{info.username}</Styled.UserName>
             <Styled.Email>{info.email}</Styled.Email>
             <Styled.Introduce>{info.introduce}</Styled.Introduce>
-            {tagEdit ? (
-              <div>
-                <Styled.TagContainer>
-                  {tags.map((tag) => (
-                    <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
-                  ))}
-                </Styled.TagContainer>
-              </div>
-            ) : (
-              <div>
-                <Styled.TagContainer>
-                  {tags.map((tag) => (
-                    <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
-                  ))}
-                </Styled.TagContainer>
-
-                <Form onSubmit={TagSubmit}>
-                  <Styled.TagField>
-                    <Form.Field control={Input} />
-                  </Styled.TagField>
-                  <Styled.TagButton>추가</Styled.TagButton>
-                </Form>
-              </div>
-            )}
+            <Styled.TagContainer>
+              {tags.map((tag) => (
+                <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
+              ))}
+            </Styled.TagContainer>
           </Styled.ContainerCenter>
 
           <Styled.ContainerRight>
@@ -118,34 +88,11 @@ const ProfileInfo = (props) => {
             <Styled.EditButton2 onClick={props.onChangeMode}>프로필 편집</Styled.EditButton2>
 
             <Styled.ContainerTag>
-              {tagEdit ? (
-                <div>
-                  <Styled.TagContainer>
-                    {tags.map((tag) => (
-                      <Styled.Tagg id={tag}>
-                        {tag}
-                        <Icon name="delete" onClick={deleteTag} />
-                      </Styled.Tagg>
-                    ))}
-                  </Styled.TagContainer>
-                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
-                </div>
-              ) : (
-                <div>
-                  <Styled.TagContainer>
-                    {tags.map((tag) => (
-                      <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
-                    ))}
-                  </Styled.TagContainer>
-
-                  <Form>
-                    <Styled.TagField>
-                      <Form.Field control={Input} />
-                    </Styled.TagField>
-                    <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>추가</Styled.TagButton>
-                  </Form>
-                </div>
-              )}
+              <Styled.TagContainer>
+                {tags.map((tag) => (
+                  <Styled.Tagg id={tag}>{tag}</Styled.Tagg>
+                ))}
+              </Styled.TagContainer>
             </Styled.ContainerTag>
             <Styled.Introduce2>{info.introduce}</Styled.Introduce2>
           </Styled.ContainerTop>
@@ -170,9 +117,9 @@ const ProfileInfo = (props) => {
             {info.username}&apos;s TIL
           </Styled.TabButton2>
 
-          <Styled.ContainerBottom>
+          <Styled.ContainerBottom2>
             {tab ? <CalendarHeatMapMobile /> : <TIL />}
-          </Styled.ContainerBottom>
+          </Styled.ContainerBottom2>
         </Styled.ProfileMobile>
       )
     );
