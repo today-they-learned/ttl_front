@@ -6,11 +6,10 @@ import { LOAD_USER_REQUEST } from 'reducers/users';
 import { Form, Input, TextArea, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
-const ProfileEdit = (props) => {
+const ProfileEdit = () => {
   const dispatch = useDispatch();
   const formData = new FormData();
   const { user, updateUserDone } = useSelector((state) => state.authentication);
-  const { loadUserDone } = useSelector((state) => state.users);
   const [info, setInfo] = useState(user.user);
   const [tags, setTags] = useState(user.user.tags);
   const [tagEdit, setTagEdit] = useState(true);
@@ -56,14 +55,9 @@ const ProfileEdit = (props) => {
         type: LOAD_USER_REQUEST,
         id: info.id,
       });
+      window.location.replace(window.location.pathname);
     }
   }, [updateUserDone]);
-
-  useEffect(() => {
-    if (loadUserDone) {
-      props.onChangeMode();
-    }
-  }, [loadUserDone]);
 
   return (
     <Styled.InfoEdit>
