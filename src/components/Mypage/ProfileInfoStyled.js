@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Label } from 'semantic-ui-react';
 
 export const Profile = styled.div`
-  width: 65rem;
+  width: 100%;
   padding-left: 2rem;
   .choice1 {
     margin-top: 0.6rem;
@@ -65,13 +65,13 @@ export const ContainerRight = styled.div`
 `;
 export const ContainerTab = styled.div`
   clear: left;
-  width: 65rem;
+  width: 100%;
   height: 3rem;
   margin-left: 3rem;
 `;
 
 export const ContainerBottom = styled.div`
-  width: 65rem;
+  width: 100%;
 `;
 export const ProfileImg = styled.img`
   width: 7.5rem;
@@ -156,7 +156,7 @@ export const TwittIcon = styled.img`
 
 export const Line = styled.div`
   clear: left;
-  width: 65rem;
+  width: 100%;
   height: 0.1rem;
   margin-left: 0.5rem;
   margin-right: 2rem;

@@ -8,11 +8,11 @@ import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
 
 const CHMContainer = styled.div`
-  width: 62rem;
+  width: 100%;
 `;
 
 const CHM = styled.div`
-  width: 62rem;
+  width: 100%;
   padding-left: 3.5rem;
 `;
 

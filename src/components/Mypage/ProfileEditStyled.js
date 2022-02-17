@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Label, Input } from 'semantic-ui-react';
 
 export const InfoEdit = styled.div`
-  width: 65rem;
+  width: 100%;
   padding-left: 2rem;
   @media screen and (max-width: 767px) {
     width: 28rem;
