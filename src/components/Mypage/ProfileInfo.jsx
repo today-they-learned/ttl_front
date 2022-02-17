@@ -31,7 +31,9 @@ const ProfileInfo = (props) => {
       isDesktop && (
         <Styled.Profile>
           <Styled.ContainerLeft>
-            <Styled.ProfileImg src={info.avatar} />
+            <Styled.ProfileImg
+              src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+            />
           </Styled.ContainerLeft>
 
           <Styled.ContainerCenter>

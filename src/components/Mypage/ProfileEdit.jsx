@@ -51,7 +51,10 @@ const ProfileEdit = (props) => {
   return (
     <Styled.InfoEdit>
       <Styled.ContainerLeft>
-        <Styled.ProfileImg src={info.avatar} alt="profile" />
+        <Styled.ProfileImg
+          src={info?.avatar ? info?.avatar : `${process.env.PUBLIC_URL}/images/missing.png`}
+          alt="profile"
+        />
         <div>
           <Styled.PhotoInput
             type="file"
