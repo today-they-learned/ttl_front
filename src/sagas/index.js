@@ -7,6 +7,7 @@ import articleSaga from './article';
 import grassSaga from './grass';
 import postSaga from './post';
 import commentSaga from './comment';
+import usersSaga from './users';
 
 axios.defaults.baseURL = apiUrl;
 axios.defaults.withCredentials = true;
@@ -18,5 +19,6 @@ export default function* rootSaga() {
     fork(grassSaga),
     fork(postSaga),
     fork(commentSaga),
+    fork(usersSaga),
   ]);
 }

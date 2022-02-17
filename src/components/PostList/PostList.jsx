@@ -132,8 +132,8 @@ const PostList = (props) => {
             orderby: 'created_at',
             tab: item,
             tag: isTag && item,
+            user_id: props.id,
             // search: 'test',
-            // user_id: user && user.user.id,
           },
         });
       }

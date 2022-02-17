@@ -1,11 +1,18 @@
 import React from 'react';
 import PostList from 'components/PostList/PostList';
+import styled from 'styled-components';
+
+const TILContainer = styled.div`
+  margin-top: 2rem;
+  display: flex;
+`;
 
 const TIL = (props) => {
   return (
-    <div style={{ padding: '1rem 3rem' }}>
+    <TILContainer>
+      <div style={{ width: '2.5vw' }} />
       <PostList id={props.id} />
-    </div>
+    </TILContainer>
   );
 };
 export default TIL;
