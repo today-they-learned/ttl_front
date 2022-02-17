@@ -23,7 +23,7 @@ import authHeader from 'sagas/auth-header';
 
 const Title = styled.input`
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   font-size: 1.8rem;
   color: black;
   font-weight: 700;
@@ -132,7 +132,7 @@ const PostEditorForm = () => {
 
         <Editor
           previewStyle="vertical"
-          height="75vh"
+          height="72vh"
           initialEditType="markdown"
           placeholder="마크다운으로 내용을 입력하세요..."
           ref={editorRef}

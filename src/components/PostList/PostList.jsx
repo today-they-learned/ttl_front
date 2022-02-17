@@ -2,19 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLES_CLEAR, LOAD_ARTICLES_REQUEST } from 'reducers/article';
 import PostCard from 'components/PostList/PostCard';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import COLOR from 'constants/color.constant';
 
 const Post = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin: auto;
-  margin-left: 11rem;
+  /* margin-left: 10rem; */
 
   @media only screen and (max-width: 768px) {
     margin-top: 2rem;
+    margin-left: 0;
+    width: 100%;
   }
 `;
 
@@ -22,9 +24,16 @@ const PostCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 80vh;
+  ${(props) =>
+    props.listNone
+      ? css`
+          height: 100vh;
+        `
+      : css`
+          height: 100%;
+        `}
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1179px) {
     justify-content: center;
   }
 `;
@@ -35,7 +44,7 @@ const PostTop = styled.div`
   justify-content: center;
   padding: 0 1rem;
   margin-bottom: 2rem;
-  width: 95%;
+  width: 100%;
 
   &:after {
     content: '';
@@ -45,18 +54,22 @@ const PostTop = styled.div`
     background-color: #c5cbd3;
     transform: translateY(1rem);
   }
+
+  @media only screen and (max-width: 768px) {
+    margin-left: 0.5rem;
+  }
 `;
 
 const PostNone = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
-  height: 100%;
   font-size: 2rem;
   font-family: 'GS-M';
   letter-spacing: -0.6px;
   color: ${COLOR.PRIMARY};
+  margin-top: 10rem;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -70,6 +83,22 @@ const PostList = () => {
   const { item, title, isTag } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
+
+  const postNoneMsg = () => {
+    if (title === '팔로우') {
+      return '팔로우한 유저의 글이 없습니다';
+    }
+    if (title === '북마크') {
+      return '아직 북마크한 글이 없습니다';
+    }
+    if (title === '읽은 목록') {
+      return '아직 읽은 글이 없습니다.';
+    }
+    if (isTag) {
+      return `${item} 에 대한 글이 없습니다.`;
+    }
+    return '피드에 글이 없습니다.';
+  };
 
   useEffect(() => {
     dispatch({
@@ -141,14 +170,12 @@ const PostList = () => {
           )}
         </div>
       </PostTop>
-      <PostCards>
+      <PostCards listNone={feedArticles.length === 0}>
         {feedArticles.length !== 0
           ? feedArticles.map((article, index) => (
               <PostCard key={('postcard', index)} post={article[1]} />
             ))
-          : loadArticlesDone && (
-              <PostNone>{title || `피드`}에 대한 게시물이 아직 없습니다</PostNone>
-            )}
+          : loadArticlesDone && <PostNone>{postNoneMsg()}</PostNone>}
         {/* {feedArticles.map((article, index) => (
           <PostCard key={('postcard', index)} post={article[1]} />
         ))} */}

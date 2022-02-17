@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Icon, Dropdown } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 
@@ -81,7 +81,7 @@ const MobileNavbar = () => {
           alignItems: 'center',
         }}
       >
-        <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} />
+        {/* <Icon name="search" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }} /> */}
         {user ? (
           <>
             <Dropdown
