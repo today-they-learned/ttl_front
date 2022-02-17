@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Icon, Dropdown } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
 
