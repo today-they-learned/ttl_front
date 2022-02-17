@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
+import { SET_TYPE } from 'reducers/postListType';
 
 const Nav = styled.nav`
   position: fixed;
@@ -52,13 +53,41 @@ const Logo = styled.img`
   height: auto;
 `;
 
+const SearchInput = styled.input`
+  background-color: #dfe6f1;
+  width: 30rem;
+  height: 3rem;
+  border-radius: 3rem;
+  text-align: left;
+  padding-left: 4.5rem;
+`;
+
 const TopNavbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authentication);
+
+  const inputRef = useRef();
 
   const handleSignOut = () => {
     localStorage.removeItem('user');
     window.location.replace('/');
+  };
+
+  const onSearch = () => {
+    dispatch({
+      type: SET_TYPE,
+      item: inputRef.current.value,
+      title: inputRef.current.value,
+      isTag: false,
+      isSearch: true,
+    });
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      onSearch();
+    }
   };
 
   const trigger = (
@@ -77,6 +106,20 @@ const TopNavbar = () => {
         src={`${process.env.PUBLIC_URL}/images/Logo.gif`}
         alt="logo"
       />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Icon
+          name="search"
+          style={{
+            fontSize: '1.5rem',
+            marginRight: '0.5rem',
+            cursor: 'pointer',
+            position: 'relative',
+            left: '4rem',
+          }}
+          onClick={onSearch}
+        />
+        <SearchInput placeholder="키워드를 검색하세요" ref={inputRef} onKeyPress={onKeyPress} />
+      </div>
       <div
         style={{
           display: 'flex',

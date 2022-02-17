@@ -81,7 +81,7 @@ const PostNone = styled.div`
 
 const PostList = (props) => {
   const dispatch = useDispatch();
-  const { item, title, isTag } = useSelector((state) => state.postListType);
+  const { item, title, isTag, isSearch } = useSelector((state) => state.postListType);
   const { feedArticles, currentPage, loadArticlesLoading, loadArticlesDone, hasMoreArticle } =
     useSelector((state) => state.article);
 
@@ -112,7 +112,7 @@ const PostList = (props) => {
         tab: item,
         tag: isTag && item,
         user_id: props.id,
-        // search: 'test',
+        search: isSearch && item,
       },
     });
   }, [item]);
