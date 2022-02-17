@@ -121,7 +121,7 @@ const PostEditorForm = () => {
 
   return (
     <>
-      <div>
+      <div style={{ marginTop: '5rem' }}>
         <Title
           type="title"
           placeholder="제목을 입력하세요"
@@ -132,7 +132,7 @@ const PostEditorForm = () => {
 
         <Editor
           previewStyle="vertical"
-          height="83vh"
+          height="75vh"
           initialEditType="markdown"
           placeholder="마크다운으로 내용을 입력하세요..."
           ref={editorRef}
