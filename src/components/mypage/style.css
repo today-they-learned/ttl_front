@@ -1,0 +1,108 @@
+/*
+ * react-calendar-heatmap styles
+ *
+ * All of the styles in this file are optional and configurable!
+ * The github and gitlab color scales are provided for reference.
+ */
+
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: #aaa;
+}
+
+.react-calendar-heatmap .react-calendar-heatmap-small-text {
+  font-size: 5px;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: #555;
+  stroke-width: 1px;
+}
+
+/*
+   * Default color scale
+   */
+
+.react-calendar-heatmap .color-empty {
+  fill: #eeeeee;
+}
+
+.react-calendar-heatmap .color-filled {
+  fill: #8cc665;
+}
+
+/*
+   * Github color scale
+   */
+
+.react-calendar-heatmap .color-github-0 {
+  fill: #eeeeee;
+}
+.react-calendar-heatmap .color-github-1 {
+  fill: #d6e685;
+}
+.react-calendar-heatmap .color-github-2 {
+  fill: #d6e685;
+}
+.react-calendar-heatmap .color-github-3 {
+  fill: #d6e685;
+}
+.react-calendar-heatmap .color-github-4 {
+  fill: #1e6823;
+}
+
+/*
+   * Gitlab color scale
+   */
+
+.react-calendar-heatmap .color-gitlab-0 {
+  fill: #ededed;
+}
+.react-calendar-heatmap .color-gitlab-1 {
+  fill: #acd5f2;
+}
+.react-calendar-heatmap .color-gitlab-2 {
+  fill: #acd5f2;
+}
+.react-calendar-heatmap .color-gitlab-3 {
+  fill: #acd5f2;
+}
+.react-calendar-heatmap .color-gitlab-4 {
+  fill: #acd5f2;
+}
+.react-calendar-heatmap .color-gitlab-5 {
+  fill: #acd5f2;
+}
+.react-calendar-heatmap .color-gitlab-6 {
+  fill: #7fa8d1;
+}
+.react-calendar-heatmap .color-gitlab-7 {
+  fill: #7fa8d1;
+}
+.react-calendar-heatmap .color-gitlab-8 {
+  fill: #7fa8d1;
+}
+.react-calendar-heatmap .color-gitlab-9 {
+  fill: #7fa8d1;
+}
+.react-calendar-heatmap .color-gitlab-10 {
+  fill: #7fa8d1;
+}
+.react-calendar-heatmap .color-gitlab-11 {
+  fill: #49729b;
+}
+.react-calendar-heatmap .color-gitlab-12 {
+  fill: #49729b;
+}
+.react-calendar-heatmap .color-gitlab-13 {
+  fill: #49729b;
+}
+.react-calendar-heatmap .color-gitlab-14 {
+  fill: #49729b;
+}
+.react-calendar-heatmap .color-gitlab-15 {
+  fill: #49729b;
+}
+.react-calendar-heatmap .color-gitlab-16 {
+  fill: #254e77;
+}

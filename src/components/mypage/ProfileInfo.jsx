@@ -13,8 +13,8 @@ const ProfileInfo = (props) => {
   const [info] = useState(user.user);
 
   const [tags, setTags] = useState(user.user.tags);
-  const [tagEdit, setTagEdit] = useState(true);
   const [tab, setTab] = useState(true);
+  const [tagEdit, setTagEdit] = useState(true);
 
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;

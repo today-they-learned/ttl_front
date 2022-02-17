@@ -21,8 +21,9 @@ const reducer = (state = initialState, action) =>
         break;
       case GRASS_SUCCESS:
         draft.grassLoading = false;
-        draft.grassDone = true;
         draft.grass = action.data;
+        draft.grassDone = true;
+
         break;
       case GRASS_FAILURE:
         draft.grassLoading = false;
