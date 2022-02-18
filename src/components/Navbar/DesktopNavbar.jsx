@@ -56,10 +56,11 @@ const Logo = styled.img`
 const SearchInput = styled.input`
   background-color: #dfe6f1;
   width: 30rem;
-  height: 3rem;
+  height: 2.5rem;
   border-radius: 3rem;
   text-align: left;
   padding-left: 4.5rem;
+  font-family: 'NS-R';
 `;
 
 const TopNavbar = () => {
@@ -122,6 +123,7 @@ const TopNavbar = () => {
             cursor: 'pointer',
             position: 'relative',
             left: '4rem',
+            opacity: '0.6',
           }}
           onClick={onSearch}
         />

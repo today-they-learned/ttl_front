@@ -8,6 +8,8 @@ import postListType from './postListType';
 import grass from './grass';
 import post from './post';
 import users from './users';
+import sub from './sub';
+import bookmark from './bookmark';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +24,8 @@ const rootReducer = (state, action) => {
         grass,
         post,
         users,
+        sub,
+        bookmark,
       });
       return combinedReducer(state, action);
     }
