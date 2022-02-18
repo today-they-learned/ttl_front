@@ -10,6 +10,7 @@ import post from './post';
 import users from './users';
 import sub from './sub';
 import bookmark from './bookmark';
+import feedback from './feedback';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -26,6 +27,7 @@ const rootReducer = (state, action) => {
         users,
         sub,
         bookmark,
+        feedback,
       });
       return combinedReducer(state, action);
     }

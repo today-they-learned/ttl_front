@@ -10,6 +10,7 @@ import commentSaga from './comment';
 import usersSaga from './users';
 import subSaga from './sub';
 import bookmarkSaga from './bookmark';
+import feedbackSaga from './feedback';
 
 axios.defaults.baseURL = apiUrl;
 axios.defaults.withCredentials = true;
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     fork(usersSaga),
     fork(subSaga),
     fork(bookmarkSaga),
+    fork(feedbackSaga),
   ]);
 }
