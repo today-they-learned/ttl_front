@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Icon, Dropdown } from 'semantic-ui-react';
 import COLOR from 'constants/color.constant';
 import { darken } from 'polished';
@@ -53,13 +54,130 @@ const Logo = styled.img`
   height: auto;
 `;
 
+const SearchContent = styled.div`
+  position: absolute;
+  height: 50px;
+  width: 300px;
+  margin-left: 170px;
+  top: 2.4rem;
+  right: -21rem;
+  transform: translate(-50%, -50%);
+`;
+
 const SearchInput = styled.input`
-  background-color: #dfe6f1;
-  width: 30rem;
-  height: 3rem;
-  border-radius: 3rem;
-  text-align: left;
-  padding-left: 4.5rem;
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+  border: 4px solid ${COLOR.PRIMARY};
+  border-radius: 50%;
+  background: none;
+  color: ${COLOR.PRIMARY};
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Roboto;
+  outline: 0;
+  -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out, padding 0.2s;
+  transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out, padding 0.2s;
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+  -webkit-transform: translate(-100%, -50%);
+  -ms-transform: translate(-100%, -50%);
+  transform: translate(-100%, -50%);
+
+  ${(props) =>
+    props.searchShow &&
+    css`
+      box-sizing: border-box;
+      padding: 0 40px 0 10px;
+      width: 400px;
+      height: 45px;
+      border: 4px solid ${COLOR.PRIMARY};
+      border-radius: 0;
+      background: none;
+      color: ${COLOR.PRIMARY};
+      font-family: 'NS-R';
+      font-size: 16px;
+      font-weight: 400;
+      outline: 0;
+      -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, padding 0.2s;
+      transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, padding 0.2s;
+      -webkit-transition-delay: 0.4s, 0s, 0.4s;
+      transition-delay: 0.4s, 0s, 0.4s;
+      -webkit-transform: translate(-100%, -50%);
+      -ms-transform: translate(-100%, -50%);
+      transform: translate(-100%, -50%);
+    `}
+`;
+
+const CloseSearch = styled.button`
+  background: none;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 100%;
+  outline: 0;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transform: translate(-100%, -50%);
+  -ms-transform: translate(-100%, -50%);
+  transform: translate(-100%, -50%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    background-color: ${COLOR.PRIMARY};
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-top: 15px;
+    margin-left: 17px;
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+  }
+
+  ${(props) =>
+    props.searchShow &&
+    css`
+      -webkit-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+      -webkit-transition-delay: 0.4s;
+      transition-delay: 0.4s;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 27px;
+        height: 4px;
+        margin-top: -1px;
+        margin-left: -13px;
+        background-color: ${COLOR.PRIMARY};
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transition: 0.2s ease-in-out;
+        transition: 0.2s ease-in-out;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        width: 27px;
+        height: 4px;
+        background-color: ${COLOR.PRIMARY};
+        margin-top: -1px;
+        margin-left: -13px;
+        cursor: pointer;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    `}
 `;
 
 const TopNavbar = () => {
@@ -69,7 +187,7 @@ const TopNavbar = () => {
 
   const inputRef = useRef();
 
-  // const [searchShow, setSearchShow] = useState(false);
+  const [searchShow, setSearchShow] = useState(false);
 
   const handleSignOut = () => {
     localStorage.removeItem('user');
@@ -93,9 +211,10 @@ const TopNavbar = () => {
     }
   };
 
-  // const onChangeShow = () => {
-  //   setSearchShow(!searchShow);
-  // };
+  const onChangeShow = () => {
+    setSearchShow(!searchShow);
+    inputRef.current.value = '';
+  };
 
   const trigger = (
     <span>
@@ -113,7 +232,7 @@ const TopNavbar = () => {
         src={`${process.env.PUBLIC_URL}/images/Logo.gif`}
         alt="logo"
       />
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
         <Icon
           name="search"
           style={{
@@ -131,14 +250,19 @@ const TopNavbar = () => {
           onKeyPress={onKeyPress}
           // searchShow={searchShow}
         />
-      </div>
+      </div> */}
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          position: 'relative',
         }}
       >
+        <SearchContent>
+          <SearchInput type="text" searchShow={searchShow} ref={inputRef} onKeyPress={onKeyPress} />
+          <CloseSearch type="reset" onClick={onChangeShow} searchShow={searchShow} />
+        </SearchContent>
         {/* <Icon
           name="search"
           style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
