@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
-import { PUT_REQUEST } from 'reducers/post';
+import { PUT_CLEAR, PUT_REQUEST } from 'reducers/post';
 import authHeader from 'sagas/auth-header';
 import axios from 'axios';
 
@@ -72,7 +72,6 @@ const PutModal = ({
   useEffect(() => {
     const urlName = thumbnailFile && thumbnailFile.name;
     setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
-
     tagsRef.current.value = tags;
   }, []);
 
@@ -89,6 +88,7 @@ const PutModal = ({
   const onSubmitPost = useCallback(() => {
     const img = thumbnailFile;
     const formData = new FormData();
+    const tagsArr = tags.split(',');
     if (img) {
       formData.append('thumbnail', img);
     }
@@ -97,7 +97,9 @@ const PutModal = ({
     });
     formData.append('title', titleText);
     formData.append('content', postContent);
-    formData.append('tags', JSON.stringify(tags));
+    if (tags) {
+      formData.append('tags', JSON.stringify(tagsArr));
+    }
 
     dispatch({
       type: PUT_REQUEST,
@@ -115,6 +117,9 @@ const PutModal = ({
   useEffect(() => {
     if (putDone) {
       navigate(`/article/${post.id}`);
+      dispatch({
+        type: PUT_CLEAR,
+      });
     }
   }, [putDone]);
 
