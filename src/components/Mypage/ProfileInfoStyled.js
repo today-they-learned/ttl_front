@@ -58,6 +58,8 @@ export const ContainerCenter = styled.div`
 `;
 export const SnsAccountContainer = styled.div`
   width: 9rem;
+  clear: left;
+  padding-left: 0.2rem;
 `;
 export const ContainerTab = styled.div`
   width: 100%;

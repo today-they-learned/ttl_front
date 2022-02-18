@@ -22,11 +22,12 @@ export const AvatarFormContainer = styled.div`
   width: 8rem;
   height: 10rem;
   color: black;
+  margin: 0 40% 0 40%;
 `;
 
 export const ProfileFormContainer = styled.div`
   width: 100%;
-  height: 13rem;
+  height: 10rem;
   margin-top: 0.5rem;
   margin-bottom: 1.2rem;
   padding-top: 1rem;
@@ -107,22 +108,22 @@ export const TagLabel = styled.span`
 `;
 
 export const TagContainer = styled.div`
-  width: 0.1rem;
   height: 2rem;
   font-size: 0.8rem;
   float: left;
 `;
 export const TagField = styled(Form.Field)`
-  width: 10.5rem;
-  /* float: left !important; */
+  width: 15rem;
+  height: 1.8rem;
+  float: left !important;
   font-size: 0.8rem;
 `;
 export const Tagg = styled(Label)`
-  float: left;
+  float: left !important;
   background-color: #707bf3 !important;
   color: white !important;
   border-radius: 1rem !important;
-  font-size: 0.75rem !important;
+  font-size: 0.7rem !important;
   margin-right: 0.4rem !important;
   margin-bottom: 0.3rem !important;
 `;
@@ -133,6 +134,20 @@ export const TagButton = styled.button`
   float: left !important;
   border-radius: 0.1rem;
   font-size: 0.6rem;
+  margin-top: 0.1rem;
+  margin-left: 0.2rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  color: #707bf3;
+`;
+
+export const TagSubmitButton = styled.button`
+  width: 3.5rem;
+  height: 1.5rem;
+  float: left !important;
+  border-radius: 0.1rem;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
   margin-left: 0.2rem;
   margin-bottom: 0.5rem;
   background-color: white;
@@ -183,7 +198,7 @@ export const PhotoButton2 = styled.button`
 `;
 
 export const UNField = styled(Form.Field)`
-  width: 9.4rem;
+  width: 10rem;
   height: 2rem;
   float: left !important;
   margin-bottom: 0;
@@ -227,4 +242,8 @@ export const Labell = styled.div`
   width: 5rem;
   clear: left;
   font-size: 0.8rem;
+`;
+export const Container = styled.div`
+  width: 3rem;
+  height: 3rem;
 `;
