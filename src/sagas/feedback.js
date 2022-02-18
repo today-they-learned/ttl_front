@@ -13,7 +13,7 @@ const feedbackNewAPI = (id, category) =>
 
 function* feedbackNew(action) {
   try {
-    const result = yield call(feedbackNewAPI, action.id);
+    const result = yield call(feedbackNewAPI, action.id, action.category);
     yield put({
       type: ADD_FEEDBACK_SUCCESS,
       data: camelize(result.data),
