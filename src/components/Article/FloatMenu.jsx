@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -7,7 +8,9 @@ import { Icon, Divider } from 'semantic-ui-react';
 import EMOJI from 'constants/emoji.constant';
 import * as Container from 'components/common/Containers';
 import { ADD_BOOKMARK_REQUEST, DESTROY_BOOKMARK_REQUEST } from 'reducers/bookmark';
+import { ADD_FEEDBACK_REQUEST } from 'reducers/feedback';
 import FeedbackBox from 'components/Feedback/FeedbackBox';
+import { lighten, darken } from 'polished';
 
 const FloatContainer = styled.div`
   width: 4rem;
@@ -72,10 +75,10 @@ const BookmarkCount = styled(EmojiCount)`
 `;
 
 const FeedbackContainer = styled.div`
-  width: 10rem;
+  width: 12rem;
   position: fixed;
   background-color: white;
-  margin: 0 16rem 5rem 0rem;
+  margin: 0 18rem 5rem 0rem;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 1px 1px 10px -6px rgba(0, 0, 0, 0.5);
@@ -84,9 +87,46 @@ const FeedbackContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+const EmojiBox = styled.div`
+  cursor: pointer;
+  display: flex;
+  background-color: #efebe9;
+  border-radius: 0.5rem;
+  margin: 0.25rem;
+  padding: 0.3rem 0.5rem;
+  &:hover {
+    background-color: ${darken(0.1, '#efebe9')};
+  }
+`;
+
+export const Label = styled.div`
+  cursor: pointer;
+  font-family: 'NS-R' !important;
+  font-size: 0.9rem;
+  margin: 0.8rem 0 0 4rem;
+  color: ${COLOR.PRIMARY};
+
+  &:hover {
+    color: ${lighten(0.1, COLOR.PRIMARY)};
+  }
+`;
+
 const FloatMenu = ({ feedback, sub, isBookmarked }) => {
   const dispatch = useDispatch();
   const [isOpenFeedback, setIsOpenFeedback] = useState(false);
+  const [isAddFeedbackMode, setIsAddFeedbackMode] = useState(false);
+  const categorys = [
+    'thumbs_up',
+    'heart',
+    'clap',
+    'lion',
+    'thinking',
+    'smile',
+    'clover',
+    'eyes',
+    'perfect',
+    'bulb',
+  ];
 
   const handleBookmark = useCallback(() => {
     dispatch({
@@ -95,7 +135,14 @@ const FloatMenu = ({ feedback, sub, isBookmarked }) => {
     });
   });
 
-  const handleFeedback = useCallback(() => {});
+  const handleFeedback = useCallback((e) => {
+    console.log('asdfa');
+    dispatch({
+      type: ADD_FEEDBACK_REQUEST,
+      id: sub.id,
+      category: e.target.id,
+    });
+  });
 
   return (
     <>
@@ -121,15 +168,34 @@ const FloatMenu = ({ feedback, sub, isBookmarked }) => {
         </Container.ColumnMiddleContainer>
         {isOpenFeedback ? (
           <FeedbackContainer>
-            {feedback?.map((f, index) => (
-              <FeedbackBox
-                label={f.category}
-                symbol={EMOJI[f.category]}
-                total={f.total}
-                key={(index, 'feedback')}
-                onClick={handleFeedback}
-              />
-            ))}
+            {isAddFeedbackMode ? (
+              <>
+                {categorys.map((cate) => (
+                  <FeedbackBox symbol={EMOJI[cate]} id={cate} onClick={handleFeedback} />
+                ))}
+                <Label onClick={() => setIsAddFeedbackMode(false)}>취소</Label>
+              </>
+            ) : (
+              <>
+                {feedback?.map((f, index) => (
+                  <FeedbackBox
+                    label={f.category}
+                    symbol={EMOJI[f.category]}
+                    total={f.total}
+                    id={f.category}
+                    key={(index, 'feedback')}
+                    onClick={handleFeedback}
+                  />
+                ))}
+                <EmojiBox onClick={() => setIsAddFeedbackMode(true)}>
+                  <Icon.Group style={{ marginRight: '0.5rem' }}>
+                    <Icon>🙂</Icon>
+                    <Icon corner="top right" name="add" />
+                  </Icon.Group>
+                  반응 추가
+                </EmojiBox>
+              </>
+            )}
           </FeedbackContainer>
         ) : null}
       </FloatContainer>
