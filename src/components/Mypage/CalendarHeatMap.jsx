@@ -76,8 +76,8 @@ const CalendarHeatMap = () => {
       <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-1')}
-          endDate={new Date('2022-9-31')}
+          startDate={new Date('2022-1-1')}
+          endDate={new Date('2022-12-31')}
           values={TILCount}
           classForValue={(value) => {
             if (!value) {
@@ -109,8 +109,8 @@ const CalendarHeatMap = () => {
       <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-1')}
-          endDate={new Date('2022-9-31')}
+          startDate={new Date('2022-1-1')}
+          endDate={new Date('2022-12-31')}
           values={TTLCount}
           classForValue={(value) => {
             if (!value) {
