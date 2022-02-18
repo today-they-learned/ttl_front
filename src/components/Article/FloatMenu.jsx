@@ -135,13 +135,14 @@ const FloatMenu = ({ feedback, sub, isBookmarked }) => {
     });
   });
 
-  const handleFeedback = useCallback((e) => {
-    console.log('asdfa');
+  const handleFeedback = useCallback((label) => {
     dispatch({
       type: ADD_FEEDBACK_REQUEST,
       id: sub.id,
-      category: e.target.id,
+      category: label,
     });
+    setIsAddFeedbackMode(false);
+    setIsOpenFeedback(false);
   });
 
   return (
@@ -171,20 +172,18 @@ const FloatMenu = ({ feedback, sub, isBookmarked }) => {
             {isAddFeedbackMode ? (
               <>
                 {categorys.map((cate) => (
-                  <FeedbackBox symbol={EMOJI[cate]} id={cate} onClick={handleFeedback} />
+                  <FeedbackBox symbol={EMOJI[cate]} label={cate} handle={handleFeedback} />
                 ))}
                 <Label onClick={() => setIsAddFeedbackMode(false)}>취소</Label>
               </>
             ) : (
               <>
-                {feedback?.map((f, index) => (
+                {feedback.map((f) => (
                   <FeedbackBox
                     label={f.category}
                     symbol={EMOJI[f.category]}
                     total={f.total}
-                    id={f.category}
-                    key={(index, 'feedback')}
-                    onClick={handleFeedback}
+                    handle={handleFeedback}
                   />
                 ))}
                 <EmojiBox onClick={() => setIsAddFeedbackMode(true)}>

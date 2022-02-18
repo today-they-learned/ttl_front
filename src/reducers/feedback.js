@@ -21,7 +21,6 @@ const reducer = (state = initialState, action) =>
       case ADD_FEEDBACK_SUCCESS:
         draft.addFeedbackLoading = false;
         draft.addFeedbackDone = true;
-        console.log(action.data);
         break;
       case ADD_FEEDBACK_FAILURE:
         draft.addFeedbackLoading = false;

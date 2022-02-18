@@ -131,7 +131,7 @@ const Article = () => {
   );
   const { sub } = useSelector((state) => state.sub);
   const { addBookmarkDone, destroyBookmarkDone } = useSelector((state) => state.bookmark);
-
+  const { addFeedbackDone } = useSelector((state) => state.feedback);
   const [comment, onChangeComment, setComment] = useInput('');
 
   const handleDelete = () => {
@@ -190,6 +190,15 @@ const Article = () => {
       // 렌더링 이슈로 이렇게 해 둡니다..
     }
   }, [addBookmarkDone, destroyBookmarkDone]);
+
+  useEffect(() => {
+    if (addFeedbackDone) {
+      dispatch({
+        type: LOAD_SUB_REQUEST,
+        id,
+      });
+    }
+  }, [addFeedbackDone]);
 
   return (
     <>

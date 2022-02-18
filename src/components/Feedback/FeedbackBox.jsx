@@ -15,9 +15,9 @@ const EmojiBox = styled.button`
   }
 `;
 
-const FeedbackBox = ({ label, symbol, total }) => {
+const FeedbackBox = ({ label, symbol, id, total, handle }) => {
   return (
-    <EmojiBox>
+    <EmojiBox id={id} onClick={() => handle(label)}>
       <span role="img" aria-label={label}>
         {symbol}
       </span>
