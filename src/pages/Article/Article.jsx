@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLE_REQUEST, DESTROY_ARTICLE_REQUEST } from 'reducers/article';
 import { LOAD_COMMENTS_REQUEST, ADD_COMMENT_REQUEST } from 'reducers/comment';
+import { LOAD_SUB_REQUEST } from 'reducers/sub';
 import styled from 'styled-components';
 import useDate from 'hooks/useDate';
 import useInput from 'hooks/useInput';
@@ -128,6 +129,9 @@ const Article = () => {
   const { comments, addCommentDone, updateCommentDone, destroyCommentDone } = useSelector(
     (state) => state.comment,
   );
+  const { sub } = useSelector((state) => state.sub);
+  const { addBookmarkDone, destroyBookmarkDone } = useSelector((state) => state.bookmark);
+
   const [comment, onChangeComment, setComment] = useInput('');
 
   const handleDelete = () => {
@@ -163,6 +167,10 @@ const Article = () => {
       id,
     });
     dispatch({
+      type: LOAD_SUB_REQUEST,
+      id,
+    });
+    dispatch({
       type: POST_CLEAR,
     });
   }, [dispatch]);
@@ -176,6 +184,13 @@ const Article = () => {
     }
   }, [dispatch, addCommentDone, updateCommentDone, destroyCommentDone]);
 
+  useEffect(() => {
+    if (addBookmarkDone || destroyBookmarkDone) {
+      window.location.replace(window.location.pathname);
+      // 렌더링 이슈로 이렇게 해 둡니다..
+    }
+  }, [addBookmarkDone, destroyBookmarkDone]);
+
   return (
     <>
       <Container.AlignCenterContainer>
@@ -187,7 +202,7 @@ const Article = () => {
               <LightText>{useDate(singleArticle?.createdAt)}</LightText>
               <LightText>
                 <Icon name="eye" />
-                {singleArticle?.studyCount}
+                {sub?.studyCount}
               </LightText>
               <LightText>
                 <Icon name="comment" />
@@ -246,7 +261,11 @@ const Article = () => {
             ))}
           </Grid.Column>
         </ArticleBody>
-        <FloatMenu feedback={singleArticle?.feedback} feedbackCnt={singleArticle?.feedbackCount} />
+        <FloatMenu
+          feedback={sub?.feedback}
+          sub={sub || null}
+          isBookmarked={singleArticle?.isBookmarked}
+        />
       </Container.AlignCenterContainer>
     </>
   );

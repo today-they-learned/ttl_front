@@ -77,11 +77,11 @@ const SideBar = () => {
               elemBefore: () => <Icon name="th large" style={{ fontSize: '1.2rem' }} />,
             },
 
-            {
-              title: '팔로우',
-              itemId: { item: 'follow', title: '팔로우' },
-              elemBefore: () => <Icon name="user plus" style={{ fontSize: '1.2rem' }} />,
-            },
+            // {
+            //   title: '팔로우',
+            //   itemId: { item: 'follow', title: '팔로우' },
+            //   elemBefore: () => <Icon name="user plus" style={{ fontSize: '1.2rem' }} />,
+            // },
             {
               title: '관심태그',
               itemId: '/tags',

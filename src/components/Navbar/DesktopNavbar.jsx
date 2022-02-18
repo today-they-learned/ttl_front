@@ -241,6 +241,7 @@ const TopNavbar = () => {
             cursor: 'pointer',
             position: 'relative',
             left: '4rem',
+            opacity: '0.6',
           }}
           onClick={onSearch}
         />

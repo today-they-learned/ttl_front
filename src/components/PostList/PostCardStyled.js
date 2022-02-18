@@ -78,10 +78,9 @@ export const Tag = styled.div`
 `;
 
 export const Avatar = styled.img`
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
-  background-color: black;
   margin-right: 0.5rem;
 `;
 
