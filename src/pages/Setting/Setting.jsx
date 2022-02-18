@@ -170,7 +170,9 @@ const Setting = () => {
           </Styled.Container>
           <Styled.Title style={{ width: '100%' }}>
             <PrivacyModal />
+            <div style={{ width: '1rem' }} />
             <TermModal />
+            <div style={{ width: '1rem' }} />
             <a href="https://github.com/today-they-learned">
               <Styled.Github>TTL Github</Styled.Github>
             </a>

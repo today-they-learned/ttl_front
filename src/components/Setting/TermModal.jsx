@@ -15,11 +15,10 @@ import 'components/EditorForm/toastui-editor.css';
 
 import Term from './Term';
 
-export const Label = styled.div`
+export const Label = styled.span`
   cursor: pointer;
   font-family: 'NS-R' !important;
   font-size: 0.8rem;
-  margin-right: 1rem;
   color: ${COLOR.PRIMARY};
 
   &:hover {
