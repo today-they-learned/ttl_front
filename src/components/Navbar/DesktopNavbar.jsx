@@ -56,7 +56,7 @@ const Logo = styled.img`
 const SearchInput = styled.input`
   background-color: #dfe6f1;
   width: 30rem;
-  height: 3rem;
+  height: 2.5rem;
   border-radius: 3rem;
   text-align: left;
   padding-left: 4.5rem;

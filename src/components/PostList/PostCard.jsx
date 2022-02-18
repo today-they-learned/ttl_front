@@ -67,7 +67,11 @@ const PostCard = ({ post }) => {
       <Line />
       <CardBottom>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar src={post.user.avatar} />
+          <Avatar
+            src={
+              post.user.avatar ? post.user.avatar : `${process.env.PUBLIC_URL}/images/missing.png`
+            }
+          />
           <UserName>{post.user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
