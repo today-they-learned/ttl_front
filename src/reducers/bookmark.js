@@ -28,7 +28,6 @@ const reducer = (state = initialState, action) =>
       case ADD_BOOKMARK_SUCCESS:
         draft.addBookmarkLoading = false;
         draft.addBookmarkDone = true;
-        console.log(action.data);
         break;
       case ADD_BOOKMARK_FAILURE:
         draft.addBookmarkLoading = false;
@@ -42,7 +41,6 @@ const reducer = (state = initialState, action) =>
       case DESTROY_BOOKMARK_SUCCESS:
         draft.destroyBookmarkLoading = false;
         draft.destroyBookmarkDone = true;
-        console.log(action.data);
         break;
       case DESTROY_BOOKMARK_FAILURE:
         draft.destroyBookmarkLoading = false;

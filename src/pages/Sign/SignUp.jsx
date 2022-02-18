@@ -10,6 +10,8 @@ import * as Container from 'components/common/Containers';
 import * as Btn from 'components/common/Button';
 import SignTitle from 'components/Sign/SignTitle';
 import COLOR from 'constants/color.constant';
+import PrivacyModal from 'components/Setting/PrivacyModal';
+import TermModal from 'components/Setting/TermModal';
 
 const SignContainer = styled(Container.AlignCenterContainer)`
   margin-top: 6rem;
@@ -150,15 +152,8 @@ const SignUp = () => {
         {/* 약관확인 */}
         <P>
           <Span>
-            회원가입 시 TTL의{' '}
-            <a href="/" style={{ fontFamily: 'NS-B' }}>
-              서비스 약관
-            </a>{' '}
-            및 <br />
-            <a href="/" style={{ fontFamily: 'NS-B' }}>
-              개인정보 처리방침
-            </a>
-            을 확인하였으며, 동의합니다.
+            회원가입 시 TTL의 <TermModal /> 및 <br />
+            <PrivacyModal /> 을 확인하였으며, 동의합니다.
           </Span>
         </P>
       </Grid.Column>

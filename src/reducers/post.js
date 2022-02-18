@@ -11,6 +11,7 @@ export const initialState = {
 };
 
 export const POST_CLEAR = 'POST_CLEAR';
+export const PUT_CLEAR = 'PUT_CLEAR';
 
 export const POST_REQUEST = 'POST_REQUEST';
 export const POST_SUCCESS = 'POST_SUCCESS';
@@ -42,6 +43,12 @@ const reducer = (state = initialState, action) =>
       case POST_FAILURE:
         draft.postLoading = false;
         draft.postError = action.error;
+        break;
+      case PUT_CLEAR:
+        draft.putLoading = false;
+        draft.putDone = false;
+        draft.putError = null;
+        draft.post = null;
         break;
       case PUT_REQUEST:
         draft.putLoading = true;

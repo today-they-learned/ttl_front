@@ -186,11 +186,10 @@ export const PhotoButton = styled.label`
 `;
 
 export const PhotoButton2 = styled.button`
-  width: 4.5rem !important;
+  width: 4rem !important;
   height: 1.5rem !important;
   font-size: 0.6rem !important;
-  margin-top: 0.8rem !important;
-  margin-left: 1.5rem !important;
+  margin-left: 1.8rem !important;
   padding: 0.4rem;
   background-color: #707bf3 !important;
   color: white !important;

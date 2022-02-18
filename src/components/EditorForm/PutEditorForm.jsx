@@ -90,6 +90,7 @@ const PutEditorForm = () => {
 
   const onChangeTags = (tag) => {
     setTags(tag);
+    console.log(tag);
   };
 
   const onChangeThumbnail = (file) => {
