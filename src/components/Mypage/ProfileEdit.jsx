@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_USER_REQUEST } from 'reducers/authentication';
 import { LOAD_USER_REQUEST } from 'reducers/users';
@@ -11,15 +11,18 @@ const ProfileEdit = () => {
   const formData = new FormData();
   const { user, updateUserDone } = useSelector((state) => state.authentication);
   const [info, setInfo] = useState(user.user);
-  const [tags, setTags] = useState(user.user.tags);
+  const [tags, setTags] = useState();
+  const [taglist, setTagList] = useState(user.user.tags);
   const [tagEdit, setTagEdit] = useState(true);
   const [fileUrl, setFileUrl] = useState(info.avatar);
   const [profile, setProfile] = useState(info.avatar);
   const [photo, setPhoto] = useState(true);
 
+  const tagsRef = useRef();
+
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
-    setTags(tags.filter((tag) => tag !== value));
+    setTagList(taglist.filter((tag) => tag !== value));
   };
 
   const inputHandler = (e) => {
@@ -27,12 +30,16 @@ const ProfileEdit = () => {
       ...info,
       [e.target.name]: e.target.value,
     });
+    console.log(e.target.value);
+  };
+
+  const inputHandlerTag = (e) => {
+    setTags(e.target.value);
   };
 
   const onChange = (e) => {
     const imageFile = e.target.files[0];
     console.log(e.target.files[0]);
-
     const imageUrl = URL.createObjectURL(imageFile);
     setFileUrl(imageUrl);
     setProfile(imageFile);
@@ -40,8 +47,9 @@ const ProfileEdit = () => {
   };
 
   const handleSubmit = useCallback(() => {
-    console.log(profile);
     formData.append('username', info.username);
+    formData.append('tags', JSON.stringify(taglist));
+    console.log(tags);
     formData.append('email', info.email);
     formData.append('introduce', info.introduce);
     formData.append('facebook_account', info.facebookAccount);
@@ -57,8 +65,9 @@ const ProfileEdit = () => {
     formData.append('avatar', profile);
   };
 
-  const TagSubmit = () => {
-    // api put code
+  const tagSubmit = () => {
+    setTagList(taglist.concat(tags));
+    formData.append('tags', JSON.stringify(taglist));
     setTagEdit(!tagEdit);
   };
 
@@ -91,7 +100,7 @@ const ProfileEdit = () => {
           <Styled.PhotoInput
             id="input_file"
             type="file"
-            accept="image/jpg,impge/png,image/jpeg"
+            accept="image/jpg,imge/png,image/jpeg"
             name="profile_img"
             onChange={onChange}
           />
@@ -122,34 +131,36 @@ const ProfileEdit = () => {
               onChange={inputHandler}
             />
           </Styled.AboutField>
+        </Styled.ProfileFormContainer>
+      </Form>
 
-          {tagEdit ? (
-            <div>
-              <Styled.TagContainer>
-                {tags.map((tag) => (
-                  <Styled.Tagg id={tag}>
-                    {tag}
-                    <Icon name="delete" onClick={deleteTag} />
-                  </Styled.Tagg>
-                ))}
-              </Styled.TagContainer>
-              <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>태그 추가</Styled.TagButton>
-            </div>
-          ) : (
-            <div>
-              <Styled.TagContainer>
-                <Form onSubmit={TagSubmit}>
-                  <Styled.TagField>
-                    <Form.Field control={Input} />
-                  </Styled.TagField>
-                  <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>
-                    태그 추가
-                  </Styled.TagButton>
-                </Form>
-              </Styled.TagContainer>
-            </div>
-          )}
-          <br />
+      {tagEdit ? (
+        <div>
+          <Styled.TagContainer>
+            {taglist.map((tag) => (
+              <Styled.Tagg id={tag}>
+                {tag}
+                <Icon name="delete" onClick={deleteTag} />
+              </Styled.Tagg>
+            ))}
+          </Styled.TagContainer>
+          <Styled.TagButton onClick={() => setTagEdit(!tagEdit)}>태그 추가</Styled.TagButton>
+        </div>
+      ) : (
+        <div>
+          <Styled.TagContainer>
+            <Form onSubmit={tagSubmit}>
+              <Styled.TagField>
+                <Form.Field control={Input} ref={tagsRef} onChange={inputHandlerTag} />
+              </Styled.TagField>
+              <Styled.TagSubmitButton>태그 추가</Styled.TagSubmitButton>
+            </Form>
+          </Styled.TagContainer>
+        </div>
+      )}
+      <Styled.Container />
+      <Form onSubmit={handleSubmit}>
+        <Styled.ProfileFormContainer>
           <Styled.SnsField>
             <Styled.TagLabel>facebook_username</Styled.TagLabel>
             <Form.Field
