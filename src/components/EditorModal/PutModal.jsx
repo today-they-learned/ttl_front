@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'semantic-ui-react';
-import { PUT_REQUEST } from 'reducers/post';
+import { PUT_CLEAR, PUT_REQUEST } from 'reducers/post';
 import authHeader from 'sagas/auth-header';
 import axios from 'axios';
 
@@ -117,6 +117,9 @@ const PutModal = ({
   useEffect(() => {
     if (putDone) {
       navigate(`/article/${post.id}`);
+      dispatch({
+        type: PUT_CLEAR,
+      });
     }
   }, [putDone]);
 
