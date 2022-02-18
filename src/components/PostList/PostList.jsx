@@ -107,6 +107,7 @@ const PostList = (props) => {
     if (isTag) {
       return `${item} 에 대한 글이 없습니다.`;
     }
+
     return '피드에 글이 없습니다.';
   };
 
@@ -164,7 +165,7 @@ const PostList = (props) => {
         <PostTop>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <p style={{ fontFamily: 'GS-B', fontSize: '2rem', color: '#707bf3' }}>
-              {title || '피드'}
+              {isSearch ? `${item}에 대한 검색 결과` : title}
             </p>
             {item === 'main' && (
               <Select onChange={handleFilter} value={filter}>
