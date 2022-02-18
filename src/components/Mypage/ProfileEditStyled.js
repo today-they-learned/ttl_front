@@ -170,6 +170,18 @@ export const PhotoButton = styled.label`
   cursor: pointer;
 `;
 
+export const PhotoButton2 = styled.button`
+  width: 4rem !important;
+  height: 1.5rem !important;
+  font-size: 0.6rem !important;
+  margin-left: 1.8rem !important;
+  padding: 0.4rem;
+  background-color: #707bf3 !important;
+  color: white !important;
+  font-family: 'NS-R' !important;
+  cursor: pointer;
+`;
+
 export const UNField = styled(Form.Field)`
   width: 9.4rem;
   height: 2rem;

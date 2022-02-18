@@ -15,6 +15,7 @@ const ProfileEdit = () => {
   const [tagEdit, setTagEdit] = useState(true);
   const [fileUrl, setFileUrl] = useState(info.avatar);
   const [profile, setProfile] = useState(info.avatar);
+  const [photo, setPhoto] = useState(true);
 
   const deleteTag = (e) => {
     const value = e.target.parentElement.id;
@@ -30,13 +31,16 @@ const ProfileEdit = () => {
 
   const onChange = (e) => {
     const imageFile = e.target.files[0];
+    console.log(e.target.files[0]);
+
     const imageUrl = URL.createObjectURL(imageFile);
     setFileUrl(imageUrl);
     setProfile(imageFile);
+    setPhoto(!photo);
   };
 
   const handleSubmit = useCallback(() => {
-    formData.append('avatar', profile);
+    console.log(profile);
     formData.append('username', info.username);
     formData.append('email', info.email);
     formData.append('introduce', info.introduce);
@@ -48,6 +52,10 @@ const ProfileEdit = () => {
       data: formData,
     });
   }, [dispatch, formData]);
+
+  const photoSubmit = () => {
+    formData.append('avatar', profile);
+  };
 
   const TagSubmit = () => {
     // api put code
@@ -72,7 +80,13 @@ const ProfileEdit = () => {
             src={info?.avatar ? fileUrl : `${process.env.PUBLIC_URL}/images/missing.png`}
             alt="profile"
           />
-          <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
+          {photo ? (
+            <Styled.PhotoButton for="input_file">사진 업로드</Styled.PhotoButton>
+          ) : (
+            <Styled.PhotoButton2 for="input_file" onClick={photoSubmit}>
+              사진 저장
+            </Styled.PhotoButton2>
+          )}
 
           <Styled.PhotoInput
             id="input_file"
