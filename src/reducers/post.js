@@ -44,16 +44,19 @@ const reducer = (state = initialState, action) =>
         draft.postError = action.error;
         break;
       case PUT_REQUEST:
+        console.log(action);
         draft.putLoading = true;
         draft.putError = null;
         draft.putDone = false;
         break;
       case PUT_SUCCESS:
         draft.putLoading = false;
+        console.log(action.data);
         draft.post = action.data;
         draft.putDone = true;
         break;
       case PUT_FAILURE:
+        console.log(action);
         draft.putLoading = false;
         draft.putError = action.error;
         break;

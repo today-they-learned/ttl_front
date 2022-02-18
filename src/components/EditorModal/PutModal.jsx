@@ -72,7 +72,6 @@ const PutModal = ({
   useEffect(() => {
     const urlName = thumbnailFile && thumbnailFile.name;
     setThumbnailUrl(`http://api.todaytheylearn.com/media/uploads/${urlName}`);
-
     tagsRef.current.value = tags;
   }, []);
 
@@ -89,6 +88,7 @@ const PutModal = ({
   const onSubmitPost = useCallback(() => {
     const img = thumbnailFile;
     const formData = new FormData();
+    const tagsArr = tags.split(',');
     if (img) {
       formData.append('thumbnail', img);
     }
@@ -97,7 +97,7 @@ const PutModal = ({
     });
     formData.append('title', titleText);
     formData.append('content', postContent);
-    formData.append('tags', JSON.stringify(tags));
+    formData.append('tags', JSON.stringify(tagsArr));
 
     dispatch({
       type: PUT_REQUEST,
