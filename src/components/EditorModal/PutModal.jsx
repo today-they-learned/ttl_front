@@ -97,7 +97,9 @@ const PutModal = ({
     });
     formData.append('title', titleText);
     formData.append('content', postContent);
-    formData.append('tags', JSON.stringify(tagsArr));
+    if (tags) {
+      formData.append('tags', JSON.stringify(tagsArr));
+    }
 
     dispatch({
       type: PUT_REQUEST,
