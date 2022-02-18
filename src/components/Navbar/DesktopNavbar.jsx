@@ -57,10 +57,10 @@ const Logo = styled.img`
 const SearchContent = styled.div`
   position: absolute;
   height: 50px;
-  width: 300px;
+  width: 1px;
   margin-left: 170px;
   top: 2.4rem;
-  right: -21rem;
+  right: 6.8rem;
   transform: translate(-50%, -50%);
 `;
 
