@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ProfileInfo from 'components/Mypage/ProfileInfo';
 import ProfileEdit from 'components/Mypage/ProfileEdit';
@@ -9,6 +10,7 @@ const MyPage = styled.div`
 
 function Mypage() {
   const [editMode, setEditMode] = useState(false);
+  const { id } = useParams();
 
   const onChangeMode = () => {
     setEditMode(!editMode);
@@ -22,7 +24,7 @@ function Mypage() {
         </MyPage>
       ) : (
         <MyPage>
-          <ProfileInfo onChangeMode={onChangeMode} />
+          <ProfileInfo id={id} onChangeMode={onChangeMode} />
         </MyPage>
       )}
     </>

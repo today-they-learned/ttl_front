@@ -29,6 +29,6 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'no-param-reassign': 'off',
     'no-alert': 'off',
-    'import/no-unresolved': [2, { caseSensitive: false }],
+    'import/no-unresolved': ['error', { caseSensitive: false }],
   },
 };

@@ -32,15 +32,13 @@ const ChartLabel = styled.div`
   font-weight: 600;
 `;
 
-const CalendarHeatMap = () => {
-  const { user } = useSelector((state) => state.authentication);
-
+const CalendarHeatMap = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({
       type: GRASS_REQUEST,
-      id: user.user.id,
+      id: props.id,
     });
   }, [dispatch]);
 

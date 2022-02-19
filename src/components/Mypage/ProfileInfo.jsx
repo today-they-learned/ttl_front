@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOAD_USER_REQUEST } from 'reducers/users';
 import * as Styled from './ProfileInfoStyled';
 import CalendarHeatMap from './CalendarHeatMap';
 import TIL from './TIL';
 
 const ProfileInfo = (props) => {
-  const { user } = useSelector((state) => state.authentication);
-  const [info] = useState(user.user);
-
-  const [tags] = useState(user.user.tags);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const me = JSON.parse(localStorage.getItem('user'));
+  const { user, loadUserDone } = useSelector((state) => state.users);
+  const [info, setInfo] = useState([]);
+  const [tags, setTags] = useState([]);
   const [tab, setTab] = useState(true);
+
+  useEffect(() => {
+    dispatch({
+      type: LOAD_USER_REQUEST,
+      id,
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (loadUserDone) {
+      setInfo(user);
+      setTags(user.tags);
+    }
+  }, [loadUserDone]);
 
   return (
     <Styled.Profile>
@@ -50,7 +69,11 @@ const ProfileInfo = (props) => {
             </Styled.IconContainer>
           </Styled.SnsAccountContainer>
         </Styled.ContainerCenter>
-        <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
+        {me.user.id === info.id ? (
+          <Styled.EditButton onClick={props.onChangeMode}>프로필 편집</Styled.EditButton>
+        ) : (
+          <Styled.EditButton>팔로우</Styled.EditButton>
+        )}
       </div>
 
       <Styled.Line />
@@ -75,7 +98,7 @@ const ProfileInfo = (props) => {
         </Styled.TabButton>
       </Styled.ContainerTab>
       <Styled.ContainerBottom>
-        {tab ? <CalendarHeatMap /> : <TIL id={info.id} />}
+        {tab ? <CalendarHeatMap id={id} /> : <TIL id={info.id} />}
       </Styled.ContainerBottom>
     </Styled.Profile>
   );
