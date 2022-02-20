@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import EMOJI from 'constants/emoji.constant';
 
@@ -22,43 +22,7 @@ const EmojiBox2 = styled.div`
   padding: 0.3rem 0.5rem;
 `;
 
-const Feedback = ({ feedback }) => {
-  const emoJiLen = feedback.length;
-  const feedbackArr = [...feedback];
-
-  const [firstEmoji, setFirstEmoji] = useState('');
-  const [firstEmojiCount, setFirstEmojiCount] = useState(0);
-  const [secondEmoji, setSecondEmoji] = useState('');
-  const [secondEmojiValue, setSecondEmojiValue] = useState(0);
-  const [sortedFeedback] = useState(
-    feedback &&
-      feedbackArr.sort((a, b) => {
-        return b.total - a.total;
-      }),
-  );
-
-  useEffect(() => {
-    switch (emoJiLen) {
-      case 0:
-        setFirstEmoji('');
-        setFirstEmojiCount(0);
-        setSecondEmoji('');
-        setSecondEmojiValue(0);
-        break;
-      case 1:
-        setFirstEmoji(sortedFeedback[0].category);
-        setFirstEmojiCount(sortedFeedback[0].total);
-        setSecondEmoji('');
-        setSecondEmojiValue(0);
-
-        break;
-      default:
-        setFirstEmoji(sortedFeedback[0].category);
-        setFirstEmojiCount(sortedFeedback[0].total);
-        setSecondEmoji(sortedFeedback[1].category);
-        setSecondEmojiValue(sortedFeedback[1].total);
-    }
-  });
+const Feedback = ({ firstEmoji, firstEmojiCount, secondEmoji, secondEmojiCount, emoJiLen }) => {
   return (
     <EmojiWrapper>
       <EmojiBox1 emoJiLen={emoJiLen}>
@@ -71,7 +35,7 @@ const Feedback = ({ feedback }) => {
         <span role="img" aria-label={secondEmoji}>
           {EMOJI[secondEmoji]}
         </span>
-        <span>{secondEmojiValue}</span>
+        <span>{secondEmojiCount}</span>
       </EmojiBox2>
     </EmojiWrapper>
   );

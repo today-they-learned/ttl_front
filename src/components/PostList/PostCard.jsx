@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 
 import Feedback from 'components/Feedback/Feedback';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDate from 'hooks/useDate';
 import removeMarkdown from 'markdown-to-text';
@@ -23,6 +23,43 @@ import {
 
 const PostCard = ({ post }) => {
   const navigate = useNavigate();
+
+  const emoJiLen = post.feedback.length;
+  const feedbackArr = [...post.feedback];
+
+  const [firstEmoji, setFirstEmoji] = useState('');
+  const [firstEmojiCount, setFirstEmojiCount] = useState(0);
+  const [secondEmoji, setSecondEmoji] = useState('');
+  const [secondEmojiCount, setSecondEmojiCount] = useState(0);
+  const [sortedFeedback] = useState(
+    post.feedback &&
+      feedbackArr.sort((a, b) => {
+        return b.total - a.total;
+      }),
+  );
+
+  useEffect(() => {
+    switch (emoJiLen) {
+      case 0:
+        setFirstEmoji('');
+        setFirstEmojiCount(0);
+        setSecondEmoji('');
+        setSecondEmojiCount(0);
+        break;
+      case 1:
+        setFirstEmoji(sortedFeedback[0].category);
+        setFirstEmojiCount(sortedFeedback[0].total);
+        setSecondEmoji('');
+        setSecondEmojiCount(0);
+
+        break;
+      default:
+        setFirstEmoji(sortedFeedback[0].category);
+        setFirstEmojiCount(sortedFeedback[0].total);
+        setSecondEmoji(sortedFeedback[1].category);
+        setSecondEmojiCount(sortedFeedback[1].total);
+    }
+  });
 
   return (
     <Card
@@ -75,9 +112,16 @@ const PostCard = ({ post }) => {
           <UserName>{post.user.username}</UserName>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Feedback feedback={post.feedback} />
+          <Feedback
+            // feedback={post.feedback}
+            firstEmoji={firstEmoji}
+            secondEmoji={secondEmoji}
+            firstEmojiCount={firstEmojiCount}
+            secondEmojiCount={secondEmojiCount}
+            emoJiLen={emoJiLen}
+          />
           <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
-            {`+${post.feedbackCount}`}
+            {`+${post.feedbackCount - firstEmojiCount - secondEmojiCount}`}
           </p>
         </div>
       </CardBottom>
