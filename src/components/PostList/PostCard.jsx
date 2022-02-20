@@ -113,7 +113,6 @@ const PostCard = ({ post }) => {
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Feedback
-            // feedback={post.feedback}
             firstEmoji={firstEmoji}
             secondEmoji={secondEmoji}
             firstEmojiCount={firstEmojiCount}
