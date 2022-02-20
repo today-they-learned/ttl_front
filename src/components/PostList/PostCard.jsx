@@ -121,7 +121,8 @@ const PostCard = ({ post }) => {
             emoJiLen={emoJiLen}
           />
           <p style={{ fontSize: '0.7rem', fontFamily: 'NS-R', color: 'grey' }}>
-            {`+${post.feedbackCount - firstEmojiCount - secondEmojiCount}`}
+            {post.feedbackCount - firstEmojiCount - secondEmojiCount !== 0 &&
+              `+${post.feedbackCount - firstEmojiCount - secondEmojiCount}`}
           </p>
         </div>
       </CardBottom>
