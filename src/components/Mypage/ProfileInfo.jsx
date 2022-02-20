@@ -98,7 +98,7 @@ const ProfileInfo = (props) => {
         </Styled.TabButton>
       </Styled.ContainerTab>
       <Styled.ContainerBottom>
-        {tab ? <CalendarHeatMap id={id} /> : <TIL id={info.id} />}
+        {tab ? <CalendarHeatMap id={id} /> : <TIL id={id} />}
       </Styled.ContainerBottom>
     </Styled.Profile>
   );

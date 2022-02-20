@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_ARTICLE_REQUEST, DESTROY_ARTICLE_REQUEST } from 'reducers/article';
 import { LOAD_COMMENTS_REQUEST, ADD_COMMENT_REQUEST } from 'reducers/comment';
@@ -129,7 +129,6 @@ const Article = () => {
   const { comments, addCommentDone, updateCommentDone, destroyCommentDone } = useSelector(
     (state) => state.comment,
   );
-  const navigate = useNavigate();
   const { sub } = useSelector((state) => state.sub);
   const { addBookmarkDone, destroyBookmarkDone } = useSelector((state) => state.bookmark);
   const { addFeedbackDone } = useSelector((state) => state.feedback);
@@ -208,13 +207,7 @@ const Article = () => {
           <Title>{singleArticle?.title}</Title>
           <SubTitleContainer>
             <SubContainer>
-              <button
-                type="button"
-                style={{ marginRight: '0.5rem', cursor: 'pointer' }}
-                onClick={() => {
-                  navigate(`/userpage/${singleArticle?.user.id}`);
-                }}
-              >
+              <button type="button" style={{ marginRight: '0.5rem' }}>
                 {singleArticle?.user.username}
               </button>
               <LightText>{useDate(singleArticle?.createdAt)}</LightText>

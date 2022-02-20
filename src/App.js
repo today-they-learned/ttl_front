@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/" element={<PostList />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/userpage/:id" element={<Userpage />} />
+            <Route path="/user/:id" element={<Userpage />} />
             <Route path="/setting" element={<Setting />} />
             <Route path="/article/:id" element={<Article />} />
             <Route path="/post" element={<PostEditorForm />} />

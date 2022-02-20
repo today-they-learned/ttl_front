@@ -286,7 +286,7 @@ const TopNavbar = () => {
               <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
                 <Dropdown.Item
                   onClick={() => {
-                    navigate(`/userpage/${user.user.id}`);
+                    navigate(`/user/${user.user.id}`);
                   }}
                 >
                   <DropText>프로필</DropText>
