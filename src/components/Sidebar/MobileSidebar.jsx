@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -90,15 +90,31 @@ const SidebarList = styled.div`
 
   background-color: white;
   transition: all 0.3s;
-  width: 11rem;
+  width: 18rem;
   height: 100%;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 1.2rem 0;
+`;
+
+const SearchInput = styled.input`
+  background-color: #dfe6f1;
+  width: 14rem;
+  height: 2rem;
+  border-radius: 3rem;
+  text-align: left;
+  padding-left: 4.5rem;
 `;
 
 const MobileSideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const { user } = useSelector((state) => state.authentication);
+
+  const inputRef = useRef();
 
   const [sidebarToggled, setSidebarToggled] = useState(null);
   const [maskClosable] = useState(true);
@@ -110,6 +126,25 @@ const MobileSideBar = () => {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose(e);
+    }
+  };
+
+  const onSearch = () => {
+    navigate('/');
+    dispatch({
+      type: SET_TYPE,
+      item: inputRef.current.value,
+      title: inputRef.current.value,
+      isTag: false,
+      isSearch: true,
+    });
+    inputRef.current.value = '';
+    setSidebarToggled(!sidebarToggled);
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      onSearch();
     }
   };
 
@@ -180,6 +215,24 @@ const MobileSideBar = () => {
               sidebarToggled={sidebarToggled}
               style={{ margin: '1rem', padding: '0.5rem 0' }}
             >
+              <SearchContainer>
+                <Icon
+                  name="search"
+                  style={{
+                    fontSize: '1.5rem',
+                    marginRight: '0.5rem',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    left: '4rem',
+                  }}
+                  onClick={onSearch}
+                />
+                <SearchInput
+                  placeholder="키워드를 검색하세요"
+                  ref={inputRef}
+                  onKeyPress={onKeyPress}
+                />
+              </SearchContainer>
               <Navigation
                 onSelect={({ itemId }) => {
                   if (user && itemId !== '/tags') {
