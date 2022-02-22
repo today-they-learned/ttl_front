@@ -21,7 +21,7 @@ import authHeader from './auth-header';
 
 const signinAPI = (data) => axios.post('/users/login/', data);
 const signupAPI = (data) => axios.post('/users/', data);
-const userEditAPI = (data) => axios.patch('/users/user/', data, { headers: authHeader() });
+const userEditAPI = (data) => axios.put('/users/user/', data, { headers: authHeader() });
 const userDestroyAPI = () => axios.delete('/users/user/destroy/', { headers: authHeader() });
 
 function* signin(action) {

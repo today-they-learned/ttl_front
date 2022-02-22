@@ -92,7 +92,7 @@ const MobileNavbar = () => {
               <Dropdown.Menu style={{ marginTop: '1.3rem' }}>
                 <Dropdown.Item
                   onClick={() => {
-                    navigate('/mypage');
+                    navigate(`/user/${user.user.id}`);
                   }}
                 >
                   <DropText>프로필</DropText>

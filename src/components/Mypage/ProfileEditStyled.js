@@ -12,17 +12,21 @@ export const InfoEdit = styled.div`
     padding: 5rem;
   `}
 
-  ${media.mobile`
+  @media screen and (max-width: 450px) {
     width: 28rem;
-    padding: 2rem;
-  `}
+    padding: 3.5rem;
+  }
 `;
 
 export const AvatarFormContainer = styled.div`
   width: 8rem;
   height: 10rem;
   color: black;
-  margin: 0 40% 0 40%;
+  margin: 0 42%;
+
+  @media screen and (max-width: 767px) {
+    margin: 0 30%;
+  }
 `;
 
 export const ProfileFormContainer = styled.div`
@@ -221,7 +225,7 @@ export const AboutField = styled(Form.Field)`
   font-size: 0.9rem;
   resize: none;
   @media screen and (max-width: 767px) {
-    width: 22rem;
+    width: 21rem;
     height: 4.8rem;
     font-size: 0.9rem;
     resize: none;
@@ -231,7 +235,7 @@ export const AboutField = styled(Form.Field)`
 export const SnsField = styled(Form.Field)`
   font-size: 0.9rem;
   @media screen and (max-width: 767px) {
-    width: 22rem;
+    width: 21rem;
     height: 2.8rem;
     font-size: 0.9rem;
     resize: none;

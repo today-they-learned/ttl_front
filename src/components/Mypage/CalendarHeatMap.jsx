@@ -26,9 +26,8 @@ const CHM = styled.div`
 `;
 
 const ChartLabel = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-left: 2rem;
-  margin-bottom: 1rem;
   font-weight: 600;
 `;
 
