@@ -49,7 +49,6 @@ const ProfileEdit = () => {
   const handleSubmit = useCallback(() => {
     formData.append('username', info.username);
     formData.append('tags', JSON.stringify(taglist));
-    console.log(tags);
     formData.append('email', info.email);
     formData.append('introduce', info.introduce);
     formData.append('facebook_account', info.facebookAccount);
@@ -66,8 +65,10 @@ const ProfileEdit = () => {
   };
 
   const tagSubmit = () => {
-    setTagList(taglist.concat(tags));
-    formData.append('tags', JSON.stringify(taglist));
+    if (tags !== undefined) {
+      setTagList(taglist.concat(tags));
+      setTags();
+    }
     setTagEdit(!tagEdit);
   };
 
@@ -100,7 +101,7 @@ const ProfileEdit = () => {
           <Styled.PhotoInput
             id="input_file"
             type="file"
-            accept="image/jpg,imge/png,image/jpeg"
+            accept="image/jpg,image/png,image/jpeg"
             name="profile_img"
             onChange={onChange}
           />

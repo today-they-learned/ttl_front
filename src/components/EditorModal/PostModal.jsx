@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

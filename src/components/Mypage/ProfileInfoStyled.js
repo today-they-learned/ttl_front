@@ -4,6 +4,7 @@ import { Form, Label } from 'semantic-ui-react';
 export const Profile = styled.div`
   width: 100%;
   position: relative;
+  padding-top: 1rem;
   .choice1 {
     margin-top: 0.6rem;
     float: left;
@@ -39,19 +40,16 @@ export const Profile = styled.div`
 `;
 export const ContainerLeft = styled.div`
   width: 10rem;
-  height: 11.5rem;
+  height: 9.5rem;
   float: left;
   color: black;
-  padding-top: 2.5rem;
   padding-left: 2.3rem;
 `;
 export const ContainerCenter = styled.div`
   max-width: 100%;
-  height: 11.5rem;
+  height: 10rem;
   float: left;
-  margin-top: 0.5rem;
   padding-left: 1.8rem;
-  padding-top: 2rem;
   padding-right: 1.8rem;
   font-size: 12px;
   position: relative;
@@ -93,6 +91,7 @@ export const Email = styled.span`
 `;
 export const Introduce = styled.div`
   clear: left;
+  height: 2rem;
   margin-bottom: 1.2rem;
   font-size: 1rem;
   font-weight: 500;

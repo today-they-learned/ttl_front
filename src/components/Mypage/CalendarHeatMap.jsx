@@ -7,6 +7,7 @@ import 'react-calendar-heatmap/dist/styles.css';
 import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
 import media from 'styles/media';
+import moment from 'moment';
 
 const CHMContainer = styled.div`
   width: 100%;
@@ -26,21 +27,20 @@ const CHM = styled.div`
 `;
 
 const ChartLabel = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-left: 2rem;
-  margin-bottom: 1rem;
   font-weight: 600;
 `;
 
-const CalendarHeatMap = () => {
-  const { user } = useSelector((state) => state.authentication);
+const today = new Date();
 
+const CalendarHeatMap = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({
       type: GRASS_REQUEST,
-      id: user.user.id,
+      id: props.id,
     });
   }, [dispatch]);
 
@@ -76,8 +76,8 @@ const CalendarHeatMap = () => {
       <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-4')}
-          endDate={new Date('2022-9-3')}
+          startDate={moment().subtract(1, 'year')}
+          endDate={today}
           values={TILCount}
           classForValue={(value) => {
             if (!value) {
@@ -109,8 +109,8 @@ const CalendarHeatMap = () => {
       <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-4')}
-          endDate={new Date('2022-9-3')}
+          startDate={moment().subtract(1, 'year')}
+          endDate={today}
           values={TTLCount}
           classForValue={(value) => {
             if (!value) {

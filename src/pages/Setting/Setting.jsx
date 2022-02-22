@@ -10,6 +10,7 @@ import * as Styled from './SettingStyled';
 
 const Setting = () => {
   const dispatch = useDispatch();
+  const formData = new FormData();
   const { user } = useSelector((state) => state.authentication);
   const info = user.user;
   const [repository, onChangeRepository] = useInput(info.repository);
@@ -19,35 +20,46 @@ const Setting = () => {
   const [mailable, setMailable] = useState(info.subscribeRecommendedMail);
   const { destroyUserDone } = useSelector((state) => state.authentication);
 
+  // const inputHandlerGit = (e) => {
+  //   setRepository(e.target.value);
+  // };
+
+  // const inputHandlerVelog = (e) => {
+  //   setVelogUsername(e.target.value);
+  // };
+
   const handleSubmitGit = useCallback(() => {
+    formData.append('username', info.username);
+    formData.append('repository', repository);
+    console.log(repository);
     dispatch({
       type: UPDATE_USER_REQUEST,
-      data: {
-        repository,
-      },
+      data: formData,
     });
     setGitEditMode(false);
-  }, [dispatch, repository]);
+  }, [dispatch, formData]);
 
   const handleSubmitVelog = useCallback(() => {
+    formData.append('username', info.username);
+    console.log(velogUsername);
+    formData.append('velog_username', velogUsername);
     dispatch({
       type: UPDATE_USER_REQUEST,
-      data: {
-        velog_username: velogUsername,
-      },
+      data: formData,
     });
     setVelogEditMode(false);
-  }, [dispatch, velogUsername]);
+  }, [dispatch, formData]);
 
   const handleSubmitMailable = useCallback(() => {
+    formData.append('username', info.username);
+    formData.append('subscribeRecommendedMail', mailable);
+
     dispatch({
       type: UPDATE_USER_REQUEST,
-      data: {
-        subscribe_recommended_mail: !mailable,
-      },
+      data: formData,
     });
     setMailable(!mailable);
-  }, [dispatch, mailable]);
+  }, [dispatch, formData]);
 
   const handleWithdraw = () => {
     if (window.confirm('정말 탈퇴하시겠습니까?\n모든 글과 댓글이 사라집니다. 😥')) {
@@ -117,6 +129,7 @@ const Setting = () => {
                 <Styled.Icon src="images/velog.jpg" style={{ borderRadius: '50%' }} />
                 <Styled.Label>Velog 연동</Styled.Label>
               </Styled.Title>
+
               {velogEditMode ? (
                 <Form id="velog" onSubmit={handleSubmitVelog}>
                   <Styled.Field>
@@ -147,6 +160,7 @@ const Setting = () => {
               </Styled.Btn>
             )}
           </Styled.Container>
+
           <Styled.LightText>Velog 아이디를 입력하세요.</Styled.LightText>
           <Styled.Line />
           <Styled.Container>

@@ -6,7 +6,7 @@ import 'styles/fonts.css';
 
 import wrapper from 'store/configureStore';
 import ResponsiveLayout from 'layouts/responsive.layout';
-import { Mypage, SignIn, SignUp, Article, Setting, NotFound } from 'pages';
+import { Userpage, SignIn, SignUp, Article, Setting, NotFound } from 'pages';
 import ReactGA from 'react-ga';
 import LocationTracker from 'trackers/LocationTracker';
 
@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/" element={<PostList />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/mypage" element={<Mypage />} />
+            <Route path="/user/:id" element={<Userpage />} />
             <Route path="/setting" element={<Setting />} />
             <Route path="/article/:id" element={<Article />} />
             <Route path="/post" element={<PostEditorForm />} />
