@@ -207,9 +207,7 @@ const Article = () => {
           <Title>{singleArticle?.title}</Title>
           <SubTitleContainer>
             <SubContainer>
-              <button type="button" style={{ marginRight: '0.5rem' }}>
-                {singleArticle?.user.username}
-              </button>
+              <strong style={{ marginRight: '0.5rem' }}>{singleArticle?.user.username}</strong>
               <LightText>{useDate(singleArticle?.createdAt)}</LightText>
               <LightText>
                 <Icon name="eye" />

@@ -7,6 +7,7 @@ import 'react-calendar-heatmap/dist/styles.css';
 import 'components/Mypage/react-calendar-heatmap.css';
 import styled from 'styled-components';
 import media from 'styles/media';
+import moment from 'moment';
 
 const CHMContainer = styled.div`
   width: 100%;
@@ -70,18 +71,12 @@ const CalendarHeatMap = (props) => {
     }
   }, [grassDone]);
 
-  const shiftDate = (date, numDays) => {
-    const newDate = new Date(date);
-    newDate.setDate(newDate.getDate() + numDays);
-    return newDate;
-  };
-
   return (
     <CHMContainer>
       <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={shiftDate(today, -365)}
+          startDate={moment().subtract(1, 'year')}
           endDate={today}
           values={TILCount}
           classForValue={(value) => {
@@ -114,7 +109,7 @@ const CalendarHeatMap = (props) => {
       <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={shiftDate(today, -365)}
+          startDate={moment().subtract(1, 'year')}
           endDate={today}
           values={TTLCount}
           classForValue={(value) => {

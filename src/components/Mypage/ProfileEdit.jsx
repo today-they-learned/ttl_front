@@ -65,8 +65,10 @@ const ProfileEdit = () => {
   };
 
   const tagSubmit = () => {
-    setTagList(taglist.concat(tags));
-    formData.append('tags', JSON.stringify(taglist));
+    if (tags !== undefined) {
+      setTagList(taglist.concat(tags));
+      setTags();
+    }
     setTagEdit(!tagEdit);
   };
 
