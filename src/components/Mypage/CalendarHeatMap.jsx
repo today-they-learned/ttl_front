@@ -31,6 +31,8 @@ const ChartLabel = styled.div`
   font-weight: 600;
 `;
 
+const today = new Date();
+
 const CalendarHeatMap = (props) => {
   const dispatch = useDispatch();
 
@@ -68,13 +70,19 @@ const CalendarHeatMap = (props) => {
     }
   }, [grassDone]);
 
+  const shiftDate = (date, numDays) => {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + numDays);
+    return newDate;
+  };
+
   return (
     <CHMContainer>
       <ChartLabel>작성한 TIL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-4')}
-          endDate={new Date('2022-9-3')}
+          startDate={shiftDate(today, -365)}
+          endDate={today}
           values={TILCount}
           classForValue={(value) => {
             if (!value) {
@@ -106,8 +114,8 @@ const CalendarHeatMap = (props) => {
       <ChartLabel>공부한 TTL</ChartLabel>
       <CHM>
         <CalendarHeatmap
-          startDate={new Date('2021-9-4')}
-          endDate={new Date('2022-9-3')}
+          startDate={shiftDate(today, -365)}
+          endDate={today}
           values={TTLCount}
           classForValue={(value) => {
             if (!value) {
