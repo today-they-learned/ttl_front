@@ -91,9 +91,9 @@ const SearchInput = styled.input`
       padding: 0 40px 0 10px;
       width: 400px;
       height: 45px;
-      border: 4px solid ${COLOR.PRIMARY};
+      border: none;
+      border-bottom: 2px solid ${COLOR.PRIMARY};
       border-radius: 0;
-      background: none;
       color: ${COLOR.PRIMARY};
       font-family: 'NS-R';
       font-size: 16px;
@@ -137,7 +137,7 @@ const CloseSearch = styled.button`
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    margin-top: 15px;
+    margin-top: 13px;
     margin-left: 17px;
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
@@ -232,26 +232,6 @@ const TopNavbar = () => {
         src={`${process.env.PUBLIC_URL}/images/Logo.gif`}
         alt="logo"
       />
-      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Icon
-          name="search"
-          style={{
-            fontSize: '1.5rem',
-            marginRight: '0.5rem',
-            cursor: 'pointer',
-            position: 'relative',
-            left: '4rem',
-            opacity: '0.6',
-          }}
-          onClick={onSearch}
-        />
-        <SearchInput
-          placeholder="키워드를 검색하세요"
-          ref={inputRef}
-          onKeyPress={onKeyPress}
-          // searchShow={searchShow}
-        />
-      </div> */}
       <div
         style={{
           display: 'flex',
@@ -264,11 +244,7 @@ const TopNavbar = () => {
           <SearchInput type="text" searchShow={searchShow} ref={inputRef} onKeyPress={onKeyPress} />
           <CloseSearch type="reset" onClick={onChangeShow} searchShow={searchShow} />
         </SearchContent>
-        {/* <Icon
-          name="search"
-          style={{ fontSize: '1.5rem', marginRight: '0.5rem', cursor: 'pointer' }}
-          onClick={onChangeShow}
-        /> */}
+
         {user ? (
           <>
             <Icon
