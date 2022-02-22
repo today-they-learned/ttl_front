@@ -5,6 +5,7 @@ import { Form, Input, Icon } from 'semantic-ui-react';
 import TermModal from 'components/Setting/TermModal';
 import PrivacyModal from 'components/Setting/PrivacyModal';
 import * as Container from 'components/common/Containers';
+import useInput from 'hooks/useInput';
 import * as Styled from './SettingStyled';
 
 const Setting = () => {
@@ -12,20 +13,20 @@ const Setting = () => {
   const formData = new FormData();
   const { user } = useSelector((state) => state.authentication);
   const info = user.user;
-  const [repository, setRepository] = useState(info.repository);
-  const [velogUsername, setVelogUsername] = useState(info.velogUsername);
+  const [repository, onChangeRepository] = useInput(info.repository);
+  const [velogUsername, onChangeVelogUsername] = useInput(info.velogUsername);
   const [gitEditMode, setGitEditMode] = useState(false);
   const [velogEditMode, setVelogEditMode] = useState(false);
   const [mailable, setMailable] = useState(info.subscribeRecommendedMail);
   const { destroyUserDone } = useSelector((state) => state.authentication);
 
-  const inputHandlerGit = (e) => {
-    setRepository(e.target.value);
-  };
+  // const inputHandlerGit = (e) => {
+  //   setRepository(e.target.value);
+  // };
 
-  const inputHandlerVelog = (e) => {
-    setVelogUsername(e.target.value);
-  };
+  // const inputHandlerVelog = (e) => {
+  //   setVelogUsername(e.target.value);
+  // };
 
   const handleSubmitGit = useCallback(() => {
     formData.append('username', info.username);
@@ -94,7 +95,7 @@ const Setting = () => {
                       control={Input}
                       placeholder="ex) user/TIL"
                       value={repository}
-                      onChange={inputHandlerGit}
+                      onChange={onChangeRepository}
                     />
                   </Styled.Field>
                 </Form>
@@ -136,7 +137,7 @@ const Setting = () => {
                       control={Input}
                       placeholder="velog id"
                       value={velogUsername}
-                      onChange={inputHandlerVelog}
+                      onChange={onChangeVelogUsername}
                     />
                   </Styled.Field>
                 </Form>
