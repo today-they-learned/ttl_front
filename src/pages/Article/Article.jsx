@@ -204,7 +204,7 @@ const Article = () => {
     <>
       <Container.AlignCenterContainer>
         <ArticleBody className={loadArticleloading ? 'loading' : ''}>
-          <Title>{singleArticle?.title}</Title>
+          <Title>122{singleArticle?.title}</Title>
           <SubTitleContainer>
             <SubContainer>
               <strong style={{ marginRight: '0.5rem' }}>{singleArticle?.user.username}</strong>
