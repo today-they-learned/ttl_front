@@ -19,9 +19,11 @@ import {
   CardBody,
   CardBottom,
   Line,
+  TagContent,
 } from './PostCardStyled';
+import handleTagsStyle from './tag';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, index }) => {
   const navigate = useNavigate();
 
   const emoJiLen = post.feedback.length;
@@ -37,6 +39,9 @@ const PostCard = ({ post }) => {
         return b.total - a.total;
       }),
   );
+  const tagArrLen = handleTagsStyle();
+  const [tagArrSlice, setTagArrSlice] = useState(post.tags.slice(0, tagArrLen[index]));
+  console.log(tagArrSlice, index);
 
   useEffect(() => {
     switch (emoJiLen) {
@@ -61,6 +66,10 @@ const PostCard = ({ post }) => {
     }
   });
 
+  useEffect(() => {
+    setTagArrSlice(post.tags.slice(0, tagArrLen[index]));
+  }, []);
+
   return (
     <Card
       onClick={() => {
@@ -84,11 +93,15 @@ const PostCard = ({ post }) => {
             justifyContent: 'space-between',
           }}
         >
-          <div style={{ display: 'flex', marginLeft: '0.5rem', marginTop: '1rem' }}>
-            {Object.keys(post.tags).map((key) => (
-              <Tag key={key}>{post.tags[key]}</Tag>
+          <TagContent className="tag_list">
+            {post.tags.slice(0, tagArrLen[index]).map((tag) => (
+              <Tag>{tag}</Tag>
             ))}
-          </div>
+            {/* {Object.keys(post.tags).map((key) => {
+              // eslint-disable-next-line no-plusplus
+              return <Tag key={key}>{post.tags[key]}</Tag>;
+            })} */}
+          </TagContent>
 
           <div
             style={{
