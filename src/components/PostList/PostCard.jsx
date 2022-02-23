@@ -21,9 +21,8 @@ import {
   Line,
   TagContent,
 } from './PostCardStyled';
-import handleTagsStyle from './tag';
 
-const PostCard = ({ post, index }) => {
+const PostCard = ({ post }) => {
   const navigate = useNavigate();
 
   const emoJiLen = post.feedback.length;
@@ -39,9 +38,21 @@ const PostCard = ({ post, index }) => {
         return b.total - a.total;
       }),
   );
-  const tagArrLen = handleTagsStyle();
-  const [tagArrSlice, setTagArrSlice] = useState(post.tags.slice(0, tagArrLen[index]));
-  console.log(tagArrSlice, index);
+
+  const handleTagsStyle = () => {
+    const tags = document.querySelectorAll('.tag_list');
+
+    tags.forEach((tag) => {
+      const tagChildren = tag.childNodes;
+      let tagWidth = 0;
+      tagChildren.forEach((child) => {
+        if (tagWidth + child.offsetWidth > 250) {
+          child.style.display = ' none';
+        }
+        tagWidth += child.offsetWidth + 8;
+      });
+    });
+  };
 
   useEffect(() => {
     switch (emoJiLen) {
@@ -64,11 +75,8 @@ const PostCard = ({ post, index }) => {
         setSecondEmoji(sortedFeedback[1].category);
         setSecondEmojiCount(sortedFeedback[1].total);
     }
+    handleTagsStyle();
   });
-
-  useEffect(() => {
-    setTagArrSlice(post.tags.slice(0, tagArrLen[index]));
-  }, []);
 
   return (
     <Card
@@ -94,13 +102,9 @@ const PostCard = ({ post, index }) => {
           }}
         >
           <TagContent className="tag_list">
-            {post.tags.slice(0, tagArrLen[index]).map((tag) => (
-              <Tag>{tag}</Tag>
+            {Object.keys(post.tags).map((key) => (
+              <Tag key={key}>{post.tags[key]}</Tag>
             ))}
-            {/* {Object.keys(post.tags).map((key) => {
-              // eslint-disable-next-line no-plusplus
-              return <Tag key={key}>{post.tags[key]}</Tag>;
-            })} */}
           </TagContent>
 
           <div

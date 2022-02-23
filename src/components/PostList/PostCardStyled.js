@@ -72,7 +72,6 @@ export const TagContent = styled.div`
   margin-left: 0.5rem;
   margin-top: 1rem;
   flex-wrap: wrap;
-  /* overflow: hidden; */
 `;
 
 export const Tag = styled.div`
