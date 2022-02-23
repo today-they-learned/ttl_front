@@ -122,6 +122,7 @@ export const EditButton = styled.button`
   position: absolute;
   top: 0;
   right: 1.8rem;
+  cursor: pointer;
 `;
 export const IconContainer = styled.div`
   width: 12rem;

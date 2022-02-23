@@ -6,7 +6,7 @@ import { LOAD_USER_REQUEST } from 'reducers/users';
 import { Form, Input, TextArea, Icon } from 'semantic-ui-react';
 import * as Styled from './ProfileEditStyled';
 
-const ProfileEdit = () => {
+const ProfileEdit = (props) => {
   const dispatch = useDispatch();
   const formData = new FormData();
   const { user, updateUserDone } = useSelector((state) => state.authentication);
@@ -107,7 +107,8 @@ const ProfileEdit = () => {
           />
         </Styled.AvatarFormContainer>
         <Styled.ActionContainer>
-          <Styled.BackButton>취소</Styled.BackButton>
+          <Styled.BackButton onClick={props.onChangeMode}>취소</Styled.BackButton>
+
           <Styled.EditButton>저장</Styled.EditButton>
         </Styled.ActionContainer>
 
