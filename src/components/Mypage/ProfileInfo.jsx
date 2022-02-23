@@ -53,17 +53,26 @@ const ProfileInfo = (props) => {
             <Styled.IconContainer>
               {info.facebookAccount ? (
                 <a href={`https://www.facebook.com/${info.facebookAccount}`}>
-                  <Styled.FBIcon src="images/facebook.png" alt="insta_icon" />
+                  <Styled.FBIcon
+                    src={`${process.env.PUBLIC_URL}/images/facebook.png`}
+                    alt="fb_icon"
+                  />
                 </a>
               ) : null}
               {info.instagramAccount ? (
                 <a href={`https://www.instagram.com/${info.instagramAccount}`}>
-                  <Styled.InstaIcon src="images/instagram.png" alt="fb_icon" />
+                  <Styled.InstaIcon
+                    src={`${process.env.PUBLIC_URL}/images/instagram.png`}
+                    alt="insta_icon"
+                  />
                 </a>
               ) : null}
               {info.twitterAccount ? (
                 <a href={`https://twitter.com/${info.twitterAccount}`}>
-                  <Styled.TwittIcon src="images/twitter.png" alt="twitter_icon" />
+                  <Styled.TwittIcon
+                    src={`${process.env.PUBLIC_URL}/images/twitter.png`}
+                    alt="twitter_icon"
+                  />
                 </a>
               ) : null}
             </Styled.IconContainer>
