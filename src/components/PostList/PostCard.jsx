@@ -19,6 +19,7 @@ import {
   CardBody,
   CardBottom,
   Line,
+  TagContent,
 } from './PostCardStyled';
 
 const PostCard = ({ post }) => {
@@ -37,6 +38,21 @@ const PostCard = ({ post }) => {
         return b.total - a.total;
       }),
   );
+
+  const handleTagsStyle = () => {
+    const tags = document.querySelectorAll('.tag_list');
+
+    tags.forEach((tag) => {
+      const tagChildren = tag.childNodes;
+      let tagWidth = 0;
+      tagChildren.forEach((child) => {
+        if (tagWidth + child.offsetWidth > 250) {
+          child.style.display = ' none';
+        }
+        tagWidth += child.offsetWidth + 8;
+      });
+    });
+  };
 
   useEffect(() => {
     switch (emoJiLen) {
@@ -59,6 +75,7 @@ const PostCard = ({ post }) => {
         setSecondEmoji(sortedFeedback[1].category);
         setSecondEmojiCount(sortedFeedback[1].total);
     }
+    handleTagsStyle();
   });
 
   return (
@@ -84,11 +101,11 @@ const PostCard = ({ post }) => {
             justifyContent: 'space-between',
           }}
         >
-          <div style={{ display: 'flex', marginLeft: '0.5rem', marginTop: '1rem' }}>
+          <TagContent className="tag_list">
             {Object.keys(post.tags).map((key) => (
               <Tag key={key}>{post.tags[key]}</Tag>
             ))}
-          </div>
+          </TagContent>
 
           <div
             style={{
