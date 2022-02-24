@@ -122,6 +122,7 @@ export const EditButton = styled.button`
   position: absolute;
   top: 0;
   right: 1.8rem;
+  cursor: pointer;
 `;
 export const IconContainer = styled.div`
   width: 12rem;
@@ -163,6 +164,7 @@ export const TabButton = styled.div`
   font-size: 1.15rem;
   margin-left: 1rem;
   margin-right: 0.5rem;
+  cursor: pointer;
 `;
 export const TagButton = styled.button`
   float: left;

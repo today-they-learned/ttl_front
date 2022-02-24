@@ -70,6 +70,7 @@ export const BackButton = styled.button`
   font-size: 0.5rem;
   background-color: white;
   color: #707bf3;
+  cursor: pointer;
   @media screen and (max-width: 767px) {
     width: 2.5rem;
     height: 1.6rem;
@@ -91,6 +92,7 @@ export const EditButton = styled.button`
   padding: 0;
   background-color: #707bf3;
   color: white;
+  cursor: pointer;
   @media screen and (max-width: 767px) {
     width: 2.5rem;
     height: 1.6rem;
@@ -143,6 +145,7 @@ export const TagButton = styled.button`
   margin-bottom: 0.5rem;
   background-color: white;
   color: #707bf3;
+  cursor: pointer;
 `;
 
 export const TagSubmitButton = styled.button`
@@ -156,18 +159,7 @@ export const TagSubmitButton = styled.button`
   margin-bottom: 0.5rem;
   background-color: white;
   color: #707bf3;
-`;
-
-export const TagButton2 = styled.button`
-  width: 3rem;
-  height: 1.4rem;
-  border-radius: 0.1rem;
-  font-size: 0.6rem;
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: white;
-  color: #707bf3;
+  cursor: pointer;
 `;
 
 export const PhotoInput = styled(Input)`
