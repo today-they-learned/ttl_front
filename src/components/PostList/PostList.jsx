@@ -186,9 +186,6 @@ const PostList = (props) => {
               <PostCard key={('postcard', index)} post={article[1]} />
             ))
           : loadArticlesDone && <PostNone>{postNoneMsg()}</PostNone>}
-        {/* {feedArticles.map((article, index) => (
-          <PostCard key={('postcard', index)} post={article[1]} />
-        ))} */}
       </PostCards>
     </Post>
   );

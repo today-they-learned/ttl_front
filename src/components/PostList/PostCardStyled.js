@@ -67,6 +67,13 @@ export const Content = styled.div`
         `}
 `;
 
+export const TagContent = styled.div`
+  display: flex;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+`;
+
 export const Tag = styled.div`
   font-size: 0.8rem;
   margin-left: 0.5rem;
