@@ -212,6 +212,11 @@ const TopNavbar = () => {
   };
 
   const onChangeShow = () => {
+    if (searchShow) {
+      inputRef.current.disabled = true;
+    } else {
+      inputRef.current.disabled = false;
+    }
     setSearchShow(!searchShow);
     inputRef.current.value = '';
   };
