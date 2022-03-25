@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'styles/sidebar.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Navigation } from 'react-minimal-side-navigation';
 
 import { Icon } from 'semantic-ui-react';
@@ -15,13 +15,14 @@ const Bar = styled.div`
   height: 100%;
 `;
 
-const SideBar = () => {
+const SideBar = memo(() => {
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.authentication);
 
-  const setArr = [];
+  const [tagArr, setTagArr] = useState([]);
 
   useEffect(() => {
     // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
@@ -30,7 +31,8 @@ const SideBar = () => {
         const curObj = {};
         curObj.title = tag;
         curObj.itemId = `/tags/${tag}`;
-        setArr.push(curObj);
+        setTagArr((arr) => [...arr, curObj]);
+        console.log(tagArr);
       });
     }
   }, []);
@@ -54,12 +56,16 @@ const SideBar = () => {
       });
     }
   };
+
   return (
     <>
       <Bar>
         <Navigation
           onSelect={({ itemId }) => {
             if (user && itemId !== '/tags') {
+              if (location.pathname !== '/') {
+                navigate('/');
+              }
               setType(itemId);
             }
             if (!user && itemId.item !== 'main') {
@@ -83,7 +89,7 @@ const SideBar = () => {
               itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-              subNav: user ? setArr : null,
+              subNav: user ? tagArr : null,
             },
             {
               title: '북마크',
@@ -100,6 +106,6 @@ const SideBar = () => {
       </Bar>
     </>
   );
-};
+});
 
 export default SideBar;

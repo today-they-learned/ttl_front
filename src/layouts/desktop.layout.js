@@ -6,7 +6,6 @@ import COLOR from 'constants/color.constant';
 
 const DesktopLayout = (props) => {
   const location = useLocation();
-  console.log(location.pathname.slice(0, 8));
   return (
     <div
       style={{
