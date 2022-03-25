@@ -32,7 +32,6 @@ const SideBar = memo(() => {
         curObj.title = tag;
         curObj.itemId = `/tags/${tag}`;
         setTagArr((arr) => [...arr, curObj]);
-        console.log(tagArr);
       });
     }
   }, []);
