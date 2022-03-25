@@ -13,10 +13,6 @@ const Bar = styled.div`
   top: 200px;
   width: 10.5rem;
   height: 100%;
-  /* position: fixed;
-  left: 19rem;
-  top: 12rem;
-  transform: translate(1em, 12rem); */
 `;
 
 const SideBar = () => {
