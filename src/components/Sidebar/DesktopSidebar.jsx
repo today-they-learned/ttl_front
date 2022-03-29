@@ -22,7 +22,7 @@ const SideBar = memo(() => {
 
   const { user } = useSelector((state) => state.authentication);
 
-  const [tagArr, setTagArr] = useState([]);
+  const [tagsArr, setTagsArr] = useState([]);
 
   useEffect(() => {
     // 배열로 받은 태그목록을 배열 내 각각의 object로 변환한 뒤 아래 subNav에 전달
@@ -31,7 +31,7 @@ const SideBar = memo(() => {
         const curObj = {};
         curObj.title = tag;
         curObj.itemId = `/tags/${tag}`;
-        setTagArr((arr) => [...arr, curObj]);
+        setTagsArr((arr) => [...arr, curObj]);
       });
     }
   }, []);
@@ -88,7 +88,7 @@ const SideBar = memo(() => {
               itemId: '/tags',
               elemBefore: () => <Icon name="tags" style={{ fontSize: '1.2rem' }} />,
 
-              subNav: user ? tagArr : null,
+              subNav: user ? tagsArr : null,
             },
             {
               title: '북마크',
