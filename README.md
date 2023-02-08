@@ -69,6 +69,7 @@ TTL`Today They Learned` Github, Tistory, velog 등 다양한 곳에 나눠져 �
 
 - TIL에 **다양한 이모지**를 달 수 있습니다.
 
+
 <br />
 
 ## 🗃 사이트 구조 개요
@@ -77,6 +78,37 @@ TTL`Today They Learned` Github, Tistory, velog 등 다양한 곳에 나눠져 �
 
 프론트엔드는 `React.js` 로 개발되었습니다.
 백엔드는 `Django` 로 개발되었으며, `django-rest-framework` 를 이용한 API 서버로 구성되어있습니다.
+
+
+<br />
+
+## ⛏ 작업 방식
+
+### 📌 협업을 위한 컨벤션
+
+- ESLint & Prettier (with Airbnb Style Guide) 를 통해 프로젝트 컨벤션 지정
+  컴포넌트명 및 디렉토리 구조 선 설계 후 개발 진행
+
+### ✍️ 모던 CSS 기법 활용
+
+- 손쉬운 레이아웃 개발을 위하여 Flex, Grid 등의 모던 CSS 기법 사용
+
+### 🎨 CSS-in-JS (with styled-components, emotion)
+
+- CSS 모델을 컴포넌트 레벨로 추상화하여 사용
+
+
+<br />
+
+## 🖥 실행 방법
+
+```
+git clone https://github.com/today-they-learned/ttl_front.git
+cd ttl_front
+yarn install
+yarn start
+```
+
 
 <br />
 
